@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact – Davis Education Foundation</title>
+  <meta name="description" content="See how Davis Education Foundation turns community generosity into measurable student outcomes across literacy, scholarships, enrichment, and student supports.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Tokens ────────────── */
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-deep: 0 30px 72px rgba(8, 18, 41, 0.34);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --hero-cycle: 27s;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--pad-inline);
+    }
+
+    .section { padding: var(--section-space) 0; }
+
+    /* ── Typography ────────────── */
+    .kicker {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-family: "Fraunces", "Times New Roman", serif !important;
+      font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+      line-height: 1.12;
+      color: var(--ink-900);
+      text-wrap: balance;
+    }
+
+    .lede {
+      font-size: clamp(1rem, 1.3vw, 1.12rem);
+      color: var(--ink-700);
+      max-width: 64ch;
+      line-height: 1.72;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      margin: 16px 0 18px;
+      background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%);
+      background-size: 220% 100%;
+      animation: gradShift 7s ease-in-out infinite;
+    }
+
+    .section-divider--short { max-width: 320px; }
+
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    /* ── Buttons ────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn--gold {
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+      color: var(--navy-950);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn--gold:hover {
+      box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12);
+    }
+
+    .btn--navy {
+      background: var(--navy-900);
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    a.btn--navy,
+    .btn--navy:link,
+    .btn--navy:visited {
+      color: #fff;
+    }
+
+    .btn--navy:hover {
+      background: var(--navy-700);
+      box-shadow: var(--shadow-mid);
+      color: #fff;
+    }
+
+    .btn--ghost {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    .btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--navy-700);
+      border: 1.5px solid var(--paper-200);
+    }
+
+    .btn--outline:hover {
+      background: var(--paper-100);
+      border-color: var(--paper-200);
+    }
+
+    /* ── Reveal Animation ────────────── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 720ms var(--ease), transform 720ms var(--ease);
+      transition-delay: calc(var(--reveal-order, 0) * 110ms);
+    }
+
+    [data-reveal].is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Card System ────────────── */
+    .card {
+      position: relative;
+      border-radius: var(--radius-md);
+      border: 1px solid #cfe0f6;
+      background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%);
+      padding: clamp(22px, 3vw, 32px);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400));
+      background-size: 300% 300%;
+      opacity: 0;
+      transition: opacity 320ms ease;
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 320ms ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card > * { position: relative; z-index: 1; }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-gold);
+      border-color: rgba(255, 199, 89, 0.35);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      animation: gradShift 3s linear infinite;
+    }
+
+    .card:hover::after { opacity: 1; }
+
+    /* ── HERO ────────────── */
+    .hero {
+      position: relative;
+      min-height: clamp(420px, 58vh, 620px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-bottom-left-radius: var(--radius-xl);
+      border-bottom-right-radius: var(--radius-xl);
+    }
+
+    .hero__slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.06);
+      animation: heroCycle var(--hero-cycle) infinite;
+    }
+
+    .hero__slide--1 {
+      background-image: url("https://cmsv2-assets.apptegy.net/uploads/23895/file/5209360/e9d67b46-92a4-45d6-9afe-58399cf3ad53.png");
+      animation-delay: 0s;
+    }
+
+    .hero__slide--2 {
+      background-image: url("https://cmsv2-assets.apptegy.net/uploads/23895/file/5209363/124cca09-27e5-441f-a8e4-c1b94c4e46a1.png");
+      animation-delay: 9s;
+    }
+
+    .hero__slide--3 {
+      background-image: url("https://cmsv2-assets.apptegy.net/uploads/23895/file/5209364/4fa6b00a-a7c9-4925-b3f7-52dc2686f279.png");
+      animation-delay: 18s;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(170deg, rgba(11, 27, 60, 0.88) 0%, rgba(18, 42, 87, 0.78) 40%, rgba(36, 80, 143, 0.55) 100%);
+    }
+
+    .hero__overlay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+    }
+
+    .hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 1;
+      pointer-events: none;
+      animation: drift 16s ease-in-out infinite;
+    }
+
+    .hero__halo--one {
+      width: 420px;
+      height: 420px;
+      top: -10%;
+      right: -8%;
+      background: radial-gradient(circle, rgba(255, 194, 77, 0.16), transparent 70%);
+    }
+
+    .hero__halo--two {
+      width: 340px;
+      height: 340px;
+      bottom: -8%;
+      left: 10%;
+      background: radial-gradient(circle, rgba(139, 207, 255, 0.12), transparent 70%);
+      animation-delay: -8s;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 80px) var(--pad-inline);
+    }
+
+    .hero__mission-badge {
+      display: inline-flex;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      background: rgba(255, 194, 77, 0.1);
+      border: 1px solid rgba(255, 194, 77, 0.22);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: #ffffff;
+      max-width: 16ch;
+      text-wrap: balance;
+    }
+
+    .hero__text {
+      margin-top: 16px;
+      font-size: clamp(1rem, 1.4vw, 1.14rem);
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 52ch;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    /* ── Impact at a Glance ────────────── */
+    .glance {
+      padding: var(--section-space) 0;
+      background: var(--white);
+    }
+
+    .glance__grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .glance-card {
+      text-align: center;
+      padding: clamp(24px, 3vw, 36px) clamp(16px, 2vw, 24px);
+    }
+
+    .glance-card strong {
+      display: block;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(90deg, #b8860b 0%, var(--gold-400) 20%, #fff4d2 40%, var(--gold-300) 60%, #b8860b 80%, var(--gold-400) 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 4s ease-in-out infinite;
+    }
+
+    .glance-card span {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-500);
+    }
+
+    /* ── Explore Impact Areas ────────────── */
+    .areas__grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .area-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .area-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--paper-100);
+      border: 1px solid var(--paper-200);
+      margin-bottom: 16px;
+      transition: background 260ms ease, color 260ms ease, border-color 260ms ease;
+    }
+
+    .area-card__icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--navy-700);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 260ms ease;
+    }
+
+    .area-card:hover .area-card__icon {
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+      border-color: rgba(255, 194, 77, 0.5);
+    }
+
+    .area-card:hover .area-card__icon svg {
+      stroke: var(--navy-950);
+    }
+
+    .area-card h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.22rem;
+      line-height: 1.2;
+      color: var(--ink-900);
+      margin-bottom: 8px;
+    }
+
+    .area-card p {
+      font-size: 0.94rem;
+      color: var(--ink-700);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .area-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy-700);
+      text-decoration: none;
+      transition: color 220ms ease, gap 220ms ease;
+    }
+
+    .area-card__link:hover {
+      color: var(--gold-500);
+      gap: 10px;
+    }
+
+    .area-card__link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .area-card__pill {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--navy-700);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      margin-top: 12px;
+    }
+
+    /* ── How We Work ────────────── */
+    .how-work {
+      background: var(--navy-950);
+      padding: clamp(54px, 8vw, 96px) 0;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+    }
+
+    .how-work .kicker { color: var(--gold-400); }
+
+    .how-work .title {
+      color: #ffffff;
+      max-width: 22ch;
+    }
+
+    .how-work .section-divider {
+      background: linear-gradient(90deg, rgba(255,194,77,0.6) 0%, var(--gold-400) 35%, rgba(107,149,209,0.4) 70%, rgba(255,194,77,0.6) 100%);
+      background-size: 220% 100%;
+    }
+
+    .how-work .lede {
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 58ch;
+    }
+
+    .how-work__grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .how-work__item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: clamp(22px, 3vw, 30px);
+      transition: background 260ms ease, border-color 260ms ease;
+    }
+
+    .how-work__item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 194, 77, 0.2);
+    }
+
+    .how-work__item h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .how-work__item p {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.65;
+    }
+
+    /* ── Stories Teaser ────────────── */
+    .stories-teaser {
+      background: var(--paper-100);
+    }
+
+    .stories-teaser__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+
+    .stories-teaser__photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .stories-teaser__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Transparency ────────────── */
+    .transparency__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .transparency__text { max-width: 58ch; }
+
+    .transparency__actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ── CTA Banner ────────────── */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .cta-banner .kicker { color: var(--gold-400); }
+
+    .cta-banner .title {
+      color: #ffffff;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      max-width: 20ch;
+      margin: 0 auto;
+    }
+
+    .cta-banner .lede {
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 48ch;
+      margin: 12px auto 0;
+      text-align: center;
+    }
+
+    .cta-banner__actions {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ── Hidden scrollbars ────────────── */
+    .mobile-rail { scrollbar-width: none; -ms-overflow-style: none; }
+    .mobile-rail::-webkit-scrollbar { display: none; }
+
+    /* ── Animations ────────────── */
+    @keyframes heroCycle {
+      0% { opacity: 0; transform: scale(1.06); }
+      8% { opacity: 1; }
+      30% { opacity: 1; }
+      42% { opacity: 0; transform: scale(1.11); }
+      100% { opacity: 0; transform: scale(1.11); }
+    }
+
+    @keyframes gradShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes meshDrift {
+      0%   { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; }
+      33%  { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; }
+      66%  { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; }
+      100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; }
+    }
+
+    @keyframes dotDrift {
+      0%   { background-position: 0 0; }
+      100% { background-position: 28px 28px; }
+    }
+
+    @keyframes goldShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(14px, -12px) scale(1.04); }
+    }
+
+    /* ── Scroll & Parallax Polish ────────────── */
+    .hero__slides { transition: transform 0s linear; will-change: transform; }
+
+    [data-reveal="left"] {
+      opacity: 0; transform: translate3d(-34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="right"] {
+      opacity: 0; transform: translate3d(34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="scale"] {
+      opacity: 0; transform: scale(0.93);
+      transition: transform 800ms var(--ease), opacity 700ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+
+    /* ── Responsive: tablets ────────────── */
+    @media (max-width: 1120px) {
+      .glance__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .how-work__grid { grid-template-columns: 1fr 1fr; }
+      .stories-teaser__inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+    }
+
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .hero {
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+      .glance__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .areas__grid { grid-template-columns: 1fr; }
+      .how-work__grid { grid-template-columns: 1fr; }
+      .how-work { border-radius: 24px; margin: 0 12px; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .hero__actions { flex-direction: column; }
+      .hero__actions .btn { width: 100%; }
+      .transparency__inner { flex-direction: column; text-align: center; }
+      .transparency__actions { justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="impact-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="top" aria-label="Impact hero">
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide hero__slide--1"></div>
+        <div class="hero__slide hero__slide--2"></div>
+        <div class="hero__slide hero__slide--3"></div>
+      </div>
+      <div class="hero__overlay"></div>
+      <div class="hero__halo hero__halo--one"></div>
+      <div class="hero__halo hero__halo--two"></div>
+
+      <div class="hero__inner">
+        <div data-reveal>
+          <p class="hero__mission-badge">Impact</p>
+          <h1>Where your giving turns into <span class="accent">opportunity</span>.</h1>
+          <p class="hero__text">
+            Davis Education Foundation raises private support to fund programs that help students thrive&mdash;from early literacy and scholarships to enrichment, student supports, and long-term initiatives built to scale.
+          </p>
+          <div class="hero__actions">
+            <a href="/o/def/page/give" class="btn btn--gold">Donate</a>
+            <a href="#areas" class="btn btn--ghost">Explore Impact Areas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Section navigation">
+      <nav class="quick-nav">
+        <a href="#glance">At a Glance</a>
+        <a href="#areas">Impact Areas</a>
+        <a href="#how-we-work">How We Work</a>
+        <a href="#stories">Stories</a>
+        <a href="#transparency">Transparency</a>
+      </nav>
+    </div>
+
+    <!-- ═══ IMPACT AT A GLANCE ═══ -->
+    <section class="section glance" id="glance" aria-label="Impact at a glance">
+      <div class="shell">
+        <p class="kicker" data-reveal>Impact at a Glance</p>
+        <h2 class="title" data-reveal style="--reveal-order:1;">Measurable outcomes, powered by community generosity.</h2>
+        <div class="section-divider section-divider--short" data-reveal style="--reveal-order:2;" aria-hidden="true"></div>
+
+        <div class="glance__grid mobile-rail">
+          <article class="card glance-card" data-reveal="scale" style="--reveal-order:0;">
+            <strong class="impact-count" data-count-up data-target="72000" data-suffix="+" data-format="integer" data-duration="1800">0+</strong>
+            <span>Students supported each year</span>
+          </article>
+          <article class="card glance-card" data-reveal="scale" style="--reveal-order:1;">
+            <strong class="impact-count" data-count-up data-target="92" data-format="integer" data-duration="1200">0</strong>
+            <span>Schools across the district</span>
+          </article>
+          <article class="card glance-card" data-reveal="scale" style="--reveal-order:2;">
+            <strong class="impact-count" data-count-up data-target="64" data-prefix="$" data-suffix="M+" data-format="integer" data-duration="1600">$0M+</strong>
+            <span>Invested since 2012</span>
+          </article>
+          <article class="card glance-card" data-reveal="scale" style="--reveal-order:3;">
+            <strong class="impact-count" data-count-up data-target="422" data-format="integer" data-duration="1400">0</strong>
+            <span>Classroom grants awarded</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXPLORE IMPACT AREAS ═══ -->
+    <section class="section" id="areas" aria-label="Impact areas">
+      <div class="shell">
+        <p class="kicker" data-reveal>Explore Impact Areas</p>
+        <h2 class="title" data-reveal style="--reveal-order:1;">Five pillars that move students forward.</h2>
+        <div class="section-divider section-divider--short" data-reveal style="--reveal-order:2;" aria-hidden="true"></div>
+
+        <div class="areas__grid">
+          <!-- Catalyst -->
+          <article class="card area-card" data-reveal style="--reveal-order:0;">
+            <div class="area-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Catalyst</h3>
+            <p>Our flagship initiative to strengthen and scale high-impact strategies that can grow over time.</p>
+            <span class="area-card__pill">Career Pathways</span>
+            <a href="/o/def/page/impact-catalyst" class="area-card__link">
+              Explore Catalyst
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- Early Literacy -->
+          <article class="card area-card" data-reveal style="--reveal-order:1;">
+            <div class="area-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3>Early Literacy</h3>
+            <p>Building home libraries through Dolly Parton&rsquo;s Imagination Library&mdash;launching with Head Start and expanding over time.</p>
+            <span class="area-card__pill">Imagination Library</span>
+            <a href="/o/def/page/impact-early-literacy" class="area-card__link">
+              Explore Early Literacy
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- Scholarships & Grants -->
+          <article class="card area-card" data-reveal style="--reveal-order:2;">
+            <div class="area-card__icon">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3>Scholarships &amp; Grants</h3>
+            <p>Direct support for students and educators&mdash;awards that open doors and strengthen learning.</p>
+            <span class="area-card__pill">57+ Awards Managed</span>
+            <a href="/o/def/page/impact-scholarships-and-grants" class="area-card__link">
+              Explore Scholarships &amp; Grants
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- Student Opportunity -->
+          <article class="card area-card" data-reveal style="--reveal-order:3;">
+            <div class="area-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Student Opportunity</h3>
+            <p>Unified Sports, athletics access, and enrichment opportunities that build belonging and confidence.</p>
+            <span class="area-card__pill">Athletics &amp; Enrichment</span>
+            <a href="/o/def/page/impact-student-opportunity" class="area-card__link">
+              Explore Student Opportunity
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- Student Supports -->
+          <article class="card area-card" data-reveal style="--reveal-order:4;">
+            <div class="area-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Student Supports</h3>
+            <p>Teen Centers, Teen Living Center, Child Spree, Kids&rsquo; Closet, and seasonal programs that keep students steady.</p>
+            <span class="area-card__pill">11 Teen Centers</span>
+            <a href="/o/def/page/impact-student-supports" class="area-card__link">
+              Explore Student Supports
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOW WE WORK ═══ -->
+    <section class="how-work" id="how-we-work" aria-label="How we work">
+      <div class="shell">
+        <p class="kicker" data-reveal>How We Work</p>
+        <h2 class="title" data-reveal style="--reveal-order:1;">Outcomes, stewardship, and clear reporting.</h2>
+        <div class="section-divider" data-reveal style="--reveal-order:2;" aria-hidden="true"></div>
+        <p class="lede" data-reveal style="--reveal-order:3;">
+          We fund programs and partnerships that expand opportunity for students. We focus on outcomes, stewardship, and clear reporting so donors can see what their support makes possible.
+        </p>
+
+        <div class="how-work__grid">
+          <article class="how-work__item" data-reveal style="--reveal-order:0;">
+            <h3>Student-Centered Focus</h3>
+            <p>Every initiative begins with student need. We invest where the impact is direct, measurable, and meaningful.</p>
+          </article>
+          <article class="how-work__item" data-reveal style="--reveal-order:1;">
+            <h3>Responsible Stewardship</h3>
+            <p>Resources are managed with discipline and integrity, aligning every dollar with donor intent and student outcomes.</p>
+          </article>
+          <article class="how-work__item" data-reveal style="--reveal-order:2;">
+            <h3>Transparent Reporting</h3>
+            <p>We share outcomes openly through annual reports, financial filings, and program updates so donors see results.</p>
+          </article>
+          <article class="how-work__item" data-reveal style="--reveal-order:3;">
+            <h3>Community Partnerships</h3>
+            <p>Businesses, families, and community partners work alongside us to multiply reach and deepen support.</p>
+          </article>
+          <article class="how-work__item" data-reveal style="--reveal-order:4;">
+            <h3>Long-Term Strategy</h3>
+            <p>Our three-fold outreach removes barriers to learning, provides educational opportunities, and fosters classroom excellence.</p>
+          </article>
+          <article class="how-work__item" data-reveal style="--reveal-order:5;">
+            <h3>Serving Since 1982</h3>
+            <p>Over four decades of connecting community generosity to student success across all 92 schools in Davis County.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ STORIES TEASER ═══ -->
+    <section class="section stories-teaser" id="stories" aria-label="Impact stories">
+      <div class="shell">
+        <div class="stories-teaser__inner">
+          <div data-reveal="left">
+            <p class="kicker">Stories</p>
+            <h2 class="title">See your support in action.</h2>
+            <div class="section-divider section-divider--short" aria-hidden="true"></div>
+            <p class="lede">
+              Read recent updates and impact stories that show how community generosity translates into real outcomes for students and classrooms across Davis County.
+            </p>
+            <div style="margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="/o/def/page/stories" class="btn btn--gold">View Stories</a>
+            </div>
+          </div>
+          <figure class="stories-teaser__photo" data-reveal="right" style="--reveal-order:1;">
+            <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209361/58937ae9-f9bf-4d60-9784-26b4ddd07642.png" alt="Students celebrating success in Davis County">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TRANSPARENCY ═══ -->
+    <section class="section" id="transparency" aria-label="Financials and transparency">
+      <div class="shell">
+        <div class="transparency__inner" data-reveal>
+          <div class="transparency__text">
+            <p class="kicker">Transparency</p>
+            <h2 class="title" style="font-size: clamp(1.5rem, 2.8vw, 2.2rem);">Want to go deeper?</h2>
+            <p class="lede" style="margin-top: 8px;">
+              Review our annual report and financial filings. We believe in full transparency with every dollar entrusted to us.
+            </p>
+          </div>
+          <div class="transparency__actions">
+            <a href="/o/def/page/about-financials" class="btn btn--navy">Financials &amp; Transparency</a>
+            <a href="/o/def/page/about" class="btn btn--outline">About Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Make an Impact</p>
+        <h2 class="title">Your gift changes a student&rsquo;s trajectory.</h2>
+        <p class="lede">
+          Every donation fuels programs that expand learning, belonging, and student support across Davis County schools.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/give" class="btn btn--gold">Donate Now</a>
+          <a href="/o/def/page/partner" class="btn btn--ghost">Partner With Us</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) {
+        revealItems.forEach(function (el) { el.classList.add("is-in"); });
+        return;
+      }
+
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+
+      revealItems.forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count-up]"));
+      if (!counters.length) return;
+
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function formatValue(value, decimals) {
+        return Number(value).toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+
+      function setDisplay(el, value) {
+        var prefix = el.getAttribute("data-prefix") || "";
+        var suffix = el.getAttribute("data-suffix") || "";
+        var mode = el.getAttribute("data-format") || "integer";
+        var decimals = parseInt(el.getAttribute("data-decimals"), 10);
+        if (isNaN(decimals)) decimals = mode === "decimal" ? 1 : 0;
+
+        var rendered = mode === "decimal"
+          ? formatValue(value, decimals)
+          : formatValue(Math.round(value), 0);
+
+        el.textContent = prefix + rendered + suffix;
+      }
+
+      function animateCounter(el) {
+        if (el.getAttribute("data-counted") === "true") return;
+        el.setAttribute("data-counted", "true");
+
+        var target = parseFloat(el.getAttribute("data-target"));
+        if (!isFinite(target)) return;
+
+        var duration = parseInt(el.getAttribute("data-duration"), 10);
+        if (!isFinite(duration) || duration < 300) duration = 1700;
+
+        var startTime = null;
+
+        function tick(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          setDisplay(el, target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      if (reduced || !("IntersectionObserver" in window)) {
+        counters.forEach(function (el) {
+          var target = parseFloat(el.getAttribute("data-target"));
+          if (isFinite(target)) setDisplay(el, target);
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.2 });
+
+      counters.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+
+      var sections = navLinks
+        .map(function (link) {
+          var target = link.getAttribute("href");
+          if (!target || target.charAt(0) !== "#") return null;
+          return document.querySelector(target);
+        })
+        .filter(Boolean);
+
+      function setActive(id) {
+        navLinks.forEach(function (link) {
+          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+        });
+      }
+
+      var sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.01 });
+
+      sections.forEach(function (section) {
+        sectionObserver.observe(section);
+      });
+    })();
+  </script>
+
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var heroSlides = document.querySelector(".hero__slides");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var target = heroSlides || detailBg;
+      if (!target) return;
+      var heroH = target.closest("section").offsetHeight || 700;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              target.style.transform = "translate3d(0," + (y * 0.22) + "px,0)";
+              heroHalos.forEach(function (h, i) {
+                h.style.transform = "translate(0," + (y * (i === 0 ? 0.12 : 0.18)) + "px) scale(1)";
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Early Literacy – Davis Education Foundation</title>
+  <meta name="description" content="Every child deserves a home library. DEF's Early Literacy initiative puts books in children's hands through Dolly Parton's Imagination Library.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950) !important; box-shadow: var(--shadow-gold); }
+    a.btn--gold:link, a.btn--gold:visited, a.btn--gold:any-link { color: var(--navy-950) !important; text-decoration: none !important; }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy { background: var(--navy-900); color: #fff !important; box-shadow: var(--shadow-soft); }
+    a.btn--navy:link, a.btn--navy:visited, a.btn--navy:any-link { color: #fff !important; text-decoration: none !important; }
+    .btn--navy:hover { background: var(--navy-700); box-shadow: var(--shadow-mid); }
+    .btn--ghost { background: rgba(255, 255, 255, 0.12); color: #fff !important; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); }
+    a.btn--ghost:link, a.btn--ghost:visited, a.btn--ghost:any-link { color: #fff !important; text-decoration: none !important; }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline { background: transparent; color: var(--navy-700) !important; border: 1.5px solid var(--paper-200); }
+    a.btn--outline:link, a.btn--outline:visited, a.btn--outline:any-link { color: var(--navy-700) !important; text-decoration: none !important; }
+    .btn--outline:hover { background: var(--paper-100); }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+    .quick-nav__pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-size: 0.82rem; font-weight: 700;
+      text-decoration: none !important;
+      color: var(--navy-700) !important;
+      background: var(--paper-100);
+      border: 1.5px solid var(--paper-200);
+      transition: background 220ms ease, border-color 220ms ease, color 220ms ease, transform 180ms ease;
+      scroll-behavior: smooth;
+    }
+    a.quick-nav__pill:link, a.quick-nav__pill:visited, a.quick-nav__pill:any-link { color: var(--navy-700) !important; text-decoration: none !important; }
+    .quick-nav__pill:hover { background: var(--gold-400); border-color: var(--gold-400); color: var(--navy-950) !important; transform: translateY(-2px); }
+    a.quick-nav__pill:hover { color: var(--navy-950) !important; }
+    .quick-nav__pill.is-active { background: var(--navy-900); border-color: var(--navy-900); color: #fff !important; }
+    a.quick-nav__pill.is-active:link, a.quick-nav__pill.is-active:visited, a.quick-nav__pill.is-active:any-link { color: #fff !important; }
+
+    /* ── Detail Hero ────────────── */
+    .detail-hero {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px);
+      background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%);
+      overflow: hidden;
+    }
+
+    .detail-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .detail-hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: drift 16s ease-in-out infinite;
+    }
+
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400); }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 20ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .detail-hero__bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.15; z-index: 1; }
+
+    /* ── Partnership Banner ────────────── */
+    .partner-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 25% 50%, rgba(36, 80, 143, 0.28) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 40%, rgba(255, 194, 77, 0.06) 0%, transparent 45%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900) 60%, #1a3b6d);
+      border-radius: var(--radius-xl);
+      padding: clamp(40px, 5vw, 64px) clamp(28px, 4vw, 48px);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 4vw, 48px);
+    }
+    .partner-banner::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px); background-size: 18px 18px; pointer-events: none; }
+    .partner-banner__logo {
+      flex: 0 0 auto;
+      width: clamp(140px, 18vw, 200px);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: rgba(255,255,255,0.06);
+      padding: 16px;
+    }
+    .partner-banner__logo img { width: 100%; height: auto; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3)); }
+    .partner-banner__text { position: relative; z-index: 1; flex: 1; }
+    .partner-banner__text .kicker { color: var(--gold-400); }
+    .partner-banner__text h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .partner-banner__text p { font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.7; margin-bottom: 8px; }
+
+    @media (max-width: 700px) {
+      .partner-banner { flex-direction: column; text-align: center; }
+      .partner-banner__logo { width: 160px; margin: 0 auto; }
+    }
+
+    /* ── Photo Strip ────────────── */
+    .photo-strip {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 0 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--paper-200) transparent;
+    }
+    .photo-strip::-webkit-scrollbar { height: 6px; }
+    .photo-strip::-webkit-scrollbar-track { background: transparent; }
+    .photo-strip::-webkit-scrollbar-thumb { background: var(--paper-200); border-radius: 999px; }
+
+    .photo-strip__item {
+      flex: 0 0 auto;
+      width: clamp(200px, 28vw, 280px);
+      scroll-snap-align: start;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform 380ms var(--ease), box-shadow 380ms var(--ease);
+    }
+    .photo-strip__item:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--shadow-mid); }
+    .photo-strip__item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+
+    /* ── Vision Cards ────────────── */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .vision-card { text-align: center; padding: clamp(26px, 3vw, 36px) clamp(20px, 2.5vw, 28px); }
+    .vision-card__icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 14px;
+      display: grid; place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+    }
+    .vision-card__icon svg { width: 28px; height: 28px; stroke: var(--navy-950); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .vision-card h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.1rem;
+      color: var(--ink-900);
+      margin-bottom: 6px;
+    }
+    .vision-card p { font-size: 0.9rem; color: var(--ink-700); line-height: 1.65; }
+
+    /* ── Stat Row ────────────── */
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+      margin: 28px 0;
+    }
+    .stat-item { text-align: center; min-width: 120px; }
+    .stat-item__num {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2rem, 3.6vw, 2.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+    .stat-item__label { font-size: 0.82rem; font-weight: 600; color: var(--ink-500); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── Content Grid ────────────── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+
+    .content-main h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.18;
+      color: var(--ink-900);
+      margin-bottom: 12px;
+    }
+
+    .content-main h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--ink-900);
+      margin: 28px 0 8px;
+    }
+
+    .content-main p { margin-bottom: 14px; }
+
+    .content-main ul {
+      margin: 8px 0 18px 20px;
+      list-style: none;
+    }
+
+    .content-main ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.65;
+    }
+
+    .content-main ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    }
+
+    /* ── Sidebar ────────────── */
+    .sidebar-card {
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-card h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.1rem;
+      color: var(--ink-900);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-card p {
+      font-size: 0.92rem;
+      color: var(--ink-700);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card .btn { width: 100%; }
+
+    /* ── Steps ────────────── */
+    .steps { counter-reset: step; margin: 24px 0; }
+    .steps__item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--paper-200);
+      counter-increment: step;
+    }
+
+    .steps__item:last-child { border-bottom: 0; }
+
+    .steps__num {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--navy-950);
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+    }
+
+    .steps__num::before { content: counter(step); }
+
+    .steps__text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: 2px;
+    }
+
+    .steps__text p {
+      font-size: 0.9rem;
+      color: var(--ink-500);
+      margin: 0;
+    }
+
+    /* ── FAQ ────────────── */
+    .faq-list { margin-top: 20px; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--paper-200);
+      padding: 18px 0;
+    }
+
+    .faq-item:last-child { border-bottom: 0; }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      text-align: left;
+      padding: 0;
+    }
+
+    .faq-q svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      stroke: var(--ink-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      transition: transform 300ms var(--ease);
+    }
+
+    .faq-item.is-open .faq-q svg { transform: rotate(45deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms var(--ease), padding 300ms ease;
+    }
+
+    .faq-item.is-open .faq-a {
+      max-height: 300px;
+      padding-top: 10px;
+    }
+
+    .faq-a p {
+      font-size: 0.94rem;
+      color: var(--ink-700);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .content-photo { border-radius: var(--radius-lg); overflow: hidden; margin: 28px 0; box-shadow: var(--shadow-soft); }
+    .content-photo img { width: 100%; height: auto; display: block; transition: transform 600ms var(--ease); }
+    .content-photo:hover img { transform: scale(1.03); }
+
+    /* ── CTA Banner ────────────── */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 22ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* ── Responsive ────────────── */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar-card { position: static; }
+    }
+
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .stat-row { gap: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    /* ── Scroll & Parallax Polish ────────────── */
+    [data-reveal="left"] {
+      opacity: 0; transform: translate3d(-34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="right"] {
+      opacity: 0; transform: translate3d(34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="scale"] {
+      opacity: 0; transform: scale(0.93);
+      transition: transform 800ms var(--ease), opacity 700ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 28px 28px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" id="top" aria-label="Early Literacy hero">
+      <div class="detail-hero__bg" style="background-image: url('https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/5ad877fb-fcc9-4603-b3e3-3a11b940961d/imagination-library-train-reading-promo.jpg?disposition=inline');"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def/page/impact">Impact</a>
+            <span>&rsaquo;</span>
+            Early Literacy
+          </nav>
+          <p class="kicker">Early Literacy</p>
+          <h1 class="title">Every child deserves a <span class="accent">home library</span>.</h1>
+          <p class="lede">
+            Literacy changes everything. When a child learns to read, they gain the power to imagine, to question, and to build a future on their own terms. That&rsquo;s why DEF is all in on early literacy&mdash;starting with the youngest learners in Davis County.
+          </p>
+          <div class="detail-hero__actions">
+            <a href="/o/def/page/give" class="btn btn--gold">Sponsor a Child&rsquo;s Books</a>
+            <a href="#partnership" class="btn btn--ghost">Our Imagination Library Partnership</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <nav class="shell quick-nav" aria-label="Page sections" data-reveal>
+      <a href="#why-literacy" class="quick-nav__pill">Why Literacy</a>
+      <a href="#partnership" class="quick-nav__pill">Imagination Library</a>
+      <a href="#how-it-works" class="quick-nav__pill">How It Works</a>
+      <a href="#vision" class="quick-nav__pill">Our Vision</a>
+      <a href="#faq" class="quick-nav__pill">FAQ</a>
+    </nav>
+
+    <!-- ═══ WHY LITERACY MATTERS ═══ -->
+    <section class="section" id="why-literacy" aria-label="Why literacy matters">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <div data-reveal>
+              <p class="kicker">Our Commitment</p>
+              <h2>Why Early Literacy Matters</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                Reading is the single most important skill a child can develop. Research consistently shows that children who are read to at home develop stronger vocabularies, greater comprehension, and deeper curiosity about the world. But it goes even deeper than that&mdash;early literacy shapes confidence, self-expression, and a child&rsquo;s belief in what&rsquo;s possible.
+              </p>
+              <p>
+                Too many children arrive at kindergarten without ever owning a book of their own. That&rsquo;s not a reflection of their families&rsquo; values&mdash;it&rsquo;s an access problem. And it&rsquo;s one the Davis Education Foundation is determined to help solve.
+              </p>
+              <p>
+                We believe that a child&rsquo;s zip code, family income, or circumstances should never determine whether they grow up loving books. Every child in Davis County deserves the chance to hold a brand-new book in their hands, curl up with a parent or caregiver, and discover the magic of a story.
+              </p>
+            </div>
+
+            <div class="content-photo" data-reveal style="--reveal-order:1;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/eeab5908-4551-4984-bccd-e71e66a66852/imagination-library-reading-book-blue-bokeh.jpg?disposition=inline" alt="Child reading a book" loading="lazy">
+            </div>
+
+            <div data-reveal style="--reveal-order:2;">
+              <h2 style="margin-top: 36px;">What This Program Does</h2>
+              <p>
+                Through our partnership with Dolly Parton&rsquo;s Imagination Library, enrolled children receive a brand-new, age-appropriate book mailed directly to their home every single month&mdash;from birth until age five. That&rsquo;s up to 60 books before a child ever walks into a classroom.
+              </p>
+              <p>
+                These aren&rsquo;t just any books. Each title is carefully selected by a panel of early childhood literacy experts to spark imagination, develop language skills, and create meaningful moments between children and the adults who love them. The books arrive addressed to the child&mdash;because there is something powerful about a little one getting mail with their own name on it.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Support Early Literacy</h3>
+              <p>Your gift puts books in children&rsquo;s hands and builds the foundation for lifelong learning. Monthly gifts grow this program responsibly and help us reach more families.</p>
+              <a href="/o/def/page/give" class="btn btn--gold" style="margin-bottom: 10px;">Donate to Early Literacy</a>
+              <a href="give-monthly.html" class="btn btn--outline">Make It Monthly</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ IMAGINATION LIBRARY PARTNERSHIP ═══ -->
+    <section class="section" id="partnership" style="padding-top: 0;" aria-label="Dolly Parton Imagination Library partnership">
+      <div class="shell">
+
+        <!-- Partner Banner -->
+        <div class="partner-banner" data-reveal="scale">
+          <div class="partner-banner__logo">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/ad4607f0-7dee-4306-b078-797c2ca3ba71/imagination-library-logo-open-book-dark.png?disposition=inline" alt="Dolly Parton's Imagination Library logo" loading="lazy">
+          </div>
+          <div class="partner-banner__text">
+            <p class="kicker">Official Local Partner</p>
+            <h2>Dolly Parton&rsquo;s Imagination Library</h2>
+            <p>
+              When Dolly Parton started the Imagination Library in 1995, she had one goal: make sure every child could have books in their home, regardless of their family&rsquo;s income. What started in her hometown in Tennessee has grown into a worldwide movement that has gifted over 200 million books to children.
+            </p>
+            <p>
+              The Davis Education Foundation is proud to serve as a local champion for this program in Davis County. As the local affiliate partner, we fund and coordinate the program so families can participate at absolutely no cost.
+            </p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stat-row" data-reveal style="--reveal-order:1;">
+          <div class="stat-item">
+            <div class="stat-item__num">60</div>
+            <div class="stat-item__label">Books by Age 5</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__num">$0</div>
+            <div class="stat-item__label">Cost to Families</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__num">200M+</div>
+            <div class="stat-item__label">Books Gifted Worldwide</div>
+          </div>
+        </div>
+
+        <div class="section-divider" style="margin: 28px 0;"></div>
+
+      </div>
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="section" id="how-it-works" style="padding-top: 0;" aria-label="How it works">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <div data-reveal>
+              <p class="kicker">The Process</p>
+              <h2>How It Works</h2>
+              <div class="section-divider section-divider--short"></div>
+              <div class="steps">
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Children Are Enrolled</h4>
+                    <p>Families enroll their children through our launch partners, starting with Head Start. Enrollment is simple and free.</p>
+                  </div>
+                </div>
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Books Arrive Monthly</h4>
+                    <p>A brand-new, age-appropriate book is mailed directly to the child&rsquo;s home every month&mdash;addressed to them by name.</p>
+                  </div>
+                </div>
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Home Libraries Grow</h4>
+                    <p>Over time, children build a personal library of up to 60 books&mdash;creating a powerful foundation for kindergarten readiness and a lifelong love of reading.</p>
+                  </div>
+                </div>
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>The Program Expands</h4>
+                    <p>As community support grows, we expand enrollment to reach more families across Davis County&mdash;because every child deserves this opportunity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="content-photo" data-reveal style="--reveal-order:1;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/9c3a7599-6481-41c4-9439-4201c6857ac4/imagination-library-holding-childrens-books-portrait.png?disposition=inline" alt="Imagination Library books for children" loading="lazy">
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/65c1a10a-c1b6-416e-89c6-a201ce6903d9/imagination-library-logo.png?disposition=inline" alt="Imagination Library logo" loading="lazy" style="border-radius: var(--radius-sm); margin-bottom: 16px;">
+              <h3>About the Imagination Library</h3>
+              <p>Founded by Dolly Parton in 1995, the Imagination Library is dedicated to inspiring a love of reading by gifting books free of charge to children from birth to age five. The program now operates across the United States, Canada, UK, Australia, and Ireland.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OUR VISION ═══ -->
+    <section class="section" id="vision" style="padding-top: 0;" aria-label="Our vision for literacy">
+      <div class="shell">
+        <div data-reveal>
+          <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+            <p class="kicker">Looking Ahead</p>
+            <h2 class="title" style="font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 8px;">Growing Beyond Head Start</h2>
+            <div class="section-divider section-divider--short" style="margin: 12px auto 18px;"></div>
+            <p class="lede" style="margin: 0 auto;">
+              Right now, our Imagination Library program serves children enrolled in Head Start. But our vision is much bigger. We want every child in Davis County to have access to this program&mdash;regardless of where they go to school or which programs their family participates in.
+            </p>
+          </div>
+        </div>
+
+        <div class="vision-grid" data-reveal style="--reveal-order:1;">
+          <div class="card vision-card">
+            <div class="vision-card__icon">
+              <!-- Seedling icon -->
+              <svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C12 8 8 4 2 4c0 6 4 8 10 8z"/><path d="M12 15c0-4 4-8 10-8-2 6-6 8-10 8z"/></svg>
+            </div>
+            <h3>Phase 1: Head Start</h3>
+            <p>We launched with Head Start families&mdash;children who benefit most from having books in the home. This is our foundation.</p>
+          </div>
+          <div class="card vision-card">
+            <div class="vision-card__icon">
+              <!-- Expand icon -->
+              <svg viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+            </div>
+            <h3>Phase 2: Expand Enrollment</h3>
+            <p>As funding grows, we&rsquo;ll open the program to additional families&mdash;connecting more children to their first home library.</p>
+          </div>
+          <div class="card vision-card">
+            <div class="vision-card__icon">
+              <!-- Globe icon -->
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3>Phase 3: Countywide Access</h3>
+            <p>Our ultimate goal: every child in Davis County has the opportunity to receive free books at home from birth to age five.</p>
+          </div>
+        </div>
+
+        <div data-reveal style="--reveal-order:2; text-align: center; margin-top: 32px;">
+          <p style="max-width: 58ch; margin: 0 auto 18px; font-size: 1.02rem; color: var(--ink-700);">
+            Expanding this program takes community support. Monthly giving is the fastest, most responsible way to help us reach more families and put more books into more homes.
+          </p>
+          <a href="give-monthly.html" class="btn btn--gold">Make It Monthly</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ WHY YOUR GIFT MATTERS + FAQ ═══ -->
+    <section class="section" id="faq" style="padding-top: 0;" aria-label="FAQ and giving">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <!-- Why Your Gift Matters -->
+            <div data-reveal>
+              <p class="kicker">Your Impact</p>
+              <h2>Why Your Gift Matters</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                Every dollar designated to Early Literacy goes directly toward putting books into children&rsquo;s hands. It costs approximately $25 per year to provide one child with a full year of monthly books through the Imagination Library. That&rsquo;s roughly the cost of a single hardcover picture book at a bookstore&mdash;but through this program, it delivers twelve.
+              </p>
+              <p>
+                Monthly giving is especially powerful because it allows us to plan ahead, expand enrollment responsibly, and commit to serving more families with confidence. When you give monthly, you&rsquo;re not just donating&mdash;you&rsquo;re building infrastructure for literacy across Davis County.
+              </p>
+            </div>
+
+            <!-- FAQ -->
+            <div data-reveal style="--reveal-order:1;">
+              <h2 style="margin-top: 42px;">Frequently Asked Questions</h2>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    Who can currently enroll?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>Right now, enrollment is available through our Head Start partners. As community support grows, we plan to expand enrollment to additional families across Davis County.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    Will this expand beyond Head Start?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>Absolutely&mdash;that is the goal. We hope to expand this program to reach all families in Davis County who want to participate. Growth depends on community funding and support.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    How are books selected?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>Books are chosen by Dolly Parton&rsquo;s Imagination Library team, with input from early childhood literacy experts. Each title is age-appropriate, engaging, and designed to support healthy development at every stage.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    How much does it cost to sponsor a child?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>It costs approximately $25 per year to provide one child with monthly books. A monthly gift of just a few dollars can sponsor a child&rsquo;s books for an entire year&mdash;and help expand the program to more families.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    Is there a cost for families?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>No. The program is completely free for enrolled families. Books are mailed directly to the child&rsquo;s home at no cost, funded entirely by community donations.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Sponsor a Child&rsquo;s Books</h3>
+              <p>For about $25 a year, you can provide one child with a full year of monthly books mailed to their home. Monthly giving helps us expand this program responsibly.</p>
+              <a href="/o/def/page/give" class="btn btn--gold" style="margin-bottom: 10px;">Give to Early Literacy</a>
+              <a href="give-monthly.html" class="btn btn--outline">Learn About Monthly Giving</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CLOSING PHOTO ═══ -->
+    <div class="shell" style="padding-bottom: 8px;">
+      <div class="content-photo" data-reveal>
+        <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/76cc60ec-27c4-4a0d-b9ea-a1555f695af8/imagination-library-holding-books-black-background.jpg?disposition=inline" alt="Holding Imagination Library books" loading="lazy">
+      </div>
+    </div>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Early Literacy</p>
+        <h2 class="title">Help us put books into every home in Davis County.</h2>
+        <p class="lede">
+          We started with Head Start. With your help, we won&rsquo;t stop there. Every sponsored book builds a child&rsquo;s home library and strengthens their path to school readiness.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/give" class="btn btn--gold">Sponsor a Child&rsquo;s Books</a>
+          <a href="/o/def/page/impact" class="btn btn--ghost">Back to Impact</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <!-- Reveal observer -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <!-- FAQ accordion -->
+  <script>
+    (function () {
+      var items = document.querySelectorAll(".faq-item");
+      items.forEach(function (item) {
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var isOpen = item.classList.contains("is-open");
+          items.forEach(function (i) { i.classList.remove("is-open"); i.querySelector(".faq-q").setAttribute("aria-expanded", "false"); });
+          if (!isOpen) { item.classList.add("is-open"); btn.setAttribute("aria-expanded", "true"); }
+        });
+      });
+    })();
+  </script>
+
+  <!-- Quick-nav scroll spy -->
+  <script>
+    (function () {
+      var pills = document.querySelectorAll(".quick-nav__pill");
+      if (!pills.length) return;
+      var sections = [];
+      pills.forEach(function (p) {
+        var id = p.getAttribute("href");
+        if (id && id.charAt(0) === "#") {
+          var el = document.querySelector(id);
+          if (el) sections.push({ pill: p, el: el });
+        }
+      });
+      if (!sections.length) return;
+      function update() {
+        var scrollY = window.pageYOffset + 160;
+        var active = sections[0];
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].el.offsetTop <= scrollY) active = sections[i];
+        }
+        pills.forEach(function (p) { p.classList.remove("is-active"); });
+        if (active) active.pill.classList.add("is-active");
+      }
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(function () { update(); ticking = false; }); ticking = true; }
+      }, { passive: true });
+      update();
+
+      /* Smooth scroll for pill clicks */
+      pills.forEach(function (pill) {
+        pill.addEventListener("click", function (e) {
+          var href = pill.getAttribute("href");
+          if (href && href.charAt(0) === "#") {
+            var target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      if (!detailBg) return;
+      var heroH = detailBg.closest("section").offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              detailBg.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) {
+                h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)";
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

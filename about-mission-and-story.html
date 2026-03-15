@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission &amp; Story – Davis Education Foundation</title>
+  <meta name="description" content="Davis Education Foundation raises private support to expand student opportunity and strengthen educational outcomes across Davis County. Learn about our mission, our story, and the five impact areas we fund.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); box-shadow: var(--shadow-gold); }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy { background: var(--navy-900); color: #fff; box-shadow: var(--shadow-soft); }
+    a.btn--navy, .btn--navy:link, .btn--navy:visited { color: #fff; }
+    .btn--navy:hover { background: var(--navy-700); box-shadow: var(--shadow-mid); color: #fff; }
+    .btn--ghost { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline { background: transparent; color: var(--navy-700); border: 1.5px solid var(--paper-200); }
+    .btn--outline:hover { background: var(--paper-100); }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    /* -- Detail Hero -------------- */
+    .detail-hero {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px);
+      background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%);
+      overflow: hidden;
+    }
+
+    .detail-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .detail-hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: drift 16s ease-in-out infinite;
+    }
+
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400); }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 18ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* -- Content Grid -------------- */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+
+    .content-main h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.18;
+      color: var(--ink-900);
+      margin-bottom: 12px;
+    }
+
+    .content-main h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--ink-900);
+      margin: 28px 0 8px;
+    }
+
+    .content-main p { margin-bottom: 14px; }
+
+    .content-main ul {
+      margin: 8px 0 18px 20px;
+      list-style: none;
+    }
+
+    .content-main ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.65;
+    }
+
+    .content-main ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    }
+
+    /* -- Sidebar -------------- */
+    .sidebar-card {
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-card h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.1rem;
+      color: var(--ink-900);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-card p {
+      font-size: 0.92rem;
+      color: var(--ink-700);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card .btn { width: 100%; }
+
+    .sidebar-nav { list-style: none; margin: 0 0 18px; padding: 0; }
+    .sidebar-nav li { border-bottom: 1px solid var(--paper-200); }
+    .sidebar-nav li:last-child { border-bottom: 0; }
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--navy-700);
+      transition: color 200ms ease;
+    }
+    .sidebar-nav a:hover { color: var(--gold-500); }
+    .sidebar-nav .nav-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+      flex: 0 0 auto;
+    }
+
+    /* -- Impact Cards -------------- */
+    .impact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .impact-card {
+      position: relative;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-soft);
+      transition: transform 420ms var(--ease), box-shadow 420ms var(--ease);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .impact-card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1.5px; background: linear-gradient(135deg, rgba(255, 210, 100, 0), rgba(255, 194, 77, 0), rgba(139, 207, 255, 0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; transition: background 520ms ease; }
+    .impact-card:hover::before { background: linear-gradient(135deg, rgba(255, 210, 100, 0.55), rgba(255, 194, 77, 0.35), rgba(139, 207, 255, 0.25)); }
+    .impact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-mid); }
+
+    .impact-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+      margin-bottom: 12px;
+    }
+
+    .impact-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: 4px;
+    }
+
+    .impact-card p {
+      font-size: 0.85rem;
+      color: var(--ink-500);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .detail-pill {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--navy-700);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+    }
+
+    /* -- Stats Row -------------- */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 16px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-item__number {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink-900);
+      line-height: 1.15;
+    }
+
+    .stat-item__label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-500);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* -- CTA Banner -------------- */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 20ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* -- Responsive -------------- */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar-card { position: static; }
+    }
+
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .impact-cards { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    .content-photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 28px 0;
+      box-shadow: var(--shadow-soft);
+    }
+    .content-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 600ms var(--ease);
+    }
+    .content-photo:hover img {
+      transform: scale(1.03);
+    }
+    .detail-hero__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 1;
+      transition: opacity 600ms ease;
+    }
+
+    /* ── Scroll & Parallax Polish ────────────── */
+    [data-reveal="left"] {
+      opacity: 0; transform: translate3d(-34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="right"] {
+      opacity: 0; transform: translate3d(34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="scale"] {
+      opacity: 0; transform: scale(0.93);
+      transition: transform 800ms var(--ease), opacity 700ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 28px 28px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+      /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- HERO -->
+    <section class="detail-hero" aria-label="Mission and Story hero">
+      <div class="detail-hero__bg" style="background-image: url('https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/fb91da69-d5ef-4ea2-b022-6f82befb4a1f/davis-county-aerial-view-mountains.jpg?disposition=inline')" aria-hidden="true"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def/page/about">About</a>
+            <span>&rsaquo;</span>
+            Mission &amp; Story
+          </nav>
+          <p class="kicker">Our Mission</p>
+          <h1 class="title">Connecting generosity with <span class="accent">student need</span>.</h1>
+          <p class="lede">
+            Davis Education Foundation raises private support to expand student opportunity and strengthen educational outcomes across our community.
+          </p>
+          <div class="detail-hero__actions">
+            <a href="/o/def/page/give" class="btn btn--gold">Support Our Mission</a>
+            <a href="/o/def/page/impact" class="btn btn--ghost">Explore Our Impact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Section navigation">
+      <nav class="quick-nav">
+        <a href="/o/def/page/about">About</a>
+        <a href="/o/def/page/about-mission-and-story" class="is-active">Mission</a>
+        <a href="/o/def/page/about-board">Board</a>
+        <a href="/o/def/page/about-staff">Staff</a>
+        <a href="/o/def/page/about-financials">Financials</a>
+        <a href="/o/def/page/about-faq">FAQ</a>
+        <a href="/o/def/page/about-contact">Contact</a>
+      </nav>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <section class="section" aria-label="Mission and Story details">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <!-- What We Fund -->
+            <div data-reveal>
+              <h2>What We Fund</h2>
+              <p>
+                Donors fund five impact areas that address learning, belonging, and student wellbeing&mdash;from early childhood through graduation and beyond. Each area represents a critical gap where private giving makes a measurable difference.
+              </p>
+              <div class="impact-cards">
+                <a href="/o/def/page/impact-catalyst" class="impact-card">
+                  <div class="impact-card__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b1b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  </div>
+                  <h4>Catalyst</h4>
+                  <p>Flagship growth initiative funding innovation and systemic improvement across the district.</p>
+                  <span class="detail-pill">Flagship Initiative</span>
+                </a>
+                <a href="/o/def/page/impact-early-literacy" class="impact-card">
+                  <div class="impact-card__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b1b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <h4>Early Literacy</h4>
+                  <p>Imagination Library and related efforts that put books in children&rsquo;s hands.</p>
+                  <span class="detail-pill">Imagination Library</span>
+                </a>
+                <a href="/o/def/page/impact-scholarships-and-grants" class="impact-card">
+                  <div class="impact-card__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b1b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  </div>
+                  <h4>Scholarships &amp; Grants</h4>
+                  <p>Direct support for students and educators pursuing excellence.</p>
+                  <span class="detail-pill">57+ Awards</span>
+                </a>
+                <a href="/o/def/page/impact-student-opportunity" class="impact-card">
+                  <div class="impact-card__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b1b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                  </div>
+                  <h4>Student Opportunity</h4>
+                  <p>Unified Sports, athletics access, and enrichment programs that build belonging.</p>
+                  <span class="detail-pill">Athletics & Enrichment</span>
+                </a>
+                <a href="/o/def/page/impact-student-supports" class="impact-card">
+                  <div class="impact-card__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b1b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                  <h4>Student Supports</h4>
+                  <p>Teen Centers, Teen Living Center support, Child Spree, Kids&rsquo; Closet, and seasonal needs.</p>
+                  <span class="detail-pill">Teen Centers & More</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- How We Steward Gifts -->
+            <div data-reveal style="--reveal-order:1;">
+              <h2 style="margin-top: 36px;">How We Steward Gifts</h2>
+              <p>
+                We are committed to responsible stewardship, clear reporting, and partnerships that deliver measurable results. Every dollar raised is directed with intention, and every program is evaluated for the difference it makes in student lives.
+              </p>
+              <ul>
+                <li><strong>Transparent reporting:</strong> Donors receive clear, honest updates on how their gifts are being used and the outcomes they produce.</li>
+                <li><strong>Measurable results:</strong> We partner with district leaders and community organizations to track outcomes, refine programs, and ensure lasting impact.</li>
+                <li><strong>Responsible growth:</strong> We expand programs deliberately&mdash;growing only as fast as community investment allows us to do so well.</li>
+                <li><strong>Partnership-driven:</strong> Every initiative is built on collaboration between donors, educators, families, and community partners.</li>
+              </ul>
+            </div>
+
+            <!-- Our Story -->
+            <div data-reveal style="--reveal-order:2;">
+              <h2 style="margin-top: 36px;">Our Story</h2>
+              <p>
+                Since 1982, Davis Education Foundation has connected community generosity with student need. What began as a small effort to support local schools has grown into a comprehensive foundation serving an entire county&mdash;driven by the belief that every student deserves a fair chance to learn, grow, and succeed.
+              </p>
+
+              <div class="stats-row">
+                <div class="stat-item">
+                  <div class="stat-item__number">72,000+</div>
+                  <div class="stat-item__label">Students Served</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-item__number">92</div>
+                  <div class="stat-item__label">Schools</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-item__number">$31.6M</div>
+                  <div class="stat-item__label">Invested Since 2013</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-item__number">40+</div>
+                  <div class="stat-item__label">Years of Service</div>
+                </div>
+              </div>
+
+              <p>
+                Over four decades, the foundation has evolved alongside the community it serves. Today, DEF funds five impact areas that address learning, belonging, and student wellbeing from early childhood through graduation and beyond. From books in the hands of preschoolers to scholarships for graduating seniors, from athletic access to teen wellness support&mdash;every initiative reflects the same founding commitment: that when a community invests in its students, everyone benefits.
+              </p>
+              <p>
+                The work ahead is shaped by the same values that have guided us from the start: listen to educators, respond to need, steward gifts with care, and never lose sight of the students at the center of it all.
+              </p>
+            </div>
+
+            <div class="content-photo" data-reveal style="--reveal-order:3;"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/66661a52-6e87-424e-b018-ef7337f750fb/american-flag-mountain-peak-davis-county-valley.jpeg?disposition=inline" alt="Davis County valley with mountain backdrop" loading="lazy"></div>
+
+            <!-- Why Your Gift Matters -->
+            <div data-reveal style="--reveal-order:3;">
+              <h2 style="margin-top: 36px;">Why Your Gift Matters</h2>
+              <p>
+                Private giving fills the gap between what public funding provides and what students actually need to thrive. Your support goes directly to programs that create opportunity, build belonging, and strengthen educational outcomes across Davis County.
+              </p>
+              <p>
+                Whether you give once or give monthly, every gift expands what&rsquo;s possible for students. Monthly giving is especially powerful&mdash;it provides the steady, predictable support that lets programs plan ahead and reach more kids.
+              </p>
+              <div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 12px;">
+                <a href="/o/def/page/give" class="btn btn--gold">Give Now</a>
+                <a href="give-monthly.html" class="btn btn--outline">Make It Monthly</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Explore Impact Areas</h3>
+              <p>See how donor support reaches students through five focused areas of investment.</p>
+              <ul class="sidebar-nav">
+                <li>
+                  <a href="/o/def/page/impact-catalyst">
+                    <span class="nav-dot"></span>
+                    Catalyst
+                  </a>
+                </li>
+                <li>
+                  <a href="/o/def/page/impact-early-literacy">
+                    <span class="nav-dot"></span>
+                    Early Literacy
+                  </a>
+                </li>
+                <li>
+                  <a href="/o/def/page/impact-scholarships-and-grants">
+                    <span class="nav-dot"></span>
+                    Scholarships &amp; Grants
+                  </a>
+                </li>
+                <li>
+                  <a href="/o/def/page/impact-student-opportunity">
+                    <span class="nav-dot"></span>
+                    Student Opportunity
+                  </a>
+                </li>
+                <li>
+                  <a href="/o/def/page/impact-student-supports">
+                    <span class="nav-dot"></span>
+                    Student Supports
+                  </a>
+                </li>
+              </ul>
+              <a href="/o/def/page/give" class="btn btn--gold" style="margin-bottom: 10px;">Donate Now</a>
+              <a href="/o/def/page/impact" class="btn btn--outline">Back to Impact</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Support Our Mission</p>
+        <h2 class="title">When you give, you help create opportunity that lasts.</h2>
+        <p class="lede">
+          Every gift strengthens the connection between community generosity and student success across Davis County.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/give" class="btn btn--gold">Donate Today</a>
+          <a href="/o/def/page/about" class="btn btn--ghost">Learn More About DEF</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var heroSlides = document.querySelector(".hero__slides");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var target = heroSlides || detailBg;
+      if (!target) return;
+      var heroH = target.closest("section").offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              target.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) {
+                h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)";
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

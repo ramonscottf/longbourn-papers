@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Partnerships – Davis Education Foundation</title>
+  <meta name="description" content="Partner with Davis Education Foundation for measurable impact across 92 schools and 72,000+ students. Sponsorships, impact investments, and multi-year commitments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); box-shadow: var(--shadow-gold); }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy { background: var(--navy-900); color: #fff; box-shadow: var(--shadow-soft); }
+    a.btn--navy, .btn--navy:link, .btn--navy:visited { color: #fff; }
+    .btn--navy:hover { background: var(--navy-700); box-shadow: var(--shadow-mid); color: #fff; }
+    .btn--ghost { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline { background: transparent; color: var(--navy-700); border: 1.5px solid var(--paper-200); }
+    .btn--outline:hover { background: var(--paper-100); }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    /* ── Detail Hero ────────────── */
+    .detail-hero {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px);
+      background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%);
+      overflow: hidden;
+    }
+
+    .detail-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .detail-hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: drift 16s ease-in-out infinite;
+    }
+
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400); }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 18ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ── Content Grid ────────────── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+
+    .content-main h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.18;
+      color: var(--ink-900);
+      margin-bottom: 12px;
+    }
+
+    .content-main h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--ink-900);
+      margin: 28px 0 8px;
+    }
+
+    .content-main p { margin-bottom: 14px; }
+
+    .content-main ul {
+      margin: 8px 0 18px 20px;
+      list-style: none;
+    }
+
+    .content-main ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.65;
+    }
+
+    .content-main ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    }
+
+    /* ── Sidebar ────────────── */
+    .sidebar-card {
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-card h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.1rem;
+      color: var(--ink-900);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-card p {
+      font-size: 0.92rem;
+      color: var(--ink-700);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card .btn { width: 100%; }
+
+    /* ── Stat Row ────────────── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 12px;
+      background: var(--paper-100);
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-item__number {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink-900);
+      line-height: 1.1;
+    }
+
+    .stat-item__label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-500);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    /* ── FAQ ────────────── */
+    .faq-list { margin-top: 20px; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--paper-200);
+      padding: 18px 0;
+    }
+
+    .faq-item:last-child { border-bottom: 0; }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      text-align: left;
+      padding: 0;
+    }
+
+    .faq-q svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      stroke: var(--ink-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      transition: transform 300ms var(--ease);
+    }
+
+    .faq-item.is-open .faq-q svg { transform: rotate(45deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms var(--ease), padding 300ms ease;
+    }
+
+    .faq-item.is-open .faq-a {
+      max-height: 300px;
+      padding-top: 10px;
+    }
+
+    .faq-a p {
+      font-size: 0.94rem;
+      color: var(--ink-700);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── CTA Banner ────────────── */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 20ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* ── Responsive ────────────── */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar-card { position: static; }
+    }
+
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .stat-row { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    .content-photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 28px 0;
+      box-shadow: var(--shadow-soft);
+    }
+    .content-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 600ms var(--ease);
+    }
+    .content-photo:hover img {
+      transform: scale(1.03);
+    }
+    .detail-hero__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 1;
+      transition: opacity 600ms ease;
+    }
+
+    /* ── Scroll & Parallax Polish ────────────── */
+    [data-reveal="left"] {
+      opacity: 0; transform: translate3d(-34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="right"] {
+      opacity: 0; transform: translate3d(34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="scale"] {
+      opacity: 0; transform: scale(0.93);
+      transition: transform 800ms var(--ease), opacity 700ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 28px 28px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+      /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" aria-label="Corporate Partnerships hero">
+      <div class="detail-hero__bg" style="background-image: url('https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/04f55a3b-d112-4d09-8340-f8bf07196d92/best-of-state-stage-group-1.jpeg?disposition=inline')" aria-hidden="true"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def/page/partner">Partner</a>
+            <span>&rsaquo;</span>
+            Corporate Partnerships
+          </nav>
+          <p class="kicker">Corporate Partnerships</p>
+          <h1 class="title">Corporate partnerships with <span class="accent">measurable impact</span>.</h1>
+          <p class="lede">
+            Corporate partners invest in programs that expand opportunity for students. We provide stewardship, recognition, and reporting so your partnership is visible and meaningful.
+          </p>
+          <div class="detail-hero__actions">
+            <a href="/o/def/page/about-contact" class="btn btn--gold">Contact Our Team</a>
+            <a href="/o/def/page/partner" class="btn btn--ghost">All Partnership Options</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Section navigation">
+      <nav class="quick-nav">
+        <a href="/o/def/page/partner">Partner</a>
+        <a href="/o/def/page/partner-corporate-partnerships" class="is-active">Corporate</a>
+        <a href="/o/def/page/partner-school-fundraisers">School Fundraisers</a>
+        <a href="/o/def/page/partner-sponsorships">Sponsorships</a>
+        <a href="/o/def/page/partner-vendors">Vendors</a>
+      </nav>
+    </div>
+
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <section class="section" aria-label="Corporate Partnerships details">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <!-- Partnership Options -->
+            <div data-reveal>
+              <h2>Partnership Options</h2>
+              <p>
+                We work with businesses of all sizes to structure partnerships that align with your goals and deliver measurable outcomes for students. Every partnership is tailored, transparent, and built for impact.
+              </p>
+              <ul>
+                <li><strong>Impact area investment</strong> &mdash; Support an impact lane such as Literacy, Scholarships, STEM, or Mental Health and see the direct results of your commitment.</li>
+                <li><strong>Event sponsorship</strong> &mdash; Gain visibility and community goodwill through signature events including the Gala, Fore Kids Golf Tournament, and Child Spree.</li>
+                <li><strong>Multi-year commitments</strong> &mdash; Sustain program growth with predictable, long-term support that helps us plan responsibly and expand reach.</li>
+                <li><strong>In-kind support and services</strong> &mdash; Contribute professional expertise, technology, supplies, or other resources that directly benefit students and educators.</li>
+              </ul>
+            </div>
+
+            <div class="content-photo" data-reveal style="--reveal-order:1;"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/a4792e5a-64ef-4ebd-8e6d-bbd9c7b2c7c1/best-of-state-stage-group-2.jpeg?disposition=inline" alt="Best of State award ceremony" loading="lazy"></div>
+
+            <!-- Stewardship and Reporting -->
+            <div data-reveal style="--reveal-order:1;">
+              <h2 style="margin-top: 36px;">Stewardship and Reporting</h2>
+              <p>
+                We commit to clear deliverables, proof of completion for sponsorships, and reporting through annual and program updates. Every corporate partner receives a dedicated point of contact, regular communication, and documentation of how your investment performed.
+              </p>
+              <p>
+                Recognition packages are structured around your preferences&mdash;from logo placement and event presence to social media features and employee engagement opportunities. We treat your partnership as a relationship, not a transaction.
+              </p>
+            </div>
+
+            <!-- Why Partner With DEF -->
+            <div data-reveal style="--reveal-order:2;">
+              <h2 style="margin-top: 36px;">Why Partner With DEF</h2>
+              <div class="stat-row">
+                <div class="stat-item">
+                  <div class="stat-item__number">72,000+</div>
+                  <div class="stat-item__label">Students Served</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-item__number">92</div>
+                  <div class="stat-item__label">Schools Supported</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-item__number">100%</div>
+                  <div class="stat-item__label">Local Impact</div>
+                </div>
+              </div>
+              <p>
+                Davis Education Foundation is the education foundation for Davis School District, the third largest district in Utah. Your partnership reaches students across 92 schools and more than 72,000 enrolled students&mdash;all within your community.
+              </p>
+              <p>
+                We operate with low overhead, clear impact lanes, and a commitment to measurable outcomes. Partners receive transparent reporting and direct access to leadership, making it easy to demonstrate the return on your community investment.
+              </p>
+              <ul>
+                <li><strong>Measurable outcomes</strong> &mdash; Every program is tracked and reported, giving your team real data to share with stakeholders.</li>
+                <li><strong>Community visibility</strong> &mdash; Signature events and district-wide programs put your brand in front of families, educators, and civic leaders.</li>
+                <li><strong>Flexible structures</strong> &mdash; We design partnerships around your budget, timeline, and priorities&mdash;not ours.</li>
+                <li><strong>Trusted stewardship</strong> &mdash; As a 501(c)(3) public charity, DEF operates with full financial transparency and board oversight.</li>
+              </ul>
+            </div>
+
+            <!-- FAQ -->
+            <div data-reveal style="--reveal-order:3;">
+              <h2 style="margin-top: 42px;">Frequently Asked Questions</h2>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    What is the minimum commitment for a corporate partnership?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>There is no fixed minimum. We work with businesses of all sizes to find a partnership level that fits your budget and goals. Contact our team to start the conversation.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    How will we know our partnership is making a difference?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>Every partner receives program updates, impact reports, and proof-of-completion documentation for sponsored events or initiatives. We believe in showing the work, not just telling.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    Can we direct our support to a specific program or school?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>Yes. Partners can designate support to specific impact areas such as Early Literacy, Scholarships, STEM, or Mental Health. We also support school-specific initiatives when aligned with district needs.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-q" type="button" aria-expanded="false">
+                    Is our partnership tax-deductible?
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <div class="faq-a">
+                    <p>Davis Education Foundation is a 501(c)(3) public charity. Contributions are tax-deductible to the extent allowed by law. We provide acknowledgment letters and receipts for all gifts.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Start a Partnership Conversation</h3>
+              <p>Tell us about your business, your goals, and the kind of impact you want to make. We will design a partnership that works for you and serves students well.</p>
+              <a href="/o/def/page/about-contact" class="btn btn--gold" style="margin-bottom: 10px;">Start a Partnership Conversation</a>
+              <a href="/o/def/page/partner" class="btn btn--outline">View All Partner Options</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Corporate Partnerships</p>
+        <h2 class="title">Let&rsquo;s build a partnership that fits your goals and serves students well.</h2>
+        <p class="lede">
+          Your investment reaches 72,000+ students across 92 schools&mdash;with transparent reporting, dedicated stewardship, and measurable outcomes.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/about-contact" class="btn btn--gold">Start a Partnership Conversation</a>
+          <a href="/o/def/page/partner" class="btn btn--ghost">Back to Partner</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var items = document.querySelectorAll(".faq-item");
+      items.forEach(function (item) {
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var isOpen = item.classList.contains("is-open");
+          items.forEach(function (i) { i.classList.remove("is-open"); i.querySelector(".faq-q").setAttribute("aria-expanded", "false"); });
+          if (!isOpen) { item.classList.add("is-open"); btn.setAttribute("aria-expanded", "true"); }
+        });
+      });
+    })();
+  </script>
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var heroSlides = document.querySelector(".hero__slides");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var target = heroSlides || detailBg;
+      if (!target) return;
+      var heroH = target.closest("section").offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              target.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) {
+                h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)";
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

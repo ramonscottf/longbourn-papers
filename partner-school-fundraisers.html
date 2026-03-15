@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Fundraising – Davis Education Foundation</title>
+  <meta name="description" content="Davis Education Foundation serves as the clearinghouse for school fundraising vendors and supports safe, compliant fundraising in Davis School District.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    body { font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif; background: var(--paper-50); color: var(--ink-700); line-height: 1.62; font-size: 1rem; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none !important; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold, a.btn--gold, a.btn--gold:link, a.btn--gold:visited, a.btn--gold:any-link { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)) !important; color: #0b1b3c !important; box-shadow: var(--shadow-gold); text-decoration: none !important; }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy, a.btn--navy, a.btn--navy:link, a.btn--navy:visited, a.btn--navy:any-link { background: #122a57 !important; color: #fff !important; box-shadow: var(--shadow-soft); text-decoration: none !important; }
+    .btn--navy:hover { background: #24508f !important; box-shadow: var(--shadow-mid); color: #fff !important; }
+    .btn--ghost, a.btn--ghost, a.btn--ghost:link, a.btn--ghost:visited, a.btn--ghost:any-link { background: rgba(255, 255, 255, 0.12) !important; color: #fff !important; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); text-decoration: none !important; }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2) !important; border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline, a.btn--outline, a.btn--outline:link, a.btn--outline:visited, a.btn--outline:any-link { background: transparent !important; color: #24508f !important; border: 1.5px solid var(--paper-200); text-decoration: none !important; }
+    .btn--outline:hover { background: var(--paper-100) !important; }
+    .btn--sm { padding: 10px 22px; font-size: 0.875rem; }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    /* ── Full-Width Quick Nav ────────────────── */
+    /* ── Detail Hero ──────────────────────────── */
+    .detail-hero { position: relative; padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px); background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%); overflow: hidden; }
+    .detail-hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 22px 22px; opacity: 0.5; pointer-events: none; }
+    .detail-hero__halo { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; animation: drift 16s ease-in-out infinite; }
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a, .detail-hero .breadcrumb a:link, .detail-hero .breadcrumb a:visited, .detail-hero .breadcrumb a:any-link { color: rgba(255, 255, 255, 0.7) !important; text-decoration: none !important; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400) !important; }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 20ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .detail-hero__bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.12; z-index: 1; }
+
+    /* ── Three-Column Nav Cards ────────────────── */
+    .nav-cards-section { background: linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 100%); padding: clamp(36px, 5vw, 56px) 0; }
+    .nav-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px); }
+    .nav-card {
+      background: rgba(255, 255, 255, 0.06); border-radius: var(--radius-md); padding: clamp(24px, 3vw, 34px);
+      text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms ease, background 320ms ease;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .nav-card:hover { transform: translateY(-6px); background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 194, 77, 0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+    .nav-card__icon { width: 72px; height: 72px; object-fit: contain; margin-bottom: 4px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
+    .nav-card__title { font-family: "Fraunces", serif; font-size: 1.2rem; color: #ffffff; font-weight: 700; }
+    .nav-card__desc { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; flex: 1; }
+
+    /* ── Tabbed Content ───────────────────────── */
+    .tab-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+    .tab-pill {
+      padding: 10px 22px; border-radius: 999px; font-family: inherit; font-size: 0.86rem;
+      font-weight: 700; border: 1.5px solid var(--paper-200); background: var(--white);
+      color: var(--ink-700); cursor: pointer; transition: all 220ms ease;
+    }
+    .tab-pill:hover { border-color: var(--gold-400); color: var(--ink-900); }
+    .tab-pill.is-active { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+
+    .tab-panels { position: relative; }
+    .tab-panel { display: none; animation: tabFadeIn 380ms var(--ease); }
+    .tab-panel.is-active { display: block; }
+    @keyframes tabFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .tab-panel h3 { font-family: "Fraunces", serif; font-size: 1.12rem; color: var(--ink-900); margin: 22px 0 8px; }
+    .tab-panel h3:first-child { margin-top: 0; }
+    .tab-panel p { margin-bottom: 14px; line-height: 1.72; }
+    .tab-panel ul { list-style: none; margin: 10px 0 18px; }
+    .tab-panel ul li { position: relative; padding: 10px 0 10px 24px; border-bottom: 1px solid var(--paper-200); line-height: 1.65; }
+    .tab-panel ul li:last-child { border-bottom: 0; }
+    .tab-panel ul li::before { content: ""; position: absolute; left: 0; top: 18px; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); }
+    .tab-panel ol { list-style: decimal; padding-left: 22px; margin: 8px 0 18px; }
+    .tab-panel ol li { padding: 6px 0; line-height: 1.65; }
+    .tab-panel a, .tab-panel a:link, .tab-panel a:visited, .tab-panel a:any-link { color: #24508f !important; text-decoration: underline !important; font-weight: 600; }
+    .tab-panel a:hover { color: #122a57 !important; }
+
+    /* ── Feature Strip (sidebar content inline) ── */
+    .feature-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+    .feature-strip__img { border-radius: var(--radius-md); box-shadow: var(--shadow-soft); width: 100%; height: 100%; object-fit: cover; }
+    .feature-strip .card { display: flex; flex-direction: column; justify-content: center; }
+    .feature-strip .card h3 { font-family: "Fraunces", serif; font-size: 1.15rem; color: var(--ink-900); margin-bottom: 10px; }
+    .feature-strip .card p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 16px; }
+    .feature-strip .card .btn { width: 100%; margin-bottom: 10px; }
+
+    /* ── Step Cards ───────────────────────────── */
+    .step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+    .step-card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: var(--white); padding: clamp(26px, 3vw, 36px); box-shadow: var(--shadow-soft); overflow: hidden; }
+    .step-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold-400), var(--gold-500)); }
+    .step-card__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--navy-900), var(--navy-700)); color: var(--gold-400); font-family: "Fraunces", serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 14px; }
+    .step-card__title { font-family: "Fraunces", serif; font-size: 1.15rem; color: var(--ink-900); font-weight: 700; margin-bottom: 10px; }
+    .step-card p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 12px; }
+    .step-card a, .step-card a:link, .step-card a:visited, .step-card a:any-link { color: #24508f !important; text-decoration: underline !important; font-weight: 600; }
+    .step-card h4 { font-family: "Fraunces", serif; font-size: 0.98rem; color: var(--ink-900); margin: 18px 0 6px; }
+    .step-card ol { list-style: decimal; padding-left: 20px; margin: 6px 0 14px; }
+    .step-card ol li { padding: 4px 0; font-size: 0.88rem; line-height: 1.6; color: var(--ink-700); }
+    .step-card .btn { margin-top: 8px; }
+
+    /* ── Status Card ──────────────────────────── */
+    .status-card { border-radius: var(--radius-md); padding: clamp(28px, 4vw, 44px); text-align: center; margin: 24px 0; background: linear-gradient(135deg, var(--navy-950), var(--navy-900)); color: #fff; position: relative; overflow: hidden; }
+    .status-card::after { content: ""; position: absolute; top: -30%; right: -10%; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,194,77,0.1), transparent 70%); filter: blur(40px); pointer-events: none; }
+    .status-card__label { font-size: 0.92rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+    .status-card__big { font-family: "Fraunces", serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 8px; background: linear-gradient(90deg, var(--gold-300), var(--gold-500)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .status-card__note { font-size: 0.86rem; color: rgba(255,255,255,0.55); font-style: italic; }
+
+    /* ── Contact Card ─────────────────────────── */
+    .contact-card { position: relative; border-radius: var(--radius-md); padding: clamp(32px, 4vw, 48px); background: linear-gradient(160deg, var(--paper-100), var(--paper-150)); border: 1px solid var(--paper-200); margin: 40px 0; display: flex; align-items: center; gap: clamp(20px, 3vw, 36px); box-shadow: var(--shadow-soft); }
+    .contact-card__icon { width: 64px; height: 64px; flex-shrink: 0; background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); border-radius: 50%; display: grid; place-items: center; box-shadow: var(--shadow-gold); }
+    .contact-card__icon svg { width: 28px; height: 28px; stroke: var(--navy-950); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-card__body { flex: 1; }
+    .contact-card__body h3 { font-family: "Fraunces", serif; font-size: 1.2rem; color: var(--ink-900); margin-bottom: 6px; }
+    .contact-card__body p { font-size: 0.94rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 14px; }
+    .contact-card__body a.btn { margin: 0; }
+
+    /* ── Charitable Card ──────────────────────── */
+    .charitable-card { display: grid; grid-template-columns: 0.4fr 1fr; gap: clamp(20px, 3vw, 36px); align-items: center; }
+    .charitable-card__img { border-radius: var(--radius-sm); object-fit: cover; width: 100%; aspect-ratio: 1 / 1; }
+    .charitable-card__body h3 { font-family: "Fraunces", serif; font-size: 1.25rem; color: var(--ink-900); margin-bottom: 10px; }
+    .charitable-card__body p { margin-bottom: 12px; }
+    .charitable-card__body ul { list-style: none; margin: 10px 0 16px; }
+    .charitable-card__body ul li { position: relative; padding: 6px 0 6px 20px; line-height: 1.6; }
+    .charitable-card__body ul li::before { content: ""; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); }
+
+    /* ── Vendor Widget ────────────────────────── */
+    .vendor-widget-section { padding: clamp(24px, 4vw, 48px) 0 0; }
+
+    /* ── CTA Banner ───────────────────────────── */
+    .cta-banner { position: relative; background: radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%), radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%), linear-gradient(135deg, var(--navy-950), var(--navy-900)); background-size: 200% 200%, 200% 200%, 100% 100%; animation: meshDrift 22s ease-in-out infinite reverse; border-radius: var(--radius-xl); margin: 0 var(--pad-inline); padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px); text-align: center; overflow: hidden; }
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 22ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* ── Animations ───────────────────────────── */
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+
+    /* ── Responsive ───────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-cards-grid { grid-template-columns: 1fr; }
+      .feature-strip { grid-template-columns: 1fr; }
+      .feature-strip__img { max-height: 260px; }
+      .step-grid { grid-template-columns: 1fr; }
+      .charitable-card { grid-template-columns: 1fr; }
+      .charitable-card__img { max-width: 280px; margin: 0 auto; }
+      .contact-card { flex-direction: column; text-align: center; }
+      .tab-pills { justify-content: center; }
+    }
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; } .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .tab-pills { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+      .tab-pills::-webkit-scrollbar { display: none; }
+      .tab-pill { flex: 0 0 auto; white-space: nowrap; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } [data-reveal] { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" aria-label="School Fundraising hero">
+      <div class="detail-hero__bg" style="background-image: url('https://cmsv2-assets.apptegy.net/uploads/23895/file/5720337/2470efbd-4d06-40ef-bba5-40a269a0749a.png');"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def/page/partner">Partner</a><span>&rsaquo;</span>School Fundraising
+          </nav>
+          <p class="kicker">Partner With Us</p>
+          <h1 class="title">School <span class="accent">Fundraising</span></h1>
+          <p class="lede">Davis Education Foundation serves as the clearinghouse for school fundraising vendors and supports safe, compliant fundraising in Davis School District.</p>
+          <div class="detail-hero__actions">
+            <a href="/o/def/page/partner-vendors" class="btn btn--gold">Approved Vendor List &rarr;</a>
+            <a href="#policy" class="btn btn--ghost">View Policy &amp; Guidelines</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ NAV CARDS (now dark, seamless with hero) ═══ -->
+    <section class="nav-cards-section" aria-label="Quick links">
+      <div class="shell">
+        <div class="nav-cards-grid" data-reveal>
+          <div class="nav-card" style="--reveal-order:0;">
+            <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5580494/a92582a8-a9ac-4d3c-b1f6-77f0b0268a28.png" alt="Policy and Guidelines icon" class="nav-card__icon">
+            <h3 class="nav-card__title">Policy + Guidelines</h3>
+            <p class="nav-card__desc">Review district requirements, timelines, and best practices so your fundraiser stays compliant and runs smoothly.</p>
+            <a href="#policy" class="btn btn--gold btn--sm">View Policy &amp; Guidelines</a>
+          </div>
+          <div class="nav-card" style="--reveal-order:1;">
+            <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5580492/f4b74447-600a-4d52-be2a-5c05112dc732.png" alt="Approved Vendors icon" class="nav-card__icon">
+            <h3 class="nav-card__title">Approved Vendors</h3>
+            <p class="nav-card__desc">Browse the approved vendor list, compare options, and connect with a partner for your fundraiser.</p>
+            <a href="/o/def/page/partner-vendors" class="btn btn--gold btn--sm">Approved Vendor List</a>
+          </div>
+          <div class="nav-card" style="--reveal-order:2;">
+            <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5580491/73c9c51e-bc64-4f74-a4d0-fdc45ca1963f.png" alt="Become a Vendor icon" class="nav-card__icon">
+            <h3 class="nav-card__title">Become a Vendor</h3>
+            <p class="nav-card__desc">Want to fundraise with Davis School District schools? Learn requirements and apply for approval.</p>
+            <a href="#vendors" class="btn btn--gold btn--sm">Become an Approved Vendor</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FULL-WIDTH QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Page navigation">
+      <nav class="quick-nav">
+        <a href="#policy">Policy</a>
+        <a href="#vendors">Vendor Management</a>
+        <a href="#contact">Contact</a>
+        <a href="#charitable">Charitable Fundraising</a>
+      </nav>
+    </div>
+
+    <!-- ═══ VENDOR LOGO WIDGET ═══ -->
+    <section class="vendor-widget-section" aria-label="Approved vendor logos">
+      <div class="shell">
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-8ba7c2dd-5fa9-4aeb-b9e2-247464bfaa9c" data-elfsight-app-lazy></div>
+      </div>
+    </section>
+
+    <!-- ═══ POLICY SECTION — Tabbed ═══ -->
+    <section class="section" id="policy" aria-label="School Fundraising Policy">
+      <div class="shell">
+        <div data-reveal>
+          <p class="kicker">Fundraising Policy</p>
+          <h2 class="title">School Fundraising <span class="accent">Policy</span></h2>
+          <div class="section-divider section-divider--short"></div>
+          <p class="lede">To ensure safety, ethical practices and alignment with district values, school fundraising that involves students <strong>must</strong> use vendors from the <a href="/o/def/page/partner-vendors" style="color: var(--navy-700); font-weight: 700;">Approved Vendor List</a>. No exceptions.</p>
+        </div>
+
+        <div class="tab-pills" data-reveal style="--reveal-order:1;" role="tablist" aria-label="Policy sections">
+          <button class="tab-pill is-active" data-tab="policy-rules" role="tab" aria-selected="true">Fundraising Policy</button>
+          <button class="tab-pill" data-tab="policy-guidelines" role="tab" aria-selected="false">District Guidelines</button>
+          <button class="tab-pill" data-tab="policy-coventure" role="tab" aria-selected="false">Co-Venture Fundraising</button>
+          <button class="tab-pill" data-tab="policy-nonapproved" role="tab" aria-selected="false">Non-Approved Vendors</button>
+        </div>
+
+        <div class="tab-panels card" data-reveal style="--reveal-order:2;">
+
+          <div class="tab-panel is-active" id="policy-rules" role="tabpanel">
+            <ul>
+              <li><strong>Local focus:</strong> Fundraisers should primarily support the school's attendance area. If a fundraiser extends beyond the attendance area, approval from the school director is required.</li>
+              <li><strong>Vendor approval:</strong> Vendors may apply for approval <strong>July 1&ndash;Sept. 30</strong> each year. New vendors will not be approved after <strong>Oct. 1</strong>.</li>
+              <li><strong>Funds management:</strong> All fundraising money <strong>must</strong> be collected, receipted and spent through district, foundation or school accounts following standard accounting procedures.</li>
+              <li><strong>Givebacks:</strong> <strong style="color: var(--navy-900);">FOR PTA USE ONLY</strong> and only for membership dues and fundraising efforts for their school. <em style="color: var(--gold-500); font-weight: 700;">Schools are not allowed to use this for fundraising.</em></li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="policy-guidelines" role="tabpanel">
+            <p>Please review the <a href="https://www.davis.k12.ut.us/o/dsd/page/policy-manual" target="_blank" rel="noopener">DSD Policy Manual</a> for full district policies and procedures. Key guidelines:</p>
+            <ul>
+              <li>Fundraising should stay within the school's attendance area unless approved in advance by the school director.</li>
+              <li>Fundraising cannot be for a specific individual (a student or staff member facing illness or hardship).</li>
+              <li>Elementary students may not participate in door-to-door fundraising outside their own family.</li>
+              <li>All fundraisers must be included in the school's fundraising plan.</li>
+              <li>All school fundraisers are subject to a district audit.</li>
+              <li>Schools may hold <strong>no more than 3 fundraisers per year</strong>, each lasting no longer than <strong>5 consecutive school days</strong>. A school&rsquo;s PTA may sponsor one additional fundraiser with prior approval from the principal.</li>
+            </ul>
+            <p>We are committed to keeping fundraising safe, ethical and aligned with district values. Thank you for your cooperation.</p>
+          </div>
+
+          <div class="tab-panel" id="policy-coventure" role="tabpanel">
+            <p>Co-venture fundraising happens when a local business&mdash;such as a restaurant, car wash, grocery store or retail shop&mdash;donates a portion of its sales to a school. The business continues its normal operations; the fundraising is secondary to its everyday commerce. Common examples include &ldquo;dine-out nights&rdquo; where a restaurant gives back a percentage of that evening&rsquo;s sales, or &ldquo;round-up&rdquo; campaigns where customers can add a small donation at checkout.</p>
+            <h3>When working with a co-venture company:</h3>
+            <ul>
+              <li>Students and staff <strong>may not</strong> perform work typically done by employees (waiting tables, clearing tables, washing cars or working in a kitchen).</li>
+              <li>Co-venture companies <strong>do not</strong> need to be on the approved vendor list. Schools can reach out to a local business directly to arrange a fundraising night or campaign.</li>
+              <li>The fundraising component must remain secondary to the business&rsquo;s regular trade&mdash;schools cannot operate the business itself.</li>
+              <li>Questions or exemption requests should be directed to <strong>Risk Management</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="policy-nonapproved" role="tabpanel">
+            <p>The vendor types and fundraising methods below are <strong>not allowed</strong> and will not be approved:</p>
+            <ul>
+              <li><strong>Third-party crowdfunding:</strong> GoFundMe, Kickstarter, Snap Raise and similar platforms may not be used for school fundraising.</li>
+              <li><strong>Online collection and reimbursement:</strong> Outside fundraising companies may not collect money online and then reimburse the school.</li>
+              <li><strong>Prohibited items:</strong> Blow-up toys, mechanical bulls (contact Risk Management with questions), fireworks (exceptions require Risk Management approval), firearms, weapons, alcohol or drugs.</li>
+              <li><strong>Givebacks:</strong> Approved <strong style="color: var(--navy-900);">FOR PTA USE ONLY</strong> and only for membership dues and fundraising efforts for their school. <em style="color: var(--gold-500); font-weight: 700;">Schools are not allowed to use this for fundraising.</em></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Feature strip (replaces old sidebar) -->
+        <div class="feature-strip" data-reveal style="--reveal-order:3;">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/3512023/fb135b8d-b733-4443-bad1-6ec995c179e1.jpeg" alt="A group celebrating outdoors at a school fundraising event" class="feature-strip__img">
+          <div class="card">
+            <h3>Approved Vendor List</h3>
+            <p>All fundraising that involves students must use an approved vendor. Browse the list to find the right partner for your school.</p>
+            <a href="/o/def/page/partner-vendors" class="btn btn--gold">View Vendor List &rarr;</a>
+            <a href="/o/def/page/partner-vendors" class="btn btn--outline btn--sm">Full Vendor Directory</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ VENDOR MANAGEMENT — Step Cards ═══ -->
+    <section class="section" id="vendors" aria-label="Vendor Management" style="background: var(--paper-100);">
+      <div class="shell">
+        <div data-reveal>
+          <p class="kicker">Vendor Management</p>
+          <h2 class="title">Become an Approved <span class="accent">Vendor</span></h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+
+        <!-- Status Card -->
+        <div class="status-card" data-reveal style="--reveal-order:1;">
+          <p class="status-card__label">Vendor Applications for the 2025&ndash;2026 School Year are</p>
+          <p class="status-card__big">NOW CLOSED</p>
+          <p class="status-card__note">Vendor applications are accepted July 1&ndash;Sept. 30 each year.</p>
+        </div>
+
+        <!-- Step Cards -->
+        <div class="step-grid" data-reveal style="--reveal-order:2;">
+
+          <div class="step-card">
+            <div class="step-card__num">1</div>
+            <h3 class="step-card__title">Vendor Application</h3>
+            <p>All fundraising money <strong>must</strong> be collected, receipted, and spent through district, foundation, or school accounts in accordance with standard accounting procedures.</p>
+            <p>Vendors that use third-party crowdfunding or online fundraisers are <strong>not allowed</strong> and will not be approved.</p>
+            <p>If you have any questions about the application process or need assistance, please contact <strong>Kara Toone</strong> via email.</p>
+            <a href="mailto:ktoone@dsdmail.net" class="btn btn--navy btn--sm">Contact Kara Toone</a>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card__num">2</div>
+            <h3 class="step-card__title">Event Payment Management</h3>
+            <p>To manage your fundraising events in Encore, follow these steps:</p>
+
+            <h4>Viewing &amp; Creating Events</h4>
+            <ol>
+              <li><strong>Access Event Payment Management</strong> in Encore. View current/past events or create a new one.</li>
+              <li><strong>Create New Event:</strong> Choose between Web Event or Point of Sale.</li>
+            </ol>
+
+            <h4>Setting Up Your Event</h4>
+            <ol>
+              <li><strong>Event Details:</strong> Enter title, dates, account for deposits, and goal amount.</li>
+              <li><strong>Event Options:</strong> Check the Fundraiser box for donations; check Vendor for third-party vendors.</li>
+              <li><strong>Additional Settings:</strong> Required fields, description, receipt message, and event URL.</li>
+            </ol>
+
+            <h4>Customizing &amp; Publishing</h4>
+            <ol>
+              <li><strong>Purchase Options:</strong> Add donation levels, items, or clothing size tracking.</li>
+              <li><strong>Gallery:</strong> Add pictures, videos, or logos (save event first).</li>
+              <li><strong>Submit for Approval:</strong> Send to your supervisor and DEF for review, then Activate.</li>
+            </ol>
+          </div>
+
+        </div>
+
+        <!-- Contact Card -->
+        <div class="contact-card" id="contact" data-reveal style="--reveal-order:3;">
+          <div class="contact-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="contact-card__body">
+            <h3>Have Questions?</h3>
+            <p>If you have any questions or concerns about the school fundraiser process, Kara Toone can guide you on the approved vendor list, application process, and other related inquiries.</p>
+            <a href="mailto:ktoone@dsdmail.net" class="btn btn--navy btn--sm">Email Kara Toone &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ CHARITABLE FUNDRAISING ═══ -->
+    <section class="section" id="charitable" aria-label="Fundraising for Charitable Purposes">
+      <div class="shell">
+        <div class="card" data-reveal>
+          <div class="charitable-card">
+            <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5578658/5c76bc0d-b756-44a5-9e1d-27736d466c20.png" alt="Volunteers taking donations" class="charitable-card__img">
+            <div class="charitable-card__body">
+              <h3>Fundraising for Charitable Purposes?</h3>
+              <p>Outside charitable fundraisers involving the school in the collection of money or goods are discouraged unless they have significant educational or humanitarian value. These fundraisers <strong>must</strong>:</p>
+              <ul>
+                <li>Be approved by the school principal.</li>
+                <li>Be supported by school parent organizations and community groups.</li>
+              </ul>
+              <a href="/o/def/page/partner-school-fundraisers" class="btn btn--navy">Learn More &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">School Fundraising</p>
+        <h2 class="title">Need help planning your fundraiser?</h2>
+        <p class="lede">Contact us to get started with an approved vendor and make your school fundraiser safe, compliant, and successful.</p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/partner-vendors" class="btn btn--gold">Approved Vendor List &rarr;</a>
+          <a href="mailto:ktoone@dsdmail.net" class="btn btn--ghost">Email Kara Toone</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <!-- Reveal observer -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+  <!-- Quick-nav scroll spy -->
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+      var sections = navLinks.map(function (link) { var t = link.getAttribute("href"); if (!t || t[0] !== "#") return null; return document.querySelector(t); }).filter(Boolean);
+      function setActive(id) { navLinks.forEach(function (link) { link.classList.toggle("is-active", link.getAttribute("href") === "#" + id); }); }
+      var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); }); }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.01 });
+      sections.forEach(function (s) { obs.observe(s); });
+    })();
+  </script>
+  <!-- Tab switching -->
+  <script>
+    (function () {
+      var pills = Array.prototype.slice.call(document.querySelectorAll(".tab-pill"));
+      var panels = Array.prototype.slice.call(document.querySelectorAll(".tab-panel"));
+      pills.forEach(function (pill) {
+        pill.addEventListener("click", function () {
+          var target = pill.getAttribute("data-tab");
+          pills.forEach(function (p) { p.classList.remove("is-active"); p.setAttribute("aria-selected", "false"); });
+          panels.forEach(function (p) { p.classList.remove("is-active"); });
+          pill.classList.add("is-active");
+          pill.setAttribute("aria-selected", "true");
+          var panel = document.getElementById(target);
+          if (panel) panel.classList.add("is-active");
+        });
+      });
+    })();
+  </script>
+  <!-- Parallax -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      var heroSection = document.querySelector(".detail-hero");
+      if (!heroSection) return;
+      var heroH = heroSection.offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              if (detailBg) detailBg.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) { h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)"; });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Recognition – Davis Education Foundation</title>
+  <meta name="description" content="Davis Education Foundation honors outstanding educators with Teacher of the Year, Heidi Martin Mighty Heart Award, Excellence in Education, Lifetime Achievement, and New Teacher support programs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --award-gold: #f5a623; --award-gold-deep: #d4870a;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    /* -- Buttons (CMS-hardened) ------------ */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none !important; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold,
+    .btn--gold:link,
+    .btn--gold:visited,
+    .btn--gold:any-link { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)) !important; color: var(--navy-950) !important; box-shadow: var(--shadow-gold); text-decoration: none !important; }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy,
+    .btn--navy:link,
+    .btn--navy:visited,
+    .btn--navy:any-link { background: var(--navy-900) !important; color: #fff !important; box-shadow: var(--shadow-soft); text-decoration: none !important; }
+    .btn--navy:hover { background: var(--navy-700) !important; box-shadow: var(--shadow-mid); color: #fff !important; }
+    .btn--ghost,
+    .btn--ghost:link,
+    .btn--ghost:visited,
+    .btn--ghost:any-link { background: rgba(255, 255, 255, 0.12) !important; color: #fff !important; border: 1.5px solid rgba(255, 255, 255, 0.28) !important; backdrop-filter: blur(6px); text-decoration: none !important; }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2) !important; border-color: rgba(255, 255, 255, 0.45) !important; }
+    .btn--outline,
+    .btn--outline:link,
+    .btn--outline:visited,
+    .btn--outline:any-link { background: transparent !important; color: var(--navy-700) !important; border: 1.5px solid var(--paper-200) !important; text-decoration: none !important; }
+    .btn--outline:hover { background: var(--paper-100) !important; }
+
+    /* -- Reveal Animations ------------ */
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+    [data-reveal="left"] { opacity: 0; transform: translate3d(-34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="right"] { opacity: 0; transform: translate3d(34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.93); transition: transform 800ms var(--ease), opacity 700ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+
+    /* -- Cards ------------ */
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    /* -- Quick Nav (CMS-hardened) -------------- */
+    /* -- Detail Hero ------------ */
+    .detail-hero {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px);
+      background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%);
+      overflow: hidden;
+    }
+    .detail-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .detail-hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: drift 16s ease-in-out infinite;
+    }
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(245, 166, 35, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a,
+    .detail-hero .breadcrumb a:link,
+    .detail-hero .breadcrumb a:visited,
+    .detail-hero .breadcrumb a:any-link { color: rgba(255, 255, 255, 0.7) !important; text-decoration: none !important; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400) !important; }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 20ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 56ch; margin-top: 12px; }
+    .detail-hero__sub { font-size: 0.86rem; color: rgba(255, 255, 255, 0.55); margin-top: 10px; font-weight: 500; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 18px; padding: 8px 18px; border-radius: 999px;
+      background: rgba(245, 166, 35, 0.15); border: 1px solid rgba(245, 166, 35, 0.3);
+      font-size: 0.82rem; font-weight: 700; color: var(--gold-300); letter-spacing: 0.02em;
+    }
+    .hero-badge svg { width: 16px; height: 16px; fill: var(--gold-300); }
+    .detail-hero__bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.12; z-index: 1; }
+
+    /* -- Stats Banner -------------- */
+    .stats-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(245, 166, 35, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(255, 194, 77, 0.06) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 20s ease-in-out infinite;
+      overflow: hidden;
+    }
+    .stats-banner::after {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 20px 20px; animation: dotDrift 24s linear infinite; pointer-events: none;
+    }
+    .stats-grid {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      padding: clamp(36px, 5vw, 56px) 0;
+      text-align: center;
+    }
+    .stat-item__number {
+      font-family: "Fraunces", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-500)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-item__label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+    /* -- Content Grid ------------ */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+
+    .content-main h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.18;
+      color: var(--ink-900);
+      margin-bottom: 12px;
+    }
+    .content-main h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--ink-900);
+      margin: 28px 0 8px;
+    }
+    .content-main p { margin-bottom: 14px; }
+    .content-main ul {
+      margin: 8px 0 18px 20px;
+      list-style: none;
+    }
+    .content-main ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.65;
+    }
+    .content-main ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--award-gold), var(--award-gold-deep));
+    }
+
+    /* -- Sidebar ------------ */
+    .sidebar-card { position: sticky; top: 80px; }
+    .sidebar-card h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.1rem;
+      color: var(--ink-900);
+      margin-bottom: 10px;
+    }
+    .sidebar-card p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 16px; }
+    .sidebar-card .btn { width: 100%; }
+    .sidebar-card + .sidebar-card { margin-top: 20px; }
+    .sidebar-fact { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--ink-700); margin-bottom: 12px; line-height: 1.55; }
+    .sidebar-fact svg { width: 16px; height: 16px; stroke: var(--award-gold); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 3px; }
+
+    /* -- Award Cards -------------- */
+    .award-card { padding: 0; overflow: hidden; }
+    .award-card__header {
+      padding: clamp(20px, 3vw, 28px); padding-bottom: 16px;
+      background: linear-gradient(135deg, rgba(245, 166, 35, 0.08), rgba(212, 135, 10, 0.04));
+      border-bottom: 1px solid rgba(245, 166, 35, 0.12);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .award-card__icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--award-gold), var(--award-gold-deep));
+    }
+    .award-card__icon svg { width: 26px; height: 26px; fill: #fff; }
+    .award-card__icon img { width: 100%; height: 100%; object-fit: contain; border-radius: 14px; }
+    .award-card__body { padding: clamp(20px, 3vw, 28px); }
+    .award-card__body h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem; color: var(--ink-900); margin-bottom: 6px;
+    }
+    .award-card__body p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 12px; }
+    .award-card__prize {
+      font-size: 0.86rem; font-weight: 700; color: var(--award-gold-deep);
+      margin-bottom: 6px;
+    }
+    .award-card__sponsor {
+      font-size: 0.82rem; color: var(--ink-500); margin-bottom: 14px;
+    }
+    .award-card__pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* -- Detail Pills -------------- */
+    .detail-pill {
+      display: inline-flex; padding: 5px 14px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;
+      background: var(--paper-150); color: var(--ink-700);
+      border: 1px solid var(--paper-200);
+    }
+
+    /* -- Award Tabs -------------- */
+    .award-tab-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .award-tab {
+      padding: 10px 22px; border-radius: 999px; border: 1.5px solid var(--paper-200);
+      background: var(--paper-100); font-family: inherit; font-weight: 700;
+      font-size: 0.88rem; color: var(--ink-700); cursor: pointer;
+      transition: all 260ms ease;
+    }
+    .award-tab:hover { background: var(--paper-150); border-color: var(--gold-400); }
+    .award-tab.is-active { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); border-color: var(--gold-400); }
+    .award-panel { display: none; }
+    .award-panel.is-active { display: block; }
+
+    /* -- Winner Entries -------------- */
+    .winner-entry {
+      display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+      padding: 14px 0; border-bottom: 1px solid var(--paper-200);
+    }
+    .winner-entry:last-child { border-bottom: none; }
+    .winner-entry__year {
+      display: inline-flex; padding: 4px 14px; border-radius: 999px;
+      font-family: "Fraunces", serif; font-size: 0.88rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--award-gold), var(--award-gold-deep)); color: #fff;
+      flex-shrink: 0;
+    }
+    .winner-entry__name { font-weight: 700; color: var(--ink-900); }
+    .winner-entry__school { color: var(--ink-500); font-size: 0.92rem; }
+    .winner-entry__note { font-size: 0.82rem; color: var(--ink-500); font-style: italic; width: 100%; padding-left: 64px; }
+
+    /* -- Photo Strip -------------- */
+    .photo-strip {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 0 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--paper-200) transparent;
+    }
+    .photo-strip::-webkit-scrollbar { height: 6px; }
+    .photo-strip::-webkit-scrollbar-track { background: transparent; }
+    .photo-strip::-webkit-scrollbar-thumb { background: var(--paper-200); border-radius: 999px; }
+    .photo-strip__item {
+      flex: 0 0 auto;
+      width: clamp(220px, 32vw, 320px);
+      scroll-snap-align: start;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform 380ms var(--ease), box-shadow 380ms var(--ease);
+    }
+    .photo-strip__item:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--shadow-mid); }
+    .photo-strip__item img { width: 100%; height: 220px; object-fit: cover; display: block; }
+
+    /* -- Content Photo ------------ */
+    .content-photo { border-radius: var(--radius-lg); overflow: hidden; margin: 28px 0; box-shadow: var(--shadow-soft); }
+    .content-photo img { width: 100%; height: auto; display: block; transition: transform 600ms var(--ease); }
+    .content-photo:hover img { transform: scale(1.03); }
+
+    /* -- CTA Section -------------- */
+    .cta-section {
+      position: relative;
+      background: linear-gradient(135deg, rgba(245, 166, 35, 0.05), rgba(212, 135, 10, 0.03));
+      border-radius: var(--radius-lg);
+      padding: clamp(40px, 5vw, 56px);
+      border: 1px solid rgba(245, 166, 35, 0.12);
+      text-align: center;
+    }
+    .cta-section .kicker { color: var(--award-gold); }
+    .cta-section__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* -- CTA Banner ------------ */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(245, 166, 35, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(139, 207, 255, 0.06) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 20s ease-in-out infinite;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+      box-shadow: var(--shadow-mid);
+      color: #fff;
+    }
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 166, 35, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 22ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 52ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* -- Sponsor list -------------- */
+    .sponsor-list { list-style: none; margin: 0; padding: 0; }
+    .sponsor-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--paper-200);
+      font-size: 0.88rem;
+      color: var(--ink-700);
+      font-weight: 600;
+    }
+    .sponsor-list li:last-child { border-bottom: none; }
+
+    /* -- Video Embeds -------------- */
+    .video-wrap { position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.35); background: var(--navy-950); }
+    .video-wrap--16x9 { padding-bottom: 56.25%; }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-feature { margin: 24px 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 32px); align-items: center; }
+    .video-feature__text h3 { font-family: "Fraunces", "Times New Roman", serif; font-size: 1.15rem; color: var(--ink-900); margin-bottom: 8px; }
+    .video-feature__text p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin: 0; }
+
+    /* -- Responsive ------------ */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .video-feature { grid-template-columns: 1fr; }
+      .sidebar-card { position: static; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% center; } 50% { background-position: 200% center; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0%, 100% { background-position: 0% 50%, 100% 50%, 0 0; } 50% { background-position: 100% 50%, 0% 50%, 0 0; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 200px 200px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(12px, -8px) scale(1.05); } }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" id="top" aria-label="Teacher Recognition hero">
+      <div class="detail-hero__bg" style="background-image: url('https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/62e456db-e480-4459-9a46-f5c6001dae4b/Teacher-of-the-Year-2024_8330.JPG?disposition=inline');"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def">Foundation</a>
+            <span>&rsaquo;</span>
+            <a href="/o/def/page/impact">Impact</a>
+            <span>&rsaquo;</span>
+            Teacher Recognition
+          </nav>
+          <p class="kicker">Impact / Teacher Recognition</p>
+          <h1 class="title">Honoring <span class="accent">Exceptional Educators</span></h1>
+          <p class="lede">
+            From the district&rsquo;s flagship Teacher of the Year to the $10,000 Heidi Martin Mighty Heart Award, Davis Education Foundation celebrates teachers who transform classrooms, inspire students, and strengthen communities.
+          </p>
+          <p class="detail-hero__sub">5 Award Programs &middot; 4 Years of Winners &middot; Dozens of Honored Educators</p>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            DEF Pillar Program
+          </div>
+          <div class="detail-hero__actions">
+            <a href="#awards" class="btn btn--ghost">See the Awards</a>
+            <a href="/o/def/page/give" class="btn btn--gold">Invest in Teachers</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Page navigation">
+      <nav class="quick-nav">
+        <a href="#top">Overview</a>
+        <a href="#awards">Awards</a>
+        <a href="#winners">Winners</a>
+        <a href="#photos">Photos</a>
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+
+    <!-- ═══ STATS BANNER ═══ -->
+    <section class="stats-banner" id="numbers" aria-label="Teacher Recognition by the numbers">
+      <div class="shell">
+        <div class="stats-grid" data-reveal>
+          <div class="stat-item">
+            <div class="stat-item__number">5</div>
+            <div class="stat-item__label">Award Programs</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">4</div>
+            <div class="stat-item__label">Years of Winners</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">$10K</div>
+            <div class="stat-item__label">Mighty Heart Prize</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">300+</div>
+            <div class="stat-item__label">New Teachers Supported</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ THE AWARDS ═══ -->
+    <section class="section" id="awards" aria-label="The Awards">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+            <div data-reveal>
+              <p class="kicker">The Awards</p>
+              <h2>Five Programs, One Mission: Honoring Great Teaching</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                Davis Education Foundation runs five distinct teacher recognition programs&mdash;each designed to celebrate a different dimension of excellent teaching, from career-spanning dedication to day-one classroom readiness. Together, they create a culture where educators feel seen, valued, and supported at every stage.
+              </p>
+            </div>
+
+            <!-- Award 1: Teacher of the Year -->
+            <div class="card award-card" data-reveal style="--reveal-order:1; margin-top: 24px;">
+              <div class="award-card__header">
+                <div class="award-card__icon">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/3d46aa00-0e64-4f1b-8ebe-e87ee859e97a/Teacher-of-the-Year.png?disposition=inline" alt="Teacher of the Year emblem">
+                </div>
+                <div>
+                  <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900);">Teacher of the Year</h3>
+                  <span style="font-size: 0.78rem; color: var(--ink-500); font-weight: 600;">District Flagship Award</span>
+                </div>
+              </div>
+              <div class="award-card__body">
+                <p>
+                  The district&rsquo;s flagship recognition. One educator is selected annually as the exemplar of classroom impact, instructional leadership, and community influence. Surprise ceremonies at the winner&rsquo;s school create high-emotion moments that resonate across the district.
+                </p>
+                <p class="award-card__prize">Prize: One-year vehicle lease + maintenance + insurance</p>
+                <p class="award-card__sponsor">Sponsors: Young Automotive Group / Young Kia &middot; Goldenwest Credit Union</p>
+                <div class="award-card__pills">
+                  <span class="detail-pill">Flagship Award</span>
+                  <span class="detail-pill">Vehicle Lease</span>
+                  <span class="detail-pill">Surprise Ceremony</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Award 2: Heidi Martin Mighty Heart -->
+            <div class="card award-card" data-reveal style="--reveal-order:2; margin-top: 20px;">
+              <div class="award-card__header">
+                <div class="award-card__icon">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900);">Heidi Martin &mdash; Mighty Heart Educator of Excellence</h3>
+                  <span style="font-size: 0.78rem; color: var(--ink-500); font-weight: 600;">$10,000 Award</span>
+                </div>
+              </div>
+              <div class="award-card__body">
+                <p>
+                  Named for Heidi Ann Martin, this award recognizes an educator who models resilience, compassion, and human connection. It honors teachers who move hearts and lives as much as test scores&mdash;the ones who stay late, show up early, and make every child feel they matter.
+                </p>
+                <p class="award-card__prize">Prize: $10,000 to the winner&rsquo;s school</p>
+                <p class="award-card__sponsor">Sponsors: Anonymous Founding Donor &middot; Best of Davis Partners (Chevron, Hogan Construction)</p>
+                <div class="award-card__pills">
+                  <span class="detail-pill">$10,000 Prize</span>
+                  <span class="detail-pill">School Discretion</span>
+                  <span class="detail-pill">Best of Davis</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Heidi Martin Video Feature -->
+            <div class="video-feature" data-reveal style="--reveal-order:2; margin-top: 20px;">
+              <div class="video-feature__text">
+                <h3>Mighty Heart &mdash; Media Coverage</h3>
+                <p>Watch the story behind the Heidi Martin Mighty Heart Award&mdash;how it honors educators who model resilience, compassion, and human connection, and how it impacts their schools and communities.</p>
+              </div>
+              <div class="video-wrap video-wrap--16x9">
+                <iframe src="https://player.vimeo.com/video/1170836580?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Heidi Martin Mighty Heart Award – Media Coverage" loading="lazy"></iframe>
+              </div>
+            </div>
+
+            <!-- Award 3: New Teacher Support -->
+            <div class="card award-card" data-reveal style="--reveal-order:3; margin-top: 20px;">
+              <div class="award-card__header">
+                <div class="award-card__icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#fff"/><circle cx="12" cy="12" r="3" fill="none" stroke="#d4870a" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900);">New Teacher Support &amp; Outstanding New Educator</h3>
+                  <span style="font-size: 0.78rem; color: var(--ink-500); font-weight: 600;">Day-One Investment</span>
+                </div>
+              </div>
+              <div class="award-card__body">
+                <p>
+                  Celebrates early-career teachers through two tracks: the New Teacher Orientation / Classroom Wallet program gives every new-to-district teacher a $100 starter grant, and the Outstanding New Educator recognition spotlights exceptional first-year teachers with gift baskets and public recognition.
+                </p>
+                <p class="award-card__prize">Prize: $100 Classroom Wallet per teacher (300+ teachers) + gift basket for Outstanding New Educator</p>
+                <p class="award-card__sponsor">Sponsors: Mountain America Credit Union &middot; Young Caring for Our Young &middot; Lifetime Products &middot; GPS Capital Markets &middot; Tanner Clinic</p>
+                <div class="award-card__pills">
+                  <span class="detail-pill">300+ Teachers</span>
+                  <span class="detail-pill">$100 Each</span>
+                  <span class="detail-pill">Day-One Impact</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Award 4: Lifetime Achievement -->
+            <div class="card award-card" data-reveal style="--reveal-order:4; margin-top: 20px;">
+              <div class="award-card__header">
+                <div class="award-card__icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6" fill="#fff"/><path d="M8 14l-2 8 6-4 6 4-2-8" fill="#fff"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900);">Lifetime Achievement &mdash; America First</h3>
+                  <span style="font-size: 0.78rem; color: var(--ink-500); font-weight: 600;">Career Legacy Award</span>
+                </div>
+              </div>
+              <div class="award-card__body">
+                <p>
+                  Recognizes educators whose careers span decades&mdash;mentorship, leadership, and steady service across generations of students. This award celebrates the lifetime dedication that shapes a school&rsquo;s culture long after the honoree retires.
+                </p>
+                <p class="award-card__prize">Prize: Cash honorarium + in-kind gifts</p>
+                <p class="award-card__sponsor">Naming Sponsor: America First Credit Union</p>
+                <div class="award-card__pills">
+                  <span class="detail-pill">Career Legacy</span>
+                  <span class="detail-pill">Mentorship</span>
+                  <span class="detail-pill">America First</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Award 5: Excellence in Education -->
+            <div class="card award-card" data-reveal style="--reveal-order:5; margin-top: 20px;">
+              <div class="award-card__header">
+                <div class="award-card__icon">
+                  <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 6 23 6 23 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900);">Excellence in Education &mdash; Murdock Family Foundation</h3>
+                  <span style="font-size: 0.78rem; color: var(--ink-500); font-weight: 600;">Year-Long Recognition</span>
+                </div>
+              </div>
+              <div class="award-card__body">
+                <p>
+                  A year-long, data-driven recognition program highlighting elementary teachers with exceptional reading-growth outcomes, instructional innovation, and leadership. Monthly recognition tied to measurable student outcomes creates sustained motivation and visibility.
+                </p>
+                <p class="award-card__prize">Prize: Monthly and yearly recognition (Murdock Family Foundation)</p>
+                <p class="award-card__sponsor">Sponsor: Murdock Family Foundation</p>
+                <div class="award-card__pills">
+                  <span class="detail-pill">Year-Long</span>
+                  <span class="detail-pill">Data-Driven</span>
+                  <span class="detail-pill">Reading Growth</span>
+                  <span class="detail-pill">Monthly Cadence</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Award Impact</h3>
+              <div class="sidebar-fact">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>5 distinct award tracks</span>
+              </div>
+              <div class="sidebar-fact">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>$10,000 largest individual prize</span>
+              </div>
+              <div class="sidebar-fact">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>300+ new teachers supported annually</span>
+              </div>
+              <div class="sidebar-fact">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span>4 years of documented winners</span>
+              </div>
+              <a href="/o/def/page/give" class="btn btn--gold" style="margin-bottom: 10px;">Support Teacher Awards</a>
+            </div>
+
+            <div class="card sidebar-card" data-reveal style="--reveal-order:2;">
+              <h3>Key Sponsors</h3>
+              <ul class="sponsor-list">
+                <li>Young Automotive Group</li>
+                <li>America First Credit Union</li>
+                <li>Murdock Family Foundation</li>
+                <li>Mountain America Credit Union</li>
+                <li>Goldenwest Credit Union</li>
+              </ul>
+              <a href="/o/def/page/about-contact" class="btn btn--outline" style="margin-top: 16px;">Become a Sponsor</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONFIRMED WINNERS ═══ -->
+    <section class="section" id="winners" aria-label="Confirmed Winners" style="background: var(--paper-100);">
+      <div class="shell">
+        <div data-reveal style="text-align: center; margin-bottom: 12px;">
+          <p class="kicker">Confirmed Winners</p>
+          <h2 style="font-family: 'Fraunces', 'Times New Roman', serif; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.18; color: var(--ink-900); margin-bottom: 8px;">The Educators We&rsquo;ve Honored</h2>
+          <div class="section-divider section-divider--short" style="margin: 12px auto 24px;"></div>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="award-tab-bar" data-reveal style="--reveal-order:1; justify-content: center;">
+          <button class="award-tab is-active" data-award-tab="panel-toty">Teacher of Year</button>
+          <button class="award-tab" data-award-tab="panel-mighty">Mighty Heart</button>
+          <button class="award-tab" data-award-tab="panel-lifetime">Lifetime</button>
+          <button class="award-tab" data-award-tab="panel-newteacher">New Teacher</button>
+        </div>
+
+        <!-- Teacher of the Year Panel -->
+        <div class="award-panel is-active" id="panel-toty">
+          <div class="card" data-reveal style="--reveal-order:2;">
+            <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900); margin-bottom: 16px;">Teacher of the Year Winners</h3>
+
+            <div class="winner-entry">
+              <span class="winner-entry__year">2025</span>
+              <span class="winner-entry__name">Hollie Fisher</span>
+              <span class="winner-entry__school">&mdash; Lakeside Elementary</span>
+              <span class="winner-entry__note">Surprise ceremony &middot; May 15, 2025</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2024</span>
+              <span class="winner-entry__name">Andru Jones</span>
+              <span class="winner-entry__school">&mdash; Viewmont High</span>
+              <span class="winner-entry__note">Surprise ceremony &middot; May 15, 2024</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2023</span>
+              <span class="winner-entry__name">Carley Maloney</span>
+              <span class="winner-entry__school">&mdash; Viewmont High</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2022</span>
+              <span class="winner-entry__name">Andrew Bird</span>
+              <span class="winner-entry__school">&mdash; Woods Cross High</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mighty Heart Panel -->
+        <div class="award-panel" id="panel-mighty">
+          <div class="card" data-reveal style="--reveal-order:2;">
+            <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900); margin-bottom: 16px;">Heidi Martin &mdash; Mighty Heart Winners</h3>
+
+            <div class="winner-entry">
+              <span class="winner-entry__year">2025</span>
+              <span class="winner-entry__name">Kari Harrison</span>
+              <span class="winner-entry__school">&mdash; Bountiful Elementary</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2024</span>
+              <span class="winner-entry__name">Deborah Kroeger</span>
+              <span class="winner-entry__school">&mdash; Cook Elementary</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2023</span>
+              <span class="winner-entry__name">Laurie Bagford</span>
+              <span class="winner-entry__school">&mdash; Clinton Elementary</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2022</span>
+              <span class="winner-entry__name">Courtney Imler</span>
+              <span class="winner-entry__school">&mdash; Reading Elementary</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lifetime Achievement Panel -->
+        <div class="award-panel" id="panel-lifetime">
+          <div class="card" data-reveal style="--reveal-order:2;">
+            <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900); margin-bottom: 16px;">Lifetime Achievement &mdash; America First Winners</h3>
+
+            <div class="winner-entry">
+              <span class="winner-entry__year">2025</span>
+              <span class="winner-entry__name">Cindy Lemmon</span>
+              <span class="winner-entry__school"></span>
+              <span class="winner-entry__note">America First Lifetime Achievement &middot; Foundation highlights 2024&ndash;25</span>
+            </div>
+            <div class="winner-entry">
+              <span class="winner-entry__year">2024</span>
+              <span class="winner-entry__name">Leslie Butler</span>
+              <span class="winner-entry__school">&mdash; Millcreek Junior High</span>
+              <span class="winner-entry__note">First-ever America First Lifetime Achievement &middot; 30-year career</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Teacher Panel -->
+        <div class="award-panel" id="panel-newteacher">
+          <div class="card" data-reveal style="--reveal-order:2;">
+            <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-900); margin-bottom: 16px;">New Teacher / Outstanding New Educator</h3>
+
+            <div class="winner-entry">
+              <span class="winner-entry__year">2025</span>
+              <span class="winner-entry__name">Kylie Blake</span>
+              <span class="winner-entry__school">&mdash; South Clearfield Elementary</span>
+              <span class="winner-entry__note">Outstanding New Educator</span>
+            </div>
+            <div class="winner-entry" style="border-bottom: none;">
+              <span class="winner-entry__year" style="background: linear-gradient(135deg, var(--navy-700), var(--navy-900)); color: #fff;">Annual</span>
+              <span class="winner-entry__name">300+ new teachers</span>
+              <span class="winner-entry__school">receive $100 Classroom Wallet annually</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PHOTOS ═══ -->
+    <section class="section" id="photos" aria-label="Photos">
+      <div class="shell">
+        <div data-reveal>
+          <p class="kicker">Photos</p>
+          <h2 style="font-family: 'Fraunces', 'Times New Roman', serif; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.18; color: var(--ink-900); margin-bottom: 8px;">Award Ceremony Moments</h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+
+        <!-- Gallery 1: Teacher of the Year 2024 -->
+        <div data-reveal style="--reveal-order:1;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink-900); margin: 24px 0 8px;">Teacher of the Year &mdash; 2024</h3>
+          <div class="photo-strip">
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/62e456db-e480-4459-9a46-f5c6001dae4b/Teacher-of-the-Year-2024_8330.JPG?disposition=inline" alt="Teacher of the Year 2024 ceremony moment" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/297231f8-9d43-437c-ac06-bc9e837bc26c/Teacher-of-the-Year-2024_8349.JPG?disposition=inline" alt="Teacher of the Year 2024 celebration" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/59a208c7-fa7c-4570-9107-ece0c020ddd8/Teacher-of-the-Year-2024_8375.JPG?disposition=inline" alt="Teacher of the Year 2024 award presentation" loading="lazy"></div>
+          </div>
+        </div>
+
+        <!-- Gallery 2: Teacher of the Year 2025 -->
+        <div data-reveal style="--reveal-order:2;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink-900); margin: 24px 0 8px;">Teacher of the Year &mdash; 2025</h3>
+          <div class="photo-strip">
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/0b5809b1-4be9-4671-933f-4f1accd5d273/Teacher-of-the-Year-2025_8382.JPG?disposition=inline" alt="Teacher of the Year 2025 surprise ceremony" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/26fb108d-6754-467a-990e-5fa55154d79f/Teacher-of-the-Year-2025_8557.JPG?disposition=inline" alt="Teacher of the Year 2025 celebration" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/77cc0b1a-ccd5-48b9-8176-d057f7004921/Teacher-of-the-Year-2025_8775.JPG?disposition=inline" alt="Teacher of the Year 2025 award moment" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/9f616343-1054-4e82-8a21-c3b325dd4968/Teacher-of-the-Year-2025_8951.JPG?disposition=inline" alt="Teacher of the Year 2025 school reaction" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/041b276b-80d7-4b8c-b89f-ea9a6f73db67/Teacher-of-the-Year-2025_8960.JPG?disposition=inline" alt="Teacher of the Year 2025 community celebration" loading="lazy"></div>
+          </div>
+        </div>
+
+        <!-- Gallery 3: Heidi Martin Award -->
+        <div data-reveal style="--reveal-order:3;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink-900); margin: 24px 0 8px;">Heidi Martin &mdash; Mighty Heart Award</h3>
+          <div class="photo-strip">
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/07c8e2ac-10bf-4873-ba35-6103a8a60286/Heidi-Martin-2024_2040.JPG?disposition=inline" alt="Heidi Martin Mighty Heart Award 2024 ceremony" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/8a05703d-928e-4361-b1f9-acf264d1a9c4/Heidi-Martin-2024_2052.JPG?disposition=inline" alt="Heidi Martin Mighty Heart Award 2024 celebration" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/6d1bc2e2-6d4f-461e-a9c9-245714ad8b03/Heidi-Martin-2024_2068.JPG?disposition=inline" alt="Heidi Martin Mighty Heart Award 2024 presentation" loading="lazy"></div>
+          </div>
+        </div>
+
+        <!-- Gallery 4: Excellence in Education -->
+        <div data-reveal style="--reveal-order:4;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink-900); margin: 24px 0 8px;">Excellence in Education</h3>
+          <div class="photo-strip">
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/7e7236a9-784a-462d-af3d-cb9fe88d11e5/Excellence-in-Education_0731.JPG?disposition=inline" alt="Excellence in Education recognition" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/b0f4f424-a3c4-4c79-9e63-2e56797156bb/Excellence-in-Education_5309.JPG?disposition=inline" alt="Excellence in Education celebration" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/4bf64861-6374-44df-b8a0-159d00cdb137/Excellence-in-Education_0679.JPG?disposition=inline" alt="Excellence in Education award moment" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/5523a8f2-9a8a-4e40-90a2-fb4c40f24e66/Excellence-in-Education_0686.JPG?disposition=inline" alt="Excellence in Education teacher honored" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/7ad2e912-111e-4bf0-a1f3-903f8950e7e6/Excellence-in-Education_0692.JPG?disposition=inline" alt="Excellence in Education presentation" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/7bbe37b2-e6fb-41d3-afe2-e49d3576131c/Excellence-in-Education_0716.JPG?disposition=inline" alt="Excellence in Education ceremony" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/af91c6fc-d828-4dd5-9dcc-c6254e2f4a96/Excellence-in-Education_0756.JPG?disposition=inline" alt="Excellence in Education recognition event" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/935dae8d-10aa-4dc3-8c06-a263322a5371/Excellence-in-Education_0761.JPG?disposition=inline" alt="Excellence in Education group photo" loading="lazy"></div>
+          </div>
+        </div>
+
+        <!-- Gallery 5: Lifetime Achievement -->
+        <div data-reveal style="--reveal-order:5;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink-900); margin: 24px 0 8px;">Lifetime Achievement</h3>
+          <div class="photo-strip">
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/a299d074-30e1-459a-aa0c-a96326d32097/Lifetime-Award_4102.JPG?disposition=inline" alt="Lifetime Achievement Award ceremony" loading="lazy"></div>
+            <div class="photo-strip__item"><img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/d276c592-866c-4064-b135-109fbf6537be/Lifetime-Award_4124.JPG?disposition=inline" alt="Lifetime Achievement Award presentation" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SUPPORT TEACHER RECOGNITION ═══ -->
+    <section class="section" id="support" aria-label="Support Teacher Recognition">
+      <div class="shell">
+        <div class="cta-section" data-reveal>
+          <p class="kicker">Get Involved</p>
+          <h2 style="font-family: 'Fraunces', 'Times New Roman', serif; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.18; color: var(--ink-900); margin-bottom: 12px;">Support Teacher Recognition</h2>
+          <div class="section-divider section-divider--short" style="margin: 12px auto 18px;"></div>
+          <p class="lede" style="margin: 0 auto 8px; text-align: center;">
+            Every award begins with a donor who believes great teaching deserves great recognition. You can sponsor an award, fund classroom wallets for new teachers, or create a named recognition program that carries your family or company&rsquo;s values into every school in the district.
+          </p>
+          <div class="cta-section__actions">
+            <a href="/o/def/page/give" class="btn btn--gold">Invest in Teachers</a>
+            <a href="/o/def/page/about-contact" class="btn btn--outline">Discuss Sponsorship</a>
+            <a href="/o/def/page/impact" class="btn btn--outline">Back to Impact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Teacher Recognition</p>
+        <h2 class="title">Great teaching deserves <span class="accent">great recognition</span>.</h2>
+        <p class="lede">
+          Every award tells a story of dedication&mdash;early mornings, late nights, and the quiet moments that change a student&rsquo;s trajectory. Donors make these recognition moments possible, giving teachers the celebration they deserve.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/give" class="btn btn--gold">Invest in Teachers</a>
+          <a href="/o/def/page/about-contact" class="btn btn--ghost">Discuss Sponsorship</a>
+          <a href="/o/def/page/impact" class="btn btn--ghost">Back to Impact</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <!-- Reveal observer -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+  <!-- Quick-nav active state + shadow -->
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+
+      var sections = navLinks.map(function (link) {
+        var target = link.getAttribute("href");
+        return target && target.charAt(0) === "#" ? document.querySelector(target) : null;
+      }).filter(Boolean);
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (l) { l.classList.remove("is-active"); });
+            var match = navLinks.find(function (l) { return l.getAttribute("href") === "#" + entry.target.id; });
+            if (match) match.classList.add("is-active");
+          }
+        });
+      }, { rootMargin: "-20% 0px -60% 0px", threshold: 0 });
+
+      sections.forEach(function (s) { io.observe(s); });
+    })();
+  </script>
+  <!-- Award tab switcher -->
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.award-tab');
+      var panels = document.querySelectorAll('.award-panel');
+      if (!tabs.length) return;
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { t.classList.remove('is-active'); });
+          panels.forEach(function (p) { p.classList.remove('is-active'); });
+          tab.classList.add('is-active');
+          var target = document.getElementById(tab.getAttribute('data-award-tab'));
+          if (target) target.classList.add('is-active');
+        });
+      });
+    })();
+  </script>
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      if (!detailBg) return;
+      var heroH = detailBg.closest("section").offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              detailBg.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) {
+                h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)";
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Coordinator - Hiring Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy-deep: #0a0e27;
+    --navy: #0f1538;
+    --navy-mid: #151d4a;
+    --navy-light: #1b2560;
+    --navy-surface: #1e2a6e;
+    --blue-light: #4fc3f7;
+    --blue-soft: #81d4fa;
+    --blue-glow: #29b6f6;
+    --pink-neon: #ff2d78;
+    --pink-soft: #ff5c9a;
+    --pink-glow: #ff0062;
+    --text-primary: #e8eaf6;
+    --text-secondary: #9fa8da;
+    --text-muted: #5c6bc0;
+    --border: rgba(79, 195, 247, 0.12);
+    --border-active: rgba(255, 45, 120, 0.4);
+    --glass: rgba(15, 21, 56, 0.7);
+    --glass-light: rgba(27, 37, 96, 0.5);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 30px rgba(255, 45, 120, 0.15);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--navy-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(rgba(79, 195, 247, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79, 195, 247, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridShift 20s ease-in-out infinite;
+  }
+
+  @keyframes gridShift {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(79, 195, 247, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(255, 45, 120, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: auroraFloat 15s ease-in-out infinite;
+  }
+
+  @keyframes auroraFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(2%, -1%) scale(1.02); }
+    66% { transform: translate(-1%, 2%) scale(0.98); }
+  }
+
+  /* Floating orbs for ambient life */
+  .ambient-orb {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(80px);
+    opacity: 0.4;
+  }
+
+  .ambient-orb.orb-1 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79, 195, 247, 0.15), transparent 70%);
+    top: 10%; left: 5%;
+    animation: orbDrift1 25s ease-in-out infinite;
+  }
+
+  .ambient-orb.orb-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(255, 45, 120, 0.12), transparent 70%);
+    bottom: 15%; right: 10%;
+    animation: orbDrift2 20s ease-in-out infinite;
+  }
+
+  .ambient-orb.orb-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+    top: 50%; left: 40%;
+    animation: orbDrift3 30s ease-in-out infinite;
+  }
+
+  @keyframes orbDrift1 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(60px, 40px); }
+    50% { transform: translate(20px, -30px); }
+    75% { transform: translate(-40px, 20px); }
+  }
+
+  @keyframes orbDrift2 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-50px, -30px); }
+    50% { transform: translate(30px, 50px); }
+    75% { transform: translate(40px, -20px); }
+  }
+
+  @keyframes orbDrift3 {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-30px, 60px); }
+    66% { transform: translate(50px, -40px); }
+  }
+
+  .app { position: relative; z-index: 1; }
+
+  /* ── Header ── */
+  .header {
+    padding: 28px 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(79, 195, 247, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    background: rgba(10, 14, 39, 0.6);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 16px; }
+
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--pink-neon), var(--blue-light));
+    border-radius: 12px;
+    display: grid; place-items: center;
+    font-size: 20px; font-weight: 800;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 45, 120, 0.3);
+    animation: logoBreathe 4s ease-in-out infinite;
+  }
+
+  @keyframes logoBreathe {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 45, 120, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(255, 45, 120, 0.45), 0 0 60px rgba(79, 195, 247, 0.15); }
+  }
+
+  .header-title {
+    font-size: 22px; font-weight: 700;
+    background: linear-gradient(135deg, var(--text-primary), var(--blue-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .header-subtitle {
+    font-size: 12px; color: var(--text-muted);
+    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  .header-right { display: flex; align-items: center; gap: 12px; }
+
+  .header-stat {
+    padding: 8px 16px;
+    background: rgba(27, 37, 96, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(79, 195, 247, 0.1);
+    border-radius: 40px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    display: flex; align-items: center; gap: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .header-stat:hover {
+    border-color: rgba(79, 195, 247, 0.25);
+    box-shadow: 0 0 15px rgba(79, 195, 247, 0.08);
+  }
+
+  .stat-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--pink-neon);
+    box-shadow: 0 0 8px var(--pink-neon);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── Navigation Tabs ── */
+  .nav-tabs {
+    display: flex;
+    padding: 16px 40px 0;
+    gap: 4px;
+    background: rgba(10, 14, 39, 0.5);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 89px;
+    z-index: 99;
+  }
+
+  .nav-tab {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    position: relative;
+  }
+
+  .nav-tab:hover {
+    color: var(--text-secondary);
+    text-shadow: 0 0 15px rgba(79, 195, 247, 0.3);
+  }
+
+  .nav-tab.active {
+    color: var(--pink-neon);
+    border-bottom-color: var(--pink-neon);
+    text-shadow: 0 0 20px rgba(255, 45, 120, 0.4);
+  }
+
+  .nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    right: 20%;
+    height: 6px;
+    background: var(--pink-neon);
+    filter: blur(6px);
+    opacity: 0.6;
+  }
+
+  .tab-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 40px;
+  }
+
+  /* ── Main Content ── */
+  .main { padding: 28px 40px 60px; }
+
+  /* ── Tab Panels ── */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Applicant Cards Grid ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: rgba(15, 21, 56, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(79, 195, 247, 0.08);
+    border-radius: var(--radius);
+    padding: 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-light), var(--pink-neon), var(--blue-light));
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: shimmerBar 3s linear infinite;
+  }
+
+  @keyframes shimmerBar {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(79, 195, 247, 0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+
+  .card:hover {
+    border-color: rgba(79, 195, 247, 0.2);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(79, 195, 247, 0.08),
+      0 0 80px rgba(255, 45, 120, 0.06);
+    background: rgba(15, 21, 56, 0.5);
+  }
+
+  .card:hover::before { opacity: 1; }
+  .card:hover::after { opacity: 1; }
+
+  .card:active {
+    transform: translateY(-2px) scale(0.99);
+    transition-duration: 0.1s;
+  }
+
+  .card.selected {
+    border-color: rgba(255, 45, 120, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 45, 120, 0.12);
+  }
+
+  .card.selected::before { opacity: 1; }
+
+  .card-header {
+    padding: 24px 24px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .avatar {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: grid; place-items: center;
+    font-size: 20px; font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .card:hover .avatar {
+    transform: scale(1.08);
+    filter: brightness(1.15);
+  }
+
+  .avatar.a1 { background: linear-gradient(135deg, #6366f1, #8b5cf6); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+  .avatar.a2 { background: linear-gradient(135deg, #06b6d4, #3b82f6); box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+  .avatar.a3 { background: linear-gradient(135deg, #f43f5e, #ec4899); box-shadow: 0 0 20px rgba(244, 63, 94, 0.3); }
+  .avatar.a4 { background: linear-gradient(135deg, #f97316, #eab308); box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
+
+  .card-name {
+    font-size: 17px; font-weight: 700;
+    margin-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover .card-name {
+    background: linear-gradient(135deg, var(--text-primary), var(--blue-soft));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .card-location {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .card-summary {
+    padding: 0 24px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .card-skills {
+    padding: 0 24px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    padding: 4px 10px;
+    background: rgba(79, 195, 247, 0.06);
+    border: 1px solid rgba(79, 195, 247, 0.12);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue-light);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    background: rgba(79, 195, 247, 0.15);
+    border-color: rgba(79, 195, 247, 0.35);
+    box-shadow: 0 0 12px rgba(79, 195, 247, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .card-contact {
+    padding: 14px 24px;
+    border-top: 1px solid rgba(79, 195, 247, 0.06);
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover .card-contact {
+    border-top-color: rgba(79, 195, 247, 0.15);
+  }
+
+  .card-contact span { display: flex; align-items: center; gap: 4px; }
+
+  /* ── Detail Panel (Expanded View) ── */
+  .detail-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 39, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 200;
+    padding: 40px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .detail-overlay.active {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 1;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .detail-panel {
+    background: rgba(15, 21, 56, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(79, 195, 247, 0.12);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1440px;
+    position: relative;
+    overflow: hidden;
+    animation: panelSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(79, 195, 247, 0.05);
+  }
+
+  @keyframes panelSlideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .detail-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-light), var(--pink-neon), var(--blue-light));
+    background-size: 200% 100%;
+    animation: shimmerBar 4s linear infinite;
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(27, 37, 96, 0.4);
+    border: 1px solid rgba(79, 195, 247, 0.1);
+    color: var(--text-secondary);
+    font-size: 18px;
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+  }
+
+  .detail-close:hover {
+    background: rgba(255, 45, 120, 0.15);
+    border-color: var(--pink-neon);
+    color: var(--pink-neon);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 45, 120, 0.15);
+  }
+
+  .detail-close:active {
+    transform: rotate(90deg) scale(0.9);
+    transition-duration: 0.1s;
+  }
+
+  .detail-top {
+    padding: 36px 36px 24px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .detail-avatar {
+    width: 72px; height: 72px;
+    border-radius: 18px;
+    display: grid; place-items: center;
+    font-size: 28px; font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .detail-name { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+
+  .detail-meta {
+    display: flex; gap: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .detail-summary {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 600px;
+  }
+
+  .detail-body {
+    padding: 0 36px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+
+  .detail-quadrant {
+    background: rgba(27, 37, 96, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(79, 195, 247, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+  }
+
+  .detail-quadrant:hover {
+    border-color: rgba(79, 195, 247, 0.15);
+    background: rgba(27, 37, 96, 0.35);
+  }
+
+  .detail-quadrant.q-background { grid-column: 1; grid-row: 1; max-height: 420px; }
+  .detail-quadrant.q-questions { grid-column: 2; grid-row: 1 / 3; max-height: 700px; }
+  .detail-quadrant.q-notes { grid-column: 1; grid-row: 2; }
+  .detail-quadrant.q-scoring { grid-column: 2; grid-row: 3; }
+
+  /* Questions list */
+  .question-list { list-style: none; padding: 0; }
+
+  .question-item {
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: rgba(10, 14, 39, 0.5);
+    border: 1px solid rgba(79, 195, 247, 0.06);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .question-number {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--pink-neon), var(--pink-soft));
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: grid; place-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(255, 45, 120, 0.2);
+  }
+
+  .question-item:hover {
+    border-color: rgba(79, 195, 247, 0.2);
+    background: rgba(10, 14, 39, 0.8);
+    transform: translateX(4px);
+    box-shadow: -3px 0 15px rgba(255, 45, 120, 0.06);
+  }
+
+  .question-item:hover .question-number {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px rgba(255, 45, 120, 0.35);
+  }
+
+  /* Compact scoring for quadrant */
+  .scoring-compact { display: flex; flex-direction: column; gap: 10px; }
+
+  .score-row-compact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    background: rgba(10, 14, 39, 0.5);
+    border: 1px solid rgba(79, 195, 247, 0.06);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .score-row-compact:hover {
+    background: rgba(10, 14, 39, 0.7);
+    border-color: rgba(79, 195, 247, 0.15);
+  }
+
+  .score-row-compact .score-label {
+    font-size: 12px;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .score-row-compact .score-stars { display: flex; gap: 3px; }
+
+  .score-row-compact .star-btn {
+    width: 28px; height: 28px;
+    font-size: 14px;
+  }
+
+  .score-row-compact .score-value {
+    font-size: 12px;
+    min-width: 32px;
+  }
+
+  /* Notes in quadrant */
+  .notes-area-compact {
+    width: 100%;
+    min-height: 140px;
+    height: 100%;
+    background: var(--navy-deep);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    resize: vertical;
+    transition: border-color 0.3s;
+  }
+
+  .notes-area-compact:focus {
+    outline: none;
+    border-color: var(--blue-light);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.1);
+  }
+
+  .notes-area-compact::placeholder { color: var(--text-muted); }
+
+  .detail-sections {
+    padding: 0 36px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .detail-section {
+    background: var(--glass-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+  }
+
+  .detail-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pink-neon);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .detail-section-title::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--pink-neon);
+    box-shadow: 0 0 6px var(--pink-neon);
+  }
+
+  .exp-item { margin-bottom: 14px; }
+  .exp-item:last-child { margin-bottom: 0; }
+
+  .exp-title { font-size: 14px; font-weight: 600; }
+
+  .exp-company {
+    font-size: 12px;
+    color: var(--blue-light);
+    font-weight: 500;
+  }
+
+  .exp-dates {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+  }
+
+  .edu-item { margin-bottom: 12px; }
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-degree { font-size: 14px; font-weight: 600; }
+
+  .edu-school {
+    font-size: 12px;
+    color: var(--blue-light);
+    font-weight: 500;
+  }
+
+  .edu-year {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Scoring Panel ── */
+  .scoring-section {
+    padding: 0 36px 36px;
+  }
+
+  .scoring-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .score-category {
+    background: var(--glass-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .score-label {
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 180px;
+    color: var(--text-secondary);
+  }
+
+  .score-stars {
+    display: flex; gap: 4px;
+  }
+
+  .star-btn {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--navy-deep);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: grid; place-items: center;
+  }
+
+  .star-btn:hover {
+    border-color: var(--pink-neon);
+    color: var(--pink-neon);
+    background: rgba(255, 45, 120, 0.1);
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(255, 45, 120, 0.15);
+  }
+
+  .star-btn:active {
+    transform: scale(0.92);
+    transition-duration: 0.1s;
+  }
+
+  .star-btn.filled {
+    background: linear-gradient(135deg, var(--pink-neon), var(--pink-soft));
+    border-color: var(--pink-neon);
+    color: white;
+    box-shadow: 0 0 16px rgba(255, 45, 120, 0.35);
+    animation: starPop 0.3s ease-out;
+  }
+
+  @keyframes starPop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+
+  .score-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue-light);
+    min-width: 40px;
+    text-align: center;
+  }
+
+  /* ── Notes ── */
+  .notes-section {
+    padding: 0 36px 36px;
+  }
+
+  .notes-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pink-neon);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .notes-title::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--pink-neon);
+    box-shadow: 0 0 6px var(--pink-neon);
+  }
+
+  .notes-area {
+    width: 100%;
+    min-height: 120px;
+    background: var(--navy-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    resize: vertical;
+    transition: border-color 0.3s;
+  }
+
+  .notes-area:focus {
+    outline: none;
+    border-color: var(--blue-light);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.1);
+  }
+
+  .notes-area::placeholder { color: var(--text-muted); }
+
+  .notes-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: flex-end;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--pink-neon), var(--pink-soft));
+    color: white;
+    border-color: var(--pink-neon);
+    box-shadow: 0 0 20px rgba(255, 45, 120, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 35px rgba(255, 45, 120, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary:hover::before { left: 100%; }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+
+  .btn-secondary {
+    background: rgba(27, 37, 96, 0.3);
+    color: var(--text-secondary);
+    border-color: var(--border);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--blue-light);
+    color: var(--blue-light);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+
+  /* ── Compare Tab ── */
+  .compare-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .compare-chip {
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(27, 37, 96, 0.3);
+    border: 1px solid rgba(79, 195, 247, 0.1);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .compare-chip:hover {
+    border-color: var(--blue-light);
+    color: var(--blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(79, 195, 247, 0.1);
+  }
+
+  .compare-chip:active {
+    transform: translateY(0) scale(0.96);
+    transition-duration: 0.1s;
+  }
+
+  .compare-chip.active {
+    background: linear-gradient(135deg, rgba(255, 45, 120, 0.15), rgba(79, 195, 247, 0.1));
+    border-color: var(--pink-neon);
+    color: var(--pink-neon);
+    box-shadow: 0 0 20px rgba(255, 45, 120, 0.12);
+  }
+
+  .compare-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid rgba(79, 195, 247, 0.08);
+    background: rgba(15, 21, 56, 0.3);
+    backdrop-filter: blur(16px);
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .compare-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink-neon);
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .compare-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(79, 195, 247, 0.05);
+    vertical-align: top;
+    color: var(--text-secondary);
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .compare-table tr:hover td {
+    background: rgba(79, 195, 247, 0.03);
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .compare-table td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    background: rgba(21, 29, 74, 0.5);
+    min-width: 160px;
+  }
+
+  .compare-table tr:hover td:first-child {
+    background: rgba(21, 29, 74, 0.7);
+  }
+
+  .compare-table .highlight-best {
+    color: var(--blue-light);
+    font-weight: 600;
+  }
+
+  .compare-score-display {
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .mini-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--navy-deep);
+    width: 60px;
+    overflow: hidden;
+  }
+
+  .mini-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue-light), var(--pink-neon));
+    transition: width 0.5s ease;
+  }
+
+  /* ── Scorecard Tab ── */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+  }
+
+  .scorecard {
+    background: rgba(15, 21, 56, 0.35);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(79, 195, 247, 0.08);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .scorecard:hover {
+    border-color: rgba(79, 195, 247, 0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 0 30px rgba(79, 195, 247, 0.05);
+  }
+
+  .scorecard-header {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scorecard-avatar {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 16px; font-weight: 700;
+    color: white; flex-shrink: 0;
+  }
+
+  .scorecard-name { font-size: 16px; font-weight: 700; }
+
+  .scorecard-total {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--blue-light), var(--pink-neon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .scorecard-body { padding: 16px 24px 20px; }
+
+  .scorecard-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(79, 195, 247, 0.06);
+  }
+
+  .scorecard-row:last-child { border-bottom: none; }
+
+  .scorecard-cat { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+  .scorecard-dots { display: flex; gap: 3px; }
+
+  .scorecard-dot {
+    width: 10px; height: 10px;
+    border-radius: 3px;
+    background: var(--navy-deep);
+    border: 1px solid var(--border);
+  }
+
+  .scorecard-dot.filled {
+    background: var(--pink-neon);
+    border-color: var(--pink-neon);
+    box-shadow: 0 0 6px rgba(255, 45, 120, 0.4);
+  }
+
+  .scorecard-notes {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .scorecard-notes-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .scorecard-notes-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── Export bar ── */
+  .export-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 14px 24px;
+    background: rgba(21, 29, 74, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--pink-neon);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 0 30px rgba(255, 45, 120, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 500;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+    animation: toastGlow 1.5s ease-in-out;
+  }
+
+  @keyframes toastGlow {
+    0% { box-shadow: 0 0 30px rgba(255, 45, 120, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(255, 45, 120, 0.35), 0 8px 32px rgba(0, 0, 0, 0.3); }
+    100% { box-shadow: 0 0 30px rgba(255, 45, 120, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3); }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .detail-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    .detail-quadrant.q-background,
+    .detail-quadrant.q-questions,
+    .detail-quadrant.q-notes,
+    .detail-quadrant.q-scoring {
+      grid-column: 1;
+      grid-row: auto;
+      max-height: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 16px 20px; }
+    .main { padding: 20px; }
+    .nav-tabs { padding: 12px 20px 0; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .detail-sections { grid-template-columns: 1fr; }
+    .detail-overlay { padding: 16px; }
+    .detail-top { padding: 24px 24px 16px; }
+    .detail-body { padding: 0 24px 24px; }
+    .detail-sections { padding: 0 24px 24px; }
+    .scorecard-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Center second row for a 3-column giving/cards grid when there are 5 items.
+     Places the 4th and 5th cards into the middle columns so the pair appears
+     visually centered under the top row of three. This is a minimal, targeted
+     tweak for the current 5-card layout (adjust or generalize if the card
+     count changes). */
+  .giving-grid > .card:nth-child(4) { grid-column: 2; }
+  .giving-grid > .card:nth-child(5) { grid-column: 3; }
+</style>
+</head>
+<body>
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
+<div class="app">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-icon">FC</div>
+      <div>
+        <div class="header-title">Financial Coordinator Hiring</div>
+        <div class="header-subtitle">Interview Dashboard</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-stat"><span class="stat-dot"></span> Live Session</div>
+      <div class="header-stat">4 Applicants</div>
+      <div class="header-stat" id="dateDisplay"></div>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="nav-tabs">
+    <button class="nav-tab active" data-tab="candidates">Candidates</button>
+    <button class="nav-tab" data-tab="compare">Compare</button>
+    <button class="nav-tab" data-tab="scorecard">Scorecards</button>
+  </nav>
+  <div class="tab-divider"></div>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- CANDIDATES TAB -->
+    <div class="tab-panel active" id="tab-candidates">
+      <div class="cards-grid" id="cardsGrid"></div>
+    </div>
+
+    <!-- COMPARE TAB -->
+    <div class="tab-panel" id="tab-compare">
+      <div class="compare-controls" id="compareControls"></div>
+      <div class="compare-table-wrap">
+        <table class="compare-table" id="compareTable"></table>
+      </div>
+    </div>
+
+    <!-- SCORECARD TAB -->
+    <div class="tab-panel" id="tab-scorecard">
+      <div class="export-bar">
+        <button class="btn btn-secondary" onclick="exportScores()">Export JSON</button>
+        <button class="btn btn-primary" onclick="clearAllScores()">Reset All Scores</button>
+      </div>
+      <div class="scorecard-grid" id="scorecardGrid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Detail Overlay -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-panel" id="detailPanel"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Data ──
+const applicants = [
+  {
+    id: "app_001", name: "Justine Pritchett",
+    email: "justinepritchett@gmail.com", phone: "801-660-9038",
+    city: "Kaysville", state: "UT",
+    summary: "Administrative and financial professional with over 15 years of experience in banking operations, small business management, and nonprofit financial oversight.",
+    skills: ["Financial Management","QuickBooks","Accounts Payable","Accounts Receivable","Ledger Reconciliation","Compliance Reporting","Google Workspace","Inventory Management"]
+  },
+  {
+    id: "app_002", name: "Stacey Garrett",
+    email: "staceygarrett628@gmail.com", phone: "801-694-3983",
+    city: "Salt Lake City", state: "UT",
+    summary: "CPA with extensive higher education accounting experience including financial reporting, auditing, treasury management, and financial systems administration.",
+    skills: ["Financial Reporting","Audit Coordination","Workday Financial Systems","Treasury Management","Internal Controls","Accounting Policy Development"]
+  },
+  {
+    id: "app_003", name: "Nicole Stark",
+    email: "nicolestark.m@gmail.com", phone: "435-704-1267",
+    city: "Clearfield", state: "UT",
+    summary: "Strategic marketing manager experienced in multi-channel campaigns, brand development, digital marketing, and analytics-driven performance optimization.",
+    skills: ["Strategic Marketing","Campaign Management","Digital Marketing","Brand Development","Analytics","Project Management"]
+  },
+  {
+    id: "app_004", name: "Katrina Adamson",
+    email: "katadamson3@gmail.com", phone: "801-662-8437",
+    city: "Farmington", state: "UT",
+    summary: "Creative designer and customer service professional focused on digital marketing, innovative design, and collaborative team environments.",
+    skills: ["Customer Engagement","Team Building","Creativity","Leadership","Social Media","Digital Marketing"]
+  }
+];
+
+const education = [
+  { applicant_id:"app_001", school:"Davis High School", degree:"High School Diploma", year:null },
+  { applicant_id:"app_002", school:"University of Utah", degree:"Master of Accounting", year:"2019" },
+  { applicant_id:"app_002", school:"University of Utah", degree:"Bachelor of Science in Accounting", year:"2012" },
+  { applicant_id:"app_003", school:"Southern Utah University", degree:"MBA", year:"2023" },
+  { applicant_id:"app_003", school:"Southern Utah University", degree:"Bachelor of Science in Strategic Communications", year:"2022" },
+  { applicant_id:"app_004", school:"Utah Valley University", degree:"Bachelor of Science in Digital Marketing", year:"Expected 2026" }
+];
+
+const experience = [
+  { applicant_id:"app_001", title:"Administrative Assistant", company:"Savage Window Wells", start:"2025", end:"Present" },
+  { applicant_id:"app_001", title:"Treasurer", company:"Morgan Elementary PTA", start:"2022", end:"2025" },
+  { applicant_id:"app_001", title:"Small Business Owner", company:"Oakmont Needle", start:"2015", end:"Present" },
+  { applicant_id:"app_002", title:"Reporting Manager", company:"University of Utah", start:"2024", end:"Present" },
+  { applicant_id:"app_002", title:"Assistant Controller", company:"Ensign College", start:"2020", end:"2024" },
+  { applicant_id:"app_002", title:"Accounting Manager", company:"Ensign College", start:"2011", end:"2020" },
+  { applicant_id:"app_003", title:"Marketing and Communications Manager", company:"Summit Line Construction", start:"2024", end:"2025" },
+  { applicant_id:"app_003", title:"Student Media Program Coordinator", company:"Utah State University", start:"2023", end:"2024" },
+  { applicant_id:"app_003", title:"Marketing Coordinator", company:"Southern Utah University", start:"2021", end:"2023" },
+  { applicant_id:"app_004", title:"Customer Service Specialist", company:"Davis School District", start:"2021", end:"Present" },
+  { applicant_id:"app_004", title:"Rides Operator", company:"Lagoon Theme Park", start:"2016", end:"Present" }
+];
+
+// Scoring categories based on best hiring practices
+const scoreCategories = [
+  { key: "relevant_experience", label: "Relevant Experience" },
+  { key: "technical_skills", label: "Technical / Financial Skills" },
+  { key: "education_fit", label: "Education & Credentials" },
+  { key: "communication", label: "Communication Skills" },
+  { key: "problem_solving", label: "Problem Solving & Critical Thinking" },
+  { key: "culture_fit", label: "Culture & Team Fit" },
+  { key: "professionalism", label: "Professionalism & Presentation" },
+  { key: "growth_potential", label: "Growth Potential" }
+];
+
+const interviewQuestions = {
+  app_001: [
+    "Walk me through your experience managing finances for Oakmont Needle. What accounting systems did you use?",
+    "As PTA Treasurer, what was the largest budget you managed and how did you handle reconciliation?",
+    "Describe your experience with QuickBooks — do you handle payroll, invoicing, and reporting?",
+    "How do you ensure compliance when handling financial records and reporting?",
+    "Tell me about a time you caught a discrepancy in accounts receivable or payable. How did you resolve it?",
+    "How comfortable are you with ledger reconciliation on a weekly vs monthly basis?",
+    "What's your approach to managing inventory finances for a small business?",
+    "How do you prioritize when handling both administrative and financial tasks simultaneously?"
+  ],
+  app_002: [
+    "As a CPA, how do you stay current with changing financial regulations and standards?",
+    "Describe your experience with Workday Financial Systems — what modules have you used?",
+    "Walk me through your role in audit coordination at Ensign College. What was the scope?",
+    "How did you transition from Accounting Manager to Assistant Controller? What new responsibilities did you take on?",
+    "Tell me about a time you developed or improved an internal control process.",
+    "What's your experience with treasury management and cash flow forecasting?",
+    "How do you approach financial reporting for multiple stakeholders with different needs?",
+    "Describe a complex accounting policy you helped develop or refine."
+  ],
+  app_003: [
+    "Your background is in marketing — what draws you to a Financial Coordinator role?",
+    "Do you have any direct experience managing budgets or financial tracking in your marketing roles?",
+    "How did you handle budget allocation across multi-channel campaigns at Summit Line?",
+    "Tell me about your analytics experience — are you comfortable with financial data and spreadsheets?",
+    "Your MBA is recent — did it include any finance or accounting coursework?",
+    "How do you see your project management skills translating to financial coordination?",
+    "What financial tools or software have you used in your previous roles?",
+    "How would you approach learning the financial systems and processes for this role?"
+  ],
+  app_004: [
+    "Tell me about your interest in the Financial Coordinator position. What attracts you to this role?",
+    "Your degree is in Digital Marketing — have you taken any finance or accounting courses?",
+    "Describe any experience you've had handling money, transactions, or financial records.",
+    "How do your customer service skills translate to working with financial stakeholders?",
+    "What financial software or tools are you familiar with, if any?",
+    "Tell me about a time you had to learn a complex system or process quickly.",
+    "How do you stay organized when managing multiple responsibilities?",
+    "Where do you see yourself growing professionally in the next 2-3 years?"
+  ]
+};
+
+const avatarClasses = { app_001:'a1', app_002:'a2', app_003:'a3', app_004:'a4' };
+
+// ── State (persisted in localStorage) ──
+const STORAGE_KEY = 'fc_hiring_dashboard';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { scores: {}, notes: {} };
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+let state = loadState();
+
+function getScore(appId, catKey) {
+  return (state.scores[appId] && state.scores[appId][catKey]) || 0;
+}
+
+function setScore(appId, catKey, val) {
+  if (!state.scores[appId]) state.scores[appId] = {};
+  state.scores[appId][catKey] = val;
+  saveState();
+}
+
+function getNotes(appId) {
+  return state.notes[appId] || '';
+}
+
+function setNotes(appId, text) {
+  state.notes[appId] = text;
+  saveState();
+}
+
+function getTotalScore(appId) {
+  let sum = 0;
+  scoreCategories.forEach(c => { sum += getScore(appId, c.key); });
+  return sum;
+}
+
+function getMaxScore() {
+  return scoreCategories.length * 5;
+}
+
+// ── Initials ──
+function initials(name) {
+  return name.split(' ').map(w => w[0]).join('').toUpperCase();
+}
+
+// ── Date display ──
+document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+// ── Tab Switching ──
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    if (tab.dataset.tab === 'scorecard') renderScorecards();
+    if (tab.dataset.tab === 'compare') renderCompare();
+  });
+});
+
+// ── Render Cards ──
+function renderCards() {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = applicants.map(a => `
+    <div class="card" data-id="${a.id}" onclick="openDetail('${a.id}')">
+      <div class="card-header">
+        <div class="avatar ${avatarClasses[a.id]}">${initials(a.name)}</div>
+        <div>
+          <div class="card-name">${a.name}</div>
+          <div class="card-location">${a.city}, ${a.state}</div>
+        </div>
+      </div>
+      <div class="card-summary">${a.summary}</div>
+      <div class="card-skills">
+        ${a.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+      </div>
+      <div class="card-contact">
+        <span>${a.email}</span>
+        <span>${a.phone}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Detail View ──
+function openDetail(appId) {
+  const a = applicants.find(x => x.id === appId);
+  const edu = education.filter(e => e.applicant_id === appId);
+  const exp = experience.filter(e => e.applicant_id === appId);
+
+  const questions = interviewQuestions[appId] || [];
+
+  const panel = document.getElementById('detailPanel');
+  panel.innerHTML = `
+    <button class="detail-close" onclick="closeDetail()">&times;</button>
+    <div class="detail-top">
+      <div class="detail-avatar ${avatarClasses[appId]}">${initials(a.name)}</div>
+      <div>
+        <div class="detail-name">${a.name}</div>
+        <div class="detail-meta">
+          <span>${a.email}</span>
+          <span>${a.phone}</span>
+          <span>${a.city}, ${a.state}</span>
+        </div>
+        <div class="detail-summary">${a.summary}</div>
+      </div>
+    </div>
+    <div class="detail-body">
+      <!-- TOP-LEFT: Background & Highlights -->
+      <div class="detail-quadrant q-background">
+        <div class="detail-section-title">Experience</div>
+        ${exp.map(e => `
+          <div class="exp-item">
+            <div class="exp-title">${e.title}</div>
+            <div class="exp-company">${e.company}</div>
+            <div class="exp-dates">${e.start} — ${e.end}</div>
+          </div>
+        `).join('')}
+        <div class="detail-section-title" style="margin-top:20px;">Education</div>
+        ${edu.map(e => `
+          <div class="edu-item">
+            <div class="edu-degree">${e.degree}</div>
+            <div class="edu-school">${e.school}</div>
+            <div class="edu-year">${e.year || '—'}</div>
+          </div>
+        `).join('')}
+        <div class="detail-section-title" style="margin-top:20px;">Skills</div>
+        <div class="card-skills" style="padding:0;">
+          ${a.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+        </div>
+      </div>
+
+      <!-- RIGHT: Suggested Questions (spans both rows) -->
+      <div class="detail-quadrant q-questions">
+        <div class="detail-section-title">Suggested Interview Questions</div>
+        <ul class="question-list">
+          ${questions.map((q, i) => `
+            <li class="question-item">
+              <span class="question-number">${i + 1}</span>
+              <span>${q}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <!-- BOTTOM-LEFT: Notes -->
+      <div class="detail-quadrant q-notes">
+        <div class="detail-section-title">Interview Notes</div>
+        <textarea class="notes-area-compact" id="notesArea_${appId}"
+          placeholder="Type interview notes, observations, strengths, concerns..."
+          oninput="setNotes('${appId}', this.value)">${getNotes(appId)}</textarea>
+      </div>
+
+      <!-- BOTTOM: Scoring (full width below) -->
+      <div class="detail-quadrant q-scoring" style="grid-column: 1 / -1;">
+        <div class="detail-section-title">Interview Scoring
+          <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--blue-light);letter-spacing:0;text-transform:none;">
+            ${getTotalScore(appId)}/${getMaxScore()}
+          </span>
+        </div>
+        <div class="scoring-compact">
+          ${scoreCategories.map(c => `
+            <div class="score-row-compact">
+              <div class="score-label">${c.label}</div>
+              <div class="score-stars">
+                ${[1,2,3,4,5].map(v => `
+                  <button class="star-btn ${getScore(appId, c.key) >= v ? 'filled' : ''}"
+                    onclick="event.stopPropagation(); rate('${appId}','${c.key}',${v})">${v}</button>
+                `).join('')}
+              </div>
+              <div class="score-value">${getScore(appId, c.key)}/5</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('detailOverlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('detailOverlay')) closeDetail();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDetail();
+});
+
+function rate(appId, catKey, val) {
+  // Toggle: if clicking same value, reset to 0
+  if (getScore(appId, catKey) === val) val = 0;
+  setScore(appId, catKey, val);
+  // Re-render the detail panel
+  openDetail(appId);
+  showToast('Score updated');
+}
+
+// ── Compare Tab ──
+let compareSelected = new Set(applicants.map(a => a.id));
+
+function renderCompare() {
+  const ctrl = document.getElementById('compareControls');
+  ctrl.innerHTML = '<span style="font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-right:8px;">Select:</span>' +
+    applicants.map(a => `
+      <button class="compare-chip ${compareSelected.has(a.id) ? 'active' : ''}"
+        onclick="toggleCompare('${a.id}')">${a.name}</button>
+    `).join('');
+
+  const selected = applicants.filter(a => compareSelected.has(a.id));
+  if (selected.length === 0) {
+    document.getElementById('compareTable').innerHTML = '<tr><td style="padding:40px;text-align:center;color:var(--text-muted);">Select candidates to compare</td></tr>';
+    return;
+  }
+
+  const rows = [
+    { label: 'Location', fn: a => `${a.city}, ${a.state}` },
+    { label: 'Education', fn: a => education.filter(e => e.applicant_id === a.id).map(e => e.degree).join(', ') || '—' },
+    { label: 'Current Role', fn: a => { const e = experience.find(e => e.applicant_id === a.id && e.end === 'Present'); return e ? `${e.title} @ ${e.company}` : '—'; }},
+    { label: 'Years of Experience', fn: a => {
+      const exps = experience.filter(e => e.applicant_id === a.id);
+      const earliest = Math.min(...exps.map(e => parseInt(e.start)));
+      return `~${2026 - earliest} years`;
+    }},
+    { label: 'Key Skills', fn: a => a.skills.slice(0, 4).join(', ') },
+    { label: 'Overall Score', fn: a => {
+      const total = getTotalScore(a.id);
+      const max = getMaxScore();
+      const pct = max > 0 ? Math.round((total / max) * 100) : 0;
+      return `<div class="compare-score-display"><span>${total}/${max}</span><div class="mini-bar"><div class="mini-bar-fill" style="width:${pct}%"></div></div><span>(${pct}%)</span></div>`;
+    }}
+  ];
+
+  // Add each score category
+  scoreCategories.forEach(c => {
+    rows.push({ label: c.label, fn: a => {
+      const val = getScore(a.id, c.key);
+      return `<div class="compare-score-display"><span>${val}/5</span><div class="mini-bar"><div class="mini-bar-fill" style="width:${val * 20}%"></div></div></div>`;
+    }});
+  });
+
+  const table = document.getElementById('compareTable');
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        ${selected.map(a => `<th>${a.name}</th>`).join('')}
+      </tr>
+    </thead>
+    <tbody>
+      ${rows.map(r => `
+        <tr>
+          <td>${r.label}</td>
+          ${selected.map(a => `<td>${r.fn(a)}</td>`).join('')}
+        </tr>
+      `).join('')}
+    </tbody>
+  `;
+}
+
+function toggleCompare(id) {
+  if (compareSelected.has(id)) compareSelected.delete(id);
+  else compareSelected.add(id);
+  renderCompare();
+}
+
+// ── Scorecard Tab ──
+function renderScorecards() {
+  const grid = document.getElementById('scorecardGrid');
+  grid.innerHTML = applicants.map(a => {
+    const total = getTotalScore(a.id);
+    const max = getMaxScore();
+    return `
+      <div class="scorecard">
+        <div class="scorecard-header">
+          <div class="scorecard-avatar ${avatarClasses[a.id]}">${initials(a.name)}</div>
+          <div class="scorecard-name">${a.name}</div>
+          <div class="scorecard-total">${total}/${max}</div>
+        </div>
+        <div class="scorecard-body">
+          ${scoreCategories.map(c => {
+            const val = getScore(a.id, c.key);
+            return `
+              <div class="scorecard-row">
+                <span class="scorecard-cat">${c.label}</span>
+                <div class="scorecard-dots">
+                  ${[1,2,3,4,5].map(v => `<div class="scorecard-dot ${val >= v ? 'filled' : ''}"></div>`).join('')}
+                </div>
+              </div>
+            `;
+          }).join('')}
+          ${getNotes(a.id) ? `
+            <div class="scorecard-notes">
+              <div class="scorecard-notes-label">Notes</div>
+              <div class="scorecard-notes-text">${getNotes(a.id).replace(/</g, '&lt;').replace(/\n/g, '<br>')}</div>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── Export ──
+function exportScores() {
+  const data = applicants.map(a => ({
+    name: a.name,
+    id: a.id,
+    scores: scoreCategories.reduce((acc, c) => { acc[c.key] = getScore(a.id, c.key); return acc; }, {}),
+    total: getTotalScore(a.id),
+    maxPossible: getMaxScore(),
+    notes: getNotes(a.id)
+  }));
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'hiring_scores_' + new Date().toISOString().slice(0,10) + '.json';
+  link.click();
+  URL.revokeObjectURL(url);
+  showToast('Scores exported successfully');
+}
+
+function clearAllScores() {
+  if (confirm('Are you sure you want to reset all scores and notes? This cannot be undone.')) {
+    state = { scores: {}, notes: {} };
+    saveState();
+    renderScorecards();
+    showToast('All scores and notes cleared');
+  }
+}
+
+// ── Toast ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── Card Mouse Glow Tracking ──
+document.addEventListener('mousemove', (e) => {
+  document.querySelectorAll('.card').forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+});
+
+// ── Init ──
+renderCards();
+</script>
+</body>
+</html>

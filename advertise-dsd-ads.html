@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSD Ads – Davis Education Foundation</title>
+  <meta name="description" content="Extend your Peachjar flyer to all Davis School District employees. DSD Ads takes the same PDF and emails it directly to staff inboxes — $100 per distribution, no extra work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    body { font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif; background: var(--paper-50); color: var(--ink-700); line-height: 1.62; font-size: 1rem; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none !important; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold, a.btn--gold, a.btn--gold:link, a.btn--gold:visited, a.btn--gold:any-link { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)) !important; color: #0b1b3c !important; box-shadow: var(--shadow-gold); text-decoration: none !important; }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy, a.btn--navy, a.btn--navy:link, a.btn--navy:visited, a.btn--navy:any-link { background: #122a57 !important; color: #fff !important; box-shadow: var(--shadow-soft); text-decoration: none !important; }
+    .btn--navy:hover { background: #24508f !important; box-shadow: var(--shadow-mid); color: #fff !important; }
+    .btn--ghost, a.btn--ghost, a.btn--ghost:link, a.btn--ghost:visited, a.btn--ghost:any-link { background: rgba(255, 255, 255, 0.12) !important; color: #fff !important; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); text-decoration: none !important; }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2) !important; border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline, a.btn--outline, a.btn--outline:link, a.btn--outline:visited, a.btn--outline:any-link { background: transparent !important; color: #24508f !important; border: 1.5px solid var(--paper-200); text-decoration: none !important; }
+    .btn--outline:hover { background: var(--paper-100) !important; }
+    .btn--sm { padding: 10px 22px; font-size: 0.875rem; }
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.93); transition: transform 800ms var(--ease), opacity 700ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    .detail-hero { position: relative; padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px); background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%); overflow: hidden; }
+    .detail-hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 22px 22px; opacity: 0.5; pointer-events: none; }
+    .detail-hero__halo { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; animation: drift 16s ease-in-out infinite; }
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a, .detail-hero .breadcrumb a:link, .detail-hero .breadcrumb a:visited, .detail-hero .breadcrumb a:any-link { color: rgba(255, 255, 255, 0.7) !important; text-decoration: none !important; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400) !important; }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 20ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .stats-bar { background: var(--navy-950); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .stats-bar__inner { display: flex; justify-content: center; gap: clamp(24px, 5vw, 64px); padding: 20px 0; flex-wrap: wrap; }
+    .stats-bar__item { text-align: center; display: flex; align-items: center; gap: 10px; }
+    .stats-bar__num { font-family: "Fraunces", serif; font-size: 1.3rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-300), var(--gold-500)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .stats-bar__label { font-size: 0.82rem; font-weight: 600; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; letter-spacing: 0.04em; }
+
+    /* ── Quick Nav (iOS pill) ── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+    /* ── Content sections ── */
+    .content-section { padding: var(--section-space) 0; }
+    .content-section + .content-section { padding-top: 0; }
+    .content-section__header { margin-bottom: 28px; }
+    .content-section__header .title { font-size: clamp(1.5rem, 2.8vw, 2rem); }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 0; counter-reset: step-counter; }
+    .step { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--paper-200); }
+    .step:last-child { border-bottom: none; }
+    .step__num { counter-increment: step-counter; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); font-family: "Fraunces", serif; font-weight: 700; font-size: 1.1rem; display: grid; place-items: center; box-shadow: 0 4px 14px rgba(255, 194, 77, 0.25); }
+    .step__text { font-size: 0.95rem; color: var(--ink-700); line-height: 1.65; padding-top: 8px; }
+    .step__text a, .step__text a:link, .step__text a:visited { color: var(--navy-700); font-weight: 700; text-decoration: none; transition: color 200ms ease; }
+    .step__text a:hover { color: var(--gold-500); }
+
+    /* ── Pricing card ── */
+    .pricing-card { text-align: center; padding: clamp(32px, 4vw, 48px); }
+    .pricing-card__amount { font-family: "Fraunces", serif; font-size: clamp(2.4rem, 4vw, 3.2rem); font-weight: 700; color: var(--ink-900); line-height: 1.1; margin-bottom: 4px; }
+    .pricing-card__label { font-size: 0.92rem; font-weight: 600; color: var(--ink-500); margin-bottom: 20px; }
+    .pricing-card__details { list-style: none; text-align: left; max-width: 420px; margin: 0 auto; }
+    .pricing-card__details li { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; padding: 10px 0; border-bottom: 1px solid var(--paper-200); display: flex; align-items: flex-start; gap: 10px; }
+    .pricing-card__details li:last-child { border-bottom: none; }
+    .pricing-card__details li svg { width: 18px; height: 18px; flex-shrink: 0; stroke: var(--gold-500); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+
+    /* ── Requirements list ── */
+    .req-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .req-list li { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; padding: 12px 0; border-bottom: 1px solid var(--paper-200); display: flex; align-items: flex-start; gap: 12px; }
+    .req-list li:last-child { border-bottom: none; }
+    .req-list li svg { width: 18px; height: 18px; flex-shrink: 0; stroke: var(--gold-500); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+    .req-list li strong { color: var(--ink-900); }
+
+    /* ── Disclaimer box ── */
+    .disclaimer-box { margin-top: 20px; padding: 20px 24px; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--paper-100), var(--paper-150)); border-left: 4px solid var(--gold-400); font-size: 0.88rem; color: var(--ink-700); line-height: 1.65; font-style: italic; }
+
+    /* ── Approval grid ── */
+    .approval-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 8px; }
+    .approval-item { padding: 18px 22px; border-radius: var(--radius-sm); background: var(--white); border: 1px solid var(--paper-200); display: flex; align-items: flex-start; gap: 14px; transition: border-color 200ms ease, box-shadow 200ms ease; }
+    .approval-item:hover { border-color: rgba(255, 199, 89, 0.35); box-shadow: 0 6px 18px rgba(12, 28, 62, 0.06); }
+    .approval-item__icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px; background: linear-gradient(135deg, var(--paper-100), var(--paper-200)); display: grid; place-items: center; }
+    .approval-item__icon svg { width: 18px; height: 18px; stroke: var(--navy-700); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .approval-item__text { font-size: 0.88rem; color: var(--ink-700); line-height: 1.55; }
+    .approval-item__text strong { color: var(--ink-900); display: block; margin-bottom: 2px; }
+
+    .approval-note { margin-top: 16px; font-size: 0.88rem; color: var(--ink-500); padding: 14px 18px; border-radius: var(--radius-sm); background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(5, 150, 105, 0.02)); border: 1px solid rgba(5, 150, 105, 0.15); }
+    .approval-note svg { width: 16px; height: 16px; stroke: #059669; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; margin-right: 6px; }
+
+    /* ── Cannot list ── */
+    .cannot-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px; }
+    .cannot-list li { font-size: 0.88rem; color: var(--ink-700); line-height: 1.55; padding: 10px 14px; border-radius: 10px; background: rgba(220, 38, 38, 0.03); border: 1px solid rgba(220, 38, 38, 0.1); display: flex; align-items: flex-start; gap: 10px; }
+    .cannot-list li svg { width: 16px; height: 16px; flex-shrink: 0; stroke: #dc2626; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+
+    /* ── Comparison grid ── */
+    .compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .compare-card { padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; }
+    .compare-card__badge { display: inline-flex; padding: 4px 14px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 14px; width: fit-content; }
+    .compare-card__badge--employee { color: #0284c7; background: rgba(2, 132, 199, 0.1); border: 1px solid rgba(2, 132, 199, 0.2); }
+    .compare-card__badge--family { color: #7c3aed; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.2); }
+    .compare-card__name { font-family: "Fraunces", serif; font-size: 1.2rem; font-weight: 700; color: var(--ink-900); margin-bottom: 8px; }
+    .compare-card__desc { font-size: 0.9rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 18px; flex: 1; }
+    .compare-card__meta { border-top: 1px solid var(--paper-200); padding-top: 14px; font-size: 0.84rem; color: var(--ink-500); font-weight: 600; }
+
+    /* ── CTA Banner ── */
+    .cta-banner { position: relative; background: radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%), radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%), linear-gradient(135deg, var(--navy-950), var(--navy-900)); background-size: 200% 200%, 200% 200%, 100% 100%; animation: meshDrift 22s ease-in-out infinite reverse; border-radius: var(--radius-xl); margin: 0 var(--pad-inline); padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px); text-align: center; overflow: hidden; }
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 22ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .stats-bar__inner { gap: 16px; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .approval-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } [data-reveal] { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" aria-label="DSD Ads hero" style="background: linear-gradient(170deg, rgba(11,27,60,0.82), rgba(18,42,87,0.88), rgba(36,80,143,0.8)), url('https://cmsv2-assets.apptegy.net/uploads/23895/file/5590320/58cdac8b-6971-4d1b-8e13-58b820aa9089.png') center/cover no-repeat;">
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="advertise.html">Advertise with DSD</a><span>&rsaquo;</span>DSD Ads
+          </nav>
+          <p class="kicker">Employee Distribution</p>
+          <h1 class="title">DSD <span class="accent">Ads</span></h1>
+          <p class="lede">DSD Ads is the easiest way to extend your Peachjar flyer to district employees. We take the same PDF you submit through Peachjar and email it directly to all DSD staff inboxes &mdash; no extra work on your end.</p>
+          <div class="detail-hero__actions">
+            <a href="mailto:supage@dsdmail.net" class="btn btn--gold">Get Started</a>
+            <a href="advertise-peachjar.html" class="btn btn--ghost">View Peachjar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Section navigation">
+      <nav class="quick-nav">
+        <a href="advertise-peachjar.html">Peachjar</a>
+        <a href="advertise-dsd-ads.html" class="is-active">DSD Ads</a>
+      </nav>
+    </div>
+
+    <!-- ═══ STATS BAR ═══ -->
+    <div class="stats-bar" aria-label="DSD Ads statistics">
+      <div class="shell">
+        <div class="stats-bar__inner" data-reveal>
+          <div class="stats-bar__item"><span class="stats-bar__num">10,000+</span><span class="stats-bar__label">Employees Reached</span></div>
+          <div class="stats-bar__item"><span class="stats-bar__num">$100</span><span class="stats-bar__label">Per Distribution</span></div>
+          <div class="stats-bar__item"><span class="stats-bar__num">&check;</span><span class="stats-bar__label">Email Delivery</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="content-section section" aria-label="How it works">
+      <div class="shell">
+        <div class="content-section__header" data-reveal>
+          <p class="kicker">Getting Started</p>
+          <h2 class="title">How It Works</h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+        <div class="steps" data-reveal style="--reveal-order:1">
+          <div class="step">
+            <div class="step__num">1</div>
+            <p class="step__text">Contact us at <a href="mailto:supage@dsdmail.net">supage@dsdmail.net</a> to add DSD Ads to your Peachjar distribution</p>
+          </div>
+          <div class="step">
+            <div class="step__num">2</div>
+            <p class="step__text">We use the same PDF flyer you submitted through Peachjar &mdash; no extra files needed</p>
+          </div>
+          <div class="step">
+            <div class="step__num">3</div>
+            <p class="step__text">Pay $100 by check to Davis Education Foundation or credit card at <a href="https://dsdgive.net" target="_blank" rel="noopener">dsdgive.net</a></p>
+          </div>
+          <div class="step">
+            <div class="step__num">4</div>
+            <p class="step__text">Your flyer is emailed to all DSD employees</p>
+          </div>
+          <div class="step">
+            <div class="step__num">5</div>
+            <p class="step__text">District review/approval if required for your category</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PRICING ═══ -->
+    <section class="content-section section" aria-label="Pricing">
+      <div class="shell">
+        <div class="content-section__header" data-reveal>
+          <p class="kicker">Pricing</p>
+          <h2 class="title">Simple, Flat-Rate Pricing</h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+        <div class="card pricing-card" data-reveal="scale" style="max-width:560px;margin:0 auto;">
+          <p class="pricing-card__amount">$100</p>
+          <p class="pricing-card__label">Per Distribution</p>
+          <ul class="pricing-card__details">
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Same Peachjar flyer emailed to all DSD employees
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Payment by check payable to Davis Education Foundation
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Or pay by credit card at <a href="https://dsdgive.net" target="_blank" rel="noopener" style="color:var(--navy-700);font-weight:700;text-decoration:none;">dsdgive.net</a> (3.5% service fee applies)
+            </li>
+          </ul>
+        </div>
+        <div class="disclaimer-box" data-reveal style="--reveal-order:1; max-width:560px; margin:20px auto 0;">
+          <strong>Fee Exception:</strong> Any governmental entity with an established inter-local agreement or partnership with Davis School District or Davis Education Foundation is exempt from the distribution fee.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FLYER REQUIREMENTS ═══ -->
+    <section class="content-section section" aria-label="Flyer requirements">
+      <div class="shell">
+        <div class="content-section__header" data-reveal>
+          <p class="kicker">Requirements</p>
+          <h2 class="title">Flyer Requirements</h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+        <ul class="req-list" data-reveal style="--reveal-order:1">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Must be <strong>PDF format</strong>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <strong>8&frac12; &times; 11</strong> portrait orientation
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <strong>No hyperlinks</strong> &mdash; use QR code or URL instead
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Contact info and organization name clearly stated
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Must include district disclaimer (unless Foundation or district sponsored)
+          </li>
+        </ul>
+        <div class="disclaimer-box" data-reveal style="--reveal-order:2">
+          &ldquo;Distribution of these materials is in no way an endorsement of services, activities, and/or products by Davis School District.&rdquo;
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WHO NEEDS APPROVAL ═══ -->
+    <section class="content-section section" aria-label="Who needs approval">
+      <div class="shell">
+        <div class="content-section__header" data-reveal>
+          <p class="kicker">Approval</p>
+          <h2 class="title">Who Needs Approval?</h2>
+          <div class="section-divider section-divider--short"></div>
+          <p class="lede" style="margin-top:10px;">Not all DSD Ads require district approval, but some categories do.</p>
+        </div>
+        <div class="approval-grid" data-reveal style="--reveal-order:1">
+          <div class="approval-item">
+            <div class="approval-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="approval-item__text">
+              <strong>Tutoring Services</strong>
+              Contact Teaching &amp; Learning (T&amp;I)
+            </div>
+          </div>
+          <div class="approval-item">
+            <div class="approval-item__icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div class="approval-item__text">
+              <strong>Sports / Athletics</strong>
+              Contact Healthy Lifestyles
+            </div>
+          </div>
+          <div class="approval-item">
+            <div class="approval-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="approval-item__text">
+              <strong>Family Programs</strong>
+              Contact Family Services
+            </div>
+          </div>
+          <div class="approval-item">
+            <div class="approval-item__icon">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="approval-item__text">
+              <strong>Curriculum-Related</strong>
+              Contact Teaching &amp; Learning
+            </div>
+          </div>
+          <div class="approval-item">
+            <div class="approval-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="approval-item__text">
+              <strong>Safety-Related</strong>
+              Contact Safety department
+            </div>
+          </div>
+        </div>
+        <div class="approval-note" data-reveal style="--reveal-order:2">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Foundation partners and district-sponsored content do not require additional approval.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MATERIALS CANNOT ═══ -->
+    <section class="content-section section" aria-label="Materials restrictions">
+      <div class="shell">
+        <div class="content-section__header" data-reveal>
+          <p class="kicker">Restrictions</p>
+          <h2 class="title">Materials Cannot</h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+        <ul class="cannot-list" data-reveal style="--reveal-order:1">
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Interfere with district educational objectives
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Be obscene or libelous
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Be religious or sectarian
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Be contrary to district curriculum
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Advertise products not permitted by law for minors
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Advertise volunteer/internship/employment not sponsored by district
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Discriminate against any person
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Advertise during regularly scheduled school day
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Advocate violation of school registration
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ COMPARISON ═══ -->
+    <section class="content-section section" aria-label="Compare DSD Ads and Peachjar">
+      <div class="shell">
+        <div class="content-section__header" data-reveal>
+          <p class="kicker">Compare</p>
+          <h2 class="title">DSD Ads vs. Peachjar</h2>
+          <div class="section-divider section-divider--short"></div>
+        </div>
+        <div class="compare-grid">
+          <div class="card compare-card" data-reveal="scale" style="--reveal-order:0">
+            <span class="compare-card__badge compare-card__badge--employee">Employees</span>
+            <h3 class="compare-card__name">DSD Ads</h3>
+            <p class="compare-card__desc">Your same Peachjar flyer, emailed to all district employees. $100 per distribution &mdash; no extra design work needed.</p>
+            <div class="compare-card__meta">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--gold-500);fill:none;stroke-width:2;vertical-align:-2px;margin-right:4px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email-based &middot; $100 flat rate
+            </div>
+          </div>
+          <div class="card compare-card" data-reveal="scale" style="--reveal-order:1">
+            <span class="compare-card__badge compare-card__badge--family">Families</span>
+            <h3 class="compare-card__name">Peachjar</h3>
+            <p class="compare-card__desc">Reaches families and parents via digital flyers. Pricing varies by distribution. Ideal for programs, events, and activities for students and families.</p>
+            <div class="compare-card__meta" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span>
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--gold-500);fill:none;stroke-width:2;vertical-align:-2px;margin-right:4px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Family-focused &middot; Pricing varies
+              </span>
+              <a href="advertise-peachjar.html" class="btn btn--outline btn--sm">View Peachjar &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Get Started</p>
+        <h2 class="title">Ready to reach DSD employees?</h2>
+        <p class="lede">Contact Suzanne Page to get your flyer distributed to all Davis School District employees.</p>
+        <div class="cta-banner__actions">
+          <a href="mailto:supage@dsdmail.net" class="btn btn--gold">Email Suzanne Page</a>
+          <a href="advertise-peachjar.html" class="btn btn--ghost">View Peachjar</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ REVEAL ANIMATION JS ═══ -->
+  <script>
+  (function () {
+    var revealItems = document.querySelectorAll("[data-reveal]");
+    if (!revealItems.length) return;
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      revealItems.forEach(function (el) { el.classList.add("is-in"); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); }
+      });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+    revealItems.forEach(function (el) { observer.observe(el); });
+  })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

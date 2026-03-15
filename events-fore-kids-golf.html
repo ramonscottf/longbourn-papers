@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fore Kids Golf – Davis Education Foundation</title>
+  <meta name="description" content="FORE Kids Golf Tournament: Monday, August 31, 2026 at Oakridge Country Club in Farmington. 18-hole scramble funding programs for Davis County students through the Davis Education Foundation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --golf-green: #355f3b; --golf-green-accent: #7ed957; --golf-green-light: #4a8a52; --golf-green-deep: #2a4d30;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #355f3b 0%, #f0c75d 30%, #1f4a84 60%, #355f3b 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); box-shadow: var(--shadow-gold); }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy { background: var(--navy-900); color: #fff; box-shadow: var(--shadow-soft); }
+    a.btn--navy, .btn--navy:link, .btn--navy:visited { color: #fff; }
+    .btn--navy:hover { background: var(--navy-700); box-shadow: var(--shadow-mid); color: #fff; }
+    .btn--ghost { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline { background: transparent; color: var(--navy-700); border: 1.5px solid var(--paper-200); }
+    .btn--outline:hover { background: var(--paper-100); }
+    .btn--green { background: linear-gradient(135deg, var(--golf-green-accent), var(--golf-green)); color: #fff; box-shadow: 0 12px 32px rgba(53, 95, 59, 0.25); }
+    .btn--green:hover { box-shadow: 0 16px 40px rgba(53, 95, 59, 0.35); }
+    a.btn--green, .btn--green:link, .btn--green:visited { color: #fff; }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+    [data-reveal="left"] { opacity: 0; transform: translate3d(-34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="right"] { opacity: 0; transform: translate3d(34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.93); transition: transform 800ms var(--ease), opacity 700ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, #355f3b, var(--gold-300), #6fb2ff, var(--gold-300), #355f3b); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    /* ============================================
+       VIDEO HERO
+       ============================================ */
+    .story-hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .story-hero__video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .story-hero__video-wrap iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 177.78vh;
+      height: 100vh;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      pointer-events: none;
+    }
+    .story-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(26, 51, 32, 0.35) 0%,
+        rgba(26, 51, 32, 0.55) 40%,
+        rgba(26, 51, 32, 0.92) 100%);
+      z-index: 1;
+    }
+    .story-hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: clamp(100px, 14vw, 160px) 0 clamp(60px, 8vw, 100px);
+    }
+    .story-hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold-400);
+      margin-bottom: 16px;
+    }
+    .story-hero__eyebrow::before {
+      content: "";
+      width: 32px; height: 2px;
+      background: var(--gold-400);
+      border-radius: 2px;
+    }
+    .story-hero__logo {
+      width: 140px;
+      height: auto;
+      border-radius: 12px;
+    }
+    .story-hero__title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.08;
+      color: #fff;
+      text-wrap: balance;
+      margin-bottom: 20px;
+    }
+    .story-hero__body {
+      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.75;
+      max-width: 58ch;
+    }
+    .story-hero__body p + p { margin-top: 14px; }
+    .story-hero__meta { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 18px; }
+    .story-hero__meta-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.72); }
+    .story-hero__meta-item svg { width: 18px; height: 18px; stroke: var(--golf-green-accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .story-hero__actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .story-hero__scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      animation: scrollBounce 2.4s ease-in-out infinite;
+    }
+    .story-hero__scroll-hint svg { width: 18px; height: 18px; stroke: rgba(255, 255, 255, 0.45); fill: none; stroke-width: 2; }
+    @keyframes scrollBounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    .nav-bridge {
+      position: relative; z-index: 2;
+      background: linear-gradient(180deg, var(--golf-green) 0%, #1a3320 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 6px 0;
+    }
+    .nav-bridge__line {
+      width: 100%; height: 10px;
+      background: linear-gradient(90deg, #355f3b 0%, #7ed957 30%, #ffc24d 60%, #355f3b 100%);
+      background-size: 220% 100%;
+      animation: gradShift 5s ease-in-out infinite;
+    }
+    /* -- Stats Banner -------------- */
+    .stats-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(126, 217, 87, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(255, 194, 77, 0.06) 0%, transparent 50%),
+        linear-gradient(135deg, #1a3320, #234529);
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 20s ease-in-out infinite;
+      overflow: hidden;
+    }
+    .stats-banner::after {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 20px 20px; animation: dotDrift 24s linear infinite; pointer-events: none;
+    }
+    .stats-grid {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      padding: clamp(36px, 5vw, 56px) 0;
+      text-align: center;
+    }
+    .stat-item__number {
+      font-family: "Fraunces", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1;
+      background: linear-gradient(135deg, #7ed957 0%, #ffc24d 50%, #7ed957 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: goldShimmer 4s ease-in-out infinite;
+    }
+    .stat-item__label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+    /* -- Story Strip -------------- */
+    .story-strip {
+      position: relative;
+      padding: clamp(48px, 7vw, 80px) 0;
+      background:
+        radial-gradient(ellipse at 25% 60%, rgba(126, 217, 87, 0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.07) 0%, transparent 50%),
+        linear-gradient(160deg, var(--paper-50) 0%, var(--paper-100) 40%, var(--paper-150) 100%);
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite;
+      overflow: hidden;
+    }
+    .story-strip::after {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(11, 27, 60, 0.03) 1px, transparent 1px);
+      background-size: 20px 20px; pointer-events: none;
+    }
+    .story-strip__inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 56px);
+      align-items: center;
+    }
+    .story-strip__headline {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+      line-height: 1.12;
+      color: var(--ink-900);
+      text-wrap: balance;
+      margin-bottom: 16px;
+    }
+    .story-strip__headline em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--golf-green-accent), var(--gold-400));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .story-strip__body p {
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      color: var(--ink-700);
+      line-height: 1.72;
+      margin-bottom: 14px;
+    }
+    .story-strip__highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .story-hl {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      transition: transform 260ms var(--ease), box-shadow 260ms var(--ease);
+    }
+    .story-hl:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+    .story-hl__icon {
+      width: 44px; height: 44px; flex: 0 0 44px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(126, 217, 87, 0.15), rgba(255, 194, 77, 0.1));
+    }
+    .story-hl__icon svg { width: 22px; height: 22px; stroke: var(--golf-green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .story-hl__text h4 {
+      font-size: 0.88rem; font-weight: 700; color: var(--ink-900); margin-bottom: 2px;
+    }
+    .story-hl__text p {
+      font-size: 0.82rem; color: var(--ink-500); line-height: 1.5; margin: 0;
+    }
+
+    /* ============================================
+       PHOTO GALLERY
+       ============================================ */
+    .gallery-section { overflow: hidden; }
+    .gallery-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .gallery-header .title { margin-bottom: 0; }
+    .gallery-controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .gallery-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--paper-200);
+      background: var(--white);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 260ms var(--ease);
+      box-shadow: var(--shadow-soft);
+    }
+    .gallery-btn:hover {
+      background: #234529;
+      border-color: #234529;
+    }
+    .gallery-btn:hover svg { stroke: #fff; }
+    .gallery-btn svg {
+      width: 18px; height: 18px;
+      stroke: var(--ink-700);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .gallery-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+      pointer-events: none;
+    }
+    .gallery-track-wrap {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+    .gallery-track {
+      display: flex;
+      gap: 16px;
+      transition: transform 600ms var(--ease);
+      will-change: transform;
+    }
+    .gallery-track img {
+      flex: 0 0 auto;
+      width: clamp(280px, 42vw, 480px);
+      height: clamp(200px, 30vw, 340px);
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ============================================
+       SCROLL JOURNEY (Experience)
+       ============================================ */
+    .journey { position: relative; }
+    .journey__intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto clamp(36px, 5vw, 56px);
+    }
+    .journey__intro .title { margin-bottom: 12px; }
+    .journey__timeline {
+      position: relative;
+      max-width: 680px;
+      margin: 0 auto;
+      padding-left: 40px;
+    }
+    .journey__timeline::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 22px;
+      bottom: 40px;
+      width: 3px;
+      background: var(--paper-200);
+      border-radius: 3px;
+    }
+    .journey__line-fill {
+      position: absolute;
+      left: 15px;
+      top: 22px;
+      width: 3px;
+      height: 0;
+      background: linear-gradient(180deg, var(--golf-green-accent), var(--gold-400));
+      border-radius: 3px;
+      transition: height 400ms var(--ease);
+      z-index: 1;
+    }
+    .journey__step {
+      position: relative;
+      padding: 0 0 clamp(40px, 5vw, 56px) 28px;
+      opacity: 0.18;
+      transform: translateY(16px);
+      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    }
+    .journey__step.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .journey__dot {
+      position: absolute;
+      left: -33px;
+      top: 4px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--paper-200);
+      display: grid;
+      place-items: center;
+      z-index: 2;
+      transition: background 400ms var(--ease), box-shadow 400ms var(--ease);
+    }
+    .journey__dot svg {
+      width: 14px; height: 14px;
+      stroke: var(--ink-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 400ms var(--ease);
+    }
+    .journey__step.is-active .journey__dot {
+      background: linear-gradient(135deg, var(--golf-green-accent), var(--golf-green));
+      box-shadow: 0 4px 16px rgba(126, 217, 87, 0.35);
+    }
+    .journey__step.is-active .journey__dot svg {
+      stroke: #fff;
+    }
+    .journey__step h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .journey__step p {
+      font-size: 0.92rem;
+      color: var(--ink-500);
+      line-height: 1.65;
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    /* ============================================
+       COMMUNITY HERO
+       ============================================ */
+    .community-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .community-hero__img-wrap {
+      position: relative;
+      width: 100%;
+      height: clamp(380px, 50vw, 560px);
+      overflow: hidden;
+    }
+    .community-hero__carousel {
+      position: relative;
+      width: 100%; height: 100%;
+    }
+    .community-hero__slide {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .community-hero__slide.is-active {
+      opacity: 1;
+    }
+    .community-hero__fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, transparent 0%, rgba(224, 245, 224, 0.4) 50%, #e0f5e0 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .community-hero__dots {
+      position: absolute;
+      bottom: 18px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 8px;
+      z-index: 5;
+    }
+    .community-hero__dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: background 300ms ease, transform 300ms ease;
+    }
+    .community-hero__dot.is-active {
+      background: #fff;
+      transform: scale(1.25);
+    }
+    .community-hero__body {
+      background: linear-gradient(135deg, #e0f5e0 0%, #f0faf0 40%, #eaf5ea 100%);
+      padding: clamp(36px, 5vw, 56px) var(--pad-inline) clamp(48px, 6vw, 72px);
+      text-align: center;
+    }
+    .community-hero__kicker {
+      font-family: "Fraunces", serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #2a7030;
+      margin-bottom: 10px;
+    }
+    .community-hero__title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--ink-900);
+      margin: 0 0 16px;
+    }
+    .community-hero__desc {
+      max-width: 640px;
+      margin: 0 auto 32px;
+      font-size: clamp(1.02rem, 1.3vw, 1.15rem);
+      line-height: 1.7;
+      color: var(--ink-700);
+    }
+    .community-hero__actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================
+       OAKRIDGE COUNTRY CLUB SECTION
+       ============================================ */
+    .oakridge-section {
+      position: relative;
+      padding: clamp(56px, 7vw, 88px) 0;
+      background: linear-gradient(160deg, #f6faf3 0%, #eef5e8 40%, #f0f7ec 100%);
+      overflow: hidden;
+    }
+    .oakridge-section::before {
+      content: "";
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(126, 217, 87, 0.1), transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .oakridge__inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 56px);
+      align-items: center;
+    }
+    .oakridge__info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .oakridge__logo {
+      width: 80px;
+      height: auto;
+      filter: drop-shadow(0 4px 12px rgba(53, 95, 59, 0.15));
+    }
+    .oakridge__title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      line-height: 1.15;
+      color: var(--ink-900);
+    }
+    .oakridge__desc {
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      color: var(--ink-700);
+      line-height: 1.72;
+    }
+    .oakridge__video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(53, 95, 59, 0.2);
+      border: 3px solid rgba(53, 95, 59, 0.12);
+    }
+    .oakridge__video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ============================================
+       HOGAN TITLE SPONSOR
+       ============================================ */
+    .hogan-sponsor {
+      position: relative;
+      padding: clamp(56px, 7vw, 88px) 0;
+      background: linear-gradient(160deg, #f5f5f5 0%, #ebebeb 40%, #f0f0f0 100%);
+      overflow: hidden;
+    }
+    .hogan-sponsor::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #999 0%, #ccc 30%, #666 60%, #999 100%);
+      background-size: 220% 100%;
+      animation: gradShift 6s ease-in-out infinite;
+    }
+    .hogan-sponsor::after {
+      content: "";
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.04), transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .hogan__inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(32px, 5vw, 56px);
+      align-items: center;
+    }
+    .hogan__logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 36px;
+      background: #fff;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .hogan__logo-wrap img {
+      width: clamp(180px, 20vw, 260px);
+      height: auto;
+    }
+    .hogan__kicker {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    .hogan__title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.18;
+      color: #333;
+      margin-bottom: 14px;
+    }
+    .hogan__desc {
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      color: #555;
+      line-height: 1.72;
+      max-width: 52ch;
+      margin-bottom: 20px;
+    }
+    .btn--hogan {
+      background: linear-gradient(135deg, #555, #333);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .btn--hogan:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+    a.btn--hogan, .btn--hogan:link, .btn--hogan:visited { color: #fff; }
+
+    /* -- Content Grid -------------- */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+
+    .content-main h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.18;
+      color: var(--ink-900);
+      margin-bottom: 12px;
+    }
+    .content-main h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--ink-900);
+      margin: 28px 0 8px;
+    }
+    .content-main p { margin-bottom: 14px; }
+    .content-main ul { margin: 8px 0 18px 20px; list-style: none; }
+    .content-main ul li { position: relative; padding-left: 20px; margin-bottom: 10px; line-height: 1.65; }
+    .content-main ul li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #4a8a52, #355f3b); }
+
+    /* -- Quote Feature (inline) -------------- */
+    .quote-feature {
+      background: linear-gradient(135deg, rgba(53, 95, 59, 0.06), rgba(74, 138, 82, 0.04));
+      border-left: 4px solid var(--golf-green);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: clamp(28px, 4vw, 40px); margin: 36px 0; position: relative;
+    }
+    .quote-feature::before { content: "\201C"; position: absolute; top: 12px; left: 18px; font-family: "Fraunces", serif; font-size: 4rem; line-height: 1; color: rgba(53, 95, 59, 0.15); pointer-events: none; }
+    .quote-feature blockquote { font-family: "Fraunces", serif; font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6; color: var(--ink-900); font-style: italic; max-width: 58ch; margin-bottom: 10px; }
+    .quote-feature cite { font-style: normal; font-size: 0.88rem; font-weight: 700; color: var(--golf-green); }
+
+    /* -- Impact Cards -------------- */
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 24px 0; }
+    .impact-card { border-left: 4px solid var(--golf-green); padding-left: 18px; }
+    .impact-card h4 { font-size: 1rem; font-weight: 700; color: var(--ink-900); margin-bottom: 4px; }
+    .impact-card p { font-size: 0.92rem; color: var(--ink-700); margin: 0; line-height: 1.6; }
+
+    /* ============================================
+       SPONSORSHIP TIERS - Animated Modern Design
+       ============================================ */
+    .tier-showcase { margin: 32px 0; }
+    .tier-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      margin-bottom: 2px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    }
+    .tier-item.is-in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .tier-item__price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+      font-family: "Fraunces", serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--golf-green), var(--golf-green-deep));
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-item__price::after {
+      content: "";
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+      animation: tierShine 3s ease-in-out infinite;
+    }
+    .tier-item--featured .tier-item__price {
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+      color: var(--navy-950);
+    }
+    .tier-item__body {
+      padding: 20px 24px;
+      background: var(--paper-100);
+      border: 1px solid var(--paper-200);
+      border-left: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background 300ms ease, box-shadow 300ms ease;
+    }
+    .tier-item:hover .tier-item__body {
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(53, 95, 59, 0.1);
+    }
+    .tier-item:hover .tier-item__price::after {
+      animation: tierShine 1.2s ease-in-out;
+    }
+    .tier-item__name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: 4px;
+    }
+    .tier-item__desc {
+      font-size: 0.88rem;
+      color: var(--ink-500);
+      line-height: 1.55;
+    }
+    @keyframes tierShine {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      100% { transform: translateX(100%) rotate(25deg); }
+    }
+
+    /* -- Involve Grid -------------- */
+    .involve-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; margin: 24px 0; }
+    .involve-card { text-align: center; padding: 24px 16px; }
+    .involve-card__icon {
+      width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 12px;
+      background: linear-gradient(135deg, rgba(53, 95, 59, 0.12), rgba(74, 138, 82, 0.08));
+      display: grid; place-items: center;
+    }
+    .involve-card__icon svg { width: 24px; height: 24px; stroke: var(--golf-green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .involve-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--ink-900); margin-bottom: 4px; }
+    .involve-card p { font-size: 0.84rem; color: var(--ink-500); margin: 0; line-height: 1.55; }
+    .detail-pill {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #355f3b;
+      background: rgba(53, 95, 59, 0.08);
+      border: 1px solid rgba(53, 95, 59, 0.15);
+      margin-top: 8px;
+    }
+
+    /* -- Steps -------------- */
+    .steps { counter-reset: step; margin: 24px 0; }
+    .steps__item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--paper-200); counter-increment: step; }
+    .steps__item:last-child { border-bottom: 0; }
+    .steps__num { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #4a8a52, #355f3b); color: #fff; }
+    .steps__num::before { content: counter(step); }
+    .steps__text h4 { font-size: 0.95rem; font-weight: 700; color: var(--ink-900); margin-bottom: 2px; }
+    .steps__text p { font-size: 0.9rem; color: var(--ink-500); margin: 0; }
+
+    /* -- Partners Strip -------------- */
+    .partners-strip { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .partners-strip span {
+      display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 0.82rem;
+      font-weight: 600; color: var(--ink-700); background: var(--paper-100); border: 1px solid var(--paper-200);
+    }
+
+    /* -- Sidebar Stack System -------------- */
+    .content-grid > aside {
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-grow { flex: 1 1 0; min-height: 20px; pointer-events: none; }
+    .sidebar-anchor { height: 0; pointer-events: none; }
+
+    .sidebar-tabs-bar {
+      position: sticky;
+      top: 52px;
+      z-index: 10;
+      height: 0;
+      overflow: visible;
+      display: flex;
+      gap: 6px;
+    }
+    .sidebar-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px 7px;
+      border-radius: 10px 10px 0 0;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: var(--paper-150);
+      border: 1px solid var(--paper-200);
+      border-bottom: 1px solid var(--paper-100);
+      color: var(--ink-500);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 280ms ease, transform 280ms ease, background 180ms ease, color 180ms ease;
+      white-space: nowrap;
+      box-shadow: 0 -2px 8px rgba(12, 28, 62, 0.04);
+    }
+    .sidebar-tab.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sidebar-tab:hover {
+      background: var(--paper-200);
+      color: var(--ink-900);
+    }
+    .sidebar-tab svg {
+      width: 12px; height: 12px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .sidebar-card {
+      position: sticky;
+      top: 80px;
+      flex-shrink: 0;
+    }
+    .sidebar-card[data-sidebar-idx="0"] { z-index: 1; }
+    .sidebar-card[data-sidebar-idx="1"] { z-index: 2; }
+    .sidebar-card[data-sidebar-idx="2"] { z-index: 3; }
+
+    .sidebar-card h3 { font-family: "Fraunces", "Times New Roman", serif; font-size: 1.1rem; color: var(--ink-900); margin-bottom: 10px; }
+    .sidebar-card p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 16px; }
+    .sidebar-card .btn { width: 100%; }
+    .sidebar-detail { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--paper-200); }
+    .sidebar-detail:last-of-type { border-bottom: none; margin-bottom: 16px; padding-bottom: 0; }
+    .sidebar-detail-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #355f3b; margin-bottom: 4px; }
+    .sidebar-detail-value { font-size: 0.95rem; font-weight: 600; color: var(--ink-900); line-height: 1.4; }
+
+    .sidebar-tier { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--paper-200); }
+    .sidebar-tier:last-of-type { border-bottom: none; }
+    .sidebar-tier__name { font-size: 0.85rem; font-weight: 600; color: var(--ink-700); }
+    .sidebar-tier__amt { font-size: 0.85rem; font-weight: 700; color: var(--golf-green); }
+
+    /* -- Calendar Button -------------- */
+    .btn--cal {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--golf-green);
+      background: rgba(53, 95, 59, 0.08);
+      border: 1px solid rgba(53, 95, 59, 0.18);
+      text-decoration: none;
+      transition: background 220ms ease, color 220ms ease;
+      margin-top: 6px;
+    }
+    .btn--cal:hover {
+      background: var(--golf-green);
+      color: #fff;
+    }
+    .btn--cal svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* -- CTA Banner -------------- */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(53, 95, 59, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, #1a3320, #234529);
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(126, 217, 87, 0.18), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 20ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    .content-photo { border-radius: var(--radius-lg); overflow: hidden; margin: 28px 0; box-shadow: var(--shadow-soft); }
+    .content-photo img { width: 100%; height: auto; display: block; transition: transform 600ms var(--ease); }
+    .content-photo:hover img { transform: scale(1.03); }
+
+    /* -- Video Embeds -------------- */
+    .video-wrap { position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.35); background: #1a3320; }
+    .video-wrap--16x9 { padding-bottom: 56.25%; }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    /* -- Responsive -------------- */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar-card { position: static; }
+      .sidebar-grow { display: none; }
+      .sidebar-tabs-bar { display: none; }
+      .sidebar-anchor { display: none; }
+      .content-grid > aside { gap: 20px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .story-strip__inner { grid-template-columns: 1fr; }
+      .story-strip__highlights { grid-template-columns: 1fr 1fr; }
+      .oakridge__inner { grid-template-columns: 1fr; }
+      .hogan__inner { grid-template-columns: 1fr; text-align: center; }
+      .hogan__logo-wrap { justify-self: center; }
+      .hogan__desc { margin-left: auto; margin-right: auto; }
+      .tier-item { grid-template-columns: 120px 1fr; }
+    }
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions,
+      .story-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn,
+      .story-hero__actions .btn { width: 100%; }
+      .story-hero__meta { flex-direction: column; gap: 10px; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .gallery-track img { width: clamp(260px, 75vw, 340px); height: clamp(180px, 55vw, 240px); }
+      .story-hero { min-height: 90vh; }
+      .story-hero__scroll-hint { display: none; }
+      .gallery-header { flex-direction: column; align-items: flex-start; }
+      .tier-item { grid-template-columns: 1fr; }
+      .tier-item__price { padding: 16px 20px; justify-content: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .involve-grid { grid-template-columns: 1fr 1fr; }
+      .story-strip__highlights { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+      .journey__step { opacity: 1; transform: none; }
+      .tier-item { opacity: 1; transform: none; }
+    }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 28px 28px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- 1. VIDEO HERO -->
+    <section class="story-hero" aria-label="Fore Kids Golf hero">
+      <div class="story-hero__video-wrap">
+        <iframe src="https://player.vimeo.com/video/1171083360?h=919f97692f&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="FORE Kids Golf background video"></iframe>
+      </div>
+      <div class="story-hero__overlay"></div>
+      <div class="shell story-hero__content">
+        <div data-reveal>
+          <div class="story-hero__eyebrow">
+            FORE Kids Golf
+          </div>
+          <h1 class="story-hero__title">From the fairway <span class="accent">to the future</span>.</h1>
+          <div class="story-hero__body">
+            <p>FORE Kids Golf is Davis Education Foundation&rsquo;s signature golf tournament&mdash;an 18-hole scramble that funds programs expanding student opportunity across Davis County.</p>
+          </div>
+          <div class="story-hero__meta">
+            <span class="story-hero__meta-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Monday, August 31, 2026
+            </span>
+            <span class="story-hero__meta-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Oakridge Country Club, Farmington
+            </span>
+            <span class="story-hero__meta-item">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              $50 Player Package
+            </span>
+          </div>
+          <div class="story-hero__actions">
+            <a href="https://dsdgive.net/event/3251" target="_blank" rel="noopener" class="btn btn--gold">Register to Play</a>
+            <a href="mailto:smiggin@dsdmail.net" class="btn btn--ghost">Become a Sponsor</a>
+          </div>
+        </div>
+      </div>
+      <div class="story-hero__scroll-hint">
+        Scroll
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </section>
+
+    <!-- 2. GRADIENT BRIDGE -->
+    <div class="nav-bridge">
+      <div class="nav-bridge__line"></div>
+    </div>
+
+    <!-- 3. QUICK NAV -->
+    <div class="quick-nav-wrap" aria-label="Page navigation">
+      <nav class="quick-nav">
+        <a href="#overview">Overview</a>
+        <a href="#where-it-goes">Where It Goes</a>
+        <a href="#sponsorships">Sponsorships</a>
+        <a href="#get-involved">Get Involved</a>
+        <a href="#event-day">Event Day</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <!-- 4. STATS BANNER -->
+    <section class="stats-banner" aria-label="Key statistics">
+      <div class="shell">
+        <div class="stats-grid">
+          <div class="stat-item" data-reveal style="--reveal-order:0;">
+            <div class="stat-item__number" data-count="100" data-suffix="%">100%</div>
+            <div class="stat-item__label">Direct Student Impact</div>
+          </div>
+          <div class="stat-item" data-reveal style="--reveal-order:1;">
+            <div class="stat-item__number" data-count-text="Sold Out">Sold Out</div>
+            <div class="stat-item__label">Annually</div>
+          </div>
+          <div class="stat-item" data-reveal style="--reveal-order:2;">
+            <div class="stat-item__number" data-count="18">18</div>
+            <div class="stat-item__label">Hole Scramble</div>
+          </div>
+          <div class="stat-item" data-reveal style="--reveal-order:3;">
+            <div class="stat-item__number" data-count="2022">2022</div>
+            <div class="stat-item__label">Oakridge Launch</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. STORY STRIP -->
+    <section class="story-strip section" aria-label="Why FORE Kids Golf matters">
+      <div class="shell story-strip__inner">
+        <div class="story-strip__text" data-reveal="left">
+          <p class="kicker">Why It Matters</p>
+          <h2 class="story-strip__headline">A morning of golf that <em>changes a student&rsquo;s year</em></h2>
+          <div class="story-strip__body">
+            <p>FORE Kids Golf brings together business leaders, educators, and community supporters for a single purpose: making sure students across Davis County have what they need to succeed.</p>
+            <p>Every sponsorship, every player registration, and every prize ticket purchased flows directly into classroom grants, teacher innovation funding, and student support programs. No overhead, no ambiguity&mdash;just impact.</p>
+          </div>
+        </div>
+        <div class="story-strip__highlights" data-reveal="right">
+          <div class="story-hl">
+            <div class="story-hl__icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="story-hl__text">
+              <h4>One Morning</h4>
+              <p>The entire tournament plays out in a single morning, shotgun start to awards.</p>
+            </div>
+          </div>
+          <div class="story-hl">
+            <div class="story-hl__icon">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="story-hl__text">
+              <h4>100% Direct Impact</h4>
+              <p>Every dollar funds grants, supplies, and programs that reach students directly.</p>
+            </div>
+          </div>
+          <div class="story-hl">
+            <div class="story-hl__icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="story-hl__text">
+              <h4>Sells Out Every Year</h4>
+              <p>Teams register early because the business community rallies around this cause.</p>
+            </div>
+          </div>
+          <div class="story-hl">
+            <div class="story-hl__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="story-hl__text">
+              <h4>Premier Venue</h4>
+              <p>Oakridge Country Club in Farmington provides a stunning championship course.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PHOTO GALLERY -->
+    <section class="gallery-section section" aria-label="FORE Kids Golf photo gallery">
+      <div class="shell">
+        <div class="gallery-header" data-reveal>
+          <div>
+            <p class="kicker">Gallery</p>
+            <h2 class="title">On the Course</h2>
+          </div>
+        </div>
+        <div class="gallery-track-wrap" data-reveal="scale">
+          <div class="gallery-track" id="galleryTrack">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/e0ca1ab7-8ad3-4d7c-aae3-d817d87d4025/DEF_1300.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 1" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/bcd32ce4-2ced-4969-8c7c-b01a5294c92d/DEF_1320.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 2" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/a59a1717-2921-40b9-b6b1-d13c8db72154/DEF_1537.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 3" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/f58bc71f-769a-485e-a504-f2286fa5a1e7/DEF_1553.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 4" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/2f07fa0f-8d8c-4503-af06-d9cb3799d194/DEF_1655.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 5" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/ab8009d2-da9e-4441-aa5a-9b54a6827393/DEF_1668.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 6" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/15f7811c-4614-49e7-aad3-470294c9a7fb/DEF_1695.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 7" loading="lazy">
+            <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/08411c7c-3932-4af1-801a-9a07f612fc87/DEF_1876.JPG?disposition=inline" alt="FORE Kids Golf tournament photo 8" loading="lazy">
+          </div>
+        </div>
+        <div class="gallery-controls" id="galleryControls">
+          <button class="gallery-btn" id="galleryPrev" aria-label="Previous photos">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="gallery-btn" id="galleryNext" aria-label="Next photos">
+            <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. EXPERIENCE (renamed from Journey) -->
+    <section class="journey section" id="experience" aria-label="The FORE Kids Experience">
+      <div class="shell">
+        <div class="journey__intro" data-reveal>
+          <p class="kicker">The Experience</p>
+          <h2 class="title">The FORE Kids Experience</h2>
+          <div class="section-divider section-divider--short" style="margin: 16px auto 0;"></div>
+        </div>
+        <div class="journey__timeline">
+          <div class="journey__line-fill" id="journeyLineFill"></div>
+
+          <div class="journey__step" data-journey-step>
+            <div class="journey__dot">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M8 22l4-4 4 4"/></svg>
+            </div>
+            <h4>A Community Tees Up for Students</h4>
+            <p>Local businesses and community leaders sign up to sponsor holes, donate prizes, and register teams.</p>
+          </div>
+
+          <div class="journey__step" data-journey-step>
+            <div class="journey__dot">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h4>Teams Arrive Before Sunrise</h4>
+            <p>Players check in at 7:30 AM, pick up their player packages, and line up carts for the shotgun start.</p>
+          </div>
+
+          <div class="journey__step" data-journey-step>
+            <div class="journey__dot">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h4>18 Holes of Friendly Competition</h4>
+            <p>Teams compete in a scramble format with on-course contests, food trucks at the turn, and plenty of friendly rivalry.</p>
+          </div>
+
+          <div class="journey__step" data-journey-step>
+            <div class="journey__dot">
+              <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 9 7 12 7s5-3 7.5-3a2.5 2.5 0 0 1 0 5H18"/><path d="M18 14H6a3 3 0 0 0 0 6h12a3 3 0 0 0 0-6z"/><line x1="12" y1="7" x2="12" y2="14"/></svg>
+            </div>
+            <h4>Awards &amp; Impact Revealed</h4>
+            <p>After the round, teams gather for prizes, the drawing, and a moment to hear exactly how their morning just helped students.</p>
+          </div>
+
+          <div class="journey__step" data-journey-step>
+            <div class="journey__dot">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Students Start the Year Equipped</h4>
+            <p>Every dollar raised flows into classroom grants, student supports, and programs that ensure kids have what they need to succeed.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMMUNITY HERO -->
+    <section class="community-hero" aria-label="Community spirit">
+      <div class="community-hero__img-wrap">
+        <div class="community-hero__carousel" id="communityCarousel">
+          <img class="community-hero__slide is-active" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/45b9875e-d059-4a08-813e-9822605b95da/DEF_1891.JPG?disposition=inline" alt="FORE Kids Golf community 1" loading="lazy">
+          <img class="community-hero__slide" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/af065452-7466-45ac-8275-f8a5f77f7371/DEF_2067.JPG?disposition=inline" alt="FORE Kids Golf community 2" loading="lazy">
+          <img class="community-hero__slide" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/2e6f67de-b859-47b8-884c-7005b4474648/DEF_2097.JPG?disposition=inline" alt="FORE Kids Golf community 3" loading="lazy">
+          <img class="community-hero__slide" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/876a78ba-e70d-4932-9d04-0d26ccbbba43/DEF_2127.JPG?disposition=inline" alt="FORE Kids Golf community 4" loading="lazy">
+          <img class="community-hero__slide" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/a2ea23d3-32d9-403d-a9a6-1b3d99300f9a/DEF_2185.JPG?disposition=inline" alt="FORE Kids Golf community 5" loading="lazy">
+          <img class="community-hero__slide" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/515b2943-5c82-4d43-a097-f41c64f8b093/DEF_2359.JPG?disposition=inline" alt="FORE Kids Golf community 6" loading="lazy">
+          <img class="community-hero__slide" src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/e4632e27-2e82-4673-b8b4-72fedf5ecd52/DEF_2376.JPG?disposition=inline" alt="FORE Kids Golf community 7" loading="lazy">
+        </div>
+        <div class="community-hero__fade"></div>
+        <div class="community-hero__dots" id="communityDots"></div>
+      </div>
+      <div class="community-hero__body">
+        <p class="community-hero__kicker">Community Spirit</p>
+        <h2 class="community-hero__title">The People Behind FORE Kids Golf</h2>
+        <p class="community-hero__desc">
+          Every year, sponsors, players, and volunteers come together on the course not just for a great round of golf, but because they believe every student in Davis County deserves to start the year equipped for success. This is what community investment looks like.
+        </p>
+        <div class="community-hero__actions">
+          <a href="https://dsdgive.net/event/3251" target="_blank" rel="noopener" class="btn btn--green">Register to Play</a>
+          <a href="mailto:smiggin@dsdmail.net" class="btn btn--outline">Become a Sponsor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. OAKRIDGE COUNTRY CLUB -->
+    <section class="oakridge-section" aria-label="Oakridge Country Club" data-reveal>
+      <div class="shell oakridge__inner">
+        <div class="oakridge__info">
+          <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/50211877-43e4-410c-b82c-906f679b37e3/Logo_-_Just_tree.png?disposition=inline" alt="Oakridge Country Club tree logo" class="oakridge__logo">
+          <h2 class="oakridge__title">Oakridge Country Club</h2>
+          <p class="oakridge__desc">
+            Oakridge Country Club in Farmington is the premier golf course and country club in Davis County. It&rsquo;s a stunning course nestled against the Wasatch mountains, and playing there is a major draw for tournament participants.
+          </p>
+        </div>
+        <div class="oakridge__video-wrap">
+          <iframe src="https://player.vimeo.com/video/1171076167?badge=0&autopause=0&player_id=0&app_id=58479"
+            allow="fullscreen; picture-in-picture"
+            title="Oakridge Country Club video"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. MAIN CONTENT GRID -->
+    <section class="section" aria-label="Fore Kids Golf details">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <!-- Overview -->
+            <div id="overview" data-reveal>
+              <p class="kicker">Why It Matters</p>
+              <h2>One Morning. One Course. A Year of Impact.</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                FORE Kids Golf isn&rsquo;t just a scramble&mdash;it&rsquo;s the Davis Education Foundation&rsquo;s single highest-return fundraiser. In one morning at Oakridge Country Club, the tournament raises funds that go directly into programs serving students across Davis County.
+              </p>
+              <p>
+                The format is simple: four-person teams compete in an 18-hole scramble, with on-course contests, food trucks, and a prize drawing to close the day. But what makes it work is the partnership model behind it. Local businesses sponsor holes, carts, contests, and title-level packages&mdash;and every dollar raised flows into Cash for Classrooms grants, teacher innovation funding, and student support programs.
+              </p>
+              <p>
+                The event sells out regularly, bringing together business leaders, educators, and community supporters who share a belief that every student in Davis County deserves to start the school year with what they need to succeed.
+              </p>
+            </div>
+
+            <!-- Quote Feature (green-bordered inline style) -->
+            <div class="quote-feature" data-reveal>
+              <blockquote>
+                FORE Kids Golf is a morning that reminds people why community investment matters. You show up to play golf and you leave knowing your team just helped a student start the year with shoes, a backpack, and the confidence to walk into school ready.
+              </blockquote>
+              <cite>Kara Toone, Executive Director</cite>
+            </div>
+
+            <!-- Where Your Dollars Go -->
+            <div id="where-it-goes" data-reveal>
+              <p class="kicker">Impact</p>
+              <h2>Where Your Dollars Go</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                Every sponsorship, every player registration, and every prize ticket purchased at FORE Kids Golf flows directly into programs that serve students. There is a direct line from your tee box to a student starting the school year equipped and supported.
+              </p>
+              <div class="impact-grid">
+                <div class="impact-card" data-reveal style="--reveal-order:0;">
+                  <h4>Cash for Classrooms</h4>
+                  <p>Annual grants awarded to schools for classroom supplies, technology, and learning materials that stretch every dollar further for educators.</p>
+                </div>
+                <div class="impact-card" data-reveal style="--reveal-order:1;">
+                  <h4>Teacher &amp; Innovation Grants</h4>
+                  <p>Competitive grants that empower educators to pilot creative instructional approaches, hands-on learning projects, and student engagement initiatives.</p>
+                </div>
+                <div class="impact-card" data-reveal style="--reveal-order:2;">
+                  <h4>Student Supports</h4>
+                  <p>Direct student aid including school supplies, shoes, clothing, winter coats, and emergency resources&mdash;so no student starts the year without what they need.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sponsorship Tiers (redesigned) -->
+            <div id="sponsorships" data-reveal>
+              <p class="kicker">Sponsorship Opportunities</p>
+              <h2>Sponsor the Tournament</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                FORE Kids Golf sponsorships put your name or organization alongside a sold-out community event while directly funding programs that serve students. Every tier includes on-course recognition, event-day visibility, and the knowledge that your investment goes straight to classrooms.
+              </p>
+              <div class="tier-showcase" id="tierShowcase">
+                <div class="tier-item tier-item--featured">
+                  <div class="tier-item__price">$5,000</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">Title / Graduate Sponsor</div>
+                    <div class="tier-item__desc">Lead event recognition, premium hole placement, logo on all event materials, and company acknowledgment at awards ceremony.</div>
+                  </div>
+                </div>
+                <div class="tier-item">
+                  <div class="tier-item__price">$3,000</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">High School Sponsor</div>
+                    <div class="tier-item__desc">Named hole with branded signage, company recognition in event communications, and logo on day-of materials.</div>
+                  </div>
+                </div>
+                <div class="tier-item">
+                  <div class="tier-item__price">$3,000</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">Golf Cart Sponsor</div>
+                    <div class="tier-item__desc">Your brand on every golf cart on the course&mdash;maximum visibility with every team, every hole, all day long.</div>
+                  </div>
+                </div>
+                <div class="tier-item">
+                  <div class="tier-item__price">$2,500</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">Driving Range Sponsor</div>
+                    <div class="tier-item__desc">Exclusive branding at the driving range warm-up area, where every player spends time before the shotgun start.</div>
+                  </div>
+                </div>
+                <div class="tier-item">
+                  <div class="tier-item__price">$2,500</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">Lunch Room Sponsor</div>
+                    <div class="tier-item__desc">Named sponsorship of the on-course food service&mdash;your brand front and center at hole #10 and the post-round gathering.</div>
+                  </div>
+                </div>
+                <div class="tier-item">
+                  <div class="tier-item__price">$1,750</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">Junior High Sponsor</div>
+                    <div class="tier-item__desc">Named hole with signage, company recognition in event materials, and logo on printed programs.</div>
+                  </div>
+                </div>
+                <div class="tier-item">
+                  <div class="tier-item__price">$500</div>
+                  <div class="tier-item__body">
+                    <div class="tier-item__name">Hole Sponsor</div>
+                    <div class="tier-item__desc">Your name or organization on a designated hole&mdash;visible to every team as they play through the course.</div>
+                  </div>
+                </div>
+              </div>
+              <p style="margin-top: 8px; font-size: 0.92rem; color: var(--ink-500);">
+                Additional tactical sponsorships available for on-course contests (Closest to the Hole, Longest Drive, Putting, Pitching, Straightest Drive) and the prize drawing. Contact Sherry Miggin for a complete sponsorship menu.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;">
+                <a href="mailto:smiggin@dsdmail.net" class="btn btn--green">Become a Sponsor</a>
+                <a href="https://dsdgive.net/event/3251" target="_blank" rel="noopener" class="btn btn--outline">Register to Play</a>
+              </div>
+            </div>
+
+            <!-- The Case for FORE Kids -->
+            <div data-reveal style="margin-top: var(--section-space);">
+              <p class="kicker">Why This Works</p>
+              <h2>The Case for FORE Kids Golf</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                FORE Kids Golf works because it connects community leaders to student impact in a way that feels personal, is professionally managed, and delivers measurable return on investment.
+              </p>
+              <ul>
+                <li><strong>Direct line to impact:</strong> Every dollar raised goes into student-facing programs&mdash;no overhead, no ambiguity. Sponsors know exactly where their investment lands.</li>
+                <li><strong>Proven, efficient model:</strong> This is one of the highest-ROI events in Davis County philanthropy&mdash;efficient, proven, and scalable.</li>
+                <li><strong>Community cachet:</strong> The tournament sells out because the business community sees it as the premier opportunity to invest in local education and connect with peers who share that mission.</li>
+                <li><strong>Year-round recognition:</strong> Sponsors are acknowledged at the event, in Foundation communications, and in donor reports&mdash;visibility that extends well beyond the course.</li>
+              </ul>
+            </div>
+
+            <!-- Get Involved -->
+            <div id="get-involved" data-reveal style="margin-top: var(--section-space);">
+              <p class="kicker">Join Us</p>
+              <h2>Six Ways to Get Involved</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                Whether you play, sponsor, or help behind the scenes, every contribution makes FORE Kids Golf a success&mdash;and puts more resources in front of Davis County students.
+              </p>
+              <div class="involve-grid">
+                <div class="card involve-card" data-reveal style="--reveal-order:0;">
+                  <div class="involve-card__icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                  </div>
+                  <h4>Play</h4>
+                  <p>Register your four-person team for the 18-hole scramble. $50 per player.</p>
+                  <span class="detail-pill">Join the Fun</span>
+                </div>
+                <div class="card involve-card" data-reveal style="--reveal-order:1;">
+                  <div class="involve-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  </div>
+                  <h4>Sponsor</h4>
+                  <p>Choose a tier from $500 to $5,000 and put your brand on the course.</p>
+                  <span class="detail-pill">Brand Visibility</span>
+                </div>
+                <div class="card involve-card" data-reveal style="--reveal-order:2;">
+                  <div class="involve-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+                  </div>
+                  <h4>Donate Prizes</h4>
+                  <p>Contribute prizes, gift cards, or auction items for the player drawing.</p>
+                  <span class="detail-pill">Direct Impact</span>
+                </div>
+                <div class="card involve-card" data-reveal style="--reveal-order:3;">
+                  <div class="involve-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <h4>Volunteer</h4>
+                  <p>Help with registration, hole management, food service, or the awards ceremony.</p>
+                  <span class="detail-pill">Day-of Help</span>
+                </div>
+                <div class="card involve-card" data-reveal style="--reveal-order:4;">
+                  <div class="involve-card__icon">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                  </div>
+                  <h4>Engage Your Company</h4>
+                  <p>Register a corporate team, sponsor a hole, or organize a company giving campaign around the event.</p>
+                  <span class="detail-pill">Team Building</span>
+                </div>
+                <div class="card involve-card" data-reveal style="--reveal-order:5;">
+                  <div class="involve-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                  </div>
+                  <h4>Spread the Word</h4>
+                  <p>Share the tournament with your network. Invite a colleague. Help us sell out early.</p>
+                  <span class="detail-pill">Amplify Reach</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- What to Expect on Event Day -->
+            <div id="event-day" data-reveal style="margin-top: var(--section-space);">
+              <p class="kicker">Event Day</p>
+              <h2>What to Expect</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                From registration to the final prize drawing, FORE Kids Golf is built around community, friendly competition, and shared purpose. Here&rsquo;s how the morning unfolds.
+              </p>
+              <div class="steps">
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Registration &amp; Cart Lineup &mdash; 7:30 AM</h4>
+                    <p>Check in, pick up your player package (3 mulligans, 6 prize tickets, and a licorice rope), and line up your cart for the shotgun start.</p>
+                  </div>
+                </div>
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Carts to Holes &mdash; 8:15 AM</h4>
+                    <p>Head out to your assigned hole and get ready for the scramble. Meet your hole sponsors and settle in.</p>
+                  </div>
+                </div>
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Shotgun Start &mdash; 8:30 AM</h4>
+                    <p>18-hole scramble with on-course contests: Closest to the Hole, Putting Contest, Pitching Contest, Straightest Drive, Longest Drive, and Hole in One. Enjoy a food truck at hole #10 courtesy of Resolut.</p>
+                  </div>
+                </div>
+                <div class="steps__item">
+                  <span class="steps__num"></span>
+                  <div class="steps__text">
+                    <h4>Awards &amp; Prize Drawing</h4>
+                    <p>Gather for the awards ceremony, prize drawing ($5 each or 6 for $20), and player prizes provided by Hughes General Contractors. Celebrate the winning teams and the impact you&rsquo;ve made for students.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Past Partners -->
+            <div id="partners" data-reveal>
+              <p class="kicker">Community Support</p>
+              <h2>Past Partners &amp; Sponsors</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                FORE Kids Golf is powered by the Davis County business community. These organizations have invested in students through sponsorships, prizes, food service, and on-course support.
+              </p>
+              <div class="partners-strip">
+                <span>Hogan &amp; Associates Construction</span>
+                <span>Hughes General Contractors</span>
+                <span>Resolut</span>
+                <span>Davis Behavioral Health</span>
+                <span>Davis Conference Center</span>
+                <span>HollyFrontier</span>
+                <span>Les Olson</span>
+                <span>Watson Management</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--ink-500); margin-top: 8px;">
+                Want to join this list? <a href="mailto:smiggin@dsdmail.net" style="color: var(--golf-green); font-weight: 600;">Contact Sherry Miggin</a> about 2026 sponsorship opportunities.
+              </p>
+            </div>
+
+            <!-- Contact -->
+            <div id="contact" data-reveal style="margin-top: var(--section-space);">
+              <p class="kicker">Questions?</p>
+              <h2>Contact</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>
+                Questions about registration, sponsorships, prize donations, or volunteering? Reach out to <strong>Sherry Miggin</strong> and she&rsquo;ll get you everything you need.
+              </p>
+              <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 12px;">
+                <a href="mailto:smiggin@dsdmail.net" class="btn btn--navy">Email Sherry Miggin</a>
+                <a href="tel:8015129370" class="btn btn--outline">801.512.9370</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SIDEBAR -->
+          <aside>
+            <div class="sidebar-tabs-bar" id="sidebarTabs"></div>
+
+            <div id="sidebar-anchor-0" class="sidebar-anchor"></div>
+            <div class="card sidebar-card" data-reveal data-sidebar-idx="0" data-sidebar-label="Why It Matters" style="--reveal-order:1;">
+              <h3>Why It Matters</h3>
+              <p style="font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 16px;">FORE Kids Golf is the Foundation&rsquo;s single highest-return fundraiser. One morning on the course funds classroom grants, teacher innovation, and student support across Davis County.</p>
+              <div class="sidebar-detail">
+                <div class="sidebar-detail-label">Date</div>
+                <div class="sidebar-detail-value">Monday, August 31, 2026</div>
+                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=FORE+Kids+Golf+at+Oakridge+Country+Club&dates=20260831T133000Z/20260831T190000Z&details=FORE+Kids+Golf+Tournament+-+Davis+Education+Foundation.+18-hole+scramble+at+Oakridge+Country+Club.&location=Oakridge+Country+Club,+1492+Shepard+Lane,+Farmington,+UT&sf=true&output=xml" target="_blank" rel="noopener" class="btn--cal">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Add to Calendar
+                </a>
+              </div>
+              <div class="sidebar-detail">
+                <div class="sidebar-detail-label">Location</div>
+                <div class="sidebar-detail-value">Oakridge Country Club<br><span style="font-weight:400; font-size:0.82rem; color:var(--ink-500);">1492 Shepard Lane, Farmington, UT</span></div>
+              </div>
+              <div class="sidebar-detail">
+                <div class="sidebar-detail-label">Format</div>
+                <div class="sidebar-detail-value">18-Hole Scramble &mdash; Shotgun Start</div>
+              </div>
+              <div class="sidebar-detail">
+                <div class="sidebar-detail-label">Schedule</div>
+                <div class="sidebar-detail-value">7:30 AM Registration<br>8:15 AM Carts to Holes<br>8:30 AM Shotgun Start</div>
+              </div>
+              <div class="sidebar-detail">
+                <div class="sidebar-detail-label">Player Package</div>
+                <div class="sidebar-detail-value">$50 per player<br><span style="font-weight:400; font-size:0.82rem; color:var(--ink-500);">3 mulligans, 6 prize tickets, 1 licorice rope</span></div>
+              </div>
+              <a href="https://dsdgive.net/event/3251" target="_blank" rel="noopener" class="btn btn--gold" style="margin-bottom: 10px;">Register to Play</a>
+            </div>
+
+            <div class="sidebar-grow"></div>
+
+            <div id="sidebar-anchor-1" class="sidebar-anchor"></div>
+            <div class="card sidebar-card" data-reveal data-sidebar-idx="1" data-sidebar-label="Sponsorships" style="--reveal-order:2;">
+              <h3>Sponsorship Quick-Scan</h3>
+              <div style="text-align:center; margin-bottom:16px; padding:12px 0 8px; border-bottom:1px solid var(--paper-200);">
+                <a href="https://www.hoganconstruction.com" target="_blank" rel="noopener" style="display:inline-block;">
+                  <img src="https://www.hoganconstruction.com/assets/images/hogan_logo_without_cmgc.png" alt="Hogan &amp; Associates Construction — Title Sponsor" style="max-width:180px; height:auto;" loading="lazy">
+                </a>
+                <p style="font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-500); margin:6px 0 0;">Title Sponsor</p>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">Title / Graduate</span>
+                <span class="sidebar-tier__amt">$5,000</span>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">High School</span>
+                <span class="sidebar-tier__amt">$3,000</span>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">Golf Cart</span>
+                <span class="sidebar-tier__amt">$3,000</span>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">Driving Range</span>
+                <span class="sidebar-tier__amt">$2,500</span>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">Lunch Room</span>
+                <span class="sidebar-tier__amt">$2,500</span>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">Junior High</span>
+                <span class="sidebar-tier__amt">$1,750</span>
+              </div>
+              <div class="sidebar-tier">
+                <span class="sidebar-tier__name">Hole Sponsor</span>
+                <span class="sidebar-tier__amt">$500</span>
+              </div>
+              <a href="mailto:smiggin@dsdmail.net" class="btn btn--green" style="margin-top: 14px;">Get Sponsorship Info</a>
+            </div>
+
+            <div class="sidebar-grow"></div>
+
+            <div id="sidebar-anchor-2" class="sidebar-anchor"></div>
+            <div class="card sidebar-card" data-reveal data-sidebar-idx="2" data-sidebar-label="Contact" style="--reveal-order:3; background: linear-gradient(160deg, #2a4d30 0%, #355f3b 100%); border-color: #355f3b; color: #fff;">
+              <h3 style="color: #fff;">Contact</h3>
+              <p style="margin-bottom: 8px; color: rgba(255,255,255,0.9);"><strong>Sherry Miggin</strong><br>
+              <a href="mailto:smiggin@dsdmail.net" style="color: var(--golf-green-accent); font-weight: 600;">smiggin@dsdmail.net</a><br>
+              <span style="font-size: 0.9rem;">801.512.9370</span></p>
+              <a href="mailto:smiggin@dsdmail.net" class="btn btn--gold">Get in Touch</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOGAN & ASSOCIATES TITLE SPONSOR -->
+    <section class="hogan-sponsor" aria-label="Title Sponsor" data-reveal>
+      <div class="shell hogan__inner">
+        <div class="hogan__logo-wrap">
+          <a href="https://www.hoganconstruction.com" target="_blank" rel="noopener">
+            <img src="https://www.hoganconstruction.com/assets/images/hogan_logo_without_cmgc.png" alt="Hogan &amp; Associates Construction logo">
+          </a>
+        </div>
+        <div>
+          <div class="hogan__kicker">Long-Standing Title Sponsor</div>
+          <h2 class="hogan__title">Hogan &amp; Associates Construction</h2>
+          <p class="hogan__desc">
+            Hogan &amp; Associates Construction has been the cornerstone title sponsor of FORE Kids Golf since the tournament&rsquo;s earliest years. Their sustained investment and commitment to education in Davis County has helped make this event the Foundation&rsquo;s most impactful fundraiser. We are grateful for their extraordinary partnership.
+          </p>
+          <a href="https://www.hoganconstruction.com" target="_blank" rel="noopener" class="btn btn--hogan">Visit Hogan Construction</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">FORE Kids Golf &bull; August 31, 2026</p>
+        <h2 class="title">From the fairway to the future.</h2>
+        <p class="lede">
+          Every team registered and every sponsorship secured helps fund programs that make a lasting difference for Davis County students. Be part of it.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="https://dsdgive.net/event/3251" target="_blank" rel="noopener" class="btn btn--gold">Register to Play</a>
+          <a href="mailto:smiggin@dsdmail.net" class="btn btn--ghost">Become a Sponsor</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <!-- 1. Reveal Observer -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <!-- 2. Quick-Nav Active State -->
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+
+      var sections = navLinks.map(function (link) {
+        var target = link.getAttribute("href");
+        return target && target.charAt(0) === "#" ? document.querySelector(target) : null;
+      }).filter(Boolean);
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (l) { l.classList.remove("is-active"); });
+            var match = navLinks.find(function (l) { return l.getAttribute("href") === "#" + entry.target.id; });
+            if (match) match.classList.add("is-active");
+          }
+        });
+      }, { rootMargin: "-20% 0px -60% 0px", threshold: 0 });
+
+      sections.forEach(function (s) { io.observe(s); });
+    })();
+  </script>
+
+  <!-- 3. Parallax for hero -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var hero = document.querySelector(".story-hero");
+      if (!hero) return;
+      var heroH = hero.offsetHeight || 700;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              var overlay = hero.querySelector(".story-hero__overlay");
+              if (overlay) {
+                overlay.style.opacity = Math.min(1, 0.6 + (y / heroH) * 0.4);
+              }
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- 4. Gallery carousel with auto-scroll -->
+  <script>
+    (function () {
+      var track = document.getElementById("galleryTrack");
+      var prevBtn = document.getElementById("galleryPrev");
+      var nextBtn = document.getElementById("galleryNext");
+      if (!track || !prevBtn || !nextBtn) return;
+
+      var imgs = Array.prototype.slice.call(track.querySelectorAll("img"));
+      var total = imgs.length;
+      var currentIndex = 0;
+      var autoTimer;
+      var autoInterval = 4000;
+
+      function getSlideWidth() {
+        return imgs[0].offsetWidth + 16;
+      }
+
+      function updatePosition() {
+        var slideW = getSlideWidth();
+        track.style.transform = "translateX(-" + (currentIndex * slideW) + "px)";
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= total - 1;
+      }
+
+      function goNext() {
+        if (currentIndex < total - 1) { currentIndex++; } else { currentIndex = 0; }
+        updatePosition();
+      }
+
+      function goPrev() {
+        if (currentIndex > 0) { currentIndex--; updatePosition(); }
+      }
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(goNext, autoInterval);
+      }
+
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+
+      prevBtn.addEventListener("click", function () { goPrev(); startAuto(); });
+      nextBtn.addEventListener("click", function () { goNext(); startAuto(); });
+
+      /* Drag support */
+      var startX = 0, startTranslate = 0, dragging = false;
+      track.addEventListener("mousedown", function (e) { startDrag(e.clientX); e.preventDefault(); });
+      track.addEventListener("touchstart", function (e) { startDrag(e.touches[0].clientX); }, { passive: true });
+
+      function startDrag(x) { dragging = true; startX = x; startTranslate = currentIndex * getSlideWidth(); track.style.transition = "none"; stopAuto(); }
+      function onMove(x) {
+        if (!dragging) return;
+        var diff = startX - x;
+        track.style.transform = "translateX(-" + (startTranslate + diff) + "px)";
+      }
+      function endDrag(x) {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transition = "";
+        var diff = startX - x;
+        var threshold = getSlideWidth() * 0.25;
+        if (diff > threshold && currentIndex < total - 1) currentIndex++;
+        else if (diff < -threshold && currentIndex > 0) currentIndex--;
+        updatePosition();
+        startAuto();
+      }
+
+      document.addEventListener("mousemove", function (e) { onMove(e.clientX); });
+      document.addEventListener("mouseup", function (e) { endDrag(e.clientX); });
+      track.addEventListener("touchmove", function (e) { onMove(e.touches[0].clientX); }, { passive: true });
+      track.addEventListener("touchend", function (e) { endDrag(e.changedTouches[0].clientX); });
+
+      updatePosition();
+      startAuto();
+    })();
+  </script>
+
+  <!-- 5. Journey scroll animation -->
+  <script>
+    (function () {
+      var timeline = document.querySelector(".journey__timeline");
+      var lineFill = document.getElementById("journeyLineFill");
+      var steps = Array.prototype.slice.call(document.querySelectorAll("[data-journey-step]"));
+      if (!timeline || !lineFill || !steps.length) return;
+
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) {
+        steps.forEach(function (s) { s.classList.add("is-active"); });
+        return;
+      }
+
+      var timelineTop = 22;
+
+      function update() {
+        var rect = timeline.getBoundingClientRect();
+        var viewMid = window.innerHeight * 0.6;
+        var progress = (viewMid - rect.top - timelineTop) / (rect.height - timelineTop - 40);
+        progress = Math.max(0, Math.min(1, progress));
+        lineFill.style.height = (progress * (rect.height - timelineTop - 40)) + "px";
+
+        steps.forEach(function (step) {
+          var stepRect = step.getBoundingClientRect();
+          var stepMid = stepRect.top + stepRect.height * 0.3;
+          if (stepMid < viewMid) {
+            step.classList.add("is-active");
+          }
+        });
+      }
+
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(function () { update(); ticking = false; }); ticking = true; }
+      }, { passive: true });
+      update();
+    })();
+  </script>
+
+  <!-- 6. Community hero auto-carousel -->
+  <script>
+    (function () {
+      var carousel = document.getElementById("communityCarousel");
+      var dotsWrap = document.getElementById("communityDots");
+      if (!carousel || !dotsWrap) return;
+
+      var slides = Array.prototype.slice.call(carousel.querySelectorAll(".community-hero__slide"));
+      var total = slides.length;
+      var current = 0;
+      var interval = 4500;
+      var timer;
+
+      slides.forEach(function (_, i) {
+        var dot = document.createElement("button");
+        dot.className = "community-hero__dot" + (i === 0 ? " is-active" : "");
+        dot.setAttribute("aria-label", "Show photo " + (i + 1));
+        dot.addEventListener("click", function () { goTo(i); resetTimer(); });
+        dotsWrap.appendChild(dot);
+      });
+
+      var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".community-hero__dot"));
+
+      function goTo(idx) {
+        slides[current].classList.remove("is-active");
+        dots[current].classList.remove("is-active");
+        current = idx;
+        slides[current].classList.add("is-active");
+        dots[current].classList.add("is-active");
+      }
+
+      function next() { goTo((current + 1) % total); }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, interval);
+      }
+
+      timer = setInterval(next, interval);
+    })();
+  </script>
+
+  <!-- 7. Count-up animation for stats -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      var statNumbers = Array.prototype.slice.call(document.querySelectorAll("[data-count]"));
+      if (!statNumbers.length) return;
+
+      var observed = false;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !observed) {
+            observed = true;
+            animateAll();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(document.querySelector(".stats-banner"));
+
+      function animateAll() {
+        statNumbers.forEach(function (el) {
+          var target = parseInt(el.getAttribute("data-count"), 10);
+          var prefix = el.getAttribute("data-prefix") || "";
+          var suffix = el.getAttribute("data-suffix") || "";
+          var duration = 2000;
+          var startTime = null;
+
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(eased * target);
+            el.textContent = prefix + current.toLocaleString() + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+
+          requestAnimationFrame(step);
+        });
+      }
+    })();
+  </script>
+
+  <!-- 8. Sidebar stacking cards -->
+  <script>
+    (function () {
+      if (window.innerWidth <= 900) return;
+      var cards = document.querySelectorAll(".sidebar-card[data-sidebar-idx]");
+      var tabsBar = document.getElementById("sidebarTabs");
+      if (cards.length < 2 || !tabsBar) return;
+
+      var stickyTop = 80;
+      var tabIcons = {
+        0: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+        1: '<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>'
+      };
+
+      var tabs = [];
+      for (var i = 0; i < cards.length - 1; i++) {
+        var card = cards[i];
+        var tab = document.createElement("button");
+        tab.className = "sidebar-tab";
+        tab.setAttribute("type", "button");
+        tab.setAttribute("aria-label", "Show " + card.getAttribute("data-sidebar-label"));
+        tab.innerHTML = (tabIcons[i] || "") + " " + card.getAttribute("data-sidebar-label");
+
+        (function (idx) {
+          tab.addEventListener("click", function () {
+            var anchor = document.getElementById("sidebar-anchor-" + idx);
+            if (anchor) {
+              var y = anchor.getBoundingClientRect().top + window.pageYOffset - stickyTop + 10;
+              window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+            }
+          });
+        })(i);
+
+        tabsBar.appendChild(tab);
+        tabs.push({ el: tab, card: card, idx: i });
+      }
+
+      var ticking = false;
+      function update() {
+        tabs.forEach(function (t) {
+          var nextCard = cards[t.idx + 1];
+          if (!nextCard) return;
+          var nextRect = nextCard.getBoundingClientRect();
+          var isCovered = nextRect.top <= stickyTop + 12;
+          t.el.classList.toggle("is-visible", isCovered);
+        });
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+
+      update();
+    })();
+  </script>
+
+  <!-- 9. Tier showcase reveal animation -->
+  <script>
+    (function () {
+      var items = document.querySelectorAll(".tier-item");
+      if (!items.length || !("IntersectionObserver" in window)) {
+        items.forEach(function (el) { el.classList.add("is-in"); });
+        return;
+      }
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) { items.forEach(function (el) { el.classList.add("is-in"); }); return; }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var idx = Array.prototype.indexOf.call(items, entry.target);
+            setTimeout(function () { entry.target.classList.add("is-in"); }, idx * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -5% 0px", threshold: 0.1 });
+
+      items.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

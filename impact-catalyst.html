@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Davis Catalyst Center – Davis Education Foundation</title>
+  <meta name="description" content="The Davis Catalyst Center is a profession-based learning center where students explore high-skill, high-wage career pathways through real-world industry projects and hands-on experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      /* Catalyst page accent — a forward-thinking blue */
+      --catalyst-blue: #3b82f6;
+      --catalyst-blue-light: #60a5fa;
+      --catalyst-glow: rgba(59, 130, 246, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; display: inline-flex; align-items: center; gap: 8px; }
+    .kicker::before { content: ""; width: 24px; height: 2px; border-radius: 99px; background: currentColor; opacity: 0.62; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .section-divider { width: 100%; height: 5px; border-radius: 999px; margin: 16px 0 18px; background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%); background-size: 220% 100%; animation: gradShift 7s ease-in-out infinite; }
+    .section-divider--short { max-width: 320px; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); box-shadow: var(--shadow-gold); }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy { background: var(--navy-900); color: #fff; box-shadow: var(--shadow-soft); }
+    a.btn--navy, .btn--navy:link, .btn--navy:visited { color: #fff; }
+    .btn--navy:hover { background: var(--navy-700); box-shadow: var(--shadow-mid); color: #fff; }
+    .btn--ghost { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline { background: transparent; color: var(--navy-700); border: 1.5px solid var(--paper-200); }
+    .btn--outline:hover { background: var(--paper-100); }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+    [data-reveal="left"] { opacity: 0; transform: translate3d(-34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="right"] { opacity: 0; transform: translate3d(34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.93); transition: transform 800ms var(--ease), opacity 700ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+
+    /* ── Detail Hero ────────────── */
+    .detail-hero {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px);
+      background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%);
+      overflow: hidden;
+    }
+
+    .detail-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+      animation: dotDrift 24s linear infinite;
+    }
+
+    .detail-hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: drift 16s ease-in-out infinite;
+    }
+
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 70%); animation-delay: -8s; }
+    .detail-hero__halo--three { width: 200px; height: 200px; top: 30%; left: 50%; background: radial-gradient(circle, rgba(139, 207, 255, 0.08), transparent 70%); animation-delay: -12s; }
+
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400); }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .kicker::before { background: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 18ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .detail-hero__bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.12; z-index: 1; }
+    /* ── Content Grid ────────────── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+
+    .content-main h2 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.18;
+      color: var(--ink-900);
+      margin-bottom: 12px;
+    }
+    .content-main h3 {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.15rem;
+      color: var(--ink-900);
+      margin: 28px 0 8px;
+    }
+    .content-main p { margin-bottom: 14px; }
+    .content-main ul { margin: 8px 0 18px 20px; list-style: none; }
+    .content-main ul li { position: relative; padding-left: 20px; margin-bottom: 10px; line-height: 1.65; }
+    .content-main ul li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); }
+
+    /* ── Sidebar ────────────── */
+    .sidebar-card { position: sticky; top: 80px; }
+    .sidebar-card + .sidebar-card { margin-top: 18px; }
+    .sidebar-card h3 { font-family: "Fraunces", "Times New Roman", serif; font-size: 1.1rem; color: var(--ink-900); margin-bottom: 10px; }
+    .sidebar-card p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 16px; }
+    .sidebar-card .btn { width: 100%; }
+    .sidebar-quick-stats { display: grid; gap: 10px; margin-bottom: 16px; }
+    .sidebar-quick-stat { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-sm); background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.12); }
+    .sidebar-quick-stat__num { font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 700; color: var(--navy-900); line-height: 1; white-space: nowrap; }
+    .sidebar-quick-stat__label { font-size: 0.78rem; font-weight: 600; color: var(--ink-500); line-height: 1.3; }
+
+    /* ── Stats Banner (dark navy) ────────────── */
+    .stats-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite;
+      border-radius: var(--radius-lg);
+      padding: clamp(32px, 4vw, 48px) clamp(20px, 3vw, 36px);
+      margin: 28px 0;
+      overflow: hidden;
+    }
+    .stats-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: dotDrift 24s linear infinite;
+      pointer-events: none;
+    }
+    .stats-banner > * { position: relative; z-index: 1; }
+    .stats-banner__heading {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .stats-banner__heading .kicker { color: var(--gold-400); }
+    .stats-banner__heading .title { color: #fff; font-size: clamp(1.5rem, 2.8vw, 2.2rem); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      text-align: center;
+    }
+    .stat-item {
+      padding: 14px 8px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 300ms ease, border-color 300ms ease, transform 300ms var(--ease);
+    }
+    .stat-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 194, 77, 0.3);
+      transform: translateY(-3px);
+    }
+    .stat-item__number {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(90deg, #b8860b, var(--gold-400), #fff4d2, var(--gold-300), #b8860b, var(--gold-400));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 4s ease-in-out infinite;
+    }
+    .stat-item__label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    /* ── Pathway Cards (enhanced) ────────────── */
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .pathway-card {
+      padding: clamp(18px, 2.5vw, 24px);
+      scroll-snap-align: start;
+    }
+    .pathway-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(36, 80, 143, 0.08));
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      color: var(--navy-700);
+      margin-bottom: 12px;
+      transition: background 260ms ease, color 260ms ease, border-color 260ms ease;
+    }
+    .pathway-card__icon svg {
+      width: 24px; height: 24px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .pathway-card:hover .pathway-card__icon {
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+      color: var(--navy-950);
+      border-color: rgba(255, 194, 77, 0.5);
+    }
+    .pathway-card__name {
+      font-family: "Fraunces", serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: 6px;
+      transition: color 260ms ease;
+    }
+    .pathway-card:hover .pathway-card__name { color: #b8860b; }
+    .pathway-card__desc { font-size: 0.85rem; color: var(--ink-700); line-height: 1.55; margin-bottom: 10px; }
+    .pathway-card__stat {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--navy-700);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+    }
+    .pathway-card:hover .pathway-card__stat {
+      background: linear-gradient(135deg, rgba(255, 215, 127, 0.25), rgba(255, 194, 77, 0.15));
+      border-color: rgba(255, 199, 89, 0.4);
+      color: #14274b;
+    }
+
+    /* ── Pillar Chips (enhanced) ────────────── */
+    .pillar-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .pillar-chip {
+      border-radius: 999px;
+      padding: 8px 16px;
+      border: 1px solid #c2d7f4;
+      background: #f5f9ff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #2e507d;
+      transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+      cursor: default;
+    }
+    .pillar-chip:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 127, 0.18), rgba(255, 194, 77, 0.12));
+      border-color: rgba(255, 199, 89, 0.4);
+      color: #1a3a62;
+    }
+
+    /* ── Growth Tabs ────────────── */
+    .growth-tabs {
+      margin-top: 16px;
+      display: inline-flex;
+      padding: 6px;
+      border-radius: 999px;
+      background: #e7f0fd;
+      border: 1px solid #c9dcf4;
+      gap: 6px;
+    }
+    .growth-tab {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #2f537f;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
+    }
+    .growth-tab.is-active {
+      color: #173965;
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(18, 43, 80, 0.14);
+    }
+    .growth-panel { display: none; animation: fadeIn 380ms ease; }
+    .growth-panel.is-active { display: block; }
+    .growth-panel__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .growth-metric {
+      padding: 16px 14px;
+      text-align: center;
+      scroll-snap-align: start;
+    }
+    .growth-metric strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.35rem, 2.2vw, 1.95rem);
+      line-height: 1;
+      color: #173b68;
+      transition: color 260ms ease;
+    }
+    .growth-metric:hover strong { color: #b8860b; }
+    .growth-metric span {
+      display: block;
+      margin-top: 4px;
+      color: #4f668d;
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.32;
+    }
+
+    /* ── Quote Cards with Avatars ──────────── */
+    .quote-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      border-left: 3px solid var(--catalyst-blue); padding: 16px 16px 16px 18px;
+      margin: 16px 0; background: var(--catalyst-glow); border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      transition: background 300ms ease, border-color 300ms ease;
+    }
+    .quote-card:hover { background: rgba(59, 130, 246, 0.08); border-left-color: var(--gold-400); }
+    .quote-card__avatar {
+      flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%;
+      overflow: hidden; border: 2px solid var(--catalyst-blue-light);
+      box-shadow: 0 2px 8px rgba(11, 27, 60, 0.12);
+      transition: border-color 300ms ease;
+    }
+    .quote-card:hover .quote-card__avatar { border-color: var(--gold-400); }
+    .quote-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .quote-card__text { flex: 1; min-width: 0; }
+    .quote-card__text p { margin: 0 0 6px; font-style: italic; color: var(--ink-700); font-size: 0.95rem; line-height: 1.55; }
+    .quote-card__text cite { font-style: normal; font-size: 0.82rem; font-weight: 600; color: var(--ink-900); display: block; }
+
+    /* ── Rendering Scroll Strip ────────────── */
+    .rendering-strip {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      margin: 20px 0 8px;
+      padding-bottom: 8px;
+    }
+    .rendering-strip::-webkit-scrollbar { height: 6px; }
+    .rendering-strip::-webkit-scrollbar-track { background: var(--paper-100); border-radius: 3px; }
+    .rendering-strip::-webkit-scrollbar-thumb { background: var(--catalyst-blue); border-radius: 3px; }
+    .rendering-strip__track { display: flex; gap: 12px; width: max-content; }
+    .rendering-strip__item {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--paper-200);
+      position: relative;
+    }
+    .rendering-strip__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 520ms var(--ease); }
+    .rendering-strip__item:hover img { transform: scale(1.04); }
+    .rendering-strip__badge {
+      position: absolute; bottom: 8px; left: 8px; z-index: 2;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(11, 27, 60, 0.7); backdrop-filter: blur(6px);
+      color: #fff; font-size: 0.7rem; font-weight: 700;
+    }
+
+    .content-photo { border-radius: var(--radius-lg); overflow: hidden; margin: 28px 0; box-shadow: var(--shadow-soft); }
+    .content-photo img { width: 100%; height: auto; display: block; transition: transform 600ms var(--ease); }
+    .content-photo:hover img { transform: scale(1.03); }
+
+    /* ── CTA Banner ────────────── */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 20px 20px; animation: dotDrift 24s linear infinite; pointer-events: none; }
+    .cta-banner > * { position: relative; z-index: 1; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 20ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* ── Responsive ────────────── */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: minmax(0, 1fr); }
+      .content-main { min-width: 0; overflow: hidden; }
+      .sidebar-card { position: static; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .growth-panel__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .growth-panel__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 28px 28px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" id="top" aria-label="Catalyst hero">
+      <div class="detail-hero__bg" style="background-image: url('https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/8c516c22-e1d3-4a95-9984-0b6e875baf8a/Catalyst-Students-Construction.png?disposition=inline');"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="detail-hero__halo detail-hero__halo--three"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def/page/impact">Impact</a>
+            <span>&rsaquo;</span>
+            Catalyst
+          </nav>
+          <p class="kicker">Davis Catalyst Center</p>
+          <h1 class="title">Profession-based learning that <span class="accent">launches careers</span>.</h1>
+          <p class="lede">
+            The Davis Catalyst Center connects students to high-skill, high-wage career pathways through real-world industry projects, hands-on experience, and durable skills development.
+          </p>
+          <div class="detail-hero__actions">
+            <a href="https://www.daviscatalyst.com" target="_blank" rel="noopener" class="btn btn--gold">Visit daviscatalyst.com</a>
+            <a href="/o/def/page/impact" class="btn btn--ghost">Back to Impact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Section navigation">
+      <nav class="quick-nav">
+        <a href="#numbers">Numbers</a>
+        <a href="#pathways">Pathways</a>
+        <a href="#pillars">Pillars</a>
+        <a href="#growth">Growth</a>
+        <a href="#catalyst-2">Catalyst 2.0</a>
+        <a href="#funding">Funding</a>
+        <a href="#voices">Voices</a>
+      </nav>
+    </div>
+
+    <!-- ═══ STATS BANNER ═══ -->
+    <section class="section" id="numbers" aria-label="Catalyst by the numbers" style="padding-bottom: 0;">
+      <div class="shell">
+        <div class="stats-banner" data-reveal>
+          <div class="stats-banner__heading">
+            <p class="kicker">By the Numbers</p>
+            <h2 class="title">Explosive growth, <span class="accent">real results</span>.</h2>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-item__number impact-count" data-count-up data-target="1300" data-suffix="+" data-format="integer" data-duration="1600">0+</div>
+              <div class="stat-item__label">Applications (2025)</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__number impact-count" data-count-up data-target="747" data-format="integer" data-duration="1500">0</div>
+              <div class="stat-item__label">Students Enrolled</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__number impact-count" data-count-up data-target="16" data-format="integer" data-duration="1200">0</div>
+              <div class="stat-item__label">Career Pathways</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__number impact-count" data-count-up data-target="1.05" data-prefix="$" data-suffix="M" data-format="decimal" data-decimals="2" data-duration="1700">$0.00M</div>
+              <div class="stat-item__label">In Grant Funding</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__number impact-count" data-count-up data-target="98" data-suffix="%" data-format="integer" data-duration="1400">0%</div>
+              <div class="stat-item__label">Recommend Rate</div>
+            </div>
+          </div>
+        </div>
+        <p data-reveal style="--reveal-order:1; margin-top: 18px;">Applications grew from 569 in 2022 to over 1,300 in 2025&mdash;with 393 students currently waitlisted. The center has secured $1,055,000 in grant funding for Engineering, Advanced Manufacturing, and AI programs.</p>
+      </div>
+    </section>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <section class="section" aria-label="Catalyst details">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <div class="content-photo" data-reveal>
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/f7b74e50-fdb1-4450-830b-9abbddff2c20/IMG_3688.png?disposition=inline" alt="Catalyst students engaged in hands-on learning" loading="lazy">
+            </div>
+
+            <!-- Career Pathways -->
+            <div id="pathways" data-reveal style="--reveal-order:1;">
+              <h2>Career Pathways</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>Students choose from eight profession-based pathways, each designed around high-skill, high-wage industries with strong local employment opportunities.</p>
+              <div class="pathway-grid">
+                <article class="card pathway-card" data-reveal style="--reveal-order:0;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.4-.1.9.3 1.1l5.6 3.3-2.7 2.7-2.3-.8c-.4-.1-.8 0-1 .3l-.2.3c-.2.3-.1.8.2 1l2.6 1.8 1.8 2.6c.2.3.7.4 1 .2l.3-.2c.3-.2.4-.6.3-1l-.8-2.3 2.7-2.7 3.3 5.6c.2.4.7.5 1.1.3l.5-.3c.4-.2.6-.7.5-1.1z"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Aviation</div>
+                  <div class="pathway-card__desc">Pilot training and aircraft maintenance in partnership with local aviation programs. Hill AFB employs approximately 7,000 people.</div>
+                  <div class="pathway-card__stat">40% higher wages than avg</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:1;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Advanced Manufacturing</div>
+                  <div class="pathway-card__desc">Machining, fabrication, and composites. Students train on industry-grade equipment for careers in precision manufacturing.</div>
+                  <div class="pathway-card__stat">33% higher wages &middot; 1.6% annual growth</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:2;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Catalyst School of Business</div>
+                  <div class="pathway-card__desc">Finance, marketing, and management foundations preparing students for the 20,000+ local business-sector jobs.</div>
+                  <div class="pathway-card__stat">~$82K median salary</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:3;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Engineering</div>
+                  <div class="pathway-card__desc">Design, prototyping, and problem-solving. Hill AFB alone employs 5,500+ civilian engineers in the region.</div>
+                  <div class="pathway-card__stat">$95K+ median salary</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:4;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4z"/><rect x="9" y="14" width="6" height="4" rx="1"/><line x1="10" y1="22" x2="14" y2="22"/><line x1="10" y1="20" x2="14" y2="20"/></svg>
+                  </div>
+                  <div class="pathway-card__name">AI Modeling &amp; Engineering</div>
+                  <div class="pathway-card__desc">Machine learning models and algorithm development. One of the fastest-growing fields with 155 new AI positions posted in March 2025 alone.</div>
+                  <div class="pathway-card__stat">Fastest-growing tech field</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:5;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Construction</div>
+                  <div class="pathway-card__desc">Building, architecture, and skilled trades. Students learn practical construction skills in demand across the Wasatch Front.</div>
+                  <div class="pathway-card__stat">$60&ndash;70K avg &middot; $90K+ supervisory</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:6;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Public Service &amp; Safety</div>
+                  <div class="pathway-card__desc">Law enforcement, legal studies, and government service. Ranked among the top 5 CTE career clusters nationally.</div>
+                  <div class="pathway-card__stat">Top 5 CTE cluster</div>
+                </article>
+                <article class="card pathway-card" data-reveal style="--reveal-order:7;">
+                  <div class="pathway-card__icon">
+                    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <div class="pathway-card__name">Aspiring Educators</div>
+                  <div class="pathway-card__desc">Teaching skills, classroom experience, and service learning&mdash;building the next generation of educators for our community.</div>
+                  <div class="pathway-card__stat">Service learning focus</div>
+                </article>
+              </div>
+            </div>
+
+            <div class="content-photo" data-reveal="scale" style="--reveal-order:2;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/e771d1ea-959b-4e8d-9f0b-4d2d901c0263/Catalyst-Students-.jpg?disposition=inline" alt="Catalyst students collaborating on a project" loading="lazy">
+            </div>
+
+            <!-- Profession-Based Learning Pillars -->
+            <div id="pillars" data-reveal style="--reveal-order:3;">
+              <h2>Profession-Based Learning</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>Every Catalyst pathway is built on six core pillars that define profession-based learning&mdash;ensuring students don&rsquo;t just study careers, they experience them.</p>
+              <div class="pillar-grid">
+                <span class="pillar-chip">Real-World Industry Projects</span>
+                <span class="pillar-chip">Durable Skills Development</span>
+                <span class="pillar-chip">Centralized Magnet Model</span>
+                <span class="pillar-chip">Local Career Exploration</span>
+                <span class="pillar-chip">High-Skill High-Wage Prep</span>
+                <span class="pillar-chip">Entrepreneurial Mindset</span>
+              </div>
+              <p>Students work on real projects from local industry partners, develop communication and teamwork skills, and explore careers available right here in Davis County and the Wasatch Front. With 97% of students satisfied with their hands-on experience, the model is working.</p>
+            </div>
+
+            <div class="content-photo" data-reveal="scale" style="--reveal-order:3;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/e84ec0d8-a122-4d10-90b3-d75221e3068f/IMG_5205.png?disposition=inline" alt="Students gaining real-world experience at Catalyst" loading="lazy">
+            </div>
+
+            <!-- Growth & Expansion (Tabbed) -->
+            <div id="growth" data-reveal style="--reveal-order:3;">
+              <h2>Growth &amp; Expansion</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>The Davis Catalyst Center is rapidly scaling to meet student demand. See where we are now&mdash;and where we&rsquo;re headed.</p>
+
+              <div class="growth-tabs" role="tablist" aria-label="Growth period">
+                <button class="growth-tab is-active" type="button" role="tab" aria-selected="true" data-growth-tab="now">Where We Are</button>
+                <button class="growth-tab" type="button" role="tab" aria-selected="false" data-growth-tab="future">By 2027</button>
+              </div>
+
+              <div class="card" style="margin-top: 14px; padding: clamp(18px, 2.8vw, 26px);">
+                <article class="growth-panel is-active" data-growth-panel="now">
+                  <div class="growth-panel__grid">
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="16" data-format="integer" data-duration="1200">0</strong>
+                      <span>Career Pathways Active</span>
+                    </article>
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="747" data-format="integer" data-duration="1500">0</strong>
+                      <span>Students Enrolled</span>
+                    </article>
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="393" data-format="integer" data-duration="1400">0</strong>
+                      <span>Students Waitlisted</span>
+                    </article>
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="1300" data-suffix="+" data-format="integer" data-duration="1600">0+</strong>
+                      <span>Applications Received</span>
+                    </article>
+                  </div>
+                </article>
+
+                <article class="growth-panel" data-growth-panel="future">
+                  <div class="growth-panel__grid">
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="26" data-format="integer" data-duration="1200">0</strong>
+                      <span>Pathways Planned</span>
+                    </article>
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="1300" data-format="integer" data-duration="1600">0</strong>
+                      <span>Student Capacity</span>
+                    </article>
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="63" data-suffix="%" data-format="integer" data-duration="1400">0%</strong>
+                      <span>Pathway Growth</span>
+                    </article>
+                    <article class="card growth-metric">
+                      <strong class="impact-count" data-count-up data-target="74" data-suffix="%" data-format="integer" data-duration="1500">0%</strong>
+                      <span>Capacity Increase</span>
+                    </article>
+                  </div>
+                </article>
+              </div>
+
+              <p style="margin-top: 14px;">To meet projected demand, the center is currently utilizing four portable classrooms and a construction pole barn while planning for permanent expansion. The goal: 26 pathways serving 1,300 students by 2027.</p>
+            </div>
+
+            <!-- Envisioning Catalyst 2.0 -->
+            <div id="catalyst-2" data-reveal style="--reveal-order:4;">
+              <h2 style="margin-top: 36px;">Envisioning Catalyst 2.0</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>These concept renderings explore what an expanded Catalyst Center could look like&mdash;more pathways, more space, and more opportunity for Davis County students.</p>
+              <div class="rendering-strip">
+                <div class="rendering-strip__track">
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/c3ee50ea-ed7e-404d-bd34-e03ba1aada9d/Catalyst-2.0-Exterior.png?disposition=inline" alt="Catalyst 2.0 rendering — building exterior" loading="lazy">
+                    <span class="rendering-strip__badge">Exterior</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/6acdfcc1-feb6-4b74-8916-b18729ed367d/Catalyst-2.0-Exterior2.png?disposition=inline" alt="Catalyst 2.0 rendering — aerial view" loading="lazy">
+                    <span class="rendering-strip__badge">Aerial</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/1e035c34-daf5-4f6c-b05c-95a2462390cf/Catalyst-2.0-Exterior3.png?disposition=inline" alt="Catalyst 2.0 rendering — campus entrance" loading="lazy">
+                    <span class="rendering-strip__badge">Campus</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/40e7ae3a-0bef-4de2-afaa-cdd5968a8623/13.png?disposition=inline" alt="Catalyst 2.0 rendering — facility overview" loading="lazy">
+                    <span class="rendering-strip__badge">Overview</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/7d988a19-1a83-433e-8f7c-062c15d772d3/Catalyst-2.0-Interior2.png?disposition=inline" alt="Catalyst 2.0 rendering — learning lab" loading="lazy">
+                    <span class="rendering-strip__badge">Learning Lab</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/90e27cd2-85ea-4524-9a8a-016369b550b6/Catalyst-2.0-Interior3.png?disposition=inline" alt="Catalyst 2.0 rendering — collaboration space" loading="lazy">
+                    <span class="rendering-strip__badge">Collaboration</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/82a16b31-7190-4074-803d-862d31e32da5/Catalyst-2.0-Interior4.png?disposition=inline" alt="Catalyst 2.0 rendering — workshop area" loading="lazy">
+                    <span class="rendering-strip__badge">Workshop</span>
+                  </div>
+                  <div class="rendering-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/9c8ff0ed-c2ec-4394-a39d-ae6c44decadc/Catalyst-2.0-Interior5.png?disposition=inline" alt="Catalyst 2.0 rendering — community space" loading="lazy">
+                    <span class="rendering-strip__badge">Community</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Funding Model -->
+            <div id="funding" data-reveal style="--reveal-order:5;">
+              <h2 style="margin-top: 36px;">Funding Model</h2>
+              <div class="section-divider section-divider--short"></div>
+              <p>The Catalyst Center is supported through a multi-source funding strategy:</p>
+              <ul>
+                <li><strong>District Support:</strong> The Davis School District has commissioned a strategic review to ensure long-term sustainability and alignment with district goals.</li>
+                <li><strong>State Support:</strong> Utah House Bill 447 established the Catalyst Grant, providing state-level funding for profession-based learning programs.</li>
+                <li><strong>Corporate Support:</strong> Through a partnership with the Davis Education Foundation, corporate sponsors can invest in Catalyst through naming rights and direct program support.</li>
+              </ul>
+            </div>
+
+            <div class="content-photo" data-reveal="scale" style="--reveal-order:5;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/b21f5c65-fb23-41d6-997a-8e82d5bd30b7/IMG_3334.png?disposition=inline" alt="Catalyst students working together in the lab" loading="lazy">
+            </div>
+
+            <div class="content-photo" data-reveal="scale" style="--reveal-order:6;">
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/25905efe-2ae9-47cf-87cf-ba08a0b61aac/Catalyst-Students-Camp.png?disposition=inline" alt="Catalyst students at summer camp program" loading="lazy">
+            </div>
+
+            <!-- Voices from Catalyst -->
+            <div id="voices" data-reveal style="--reveal-order:7;">
+              <h2 style="margin-top: 36px;">Voices from Catalyst</h2>
+              <div class="section-divider section-divider--short"></div>
+
+              <h3>Students</h3>
+              <div class="quote-card">
+                <div class="quote-card__avatar">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/6aaec173-5782-4993-875a-18e26b8b5c0a/Victoria-Cabaneiro.png?disposition=inline" alt="Victoria Cabaneiro" loading="lazy">
+                </div>
+                <div class="quote-card__text">
+                  <p>&ldquo;The Catalyst Center gave me real experience that I couldn&rsquo;t get anywhere else. I feel ready for my career.&rdquo;</p>
+                  <cite>&mdash; Victoria Cabaneiro, Student</cite>
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-card__avatar">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/148bb08e-f858-4e19-92e0-7692f16cf8c6/Ava-Leavitt.png?disposition=inline" alt="Ava Leavitt" loading="lazy">
+                </div>
+                <div class="quote-card__text">
+                  <p>&ldquo;I love that I get to work on real projects and learn skills I&rsquo;ll actually use after graduation.&rdquo;</p>
+                  <cite>&mdash; Ava Leavitt, Student</cite>
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-card__avatar">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/3f757a2a-ec81-4703-9973-ceef1d7d7c02/Zander-Cooper.png?disposition=inline" alt="Zander Cooper" loading="lazy">
+                </div>
+                <div class="quote-card__text">
+                  <p>&ldquo;Catalyst helped me discover what I want to do after high school&mdash;and gave me the skills to get there.&rdquo;</p>
+                  <cite>&mdash; Zander Cooper, Student</cite>
+                </div>
+              </div>
+
+              <div class="content-photo" style="margin: 20px 0;">
+                <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/7bf31288-38c6-46bc-9801-ba4ae90e8281/IMG_2301.jpg?disposition=inline" alt="Students exploring career pathways at Catalyst" loading="lazy">
+              </div>
+
+              <h3>Industry Partners</h3>
+              <div class="quote-card">
+                <div class="quote-card__avatar">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/aa6cf686-39eb-4b95-aba9-7ec19398ba3a/Jason-Smith.png?disposition=inline" alt="Jason Smith" loading="lazy">
+                </div>
+                <div class="quote-card__text">
+                  <p>&ldquo;The students coming out of Catalyst are better prepared than most entry-level hires I&rsquo;ve seen. They understand the work.&rdquo;</p>
+                  <cite>&mdash; Jason Smith, Lindquist Mortuary</cite>
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-card__avatar">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/0493e63e-a488-45cc-9675-b14615935b6a/Trent-Williams.png?disposition=inline" alt="Trent Williams" loading="lazy">
+                </div>
+                <div class="quote-card__text">
+                  <p>&ldquo;We&rsquo;ve been impressed with the quality of work and professionalism from Catalyst students.&rdquo;</p>
+                  <cite>&mdash; Trent Williams, Ensign Engineering</cite>
+                </div>
+              </div>
+
+              <div class="content-photo" data-reveal="scale" style="--reveal-order:8; margin-top: 20px;">
+                <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/b3977dff-754f-4f96-99c5-d9d2e0cdc17d/IMG_3523.png?disposition=inline" alt="Catalyst students building skills for the future" loading="lazy">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Davis Catalyst Center</h3>
+              <p>A profession-based learning center preparing students for high-skill, high-wage careers through hands-on industry experience.</p>
+              <a href="https://www.daviscatalyst.com" target="_blank" rel="noopener" class="btn btn--gold" style="margin-bottom: 10px;">Visit daviscatalyst.com</a>
+              <a href="/o/def/page/give" class="btn btn--navy" style="margin-bottom: 10px;">Support Catalyst</a>
+              <a href="/o/def/page/impact" class="btn btn--outline">Back to Impact</a>
+            </div>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:2; position: static;">
+              <h3>Quick Stats</h3>
+              <div class="sidebar-quick-stats">
+                <div class="sidebar-quick-stat">
+                  <div class="sidebar-quick-stat__num">8</div>
+                  <div class="sidebar-quick-stat__label">Pathways Active</div>
+                </div>
+                <div class="sidebar-quick-stat">
+                  <div class="sidebar-quick-stat__num">393</div>
+                  <div class="sidebar-quick-stat__label">Students Waitlisted</div>
+                </div>
+                <div class="sidebar-quick-stat">
+                  <div class="sidebar-quick-stat__num">$1.05M</div>
+                  <div class="sidebar-quick-stat__label">Grant Funding Secured</div>
+                </div>
+                <div class="sidebar-quick-stat">
+                  <div class="sidebar-quick-stat__num">97%</div>
+                  <div class="sidebar-quick-stat__label">Student Satisfaction</div>
+                </div>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--ink-500); margin-bottom: 0;">Data from 2024&ndash;25 school year</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Davis Catalyst Center</p>
+        <h2 class="title">Help us build the <span class="accent">future workforce</span>.</h2>
+        <p class="lede">
+          With 393 students waitlisted and demand growing every year, your support helps expand capacity and launch more career pathways.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="https://www.daviscatalyst.com" target="_blank" rel="noopener" class="btn btn--gold">Visit daviscatalyst.com</a>
+          <a href="/o/def/page/give" class="btn btn--ghost">Support Catalyst</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <!-- Reveal on scroll -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <!-- Count-up animation -->
+  <script>
+    (function () {
+      var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count-up]"));
+      if (!counters.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function formatValue(value, decimals) {
+        return Number(value).toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+
+      function setDisplay(el, value) {
+        var prefix = el.getAttribute("data-prefix") || "";
+        var suffix = el.getAttribute("data-suffix") || "";
+        var mode = el.getAttribute("data-format") || "integer";
+        var decimals = parseInt(el.getAttribute("data-decimals"), 10);
+        if (isNaN(decimals)) decimals = mode === "decimal" ? 1 : 0;
+        var rendered = mode === "decimal"
+          ? formatValue(value, decimals)
+          : formatValue(Math.round(value), 0);
+        el.textContent = prefix + rendered + suffix;
+      }
+
+      function animateCounter(el) {
+        if (el.getAttribute("data-counted") === "true") return;
+        el.setAttribute("data-counted", "true");
+        var target = parseFloat(el.getAttribute("data-target"));
+        if (!isFinite(target)) return;
+        var duration = parseInt(el.getAttribute("data-duration"), 10);
+        if (!isFinite(duration) || duration < 300) duration = 1700;
+        var startTime = null;
+        function tick(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          setDisplay(el, target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      if (reduced || !("IntersectionObserver" in window)) {
+        counters.forEach(function (el) {
+          var target = parseFloat(el.getAttribute("data-target"));
+          if (isFinite(target)) setDisplay(el, target);
+        });
+        window.__animateCountersIn = function () {};
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.2 });
+
+      function observeScope(scope) {
+        var els = Array.prototype.slice.call(scope.querySelectorAll("[data-count-up]"));
+        els.forEach(function (el) {
+          observer.observe(el);
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+            animateCounter(el);
+          }
+        });
+      }
+
+      observeScope(document);
+      window.__animateCountersIn = observeScope;
+    })();
+  </script>
+
+  <!-- Growth tabs -->
+  <script>
+    (function () {
+      var tabButtons = Array.prototype.slice.call(document.querySelectorAll("[data-growth-tab]"));
+      var panels = Array.prototype.slice.call(document.querySelectorAll("[data-growth-panel]"));
+      if (!tabButtons.length || !panels.length) return;
+
+      function activate(id) {
+        tabButtons.forEach(function (btn) {
+          var isActive = btn.getAttribute("data-growth-tab") === id;
+          btn.classList.toggle("is-active", isActive);
+          btn.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          var isActive = panel.getAttribute("data-growth-panel") === id;
+          panel.classList.toggle("is-active", isActive);
+          if (isActive && window.__animateCountersIn) {
+            window.__animateCountersIn(panel);
+          }
+        });
+      }
+
+      tabButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activate(btn.getAttribute("data-growth-tab"));
+        });
+      });
+
+      activate("now");
+    })();
+  </script>
+
+  <!-- Quick-nav active state -->
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+
+      var sections = navLinks
+        .map(function (link) {
+          var target = link.getAttribute("href");
+          if (!target || target.charAt(0) !== "#") return null;
+          return document.querySelector(target);
+        })
+        .filter(Boolean);
+
+      function setActive(id) {
+        navLinks.forEach(function (link) {
+          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+        });
+      }
+
+      var sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.01 });
+
+      sections.forEach(function (section) {
+        sectionObserver.observe(section);
+      });
+    })();
+  </script>
+
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var heroSlides = document.querySelector(".hero__slides");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var target = heroSlides || detailBg;
+      if (!target) return;
+      var heroH = target.closest("section").offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              target.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) {
+                h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)";
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

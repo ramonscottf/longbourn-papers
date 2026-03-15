@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Mission | Davis Education Foundation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-950: #0b1b3c;
+      --navy-900: #122a57;
+      --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f;
+      --gold-400: #ffc24d;
+      --gold-500: #f5a623;
+      --ink-900: #172848;
+      --ink-700: #415676;
+      --ink-500: #6d80a0;
+      --paper-50: #f8fbff;
+      --paper-100: #eff6ff;
+      --paper-150: #e9f2ff;
+      --paper-200: #dbe8fa;
+      --white: #ffffff;
+
+      --radius-sm: 14px;
+      --radius-md: 20px;
+      --radius-lg: 30px;
+      --radius-xl: 40px;
+
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-deep: 0 30px 72px rgba(8, 18, 41, 0.34);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --hero-cycle: 27s;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.64;
+      color: var(--ink-900);
+      background:
+        radial-gradient(1000px 700px at -10% -10%, rgba(139, 207, 255, 0.2), transparent 62%),
+        radial-gradient(900px 560px at 105% 14%, rgba(255, 215, 127, 0.16), transparent 60%),
+        linear-gradient(180deg, #f9fbff 0%, #ffffff 38%, #f7fbff 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .mission-page {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .shell {
+      width: min(var(--max-width), calc(100% - var(--pad-inline) * 2));
+      margin: 0 auto;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #335f95;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      border-radius: 99px;
+      background: currentColor;
+      opacity: 0.62;
+    }
+
+    .title {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif !important;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #132749;
+      text-wrap: balance;
+    }
+
+    .lede {
+      margin: 14px 0 0;
+      color: var(--ink-700);
+      max-width: 64ch;
+    }
+
+    /* ── Signature gradient divider bar ────────────── */
+    .section-divider {
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      margin: 16px 0 18px;
+      background: linear-gradient(90deg, #6b95d1 0%, #f0c75d 35%, #1f4a84 70%, #6b95d1 100%);
+      background-size: 220% 100%;
+      animation: gradShift 7s ease-in-out infinite;
+    }
+
+    .section-divider--short {
+      max-width: 320px;
+    }
+
+    .section {
+      padding: var(--section-space) 0;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, var(--reveal-y, 22px), 0);
+      transition: transform 680ms var(--ease), opacity 680ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+
+    .is-in {
+      opacity: 1 !important;
+      transform: translate3d(0, 0, 0) !important;
+    }
+
+    /* ── Buttons ────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 20px;
+      min-height: 46px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
+      will-change: transform;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn--gold {
+      color: #14274b;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+      box-shadow: 0 12px 24px rgba(255, 194, 77, 0.33);
+    }
+
+    .btn--gold:hover {
+      box-shadow: 0 16px 32px rgba(255, 194, 77, 0.44);
+    }
+
+    .btn--ghost {
+      color: #ffffff;
+      background: rgba(10, 25, 56, 0.44);
+      border-color: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(6px);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn--navy {
+      color: #ffffff;
+      background: linear-gradient(135deg, #173665, #24508e);
+      box-shadow: 0 12px 22px rgba(20, 46, 88, 0.28);
+    }
+
+    /* ── Cards – gold gradient hover system ────────────── */
+    .card {
+      position: relative;
+      border-radius: var(--radius-md);
+      border: 1px solid #cfe0f6;
+      background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease);
+    }
+
+    /* Animated gradient border overlay */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400));
+      background-size: 300% 300%;
+      opacity: 0;
+      transition: opacity 320ms ease;
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+    }
+
+    /* Inner glow overlay for gold warmth on hover */
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 320ms ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-gold);
+      border-color: rgba(255, 199, 89, 0.35);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      animation: gradShift 3s linear infinite;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    /* ── Hero ────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      color: var(--white);
+      overflow: hidden;
+      border-bottom-left-radius: clamp(34px, 4vw, 60px);
+      border-bottom-right-radius: clamp(34px, 4vw, 60px);
+    }
+
+    .hero__slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: #0e234a;
+    }
+
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.06);
+      animation: heroCycle var(--hero-cycle) linear infinite;
+      will-change: opacity, transform;
+    }
+
+    .hero__slide--1 {
+      background-image: url("https://cmsv2-assets.apptegy.net/uploads/23895/file/5209357/ee82643d-c66e-4d20-9e03-1bba9618e894.png");
+      animation-delay: 0s;
+    }
+
+    .hero__slide--2 {
+      background-image: url("https://cmsv2-assets.apptegy.net/uploads/23895/file/5209358/48bb67ed-dc13-405d-8522-3bdb210b7ea1.png");
+      animation-delay: -9s;
+    }
+
+    .hero__slide--3 {
+      background-image: url("https://cmsv2-assets.apptegy.net/uploads/23895/file/5209359/23032de4-2641-469b-9a3d-5444c2aec237.png");
+      animation-delay: -18s;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(122deg, rgba(8, 20, 44, 0.84) 0%, rgba(16, 39, 78, 0.64) 42%, rgba(8, 21, 46, 0.84) 100%),
+        radial-gradient(ellipse at 74% 14%, rgba(255, 215, 127, 0.14), transparent 55%);
+    }
+
+    .hero__overlay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.12;
+      mask-image: linear-gradient(165deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+      pointer-events: none;
+    }
+
+    .hero__halo {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(6px);
+      z-index: 1;
+      animation: drift 15s ease-in-out infinite;
+    }
+
+    .hero__halo--one {
+      width: 420px;
+      height: 420px;
+      left: -150px;
+      top: -160px;
+      background: radial-gradient(circle at 34% 34%, rgba(255, 215, 127, 0.34), rgba(255, 215, 127, 0));
+    }
+
+    .hero__halo--two {
+      width: 540px;
+      height: 540px;
+      right: -190px;
+      bottom: -220px;
+      background: radial-gradient(circle at 36% 36%, rgba(139, 207, 255, 0.3), rgba(139, 207, 255, 0));
+      animation-delay: -6.5s;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      width: min(var(--max-width), calc(100% - var(--pad-inline) * 2));
+      margin: 0 auto;
+      max-width: 940px;
+      padding: clamp(80px, 11vw, 132px) 0 clamp(54px, 8vw, 92px);
+      text-align: center;
+    }
+
+    .hero__mission-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2.4rem, 5.4vw, 4.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .hero h1 .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    .hero__text {
+      margin: 18px auto 0;
+      max-width: 64ch;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1rem, 1.35vw, 1.16rem);
+    }
+
+    .hero__actions {
+      margin-top: 24px;
+      display: inline-flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    /* ── Who We Are ────────────── */
+    .who {
+      padding-top: clamp(68px, 9vw, 124px);
+    }
+
+    .who__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(18px, 3vw, 28px);
+      align-items: center;
+    }
+
+    .who__photo {
+      position: relative;
+      min-height: 480px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid #cde0f7;
+      box-shadow: var(--shadow-mid);
+      background: #d7e7fb;
+    }
+
+    .who__photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6, 17, 37, 0.04) 8%, rgba(8, 18, 40, 0.7) 100%);
+      pointer-events: none;
+    }
+
+    .who__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 620ms var(--ease);
+    }
+
+    .who__photo:hover img {
+      transform: scale(1.04);
+    }
+
+    .who__photo-caption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 2;
+      color: #ffffff;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.48rem, 2.5vw, 2.24rem);
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    .who__stats {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat-card {
+      padding: 14px 14px 12px;
+      scroll-snap-align: start;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      line-height: 1.04;
+      color: #183964;
+      transition: color 260ms ease;
+    }
+
+    .stat-card:hover strong {
+      color: #b8860b;
+    }
+
+    .stat-card span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #4e6791;
+      line-height: 1.35;
+    }
+
+    /* ── Mission ────────────── */
+    .mission {
+      padding-top: clamp(38px, 5vw, 70px);
+    }
+
+    .mission__layout {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .mission__main {
+      padding: clamp(20px, 3vw, 30px);
+      scroll-snap-align: start;
+    }
+
+    .mission__main .title {
+      font-size: clamp(2rem, 3.4vw, 2.9rem);
+      max-width: 15.5ch;
+    }
+
+    .mission__chips {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mission__chips li {
+      border-radius: 999px;
+      padding: 7px 12px;
+      border: 1px solid #c2d7f4;
+      background: #f5f9ff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #2e507d;
+      transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+    }
+
+    .mission__chips li:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 127, 0.18), rgba(255, 194, 77, 0.12));
+      border-color: rgba(255, 199, 89, 0.4);
+      color: #1a3a62;
+    }
+
+    .mission__side {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .mini-card {
+      padding: 18px;
+      scroll-snap-align: start;
+    }
+
+    .mini-card h3 {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      line-height: 1.2;
+      color: #173560;
+      transition: color 260ms ease;
+    }
+
+    .mini-card:hover h3 {
+      color: #b8860b;
+    }
+
+    .mini-card p {
+      margin: 8px 0 0;
+      color: #4b5f7f;
+    }
+
+    /* ── Community Photo Strip ────────────── */
+    .community-strip {
+      padding: clamp(16px, 3vw, 32px) 0;
+      overflow: hidden;
+    }
+
+    .community-strip__rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(300px, 1fr);
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 var(--pad-inline) 8px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .community-strip__rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    .community-strip__item {
+      position: relative;
+      min-height: 220px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      scroll-snap-align: start;
+      border: 1px solid #cde0f7;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .community-strip__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 520ms var(--ease);
+    }
+
+    .community-strip__item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 14, 30, 0.02) 30%, rgba(6, 16, 34, 0.56) 100%);
+      pointer-events: none;
+    }
+
+    .community-strip__item:hover img {
+      transform: scale(1.06);
+    }
+
+    .community-strip__item p {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      margin: 0;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    /* ── Impact ────────────── */
+    .impact {
+      padding-top: clamp(42px, 6vw, 76px);
+    }
+
+    .impact__tabs {
+      margin-top: 16px;
+      display: inline-flex;
+      padding: 6px;
+      border-radius: 999px;
+      background: #e7f0fd;
+      border: 1px solid #c9dcf4;
+      gap: 6px;
+    }
+
+    .impact-tab {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #2f537f;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .impact-tab.is-active {
+      color: #173965;
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(18, 43, 80, 0.14);
+    }
+
+    .impact__panel-wrap {
+      margin-top: 14px;
+      padding: clamp(18px, 2.8vw, 26px);
+    }
+
+    .impact-panel {
+      display: none;
+      animation: fadeIn 380ms ease;
+    }
+
+    .impact-panel.is-active {
+      display: block;
+    }
+
+    .impact-panel__head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .impact-panel__title {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.5rem, 3vw, 2.35rem);
+      line-height: 1.1;
+      color: #16345f;
+      text-wrap: balance;
+    }
+
+    .impact-panel__badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 11px;
+      border: 1px solid #c3d7f4;
+      background: #f8fbff;
+      color: #2c517f;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .impact-panel__total {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2.5rem, 6.8vw, 5rem);
+      line-height: 0.93;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      background: linear-gradient(
+        90deg,
+        #b8860b 0%,
+        var(--gold-400) 20%,
+        #fff4d2 40%,
+        var(--gold-300) 60%,
+        #b8860b 80%,
+        var(--gold-400) 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 4s ease-in-out infinite;
+    }
+
+    .impact-panel__desc {
+      margin: 10px 0 0;
+      color: #4a6385;
+      max-width: 70ch;
+    }
+
+    .impact-metrics {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric-card {
+      padding: 13px 12px;
+      scroll-snap-align: start;
+    }
+
+    .metric-card strong {
+      display: block;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.35rem, 2.2vw, 1.95rem);
+      line-height: 1;
+      color: #173b68;
+      transition: color 260ms ease;
+    }
+
+    .metric-card:hover strong {
+      color: #b8860b;
+    }
+
+    .metric-card span {
+      display: block;
+      margin-top: 4px;
+      color: #4f668d;
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.32;
+    }
+
+    /* ── Strategy ────────────── */
+    .strategy {
+      padding-top: clamp(56px, 8vw, 102px);
+      background: linear-gradient(180deg, rgba(242, 248, 255, 0.74), rgba(255, 255, 255, 0.98));
+    }
+
+    .strategy__grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .strategy-card {
+      padding: 16px 14px;
+      scroll-snap-align: start;
+    }
+
+    .strategy-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #1f4473;
+      background: #d6e8ff;
+      border: 1px solid #c0d8f7;
+      transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease;
+    }
+
+    .strategy-card__icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .strategy-card:hover .strategy-card__icon {
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+      color: #14274b;
+      border-color: rgba(255, 194, 77, 0.5);
+    }
+
+    .strategy-card__pill {
+      display: inline-flex;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--navy-700);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+    }
+
+    .strategy-card h3 {
+      margin: 10px 0 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.28rem;
+      line-height: 1.2;
+      color: #173560;
+      text-wrap: balance;
+    }
+
+    .strategy-card p {
+      margin: 8px 0 0;
+      color: #4d6283;
+      font-size: 0.92rem;
+    }
+
+    /* Strategy photo banner */
+    .strategy__photo {
+      margin-top: 20px;
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 280px;
+      border: 1px solid #cde0f7;
+      box-shadow: var(--shadow-mid);
+    }
+
+    .strategy__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 620ms var(--ease);
+    }
+
+    .strategy__photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(8, 20, 44, 0.72) 0%, rgba(16, 39, 78, 0.3) 50%, rgba(8, 21, 46, 0.05) 100%);
+      pointer-events: none;
+    }
+
+    .strategy__photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .strategy__photo-text {
+      position: absolute;
+      left: clamp(18px, 3vw, 32px);
+      bottom: clamp(18px, 3vw, 32px);
+      z-index: 2;
+      max-width: 420px;
+    }
+
+    .strategy__photo-text h3 {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      line-height: 1.1;
+      color: #ffffff;
+      text-wrap: balance;
+    }
+
+    .strategy__photo-text p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.95rem;
+    }
+
+    /* ── Leadership ────────────── */
+    .leadership {
+      padding: clamp(60px, 8vw, 108px) 0;
+    }
+
+    .leadership__grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .leader-card {
+      padding: 16px 14px;
+      scroll-snap-align: start;
+    }
+
+    .leader-card h3 {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.22rem;
+      line-height: 1.2;
+      color: #1b3a66;
+    }
+
+    .leader-card p {
+      margin: 6px 0 0;
+      color: #4c6181;
+      font-size: 0.92rem;
+    }
+
+    .leader-chip {
+      display: inline-flex;
+      margin-top: 10px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #17406e;
+      background: #edf5ff;
+      border: 1px solid #d6e5f8;
+      transition: background-color 260ms ease, border-color 260ms ease, color 260ms ease;
+    }
+
+    .leader-card:hover .leader-chip {
+      background: linear-gradient(135deg, rgba(255, 215, 127, 0.25), rgba(255, 194, 77, 0.15));
+      border-color: rgba(255, 199, 89, 0.4);
+      color: #14274b;
+    }
+
+    .leader-card__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .leader-card__icon {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #1f4473;
+      background: #d6e8ff;
+      border: 1px solid #c0d8f7;
+      transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease;
+    }
+
+    .leader-card__icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .leader-card:hover .leader-card__icon {
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+      color: #14274b;
+      border-color: rgba(255, 194, 77, 0.5);
+    }
+
+    /* ── Donate ────────────── */
+    .donate {
+      position: relative;
+      padding: clamp(58px, 8vw, 96px) 0;
+      background: #ffffff;
+    }
+
+    .donate__grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+      gap: clamp(18px, 3vw, 28px);
+      align-items: start;
+    }
+
+    .donate-copy .title {
+      font-size: clamp(1.8rem, 3.2vw, 2.65rem);
+    }
+
+    .donate-copy .lede {
+      margin-top: 12px;
+    }
+
+    .donate-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .donate-powered {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: #4f6689;
+      font-weight: 700;
+    }
+
+    .donate-embed {
+      min-height: min(74vh, 660px);
+    }
+
+    .donate-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      min-height: min(74vh, 660px);
+      background: transparent;
+    }
+
+    /* ── Hidden scrollbars – scroll without bars ────────────── */
+    .mobile-rail {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .mobile-rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ── Animations ────────────── */
+    @keyframes heroCycle {
+      0% { opacity: 0; transform: scale(1.06); }
+      8% { opacity: 1; }
+      30% { opacity: 1; }
+      42% { opacity: 0; transform: scale(1.11); }
+      100% { opacity: 0; transform: scale(1.11); }
+    }
+
+    @keyframes gradShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(14px, -12px) scale(1.04); }
+    }
+
+    @keyframes goldShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Scroll & Parallax Polish ────────────── */
+    .hero__slides { transition: transform 0s linear; will-change: transform; }
+
+    [data-reveal="left"] {
+      opacity: 0;
+      transform: translate3d(-34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="right"] {
+      opacity: 0;
+      transform: translate3d(34px, 0, 0);
+      transition: transform 720ms var(--ease), opacity 720ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+    [data-reveal="scale"] {
+      opacity: 0;
+      transform: scale(0.93);
+      transition: transform 800ms var(--ease), opacity 700ms ease;
+      transition-delay: calc(var(--reveal-order, 0) * 80ms);
+    }
+
+    .content-photo { border-radius: var(--radius-lg); overflow: hidden; margin: 28px 0; box-shadow: var(--shadow-soft); }
+    .content-photo img { width: 100%; height: auto; display: block; transition: transform 600ms var(--ease); }
+    .content-photo:hover img { transform: scale(1.03); }
+
+    .section-glow {
+      position: relative;
+    }
+    .section-glow::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(139,207,255,0.3) 30%, rgba(255,194,77,0.2) 70%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* ── Responsive: tablets ────────────── */
+    @media (max-width: 1120px) {
+      .who__grid,
+      .mission__layout,
+      .donate__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .strategy__grid,
+      .leadership__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .donate-embed,
+      .donate-embed iframe {
+        min-height: 620px;
+      }
+    }
+
+    /* ── Responsive: small tablets ────────────── */
+    @media (max-width: 900px) {
+      .who__stats {
+        grid-template-columns: 1fr;
+      }
+
+      .strategy__grid,
+      .leadership__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .impact-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ── Responsive: mobile – horizontal scroll rails ────────────── */
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .hero {
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+      /* Stack grids on mobile instead of horizontal scroll */
+      .who__stats {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .strategy__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leadership__grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Only the community photo strip scrolls horizontally */
+      .community-strip__rail {
+        grid-auto-columns: minmax(260px, 84vw);
+      }
+
+      .impact__tabs {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .impact-tab {
+        flex: 1 0 auto;
+        white-space: nowrap;
+      }
+
+      .hero__actions,
+      .donate-actions {
+        flex-direction: column;
+      }
+
+      .hero__actions .btn,
+      .donate-actions .btn {
+        width: 100%;
+      }
+
+      .impact-panel__head {
+        grid-template-columns: 1fr;
+      }
+
+      .who__photo {
+        min-height: 390px;
+      }
+
+      .strategy__photo {
+        min-height: 220px;
+      }
+
+      .donate-embed,
+      .donate-embed iframe {
+        min-height: 560px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mission-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="top" aria-label="Mission hero">
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide hero__slide--1"></div>
+        <div class="hero__slide hero__slide--2"></div>
+        <div class="hero__slide hero__slide--3"></div>
+      </div>
+      <div class="hero__overlay"></div>
+      <div class="hero__halo hero__halo--one"></div>
+      <div class="hero__halo hero__halo--two"></div>
+
+      <div class="hero__inner">
+        <div data-reveal>
+          <p class="hero__mission-badge">Mission First</p>
+          <h1>Remove barriers, <span class="accent">expand opportunity</span>.</h1>
+          <p class="hero__text">
+            We connect community generosity to student success by funding essential needs, educational opportunities,
+            and school-based programs that help every learner in Davis County thrive.
+          </p>
+          <div class="hero__actions">
+            <a href="#mission" class="btn btn--gold">See the Mission</a>
+            <a href="#donate-embed-form" class="btn btn--ghost">Donate Today</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Section navigation">
+      <nav class="quick-nav">
+        <a href="#who-we-are">Who We Are</a>
+        <a href="#mission">Mission</a>
+        <a href="#impact">Impact</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#donate-embed">Donate</a>
+      </nav>
+    </div>
+
+    <!-- ═══ WHO WE ARE ═══ -->
+    <section class="section who" id="who-we-are" aria-label="Who we are">
+      <div class="shell who__grid">
+        <figure class="who__photo" data-reveal="left" style="--reveal-order:0;">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209360/e9d67b46-92a4-45d6-9afe-58399cf3ad53.png" alt="Community members supporting students">
+          <figcaption class="who__photo-caption">Serving Davis County students with purpose since 1982.</figcaption>
+        </figure>
+
+        <div data-reveal style="--reveal-order:1;">
+          <p class="kicker">Who We Are</p>
+          <h2 class="title">The philanthropic partner of Davis School District.</h2>
+          <div class="section-divider" aria-hidden="true"></div>
+          <p class="lede">
+            The Davis Education Foundation exists to bridge the gap between what schools can fund and what students need.
+            We work alongside educators, families, and community partners to create access, equity, and opportunity.
+          </p>
+
+          <div class="who__stats mobile-rail">
+            <article class="card stat-card">
+              <strong>1982</strong>
+              <span>Founded and serving students</span>
+            </article>
+            <article class="card stat-card">
+              <strong>92</strong>
+              <span>Schools supported across the district</span>
+            </article>
+            <article class="card stat-card">
+              <strong>72,000+</strong>
+              <span>Students reached each year</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MISSION ═══ -->
+    <section class="section mission" id="mission" aria-label="Mission, vision, and values">
+      <div class="shell" data-reveal>
+        <p class="kicker">Mission First</p>
+        <h2 class="title">Everything starts with student-centered purpose.</h2>
+        <div class="section-divider section-divider--short" aria-hidden="true"></div>
+        <p class="lede" style="font-size:clamp(1.05rem,1.5vw,1.22rem); font-weight:600; color:#1b3a66; max-width:72ch;">
+          Our mission is to remove barriers to learning, provide educational opportunities for every student, and create partnerships that connect the community through giving.
+        </p>
+      </div>
+
+      <div class="shell mission__layout">
+        <article class="card mission__main" data-reveal style="--reveal-order:1;">
+          <p class="kicker">Mission</p>
+          <h2 class="title">Remove barriers to learning and expand educational opportunity.</h2>
+          <p class="lede">
+            We invest in direct student support, classroom innovation, and community partnerships so every child can
+            access the tools, stability, and encouragement they need to succeed.
+          </p>
+          <ul class="mission__chips" aria-label="Mission pillars">
+            <li>Access</li>
+            <li>Equity</li>
+            <li>Partnership</li>
+            <li>Student Wellbeing</li>
+          </ul>
+        </article>
+
+        <div class="mission__side mobile-rail" data-reveal style="--reveal-order:2;">
+          <article class="card mini-card">
+            <h3>Vision</h3>
+            <p>To be Davis County&rsquo;s trusted bridge between community generosity and measurable student success.</p>
+          </article>
+          <article class="card mini-card">
+            <h3>Values</h3>
+            <p>Transparency, stewardship, collaboration, and clear outcomes for students and classrooms.</p>
+          </article>
+          <article class="card mini-card">
+            <h3>How We Work</h3>
+            <p>Every dollar is directed with discipline, accountability, and visible impact in schools and student lives.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ IMPACT ═══ -->
+    <section class="section impact" id="impact" aria-label="Impact outcomes">
+      <div class="shell" data-reveal>
+        <p class="kicker">Impact</p>
+        <h2 class="title">Mission in action, with measurable outcomes.</h2>
+        <div class="section-divider section-divider--short" aria-hidden="true"></div>
+      </div>
+
+      <div class="shell">
+        <div class="impact__tabs" role="tablist" aria-label="Impact period">
+          <button class="impact-tab is-active" type="button" role="tab" aria-selected="true" data-impact-tab="year">Last School Year</button>
+          <button class="impact-tab" type="button" role="tab" aria-selected="false" data-impact-tab="since">Since 2012</button>
+        </div>
+
+        <div class="card impact__panel-wrap" data-reveal style="--reveal-order:1;">
+          <article class="impact-panel is-active" data-impact-panel="year">
+            <div class="impact-panel__head">
+              <h3 class="impact-panel__title">Annual impact highlights for the most recent school year.</h3>
+              <span class="impact-panel__badge">2024-25 School Year</span>
+            </div>
+            <p class="impact-panel__total impact-count" data-count-up data-target="9263782" data-prefix="$" data-format="integer" data-duration="1900">$0</p>
+            <p class="impact-panel__desc">Invested in students and classrooms through direct support, scholarships, grants, and community programs.</p>
+
+            <div class="impact-metrics mobile-rail">
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="15690" data-format="integer" data-duration="1600">0</strong>
+                <span>At-risk students served</span>
+              </article>
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="422" data-format="integer" data-duration="1500">0</strong>
+                <span>Classroom grants awarded</span>
+              </article>
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="4236" data-format="integer" data-duration="1500">0</strong>
+                <span>Volunteers who showed up</span>
+              </article>
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="1200000" data-prefix="$" data-format="integer" data-duration="1700">$0</strong>
+                <span>Family and student assistance</span>
+              </article>
+            </div>
+          </article>
+
+          <article class="impact-panel" data-impact-panel="since">
+            <div class="impact-panel__head">
+              <h3 class="impact-panel__title">A decade of growth powered by community generosity.</h3>
+              <span class="impact-panel__badge">Since 2012</span>
+            </div>
+            <p class="impact-panel__total impact-count" data-count-up data-target="64335775" data-prefix="$" data-format="integer" data-duration="2200">$0</p>
+            <p class="impact-panel__desc">Every investment helps remove barriers, strengthen schools, and open long-term opportunity for students.</p>
+
+            <div class="impact-metrics mobile-rail">
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="1.1" data-prefix="$" data-suffix="M" data-format="decimal" data-decimals="1" data-duration="1700">$0.0M</strong>
+                <span>Scholarships awarded</span>
+              </article>
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="11" data-prefix="$" data-suffix="M" data-format="integer" data-duration="1700">$0M</strong>
+                <span>Teen centers supported</span>
+              </article>
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="1" data-suffix="M+" data-format="integer" data-duration="1700">0M+</strong>
+                <span>Pantry packs distributed</span>
+              </article>
+              <article class="card metric-card">
+                <strong class="impact-count" data-count-up data-target="10.5" data-suffix="x" data-format="decimal" data-decimals="1" data-duration="1700">0.0x</strong>
+                <span>Funding growth since 2011</span>
+              </article>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COMMUNITY PHOTO STRIP ═══ -->
+    <div class="community-strip" data-reveal aria-label="Community in action">
+      <div class="community-strip__rail mobile-rail">
+        <article class="community-strip__item">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209363/124cca09-27e5-441f-a8e4-c1b94c4e46a1.png" alt="Students engaged in classroom activity">
+          <p>Students thriving in supported classrooms.</p>
+        </article>
+        <article class="community-strip__item">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209364/4fa6b00a-a7c9-4925-b3f7-52dc2686f279.png" alt="Community volunteers in schools">
+          <p>Volunteers making a difference every day.</p>
+        </article>
+        <article class="community-strip__item">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209361/58937ae9-f9bf-4d60-9784-26b4ddd07642.png" alt="Students celebrating achievement">
+          <p>Celebrating milestones across the district.</p>
+        </article>
+        <article class="community-strip__item">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209357/ee82643d-c66e-4d20-9e03-1bba9618e894.png" alt="Community partnership event">
+          <p>Community partnerships that drive impact.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ═══ STRATEGY ═══ -->
+    <section class="section strategy section-glow" id="strategy" aria-label="Strategic goals">
+      <div class="shell">
+        <p class="kicker" data-reveal>Strategy</p>
+        <h2 class="title" data-reveal style="--reveal-order:1;">How we deliver on the mission.</h2>
+        <div class="section-divider section-divider--short" data-reveal style="--reveal-order:2;" aria-hidden="true"></div>
+        <p class="lede" data-reveal style="--reveal-order:3;">
+          We run a connected strategy that supports academics, wellbeing, recognition, and long-term community engagement.
+        </p>
+
+        <div class="strategy__grid mobile-rail">
+          <article class="card strategy-card" data-reveal style="--reveal-order:0;">
+            <div class="strategy-card__icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Build Collaborative Partnerships</h3>
+            <p>Develop partnerships with businesses, agencies, families, and community members that improve student outcomes.</p>
+            <span class="strategy-card__pill">Community Partners</span>
+          </article>
+          <article class="card strategy-card" data-reveal style="--reveal-order:1;">
+            <div class="strategy-card__icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <h3>Expand Educational Opportunities</h3>
+            <p>Provide experiences, equipment, and resources across literacy, math, science, the arts, and technology.</p>
+            <span class="strategy-card__pill">Enrichment & Learning</span>
+          </article>
+          <article class="card strategy-card" data-reveal style="--reveal-order:2;">
+            <div class="strategy-card__icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <h3>Recognize Excellence</h3>
+            <p>Honor students, faculty, and staff through scholarships, grants, and awards that celebrate achievement.</p>
+            <span class="strategy-card__pill">Awards & Scholarships</span>
+          </article>
+          <article class="card strategy-card" data-reveal style="--reveal-order:3;">
+            <div class="strategy-card__icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <h3>Support Student Wellbeing</h3>
+            <p>Provide essentials such as food, clothing, and supplies so students can fully participate in learning.</p>
+            <span class="strategy-card__pill">Student Supports</span>
+          </article>
+          <article class="card strategy-card" data-reveal style="--reveal-order:4;">
+            <div class="strategy-card__icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+            <h3>Responsible Stewardship</h3>
+            <p>Manage and allocate resources with integrity, aligning every dollar with donor intent and student need.</p>
+            <span class="strategy-card__pill">Financial Integrity</span>
+          </article>
+          <article class="card strategy-card" data-reveal style="--reveal-order:5;">
+            <div class="strategy-card__icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+            <h3>Increase Awareness</h3>
+            <p>Strengthen outreach and storytelling to grow engagement and fundraising throughout Davis County.</p>
+            <span class="strategy-card__pill">Outreach & Engagement</span>
+          </article>
+        </div>
+
+        <!-- Strategy photo banner -->
+        <figure class="strategy__photo" data-reveal="scale" style="--reveal-order:2;">
+          <img src="https://cmsv2-assets.apptegy.net/uploads/23895/file/5209358/48bb67ed-dc13-405d-8522-3bdb210b7ea1.png" alt="Strategy in action across Davis County schools">
+          <div class="strategy__photo-text">
+            <h3>Strategy shaped by the needs of students.</h3>
+            <p>Every initiative is designed to create direct, measurable impact in classrooms and communities.</p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══ LEADERSHIP ═══ -->
+    <section class="section leadership section-glow" id="leadership" aria-label="Leadership">
+      <div class="shell">
+        <p class="kicker" data-reveal>Leadership</p>
+        <h2 class="title" data-reveal style="--reveal-order:1;">Led by those who care most.</h2>
+        <div class="section-divider section-divider--short" data-reveal style="--reveal-order:2;" aria-hidden="true"></div>
+        <p class="lede" data-reveal style="--reveal-order:3;">
+          Our volunteer Board of Directors includes business leaders, community partners, engaged parents,
+          and district administrators united by a commitment to student success.
+        </p>
+
+        <div class="leadership__grid mobile-rail">
+          <article class="card leader-card" data-reveal style="--reveal-order:0;">
+            <div class="leader-card__head">
+              <span class="leader-card__icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+              <h3>Business Leaders</h3>
+            </div>
+            <p>Bringing strategic expertise and sustainable support.</p>
+            <span class="leader-chip">Governance</span>
+          </article>
+          <article class="card leader-card" data-reveal style="--reveal-order:1;">
+            <div class="leader-card__head">
+              <span class="leader-card__icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+              <h3>Community Partners</h3>
+            </div>
+            <p>Connecting local generosity to student outcomes.</p>
+            <span class="leader-chip">Partnership</span>
+          </article>
+          <article class="card leader-card" data-reveal style="--reveal-order:2;">
+            <div class="leader-card__head">
+              <span class="leader-card__icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+              <h3>Engaged Parents</h3>
+            </div>
+            <p>Representing student and family needs with clarity.</p>
+            <span class="leader-chip">Advocacy</span>
+          </article>
+          <article class="card leader-card" data-reveal style="--reveal-order:3;">
+            <div class="leader-card__head">
+              <span class="leader-card__icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+              <h3>District Administration</h3>
+            </div>
+            <p>Aligning resources with educational priorities.</p>
+            <span class="leader-chip">Alignment</span>
+          </article>
+          <article class="card leader-card" data-reveal style="--reveal-order:4;">
+            <div class="leader-card__head">
+              <span class="leader-card__icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span>
+              <h3>Education Advocates</h3>
+            </div>
+            <p>Championing access, equity, and excellence.</p>
+            <span class="leader-chip">Student Focus</span>
+          </article>
+          <article class="card leader-card" data-reveal style="--reveal-order:5;">
+            <div class="leader-card__head">
+              <span class="leader-card__icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+              <h3>Executive Director</h3>
+            </div>
+            <p>Guiding daily execution of mission and strategy.</p>
+            <span class="leader-chip">Leadership</span>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ DONATE ═══ -->
+    <section class="donate" id="donate-embed" aria-label="Donation and call to action">
+      <div class="shell">
+        <div data-reveal>
+          <p class="kicker">Donate</p>
+          <h2 class="title">Every gift changes a student&rsquo;s trajectory.</h2>
+          <div class="section-divider section-divider--short" aria-hidden="true"></div>
+        </div>
+
+        <div class="donate__grid" data-reveal style="--reveal-order:1;">
+          <div class="donate-copy">
+            <h3 class="title">Give students the support they deserve.</h3>
+            <p class="lede">
+              Every gift, partnership, and act of generosity helps students access the resources and opportunities they need
+              to succeed in school and in life.
+            </p>
+            <div class="donate-actions">
+              <a href="give-ways-to-give.html" class="btn btn--gold">Get Involved</a>
+              <a href="#donate-embed-form" class="btn btn--navy">Give Now</a>
+            </div>
+            <p class="donate-powered">Powered by Bloomerang &bull; secure online giving</p>
+          </div>
+
+          <aside class="donate-embed" id="donate-embed-form" aria-label="Donation form">
+            <iframe src="https://secure.qgiv.com/for/daviseducationfoundation/embed/88371/" title="Donate to Davis Education Foundation" loading="lazy" allow="payment; fullscreen"></iframe>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) {
+        revealItems.forEach(function (el) { el.classList.add("is-in"); });
+        return;
+      }
+
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+
+      revealItems.forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count-up]"));
+      if (!counters.length) return;
+
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function formatValue(value, decimals) {
+        return Number(value).toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+
+      function setDisplay(el, value) {
+        var prefix = el.getAttribute("data-prefix") || "";
+        var suffix = el.getAttribute("data-suffix") || "";
+        var mode = el.getAttribute("data-format") || "integer";
+        var decimals = parseInt(el.getAttribute("data-decimals"), 10);
+        if (isNaN(decimals)) decimals = mode === "decimal" ? 1 : 0;
+
+        var rendered = mode === "decimal"
+          ? formatValue(value, decimals)
+          : formatValue(Math.round(value), 0);
+
+        el.textContent = prefix + rendered + suffix;
+      }
+
+      function animateCounter(el) {
+        if (el.getAttribute("data-counted") === "true") return;
+        el.setAttribute("data-counted", "true");
+
+        var target = parseFloat(el.getAttribute("data-target"));
+        if (!isFinite(target)) return;
+
+        var duration = parseInt(el.getAttribute("data-duration"), 10);
+        if (!isFinite(duration) || duration < 300) duration = 1700;
+
+        var startTime = null;
+
+        function tick(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          setDisplay(el, target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      if (reduced || !("IntersectionObserver" in window)) {
+        counters.forEach(function (el) {
+          var target = parseFloat(el.getAttribute("data-target"));
+          if (isFinite(target)) setDisplay(el, target);
+        });
+        window.__animateCountersIn = function () {};
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.2 });
+
+      function observeScope(scope) {
+        var els = Array.prototype.slice.call(scope.querySelectorAll("[data-count-up]"));
+        els.forEach(function (el) {
+          observer.observe(el);
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+            animateCounter(el);
+          }
+        });
+      }
+
+      observeScope(document);
+      window.__animateCountersIn = observeScope;
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var tabButtons = Array.prototype.slice.call(document.querySelectorAll("[data-impact-tab]"));
+      var panels = Array.prototype.slice.call(document.querySelectorAll("[data-impact-panel]"));
+      if (!tabButtons.length || !panels.length) return;
+
+      function activate(id) {
+        tabButtons.forEach(function (btn) {
+          var isActive = btn.getAttribute("data-impact-tab") === id;
+          btn.classList.toggle("is-active", isActive);
+          btn.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach(function (panel) {
+          var isActive = panel.getAttribute("data-impact-panel") === id;
+          panel.classList.toggle("is-active", isActive);
+          if (isActive && window.__animateCountersIn) {
+            window.__animateCountersIn(panel);
+          }
+        });
+      }
+
+      tabButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activate(btn.getAttribute("data-impact-tab"));
+        });
+      });
+
+      activate("year");
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+
+      var sections = navLinks
+        .map(function (link) {
+          var target = link.getAttribute("href");
+          if (!target || target.charAt(0) !== "#") return null;
+          return document.querySelector(target);
+        })
+        .filter(Boolean);
+
+      function setActive(id) {
+        navLinks.forEach(function (link) {
+          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+        });
+      }
+
+      var sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.01 });
+
+      sections.forEach(function (section) {
+        sectionObserver.observe(section);
+      });
+    })();
+  </script>
+
+  <!-- Parallax & scroll polish -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      /* Hero parallax */
+      var heroSlides = document.querySelector(".hero__slides");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".hero__halo"));
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var target = heroSlides || detailBg;
+
+      if (target) {
+        var heroH = target.closest("section").offsetHeight || 700;
+        var ticking = false;
+        window.addEventListener("scroll", function () {
+          if (!ticking) {
+            requestAnimationFrame(function () {
+              var y = window.pageYOffset;
+              if (y < heroH * 1.2) {
+                var shift = y * 0.22;
+                target.style.transform = "translate3d(0," + shift + "px,0)";
+                /* Halos drift at a different rate for depth */
+                heroHalos.forEach(function (h, i) {
+                  var rate = i === 0 ? 0.12 : 0.18;
+                  h.style.transform = "translate(0," + (y * rate) + "px) scale(1)";
+                });
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>

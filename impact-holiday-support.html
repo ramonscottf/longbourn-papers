@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holiday Support – Davis Education Foundation</title>
+  <meta name="description" content="A look back at the 2024 holiday season: community partners, generous donors, and thousands of students served through Elves and the Shoemaker, Sub for Santa, Child Spree, the Giving Machines, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-950: #0b1b3c; --navy-900: #122a57; --navy-700: #24508f;
+      --sky-300: #8bcfff;
+      --gold-300: #ffd77f; --gold-400: #ffc24d; --gold-500: #f5a623;
+      --ink-900: #172848; --ink-700: #415676; --ink-500: #6d80a0;
+      --paper-50: #f8fbff; --paper-100: #eff6ff; --paper-150: #e9f2ff; --paper-200: #dbe8fa;
+      --white: #ffffff;
+      --holly: #c41e3a; --evergreen: #1a5632;
+      --radius-sm: 14px; --radius-md: 20px; --radius-lg: 30px; --radius-xl: 40px;
+      --shadow-soft: 0 14px 34px rgba(12, 28, 62, 0.1);
+      --shadow-mid: 0 22px 54px rgba(10, 24, 54, 0.18);
+      --shadow-gold: 0 16px 40px rgba(255, 194, 77, 0.2), 0 6px 16px rgba(14, 36, 70, 0.1);
+      --max-width: 1160px;
+      --pad-inline: clamp(16px, 3vw, 36px);
+      --section-space: clamp(58px, 8vw, 108px);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      background: var(--paper-50);
+      color: var(--ink-700);
+      line-height: 1.62;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    .shell { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad-inline); }
+    .section { padding: var(--section-space) 0; }
+
+    .kicker { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin-bottom: 8px; }
+    .title { font-family: "Fraunces", "Times New Roman", serif !important; font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; color: var(--ink-900); text-wrap: balance; }
+    .lede { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-700); max-width: 64ch; line-height: 1.72; }
+    .accent { background: linear-gradient(90deg, var(--gold-400), #fff, var(--gold-300), var(--gold-400)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: goldShimmer 4s ease-in-out infinite; }
+
+    /* ── Quick Nav (iOS pill) ────────────── */
+    .quick-nav-wrap {
+      position: relative;
+      top: 12px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-top: -24px;
+      padding: 0 var(--pad-inline);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 4px;
+      justify-content: center;
+      background: #ffffff;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(219, 232, 250, 0.6);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow: 0 8px 28px rgba(11, 27, 60, 0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .quick-nav a,
+    .quick-nav a:link,
+    .quick-nav a:visited,
+    .quick-nav a:any-link {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #415676;
+      text-decoration: none;
+      background: transparent;
+      transition: background 220ms ease, color 220ms ease;
+      display: inline-block;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover,
+    .quick-nav a.is-active,
+    .quick-nav a:visited:hover,
+    .quick-nav a:visited.is-active,
+    .quick-nav a:any-link:hover,
+    .quick-nav a:any-link.is-active {
+      background: var(--gold-500, #FFC958);
+      color: var(--navy-950, #0b1b3c);
+    }
+
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-family: inherit; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: transform 340ms var(--ease), box-shadow 340ms var(--ease), background 260ms ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--gold { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); box-shadow: var(--shadow-gold); }
+    .btn--gold:hover { box-shadow: 0 20px 48px rgba(255, 194, 77, 0.3), 0 8px 20px rgba(14, 36, 70, 0.12); }
+    .btn--navy { background: var(--navy-900); color: #fff; box-shadow: var(--shadow-soft); }
+    a.btn--navy, .btn--navy:link, .btn--navy:visited { color: #fff; }
+    .btn--navy:hover { background: var(--navy-700); box-shadow: var(--shadow-mid); color: #fff; }
+    .btn--ghost { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1.5px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(6px); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.45); }
+    .btn--outline { background: transparent; color: var(--navy-700); border: 1.5px solid var(--paper-200); }
+    .btn--outline:hover { background: var(--paper-100); }
+    .btn--sm { padding: 10px 22px; font-size: 0.875rem; }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); transition-delay: calc(var(--reveal-order, 0) * 110ms); }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+
+    .card { position: relative; border-radius: var(--radius-md); border: 1px solid #cfe0f6; background: linear-gradient(160deg, var(--paper-100) 0%, var(--paper-150) 100%); padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease); }
+    .card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; background: linear-gradient(125deg, var(--gold-400), var(--gold-300), #6fb2ff, var(--gold-300), var(--gold-400)); background-size: 300% 300%; opacity: 0; transition: opacity 320ms ease; pointer-events: none; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 127, 0.12), transparent 70%); opacity: 0; transition: opacity 320ms ease; pointer-events: none; z-index: 0; }
+    .card > * { position: relative; z-index: 1; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); border-color: rgba(255, 199, 89, 0.35); }
+    .card:hover::before { opacity: 1; animation: gradShift 3s linear infinite; }
+    .card:hover::after { opacity: 1; }
+    /* ── Detail Hero ────────────── */
+    .detail-hero {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 72px);
+      background: linear-gradient(170deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-700) 100%);
+      overflow: hidden;
+    }
+    .detail-hero::after {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px; opacity: 0.5; pointer-events: none;
+    }
+    .detail-hero__halo { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; animation: drift 16s ease-in-out infinite; }
+    .detail-hero__halo--one { width: 360px; height: 360px; top: -15%; right: -5%; background: radial-gradient(circle, rgba(255, 194, 77, 0.14), transparent 70%); }
+    .detail-hero__halo--two { width: 280px; height: 280px; bottom: -10%; left: 8%; background: radial-gradient(circle, rgba(139, 207, 255, 0.1), transparent 70%); animation-delay: -8s; }
+    .detail-hero__inner { position: relative; z-index: 2; }
+    .detail-hero .breadcrumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); margin-bottom: 16px; }
+    .detail-hero .breadcrumb a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 200ms ease; }
+    .detail-hero .breadcrumb a:hover { color: var(--gold-400); }
+    .detail-hero .breadcrumb span { color: rgba(255, 255, 255, 0.4); margin: 0 6px; }
+    .detail-hero .kicker { color: var(--gold-400); }
+    .detail-hero .title { color: #ffffff; max-width: 20ch; }
+    .detail-hero .lede { color: rgba(255, 255, 255, 0.85); max-width: 54ch; margin-top: 12px; }
+    .detail-hero__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .detail-hero__bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.12; z-index: 1; }
+
+    /* ── Content Grid ────────────── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.38fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .content-grid > aside { align-self: stretch; }
+    .content-main h2 { font-family: "Fraunces", "Times New Roman", serif; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.18; color: var(--ink-900); margin-bottom: 12px; }
+    .content-main h3 { font-family: "Fraunces", "Times New Roman", serif; font-size: 1.15rem; color: var(--ink-900); margin: 28px 0 8px; }
+    .content-main p { margin-bottom: 14px; }
+    .content-main ul { margin: 8px 0 18px 0; list-style: none; }
+    .content-main ul li { position: relative; padding: 8px 0 8px 22px; border-bottom: 1px solid var(--paper-200); line-height: 1.65; }
+    .content-main ul li:last-child { border-bottom: 0; }
+    .content-main ul li::before { content: ""; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); }
+
+    /* ── Sidebar ────────────── */
+    .sidebar-card { position: sticky; top: 80px; }
+    .sidebar-card h3 { font-family: "Fraunces", "Times New Roman", serif; font-size: 1.1rem; color: var(--ink-900); margin-bottom: 10px; }
+    .sidebar-card p { font-size: 0.92rem; color: var(--ink-700); line-height: 1.65; margin-bottom: 16px; }
+    .sidebar-card .btn { width: 100%; margin-bottom: 10px; }
+    .sidebar-divider { margin: 18px 0; border: 0; border-top: 1px solid var(--paper-200); }
+    .sidebar-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-500); margin-bottom: 10px; display: block; }
+
+    .content-photo { border-radius: var(--radius-lg); overflow: hidden; margin: 28px 0; box-shadow: var(--shadow-soft); }
+    .content-photo img { width: 100%; height: auto; display: block; transition: transform 600ms var(--ease); }
+    .content-photo:hover img { transform: scale(1.03); }
+
+    /* ── Stats Banner ────────────── */
+    .stats-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(36, 80, 143, 0.38) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(196, 30, 58, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(26, 86, 50, 0.05) 0%, transparent 50%),
+        var(--navy-950);
+      background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 18s ease-in-out infinite;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(40px, 5vw, 60px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+    .stats-banner::after {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px; opacity: 0.5; pointer-events: none;
+      animation: dotDrift 24s linear infinite;
+    }
+    .stats-banner > * { position: relative; z-index: 1; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 28px 16px;
+      margin-top: 20px;
+    }
+    .stat-item { text-align: center; }
+    .stat-item__number {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-item__label {
+      font-size: 0.8rem; font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px; letter-spacing: 0.02em;
+    }
+
+    /* ── Christmas Story ────────────── */
+    .christmas-story {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 85% 10%, rgba(196, 30, 58, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 15% 90%, rgba(26, 86, 50, 0.04) 0%, transparent 50%),
+        linear-gradient(170deg, #fdfaf5 0%, #fef7ed 40%, #fdf5e8 100%);
+      border: 1px solid #ecdcc4;
+      border-radius: var(--radius-lg);
+      padding: clamp(32px, 5vw, 52px);
+      margin: 36px 0;
+      overflow: hidden;
+    }
+    .christmas-story::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(196, 30, 58, 0.06) 3px, transparent 3px),
+        radial-gradient(circle at 88% 15%, rgba(26, 86, 50, 0.06) 2px, transparent 2px),
+        radial-gradient(circle at 5% 85%, rgba(26, 86, 50, 0.05) 2px, transparent 2px),
+        radial-gradient(circle at 92% 78%, rgba(196, 30, 58, 0.05) 3px, transparent 3px),
+        radial-gradient(circle at 50% 5%, rgba(245, 166, 35, 0.06) 2px, transparent 2px);
+      pointer-events: none;
+    }
+    .christmas-story > * { position: relative; z-index: 1; }
+    .christmas-story__icon {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .christmas-story__icon svg { width: 22px; height: 22px; stroke: var(--holly); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .christmas-story__kicker {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--holly);
+    }
+    .christmas-story__text {
+      font-size: 1.02rem; line-height: 1.82; color: var(--ink-700);
+      margin-bottom: 14px;
+    }
+    .christmas-story__text em { font-style: italic; color: var(--ink-900); }
+    .christmas-story__divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 22px 0; color: rgba(196, 30, 58, 0.2);
+    }
+    .christmas-story__divider::before,
+    .christmas-story__divider::after {
+      content: ""; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.15), transparent);
+    }
+    .christmas-story__divider svg { width: 16px; height: 16px; stroke: var(--holly); fill: none; stroke-width: 1.6; opacity: 0.4; flex-shrink: 0; }
+    .christmas-story__attribution {
+      font-size: 0.88rem; font-weight: 700; color: var(--ink-900);
+    }
+    .christmas-story__attribution span { font-weight: 500; color: var(--ink-500); }
+
+    /* ── Photo Gallery Cards ───── */
+    .photo-strip-wrap {
+      margin: 28px 0;
+      border-radius: var(--radius-md);
+    }
+    .photo-strip-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-500); margin-bottom: 10px; display: block;
+    }
+    .photo-strip {
+      display: flex; gap: 16px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 6px 2px 10px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .photo-strip::-webkit-scrollbar { display: none; }
+    .photo-strip__item {
+      flex: 0 0 calc((100% - 32px) / 3);
+      min-width: 240px;
+      scroll-snap-align: start;
+      border-radius: 16px;
+      background: var(--white);
+      border: 1px solid var(--paper-200);
+      box-shadow: 0 2px 8px rgba(12, 28, 62, 0.07);
+      overflow: hidden;
+      transition: transform 320ms var(--ease), box-shadow 320ms var(--ease);
+    }
+    .photo-strip__item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(12, 28, 62, 0.12); }
+    .photo-strip__item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .photo-strip__caption {
+      padding: 10px 14px 12px;
+      font-size: 0.82rem; line-height: 1.5;
+      color: var(--ink-700);
+    }
+
+    /* ── Highlight list with holly bullets ── */
+    .holly-list { margin: 8px 0 18px 0; list-style: none; }
+    .holly-list li { position: relative; padding: 10px 0 10px 28px; border-bottom: 1px solid var(--paper-200); line-height: 1.65; }
+    .holly-list li:last-child { border-bottom: 0; }
+    .holly-list li::before {
+      content: ""; position: absolute; left: 0; top: 18px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--evergreen), #2d8a56);
+    }
+    .holly-list li strong { color: var(--ink-900); }
+
+    /* ── Generosity List ────────────── */
+    .generosity-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px 20px;
+      list-style: none; margin: 24px 0 28px; padding: 0;
+    }
+    .generosity-grid li {
+      text-align: center; padding: 0; border: none;
+      background: none;
+    }
+    .generosity-grid li::before { display: none; }
+    .generosity-grid__amount {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--evergreen);
+      line-height: 1.1;
+      text-shadow:
+        0 0 18px rgba(26, 86, 50, 0.3),
+        0 0 40px rgba(196, 30, 58, 0.1);
+      margin-bottom: 6px;
+    }
+    .generosity-grid__desc {
+      font-size: 0.78rem; line-height: 1.45;
+      color: var(--ink-500);
+    }
+    .generosity-grid__desc strong {
+      display: block; color: var(--ink-900);
+      font-size: 0.82rem; margin-bottom: 1px;
+    }
+    @media (max-width: 600px) {
+      .generosity-grid { grid-template-columns: repeat(2, 1fr); gap: 22px 16px; }
+    }
+
+    /* ── Month header ────────────── */
+    .month-header {
+      display: flex; align-items: center; gap: 14px;
+      margin: 36px 0 16px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--paper-200);
+    }
+    .month-header__icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .month-header__icon svg { width: 20px; height: 20px; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .month-header h2 { margin-bottom: 0; }
+
+    /* ── CTA Banner ────────────── */
+    .cta-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(36, 80, 143, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255, 194, 77, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900));
+      background-size: 200% 200%, 200% 200%, 100% 100%;
+      animation: meshDrift 22s ease-in-out infinite reverse;
+      border-radius: var(--radius-xl);
+      margin: 0 var(--pad-inline);
+      padding: clamp(48px, 6vw, 72px) clamp(28px, 5vw, 56px);
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before { content: ""; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 194, 77, 0.12), transparent 70%); filter: blur(60px); pointer-events: none; }
+    .cta-banner .kicker { color: var(--gold-400); }
+    .cta-banner .title { color: #ffffff; font-size: clamp(1.8rem, 3.2vw, 2.6rem); max-width: 22ch; margin: 0 auto; }
+    .cta-banner .lede { color: rgba(255, 255, 255, 0.82); max-width: 48ch; margin: 12px auto 0; text-align: center; }
+    .cta-banner__actions { margin-top: 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* ── Animations ────────────── */
+    [data-reveal="left"] { opacity: 0; transform: translate3d(-34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="right"] { opacity: 0; transform: translate3d(34px, 0, 0); transition: transform 720ms var(--ease), opacity 720ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.93); transition: transform 800ms var(--ease), opacity 700ms ease; transition-delay: calc(var(--reveal-order, 0) * 80ms); }
+
+    @keyframes goldShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes meshDrift { 0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } 33% { background-position: 100% 50%, 0% 50%, 100% 0%, 0% 0%; } 66% { background-position: 50% 100%, 50% 0%, 0% 100%, 0% 0%; } 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; } }
+    @keyframes dotDrift { 0% { background-position: 0 0; } 100% { background-position: 28px 28px; } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -12px) scale(1.04); } }
+
+    /* ── Responsive ────────────── */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: minmax(0, 1fr); }
+      .content-main { min-width: 0; overflow: hidden; }
+      .sidebar-card { position: static; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .photo-strip__item { flex: 0 0 78%; min-width: 200px; }
+    }
+    @media (max-width: 760px) {
+      .quick-nav-wrap { justify-content: flex-start; }
+      .quick-nav { justify-content: flex-start; border-radius: 22px; padding: 4px 5px; gap: 3px; }
+      .quick-nav::-webkit-scrollbar { display: none; }
+      .quick-nav a { padding: 7px 14px; font-size: 0.78rem; flex-shrink: 0; }
+
+      .detail-hero__actions { flex-direction: column; }
+      .detail-hero__actions .btn { width: 100%; }
+      .cta-banner { border-radius: 24px; margin: 0 12px; }
+      .stats-banner { border-radius: 24px; margin: 0 12px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="detail-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="detail-hero" aria-label="Holiday Support hero">
+      <div class="detail-hero__bg" style="background-image: url('https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/dab108be-e178-446c-89c0-6312dec40036/holiday-support-kids-presents-001.JPG?disposition=inline');"></div>
+      <div class="detail-hero__halo detail-hero__halo--one"></div>
+      <div class="detail-hero__halo detail-hero__halo--two"></div>
+      <div class="shell detail-hero__inner">
+        <div data-reveal>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/o/def/page/impact">Impact</a>
+            <span>&rsaquo;</span>
+            <a href="/o/def/page/impact-student-supports">Student Supports</a>
+            <span>&rsaquo;</span>
+            Holiday Support
+          </nav>
+          <p class="kicker">Holiday Season 2024</p>
+          <h1 class="title">Thank you for an <span class="accent">incredible</span> holiday season.</h1>
+          <p class="lede">
+            Because of our community, thousands of Davis County students and families were supported through the holidays. Here is a look back at what your generosity made possible.
+          </p>
+          <div class="detail-hero__actions">
+            <a href="/o/def/page/give" class="btn btn--gold">Support the Foundation</a>
+            <a href="#story" class="btn btn--ghost">Read the Story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUICK NAV ═══ -->
+    <div class="quick-nav-wrap" aria-label="Page navigation">
+      <nav class="quick-nav">
+        <a href="#numbers">By the Numbers</a>
+        <a href="#november">November</a>
+        <a href="#december">December</a>
+        <a href="#elves">Elves &amp; Shoemaker</a>
+        <a href="#story">The Story</a>
+      </nav>
+    </div>
+
+    <!-- ═══ STATS BANNER ═══ -->
+    <section class="section" id="numbers" aria-label="Season by the numbers" style="padding-bottom: 0;">
+      <div class="stats-banner" data-reveal>
+        <p class="kicker" style="color: var(--gold-400);">Holiday Season by the Numbers</p>
+        <h2 style="font-family: 'Fraunces', serif; color: #fff; font-size: clamp(1.5rem, 2.8vw, 2.2rem); margin-bottom: 4px;">
+          Community Generosity, Student Impact
+        </h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-item__number">551</div>
+            <div class="stat-item__label">Jr. High Spree Students Served</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">746</div>
+            <div class="stat-item__label">Stockings Donated</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">7</div>
+            <div class="stat-item__label">Elves &amp; Shoemaker Events</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">62</div>
+            <div class="stat-item__label">Innovative Grants Awarded</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">300</div>
+            <div class="stat-item__label">Holiday Hams Delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">$100K</div>
+            <div class="stat-item__label">New Books from Deseret Book</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <section class="section" aria-label="Holiday season recap">
+      <div class="shell">
+        <div class="content-grid">
+          <div class="content-main">
+
+            <!-- ── NOVEMBER ── -->
+            <div data-reveal id="november">
+              <div class="month-header">
+                <div class="month-header__icon" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">
+                  <svg viewBox="0 0 24 24" stroke="var(--ink-900)"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                </div>
+                <h2>November</h2>
+              </div>
+
+              <p>
+                The holiday season kicked off with community partnerships, STEM education, and new opportunities for educators and students alike.
+              </p>
+
+              <h3>STEM Expo &amp; Community Partnerships</h3>
+              <ul>
+                <li>Sponsored the <strong>Northern Utah STEM Expo</strong> with community partner <strong>Marathon Petroleum</strong></li>
+              </ul>
+
+              <!-- STEM Expo photos — inline scroll strip -->
+              <div class="photo-strip-wrap" data-reveal style="--reveal-order:1;">
+                <span class="photo-strip-label">STEM Expo with Marathon Petroleum</span>
+                <div class="photo-strip">
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/98f32641-62a1-4d14-a974-e1d2f58d435c/STEM-Expo_3722.JPG?disposition=inline" alt="STEM Expo — students exploring science exhibits" loading="lazy">
+                    <div class="photo-strip__caption">Students explore hands-on science exhibits at the Northern Utah STEM Expo</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/539d5599-831a-4463-9bba-2ef6df6d9de6/STEM-Expo_3681.JPG?disposition=inline" alt="STEM Expo — hands-on learning with community partners" loading="lazy">
+                    <div class="photo-strip__caption">Community partners from Marathon Petroleum lead interactive STEM activities</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/0c95de4a-842f-4494-95a5-59da49a819d2/STEM-Expo_3733.JPG?disposition=inline" alt="STEM Expo — students engaged in STEM activities" loading="lazy">
+                    <div class="photo-strip__caption">Future scientists and engineers discover new passions at the expo</div>
+                  </div>
+                </div>
+              </div>
+
+              <ul>
+                <li>Facilitated the partnership and voting efforts for Northridge High School SPED teacher <strong>Angelyn Obray</strong> to win a <strong>$50,000 classroom makeover</strong> from classroom design and furniture company <strong>KI</strong></li>
+                <li>Partnered with <strong>Mercedes-Benz of Farmington</strong> and Utah Jazz player <strong>Svi Mykhailiuk</strong>, who made a donation and delivery of <strong>300 hams</strong> to students in need</li>
+              </ul>
+
+              <!-- Holiday Hams photos — inline scroll strip -->
+              <div class="photo-strip-wrap" data-reveal style="--reveal-order:2;">
+                <span class="photo-strip-label">Holiday Ham Delivery — Mercedes-Benz of Farmington &amp; Svi Mykhailiuk</span>
+                <div class="photo-strip">
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/41bb0add-90bc-45a1-bfe4-e40ad2612719/Holiday-Hams_Farmington_4982%281%29.JPG?disposition=inline" alt="Holiday ham delivery at Farmington schools" loading="lazy">
+                    <div class="photo-strip__caption">Mercedes-Benz of Farmington kicks off the holiday ham delivery</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/9a9f48e2-40a1-41c4-a2b0-eadb5514fb00/Holiday-Hams_Farmington_5001%281%29.JPG?disposition=inline" alt="Students receiving holiday hams in Farmington" loading="lazy">
+                    <div class="photo-strip__caption">Students and families receive holiday hams in Farmington</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/edf1de5a-f6c3-45fe-abfa-a946c969bdb5/Holiday-Hams_Farmington_5042%281%29%281%29.JPG?disposition=inline" alt="Volunteers distributing hams to families" loading="lazy">
+                    <div class="photo-strip__caption">Volunteers and Utah Jazz player Svi Mykhailiuk distribute 300 hams</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/67c2a341-776c-4025-b2f6-4c8d0c99cf8c/Holiday-Hams_Davis_5266%281%29.JPG?disposition=inline" alt="Holiday ham delivery at Davis schools" loading="lazy">
+                    <div class="photo-strip__caption">Ham deliveries extend across Davis County schools</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/5d02b972-5a15-4ecf-9931-8e78d2100327/Holiday-Hams_Davis_5365%281%29.JPG?disposition=inline" alt="Community members delivering hams to students" loading="lazy">
+                    <div class="photo-strip__caption">Community members bring holiday joy to students in need</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/f99027cf-7df9-4d81-ba17-ad227fb91b0c/Holiday-Hams_Davis_5337%281%29%281%29.JPG?disposition=inline" alt="Families receiving holiday hams in Davis County" loading="lazy">
+                    <div class="photo-strip__caption">Families grateful for the generous holiday support</div>
+                  </div>
+                  <div class="photo-strip__item">
+                    <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/aa88b9c7-fc83-4c83-a96c-3b218059ed4b/Holiday-Hams_Davis_5178.JPG?disposition=inline" alt="Holiday ham distribution event" loading="lazy">
+                    <div class="photo-strip__caption">Each ham helps make the holidays brighter for Davis families</div>
+                  </div>
+                </div>
+              </div>
+
+              <h3>Jr. High Child Spree</h3>
+              <p>
+                Opened the Jr. High Child Spree event to assist secondary students with holiday needs. This effort, powered entirely by community donations, served <strong>551 students</strong> during the season.
+              </p>
+
+              <h3>Innovative Grants</h3>
+              <p>
+                Foundation Innovative Grants were awarded to educators across the district:
+              </p>
+              <div class="donation-highlight">
+                <div class="donation-highlight__amount">$155,759</div>
+                <div><strong>46 grants</strong> awarded to full-time teachers and counselors</div>
+              </div>
+              <div class="donation-highlight" style="margin-bottom: 0;">
+                <div class="donation-highlight__amount">$134,128</div>
+                <div><strong>16 grants</strong> awarded to administrators</div>
+              </div>
+            </div>
+
+            <!-- ── DECEMBER ── -->
+            <div data-reveal id="december">
+              <div class="month-header">
+                <div class="month-header__icon" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">
+                  <svg viewBox="0 0 24 24" stroke="var(--ink-900)"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <h2>December</h2>
+              </div>
+
+              <p>
+                December was a month of extraordinary generosity. Community partners, local businesses, and individual donors came together to make the holidays brighter for students and families across Davis County.
+              </p>
+
+              <h3>Light the World Giving Machines</h3>
+              <p>
+                The Foundation was a featured charitable recipient at the <strong>Light the World Giving Machines</strong> kickoff at the <strong>Ogden Christmas Village</strong>. Visitors could purchase items directly through the machines to support Davis County students&mdash;from hygiene kits and school supplies to lunch balances and more.
+              </p>
+            </div>
+
+            <!-- Light the World Gallery -->
+            <div class="photo-strip-wrap" data-reveal style="--reveal-order:1;">
+              <span class="photo-strip-label">Light the World Giving Machines — Ogden Christmas Village</span>
+              <div class="photo-strip">
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/ef573d22-4a94-4097-add1-d2d54c16e850/Light-the-World_5417%281%29.JPG?disposition=inline" alt="Light the World Giving Machines at Ogden Christmas Village" loading="lazy">
+                  <div class="photo-strip__caption">The Giving Machines light up Ogden Christmas Village</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/01f46224-3d42-4ade-a2ea-2b1ef48c7230/Light-the-World_5428.JPG?disposition=inline" alt="Visitors at the Light the World Giving Machines" loading="lazy">
+                  <div class="photo-strip__caption">Visitors browse charitable giving options for Davis students</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/838a0f47-f8b6-4481-b97c-14f2f406bd5b/Light-the-world-machine_2080%281%29.jpeg?disposition=inline" alt="Giving Machine display with charitable options" loading="lazy">
+                  <div class="photo-strip__caption">DEF featured as a charitable recipient on the machines</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/80c87b89-87c2-45fc-9a62-efd66253a7d3/Light-the-world-machine_2081.jpeg?disposition=inline" alt="Community members using the Giving Machines" loading="lazy">
+                  <div class="photo-strip__caption">From hygiene kits to lunch balances — every purchase helps</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/974b71d0-658d-4a21-a03d-a559becb2254/Light-the-world-machine_2082%281%29.jpeg?disposition=inline" alt="Giving Machine options for Davis Education Foundation" loading="lazy">
+                  <div class="photo-strip__caption">School supplies and student support items available to give</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/14ca3c3f-3060-45e6-b142-f0a7924c1afe/Light-the-World_5494.JPG?disposition=inline" alt="Light the World holiday giving event" loading="lazy">
+                  <div class="photo-strip__caption">A season of light and generosity for the community</div>
+                </div>
+              </div>
+            </div>
+
+            <div data-reveal>
+              <h3>Service &amp; Community Events</h3>
+              <ul>
+                <li>Hosted Davis School District leadership employees in a <strong>service project with The Salvation Army</strong>, who serves hundreds of K&ndash;6 Davis School District families at Christmas each year</li>
+                <li>Hosted the <strong>DEF Board of Directors holiday party</strong> at the Centerville Megaplex</li>
+              </ul>
+            </div>
+
+            <!-- ── ELVES AND THE SHOEMAKER ── -->
+            <div data-reveal id="elves" style="margin-top: 36px;">
+              <h3 style="font-size: 1.3rem; margin-top: 0;">Elves and the Shoemaker</h3>
+              <p>
+                The Foundation completed <strong>seven Elves and the Shoemaker events</strong> where kindergarten students at Title I elementary schools receive brand-new shoes courtesy of generous community partners. Many thanks to <strong>America First Credit Union</strong>, <strong>Granite Credit Union</strong>, and <strong>Mountain America Credit Union</strong> for making these events possible.
+              </p>
+            </div>
+
+            <!-- Elves and the Shoemaker Gallery -->
+            <div class="photo-strip-wrap" data-reveal style="--reveal-order:1;">
+              <span class="photo-strip-label">Elves and the Shoemaker — New Shoes for Kindergarteners</span>
+              <div class="photo-strip">
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/dec4be14-b99e-41a0-bcff-7c5114f72511/Elves-and-the-Shoemaker_6380.JPG?disposition=inline" alt="Elves and the Shoemaker — kindergarteners receiving brand-new shoes" loading="lazy">
+                  <div class="photo-strip__caption">Kindergarteners light up as they receive brand-new shoes</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/3bfc943c-b018-42a3-9782-665cdb8067de/Elves-and-the-Shoemaker_7249.JPG?disposition=inline" alt="Elves and the Shoemaker — students trying on new shoes" loading="lazy">
+                  <div class="photo-strip__caption">Students try on their new shoes at a Title I elementary</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/ac84fdf2-d932-41bc-9642-174e6cedbe63/Elves-and-the-Shoemaker_7063.JPG?disposition=inline" alt="Elves and the Shoemaker — community partners helping students" loading="lazy">
+                  <div class="photo-strip__caption">Volunteers from America First Credit Union help with fittings</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/3f18fbc2-19b3-4fef-8936-efcb08620a61/Elves-and-the-Shoemaker_6437.JPG?disposition=inline" alt="Elves and the Shoemaker — volunteers fitting new shoes" loading="lazy">
+                  <div class="photo-strip__caption">Seven events across the district served kindergarteners in need</div>
+                </div>
+                <div class="photo-strip__item">
+                  <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/041c71f9-b6cc-41b1-8b64-89a8c0dcd4f1/Elves-and-the-Shoemaker_6741.JPG?disposition=inline" alt="Elves and the Shoemaker — students excited about new shoes" loading="lazy">
+                  <div class="photo-strip__caption">Pure joy — every child deserves a pair of shoes that fits</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── COMMUNITY GENEROSITY ── -->
+            <div data-reveal>
+              <h3>Community Generosity</h3>
+              <p>
+                The outpouring of support from our community partners and donors during the holiday season was remarkable:
+              </p>
+              <ul class="generosity-grid" data-reveal>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="100000" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>Deseret Book</strong>new books donated</span>
+                </li>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="25000" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>Miller Family Foundation</strong>Sub for Santa</span>
+                </li>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="16415" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>Food Gift Cards</strong>+ 746 stockings</span>
+                </li>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="11000" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>KSL</strong>Quarters for Christmas</span>
+                </li>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="10000" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>Big West Oil &amp; Call Foundation</strong></span>
+                </li>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="10000" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>Hogan &amp; Associates</strong>hardship grants</span>
+                </li>
+                <li>
+                  <span class="generosity-grid__amount" data-count-up data-target="5000" data-prefix="$" data-format="integer">$0</span>
+                  <span class="generosity-grid__desc"><strong>Boeing</strong>employee holiday drive</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="content-photo" data-reveal>
+              <img src="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4672/Def/074a3548-b4af-4c66-9e78-7a216e29d63a/Holiday-Hams_Farmington_5001.JPG?disposition=inline" alt="Holiday ham delivery — families receiving support in Farmington" loading="lazy">
+            </div>
+
+            <!-- ── GIVING MACHINES STORY ── -->
+            <div data-reveal id="story">
+              <h2 style="margin-top: 36px;">A Story from the Giving Machines</h2>
+              <p>
+                The following story was shared by Doug DeFries, a volunteer at the Light the World Giving Machines at the Ogden Christmas Village.
+              </p>
+
+              <div class="christmas-story">
+                <div class="christmas-story__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L9 9H2l6 5-2 8 6-4 6 4-2-8 6-5h-7z"/></svg>
+                  <span class="christmas-story__kicker">From the Ogden Christmas Village</span>
+                </div>
+
+                <p class="christmas-story__text">
+                  Late one evening at the Ogden Christmas Village as the crowds were beginning to thin, I was near the Giving Machines when a homeless man approached. He asked what the machines were, and I proceeded to explain that they were full of opportunities to give and share light during the Christmas season.
+                </p>
+
+                <p class="christmas-story__text">
+                  I began to walk him through some of the items available and happened to settle upon the row of selections from Davis Education Foundation. <em>&ldquo;See, you can buy a cane for a visually impaired student, or a hygiene kit, or you can help a student with an unpaid lunch balance&hellip;&rdquo;</em>
+                </p>
+
+                <p class="christmas-story__text">
+                  <em>&ldquo;You can buy their school lunch?&rdquo;</em> he interjected, suddenly interested.
+                </p>
+
+                <p class="christmas-story__text">
+                  <em>&ldquo;Yes, $10 will buy one week of school lunch for a child in need.&rdquo;</em>
+                </p>
+
+                <p class="christmas-story__text">
+                  He considered on this briefly and then said, <em>&ldquo;Someone did that for me when I was a kid.&rdquo;</em> Still thinking on this, he turned and walked away&hellip;but a few minutes later he was back, a bill clutched in his hand. <em>&ldquo;I want to buy the lunches. Will you take cash?&rdquo;</em>
+                </p>
+
+                <p class="christmas-story__text">
+                  Regretfully, I explained that the machines only take cards, but I&rsquo;d be happy to accept his cash and make the transaction with my own credit card. He agreed and extended the bill in his hand to me&mdash;and it was only then that I realized it was a $20 bill, not the $10 I was expecting that would match the cost of the item.
+                </p>
+
+                <p class="christmas-story__text">
+                  <em>&ldquo;I&rsquo;m sorry,&rdquo;</em> I said, <em>&ldquo;I don&rsquo;t have any change for a $20 bill.&rdquo;</em>
+                </p>
+
+                <p class="christmas-story__text" style="margin-bottom: 0;">
+                  He hesitated briefly upon hearing this, the bill suspended between us. Then he proceeded to give me the money and said, <em>&ldquo;Let&rsquo;s get two, then. Somebody did this for me.&rdquo;</em>
+                </p>
+
+                <div class="christmas-story__divider">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                </div>
+
+                <p class="christmas-story__attribution">
+                  Doug DeFries <span>&mdash; Giving Machines Volunteer, Ogden Christmas Village</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══ SIDEBAR ═══ -->
+          <aside>
+            <div class="card sidebar-card" data-reveal style="--reveal-order:1;">
+              <h3>Thank You</h3>
+              <p>
+                This season is about gratitude. Every dollar, every pair of shoes, every stocking, and every act of kindness made a difference in a student&rsquo;s life.
+              </p>
+
+              <hr class="sidebar-divider">
+
+              <span class="sidebar-label">Season at a Glance</span>
+              <p style="font-size: 0.88rem; margin-bottom: 14px; line-height: 1.7;">
+                <strong>551</strong> students served at Jr. High Spree<br>
+                <strong>746</strong> stockings donated<br>
+                <strong>300</strong> holiday hams delivered<br>
+                <strong>7</strong> Elves &amp; Shoemaker events<br>
+                <strong>62</strong> innovative grants awarded
+              </p>
+
+              <hr class="sidebar-divider">
+
+              <span class="sidebar-label">Community Partners</span>
+              <p style="font-size: 0.86rem; margin-bottom: 14px; line-height: 1.7;">
+                America First Credit Union, Granite Credit Union, Mountain America Credit Union, Mercedes-Benz of Farmington, Marathon Petroleum, Deseret Book, Larry H. &amp; Gail Miller Foundation, Big West Oil, Hogan &amp; Associates, Boeing, KSL, The Salvation Army, KI
+              </p>
+
+              <hr class="sidebar-divider">
+
+              <a href="/o/def/page/give" class="btn btn--gold">Support the Foundation</a>
+              <a href="/o/def/page/impact-student-supports" class="btn btn--outline btn--sm">Student Supports Overview</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <section class="section" aria-label="Call to action">
+      <div class="cta-banner" data-reveal>
+        <p class="kicker">Thank You</p>
+        <h2 class="title">Somebody did this for me.</h2>
+        <p class="lede">
+          Your generosity creates a ripple effect. Students who are supported today become the community members who give back tomorrow.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="/o/def/page/give" class="btn btn--gold">Support the Foundation</a>
+          <a href="/o/def/page/impact" class="btn btn--ghost">Back to Impact</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    (function () {
+      var revealItems = document.querySelectorAll("[data-reveal]");
+      if (!revealItems.length) return;
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) { revealItems.forEach(function (el) { el.classList.add("is-in"); }); return; }
+      var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); } }); }, { rootMargin: "0px 0px -10% 0px", threshold: 0.16 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+  <script>
+    (function () {
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".quick-nav a"));
+      if (!navLinks.length || !("IntersectionObserver" in window)) return;
+      var sections = navLinks.map(function (link) { var t = link.getAttribute("href"); if (!t || t[0] !== "#") return null; return document.querySelector(t); }).filter(Boolean);
+      function setActive(id) { navLinks.forEach(function (link) { link.classList.toggle("is-active", link.getAttribute("href") === "#" + id); }); }
+      var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); }); }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.01 });
+      sections.forEach(function (s) { obs.observe(s); });
+    })();
+  </script>
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+      var detailBg = document.querySelector(".detail-hero__bg");
+      var heroHalos = Array.prototype.slice.call(document.querySelectorAll(".detail-hero__halo"));
+      if (!detailBg) return;
+      var heroH = detailBg.closest("section").offsetHeight || 500;
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var y = window.pageYOffset;
+            if (y < heroH * 1.2) {
+              detailBg.style.transform = "translate3d(0," + (y * 0.18) + "px,0)";
+              heroHalos.forEach(function (h, i) { h.style.transform = "translate(0," + (y * (i === 0 ? 0.1 : 0.15)) + "px) scale(1)"; });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
+  <!-- Count-up animation for generosity cards -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count-up]"));
+      if (!counters.length) return;
+
+      function formatValue(value, decimals) {
+        return value.toLocaleString("en-US", {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+
+      function setDisplay(el, value) {
+        var prefix = el.getAttribute("data-prefix") || "";
+        var suffix = el.getAttribute("data-suffix") || "";
+        var mode = el.getAttribute("data-format") || "integer";
+        var decimals = parseInt(el.getAttribute("data-decimals"), 10);
+        if (isNaN(decimals)) decimals = mode === "decimal" ? 1 : 0;
+        var rendered = mode === "decimal"
+          ? formatValue(value, decimals)
+          : formatValue(Math.round(value), 0);
+        el.textContent = prefix + rendered + suffix;
+      }
+
+      function animateCounter(el) {
+        if (el.getAttribute("data-counted") === "true") return;
+        el.setAttribute("data-counted", "true");
+        var target = parseFloat(el.getAttribute("data-target"));
+        if (!isFinite(target)) return;
+        var duration = parseInt(el.getAttribute("data-duration"), 10);
+        if (!isFinite(duration) || duration < 300) duration = 1700;
+        var startTime = null;
+        function tick(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          setDisplay(el, target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      if (reduced || !("IntersectionObserver" in window)) {
+        counters.forEach(function (el) {
+          var target = parseFloat(el.getAttribute("data-target"));
+          if (isFinite(target)) setDisplay(el, target);
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.2 });
+
+      counters.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <script>
+  /* JS Sticky Nav Fallback */
+  (function(){
+    var w = document.querySelector('.quick-nav-wrap');
+    if (!w) return;
+    var ph = document.createElement('div');
+    ph.style.display = 'none';
+    w.parentNode.insertBefore(ph, w);
+    var origTop = 0;
+    var measured = false;
+    function measure() {
+      if (w.style.position === 'fixed') return;
+      origTop = w.getBoundingClientRect().top + window.scrollY;
+      measured = true;
+    }
+    measure();
+    window.addEventListener('scroll', function() {
+      if (!measured) measure();
+      if (window.scrollY >= origTop - 12) {
+        if (w.style.position !== 'fixed') {
+          ph.style.display = 'block';
+          ph.style.height = w.offsetHeight + 'px';
+          w.style.position = 'fixed';
+          w.style.top = '12px';
+          w.style.left = '0';
+          w.style.right = '0';
+          w.style.width = '100%';
+        }
+      } else {
+        if (w.style.position === 'fixed') {
+          ph.style.display = 'none';
+          w.style.position = '';
+          w.style.top = '';
+          w.style.left = '';
+          w.style.right = '';
+          w.style.width = '';
+        }
+      }
+    }, {passive: true});
+  })();
+  </script>
+</body>
+</html>
