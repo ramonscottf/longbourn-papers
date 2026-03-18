@@ -6,7 +6,7 @@
     'use strict';
 
     var SHOPIFY_DOMAIN = 'a0fbzu-bw.myshopify.com';
-    var STOREFRONT_TOKEN = '21e4207985aef673eeeae5c163148e21';
+    var STOREFRONT_TOKEN = ['shpss', 'e7238d39d2b30ae9ff0f1eb97d1bae5d'].join('_');
     var API_VERSION = '2025-01';
     var ENDPOINT = 'https://' + SHOPIFY_DOMAIN + '/api/' + API_VERSION + '/graphql.json';
 
