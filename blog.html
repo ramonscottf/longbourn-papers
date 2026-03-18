@@ -3,114 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog — Longbourn Papers</title>
-    <meta name="description" content="Design inspirations, letterpress stories, and the art of meaningful correspondence from Longbourn Papers.">
+    <title>Journal — Longbourn Papers</title>
+    <meta name="description" content="Stories from the studio: design inspirations, letterpress stories, and the art of meaningful correspondence from Longbourn Papers.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
+    <div class="reading-progress"></div>
+
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        <p>Free shipping on orders over $75</p>
+        <p>Complimentary shipping on orders over $75 &nbsp;&middot;&nbsp; Handmade in the U.S.A.</p>
     </div>
 
     <!-- Header -->
     <header class="site-header">
         <div class="container">
-            <div class="site-branding"><a href="/">Longbourn Papers</a></div>
+            <div class="site-branding">
+                <a href="/">Longbourn Papers</a>
+            </div>
             <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/shop.html#gift-tags">Gift Tags</a></li>
-                    <li><a href="/shop.html#grand-tags">Grand Tags</a></li>
-                    <li><a href="/shop.html#petite-cards">Petite Cards</a></li>
-                    <li><a href="/shop.html#stationery">Stationery</a></li>
+                    <li><a href="/shop.html">Shop</a></li>
                     <li>
-                        <a href="/shop.html">Collections</a>
+                        <a href="/collections.html">Collections</a>
                         <ul class="dropdown">
-                            <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                            <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                            <li><a href="/shop.html#celebration">Celebration</a></li>
-                            <li><a href="/shop.html#baby">Baby</a></li>
-                            <li><a href="/shop.html#holiday">Holiday</a></li>
+                            <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                            <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                            <li><a href="/collections.html#celebration">Celebration</a></li>
+                            <li><a href="/collections.html#baby">Baby</a></li>
+                            <li><a href="/collections.html#holiday">Holiday</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" class="active">Connect</a>
-                        <ul class="dropdown">
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/letterpress.html">Art of Letterpress</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                            <li><a href="/blog.html" class="active">Blog</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/letterpress.html">The Craft</a></li>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="/blog.html" class="active">Journal</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-utils">
-                <button class="shopify-cart-toggle">Cart <span class="cart-count">0</span></button>
+                <button class="shopify-cart-toggle">
+                    Cart <span class="cart-count">0</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <div class="page-header">
+    <!-- ═══════════════════════════════════════════
+         PAGE HEADER
+         ═══════════════════════════════════════════ -->
+    <section class="page-header page-header--elevated">
         <div class="container">
-            <h1>Design Inspirations</h1>
-            <p>Stories behind the press, paper, and the art of meaningful correspondence</p>
+            <span class="eyebrow" data-reveal="fade-up">The Longbourn Journal</span>
+            <h1 data-reveal="fade-up" data-reveal-delay="100">Stories from the Studio</h1>
+            <div class="divider" data-reveal="fade-up" data-reveal-delay="150"></div>
+            <p data-reveal="fade-up" data-reveal-delay="200">Design inspirations, craft traditions, and reflections on the enduring art of putting pen to paper.</p>
         </div>
-    </div>
+    </section>
 
-    <!-- Blog Posts -->
+    <!-- ═══════════════════════════════════════════
+         FEATURED / HERO POST
+         ═══════════════════════════════════════════ -->
     <section class="section section--cream">
         <div class="container">
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-card__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/3_31b0e732-851e-4731-9df7-80858497bc10.png?v=1&width=600" alt="The beauty of imperfection in letterpress" loading="lazy">
-                    </div>
-                    <div class="blog-card__content">
-                        <p class="blog-card__date">February 2026</p>
-                        <h3 class="blog-card__title">The Beauty of Imperfection</h3>
-                        <p class="blog-card__excerpt">In a world of pixel-perfect digital prints, letterpress stands apart. Each impression carries the subtle marks of the press &mdash; slight variations in ink density, the texture of hand-fed paper. These are not flaws; they are signatures of an authentic craft.</p>
-                    </div>
-                </article>
+            <article class="blog-hero" data-reveal="fade-up">
+                <div class="blog-hero__image">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/3_31b0e732-851e-4731-9df7-80858497bc10.png?v=1&width=1200" alt="The beauty of imperfection in letterpress printing" loading="lazy">
+                </div>
+                <div class="blog-hero__content">
+                    <span class="eyebrow">Featured</span>
+                    <span class="blog-card__date">February 2026</span>
+                    <h2 class="blog-hero__title">The Beauty of Imperfection</h2>
+                    <div class="divider divider--left"></div>
+                    <p class="blog-hero__excerpt">In a world of pixel-perfect digital prints, letterpress stands apart. Each impression carries the subtle marks of the press&mdash;slight variations in ink density, the soft bite of type into cotton fiber, the texture of hand-fed paper. These are not flaws; they are signatures of an authentic craft. They are proof that human hands shaped every piece, that no two prints are ever truly identical. In the Japanese tradition of <em>wabi-sabi</em>, imperfection is not merely accepted but celebrated as a mark of authenticity and transience. We believe letterpress embodies that same philosophy.</p>
+                    <a href="#" class="btn btn--outline-dark">Read More</a>
+                </div>
+            </article>
+        </div>
+    </section>
 
-                <article class="blog-card">
+    <!-- ═══════════════════════════════════════════
+         BLOG GRID
+         ═══════════════════════════════════════════ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" data-reveal="fade-up">
+                <span class="eyebrow">Recent Posts</span>
+                <h2>From the Press</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card" data-reveal="fade-up">
                     <div class="blog-card__image">
                         <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/7_7921cac5-89ba-4920-87db-7518f6e2e098.png?v=1&width=600" alt="Botanical illustrations in stationery design" loading="lazy">
                     </div>
                     <div class="blog-card__content">
-                        <p class="blog-card__date">January 2026</p>
-                        <h3 class="blog-card__title">Botanical Inspirations</h3>
+                        <span class="blog-card__date">January 2026</span>
+                        <h3 class="blog-card__title"><a href="#">Botanical Inspirations</a></h3>
                         <p class="blog-card__excerpt">Our floral designs are drawn from centuries of botanical illustration, blending the precision of scientific study with the romance of garden imagery. From blossom wreaths to strawberry fields, nature is our muse.</p>
                     </div>
                 </article>
 
-                <article class="blog-card">
+                <article class="blog-card" data-reveal="fade-up" data-reveal-delay="100">
                     <div class="blog-card__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/4_2510978f-e88a-47c0-b6b0-a61c3638d43d.png?v=1&width=600" alt="The lost art of handwritten notes" loading="lazy">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/6_fe4d0d50-73b9-4ad1-b38c-2099549b52b2.png?v=1&width=600" alt="The lost art of handwritten notes" loading="lazy">
                     </div>
                     <div class="blog-card__content">
-                        <p class="blog-card__date">December 2025</p>
-                        <h3 class="blog-card__title">The Lost Art of the Handwritten Note</h3>
+                        <span class="blog-card__date">December 2025</span>
+                        <h3 class="blog-card__title"><a href="#">The Lost Art of the Handwritten Note</a></h3>
                         <p class="blog-card__excerpt">In an age of instant messaging, a handwritten note carries a weight that no text or email can match. It says: I took the time. You matter. Here is something tangible to hold. We believe this art deserves to be celebrated.</p>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-reveal="fade-up" data-reveal-delay="200">
+                    <div class="blog-card__image">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/1_baac8faf-4e8c-4a51-8832-09fdd42e6837.png?v=1&width=600" alt="A guide to gift tag etiquette" loading="lazy">
+                    </div>
+                    <div class="blog-card__content">
+                        <span class="blog-card__date">March 2026</span>
+                        <h3 class="blog-card__title"><a href="#">A Guide to Gift Tag Etiquette</a></h3>
+                        <p class="blog-card__excerpt">The gift tag is more than an afterthought&mdash;it is the first thing your recipient reads, and the last impression left behind. From wording to placement, we share our guide to making every tag feel intentional and personal.</p>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-reveal="fade-up">
+                    <div class="blog-card__image">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/2_0400ed3a-6fba-4ad3-a3f3-a28831f63837.png?v=1&width=600" alt="The paper trail from cotton field to card" loading="lazy">
+                    </div>
+                    <div class="blog-card__content">
+                        <span class="blog-card__date">November 2025</span>
+                        <h3 class="blog-card__title"><a href="#">The Paper Trail: From Cotton Field to Card</a></h3>
+                        <p class="blog-card__excerpt">Every sheet of cotton paper begins its journey in the field. We trace the remarkable path from raw fiber to the luxurious, textured stock that gives letterpress its distinctive character&mdash;and why we believe the paper matters as much as the print.</p>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-reveal="fade-up" data-reveal-delay="100">
+                    <div class="blog-card__image">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/5_d920829c-0f90-4ce0-afba-4ae70002b774.png?v=1&width=600" alt="Five occasions that deserve more than a text" loading="lazy">
+                    </div>
+                    <div class="blog-card__content">
+                        <span class="blog-card__date">October 2025</span>
+                        <h3 class="blog-card__title"><a href="#">Five Occasions That Deserve More Than a Text</a></h3>
+                        <p class="blog-card__excerpt">We all know the moments: a friend&rsquo;s loss, a milestone birthday, a thank-you long overdue. Some occasions simply call for something you can hold in your hands. Here are five times when reaching for stationery instead of your phone makes all the difference.</p>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
+    <!-- ═══════════════════════════════════════════
+         NEWSLETTER
+         ═══════════════════════════════════════════ -->
     <section class="section section--rose">
         <div class="container">
-            <div class="newsletter">
-                <h2>Stay in Touch</h2>
-                <p>Join our mailing list for new designs, seasonal collections, and the occasional love letter.</p>
+            <div class="newsletter" data-reveal="fade-up">
+                <span class="eyebrow">Stay in Touch</span>
+                <h2>Letters from Longbourn</h2>
+                <p>New designs, seasonal collections, and the occasional love letter&mdash;delivered to your inbox.</p>
                 <form class="newsletter-form web3form" data-form-type="newsletter">
                     <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
                     <input type="hidden" name="subject" value="New Newsletter Signup — Longbourn Papers">
@@ -129,7 +184,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Longbourn Papers</h3>
-                    <p>Letterpress stationery with intention and charm. Hand-pressed heirloom paper goods created using traditional techniques on rich cotton paper.</p>
+                    <p>Hand-pressed letterpress stationery for meaningful moments. Designed and printed with care on luxurious cotton paper in the U.S.A.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Shop</h4>
@@ -144,20 +199,20 @@
                 <div class="footer-col">
                     <h4>Collections</h4>
                     <ul>
-                        <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                        <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                        <li><a href="/shop.html#celebration">Celebration</a></li>
-                        <li><a href="/shop.html#baby">Baby</a></li>
-                        <li><a href="/shop.html#holiday">Holiday</a></li>
+                        <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                        <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                        <li><a href="/collections.html#celebration">Celebration</a></li>
+                        <li><a href="/collections.html#baby">Baby</a></li>
+                        <li><a href="/collections.html#holiday">Holiday</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Longbourn</h4>
                     <ul>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/letterpress.html">Art of Letterpress</a></li>
+                        <li><a href="/about.html">Our Story</a></li>
+                        <li><a href="/letterpress.html">The Craft</a></li>
+                        <li><a href="/blog.html">Journal</a></li>
                         <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
                     </ul>
                 </div>
             </div>
@@ -173,5 +228,6 @@
 
     <script src="/js/shopify-cart.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
 </body>
 </html>
