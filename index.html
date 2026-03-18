@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longbourn Papers — Hand-Pressed Heirloom Stationery</title>
-    <meta name="description" content="Letterpress stationery with intention and charm. Hand-pressed heirloom gift tags, note cards, and stationery on luxurious cotton paper.">
+    <title>Longbourn Papers — Hand-Pressed Letterpress Stationery</title>
+    <meta name="description" content="Heirloom-quality letterpress stationery, hand-pressed on luxurious cotton paper. Gift tags, note cards, and stationery designed with intention and printed with care.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
 </head>
 <body>
 
+    <div class="reading-progress"></div>
+
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        <p>Free shipping on orders over $75</p>
+        <p>Complimentary shipping on orders over $75 &nbsp;&middot;&nbsp; Handmade in the U.S.A.</p>
     </div>
 
     <!-- Header -->
@@ -24,204 +25,355 @@
             <div class="site-branding">
                 <a href="/">Longbourn Papers</a>
             </div>
-
             <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
-
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/shop.html#gift-tags">Gift Tags</a></li>
-                    <li><a href="/shop.html#grand-tags">Grand Tags</a></li>
-                    <li><a href="/shop.html#petite-cards">Petite Cards</a></li>
-                    <li><a href="/shop.html#stationery">Stationery</a></li>
+                    <li><a href="/shop.html">Shop</a></li>
                     <li>
-                        <a href="/shop.html">Collections</a>
+                        <a href="/collections.html">Collections</a>
                         <ul class="dropdown">
-                            <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                            <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                            <li><a href="/shop.html#celebration">Celebration</a></li>
-                            <li><a href="/shop.html#baby">Baby</a></li>
-                            <li><a href="/shop.html#holiday">Holiday</a></li>
+                            <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                            <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                            <li><a href="/collections.html#celebration">Celebration</a></li>
+                            <li><a href="/collections.html#baby">Baby</a></li>
+                            <li><a href="/collections.html#holiday">Holiday</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">Connect</a>
-                        <ul class="dropdown">
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/letterpress.html">Art of Letterpress</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                            <li><a href="/blog.html">Blog</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/letterpress.html">The Craft</a></li>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="/blog.html">Journal</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </nav>
-
             <div class="header-utils">
-                <button class="snipcart-checkout">
-                    Cart <span class="cart-count snipcart-items-count">0</span>
+                <button class="shopify-cart-toggle">
+                    Cart <span class="cart-count">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero -->
+    <!-- ═══════════════════════════════════════════
+         HERO — Cinematic full-screen
+         ═══════════════════════════════════════════ -->
     <section class="hero">
-        <div class="hero__bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0693/9492/3685/files/29_3338beea-dc59-4113-b1cb-932321031ed1.png?v=1&width=1600');"></div>
+        <div class="hero__bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0693/9492/3685/files/29_3338beea-dc59-4113-b1cb-932321031ed1.png?v=1&width=1600')"></div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
-            <h1 class="hero__title">Elevate Every Gift</h1>
-            <p class="hero__subtitle">Hand-pressed heirloom stationery crafted with traditional letterpress techniques on rich cotton paper.</p>
-            <a href="/shop.html" class="btn btn--outline">Shop Now</a>
+            <span class="hero__eyebrow" data-reveal="fade-up">Hand-Pressed Letterpress Stationery</span>
+            <h1 class="hero__title" data-reveal="fade-up" data-reveal-delay="100">Words Worth<br>Holding Onto</h1>
+            <p class="hero__subtitle" data-reveal="fade-up" data-reveal-delay="200">Heirloom paper goods for meaningful moments. Each piece hand-pressed on rich cotton paper using century-old letterpress technique.</p>
+            <div class="hero__actions" data-reveal="fade-up" data-reveal-delay="300">
+                <a href="/shop.html" class="btn btn--outline">Explore the Collection</a>
+                <a href="/letterpress.html" class="btn btn--gold">Discover the Craft</a>
+            </div>
+        </div>
+        <div class="hero__scroll-hint">Scroll</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         MARQUEE — Scrolling brand values
+         ═══════════════════════════════════════════ -->
+    <div class="marquee">
+        <div class="marquee__inner">
+            <span class="marquee__item">Hand-Pressed</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Cotton Paper</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Made in the U.S.A.</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Heirloom Quality</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Satin Ribbon</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Since 2019</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Hand-Pressed</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Cotton Paper</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Made in the U.S.A.</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Heirloom Quality</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Satin Ribbon</span><span class="marquee__dot"></span>
+            <span class="marquee__item">Since 2019</span><span class="marquee__dot"></span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         BRAND STORY — Split section
+         ═══════════════════════════════════════════ -->
+    <section class="section section--cream">
+        <div class="container">
+            <div class="story-block">
+                <div class="story-block__image" data-reveal="fade-right">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/2_0400ed3a-6fba-4ad3-a3f3-a28831f63837.png?v=1&width=800" alt="Letterpress stationery on cotton paper" loading="lazy">
+                </div>
+                <div class="story-block__text" data-reveal="fade-left">
+                    <span class="eyebrow">The Longbourn Difference</span>
+                    <h2>Paper That Speaks<br>Before You Do</h2>
+                    <div class="divider" style="margin-left:0;"></div>
+                    <p>In a world of disposable communication, we believe some words deserve permanence. Each Longbourn piece begins with heavyweight cotton paper&mdash;the kind that whispers quality the moment it touches your fingertips.</p>
+                    <p>Our letterpress process creates a tactile impression you can feel, a gentle debossing that transforms ink and paper into something more: a keepsake.</p>
+                    <a href="/about.html" class="btn btn--outline-dark" style="align-self:flex-start;">Our Story</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="section section--cream">
+    <!-- ═══════════════════════════════════════════
+         FEATURED PRODUCTS — Our Lines
+         ═══════════════════════════════════════════ -->
+    <section class="section section--white">
         <div class="container">
-            <div class="featured-text">
-                <h2>Our Favorites</h2>
-                <p>Timeless designs, hand-pressed with care on luxurious cotton paper.</p>
+            <div class="text-center" style="margin-bottom:var(--spacing-xl);">
+                <span class="eyebrow" data-reveal="fade-up">The Collection</span>
+                <h2 data-reveal="fade-up" data-reveal-delay="100">Four Lines, Infinite Occasions</h2>
             </div>
 
             <div class="products-grid">
-                <div class="product-card">
-                    <a href="/shop.html#gift-tags" class="product-card__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/29_3338beea-dc59-4113-b1cb-932321031ed1.png?v=1&width=600" alt="Letterpress Gift Tags with Satin Ribbon" loading="lazy">
+                <div class="product-card" data-reveal="fade-up" data-reveal-delay="0">
+                    <a href="/shop.html#gift-tags">
+                        <div class="product-card__image">
+                            <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/1_baac8faf-4e8c-4a51-8832-09fdd42e6837.png?v=1&width=600" alt="Letterpress Gift Tags" loading="lazy">
+                        </div>
                     </a>
                     <div class="product-card__info">
-                        <h3 class="product-card__title">Letterpress Gift Tags with Satin Ribbon</h3>
-                        <p class="product-card__price">$24.00</p>
-                        <a href="/shop.html#gift-tags" class="product-card__btn">View Options</a>
+                        <h3 class="product-card__title">Gift Tags</h3>
+                        <p class="product-card__price">From $24.00</p>
+                        <a href="/shop.html#gift-tags" class="product-card__btn">Shop Gift Tags</a>
                     </div>
                 </div>
-
-                <div class="product-card">
-                    <a href="/shop.html#grand-tags" class="product-card__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/2_0400ed3a-6fba-4ad3-a3f3-a28831f63837.png?v=1&width=600" alt="Letterpress Grand Tags with Satin Ribbon" loading="lazy">
+                <div class="product-card" data-reveal="fade-up" data-reveal-delay="100">
+                    <a href="/shop.html#grand-tags">
+                        <div class="product-card__image">
+                            <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/3_31b0e732-851e-4731-9df7-80858497bc10.png?v=1&width=600" alt="Letterpress Grand Tags" loading="lazy">
+                        </div>
                     </a>
                     <div class="product-card__info">
-                        <h3 class="product-card__title">Letterpress Grand Tags with Satin Ribbon</h3>
-                        <p class="product-card__price">$20.00</p>
-                        <a href="/shop.html#grand-tags" class="product-card__btn">View Options</a>
+                        <h3 class="product-card__title">Grand Tags</h3>
+                        <p class="product-card__price">From $20.00</p>
+                        <a href="/shop.html#grand-tags" class="product-card__btn">Shop Grand Tags</a>
                     </div>
                 </div>
-
-                <div class="product-card">
-                    <a href="/shop.html#petite-cards" class="product-card__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/41_73d9181f-e427-4c60-95b7-257662fe891c.png?v=1&width=600" alt="Petite Letterpress Note Cards" loading="lazy">
+                <div class="product-card" data-reveal="fade-up" data-reveal-delay="200">
+                    <a href="/shop.html#petite-cards">
+                        <div class="product-card__image">
+                            <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/16_f3950d19-66bc-4380-a04a-5f07ea4064f1.png?v=1&width=600" alt="Petite Note Cards" loading="lazy">
+                        </div>
                     </a>
                     <div class="product-card__info">
-                        <h3 class="product-card__title">Petite Letterpress Note Cards</h3>
+                        <h3 class="product-card__title">Petite Cards</h3>
                         <p class="product-card__price">From $4.00</p>
-                        <a href="/shop.html#petite-cards" class="product-card__btn">View Options</a>
+                        <a href="/shop.html#petite-cards" class="product-card__btn">Shop Petite Cards</a>
                     </div>
                 </div>
-
-                <div class="product-card">
-                    <a href="/shop.html#stationery" class="product-card__image">
-                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/25_9a9adbd5-3291-49a4-bdaf-4b43e0f2dd37.png?v=1&width=600" alt="Letterpress Note Card and Envelope Set" loading="lazy">
+                <div class="product-card" data-reveal="fade-up" data-reveal-delay="300">
+                    <a href="/shop.html#stationery">
+                        <div class="product-card__image">
+                            <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/25_9a9adbd5-3291-49a4-bdaf-4b43e0f2dd37.png?v=1&width=600" alt="Letterpress Note Card & Envelope Set" loading="lazy">
+                        </div>
                     </a>
                     <div class="product-card__info">
-                        <h3 class="product-card__title">Letterpress Note Card &amp; Envelope Set</h3>
-                        <p class="product-card__price">$24.00</p>
-                        <a href="/shop.html#stationery" class="product-card__btn">View Options</a>
+                        <h3 class="product-card__title">Stationery Sets</h3>
+                        <p class="product-card__price">From $24.00</p>
+                        <a href="/shop.html#stationery" class="product-card__btn">Shop Stationery</a>
                     </div>
                 </div>
             </div>
-
-            <div style="text-align:center;margin-top:var(--spacing-lg);">
-                <a href="/shop.html" class="btn btn--outline-dark">View All Products</a>
-            </div>
         </div>
     </section>
 
-    <!-- Brand Story -->
-    <section class="section section--sage">
-        <div class="container">
-            <div class="split">
-                <div class="split__image">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/1_8603e482-a3b2-48dd-8b4a-e8318ccfc447.png?v=1&width=800" alt="Longbourn Papers letterpress craftsmanship" loading="lazy">
-                </div>
-                <div class="split__text">
-                    <h2>Crafted Paper Goods for Meaningful Moments</h2>
-                    <p>Every piece from Longbourn Papers is hand-pressed using traditional letterpress techniques, creating a tactile impression on luxurious cotton paper. Our heirloom-quality stationery brings intention and beauty to your most meaningful exchanges.</p>
-                    <a href="/about.html" class="btn btn--outline-dark">Our Story</a>
-                </div>
-            </div>
+    <!-- ═══════════════════════════════════════════
+         FULL BLEED — Parallax quote
+         ═══════════════════════════════════════════ -->
+    <section class="full-bleed" style="background-image:url('https://cdn.shopify.com/s/files/1/0693/9492/3685/files/7_7921cac5-89ba-4920-87db-7518f6e2e098.png?v=1&width=1600')">
+        <div class="full-bleed__overlay"></div>
+        <div class="full-bleed__content" data-reveal="fade-up">
+            <span class="eyebrow" style="color:var(--color-gold-light);">Our Philosophy</span>
+            <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-style:italic;margin-bottom:var(--spacing-md);line-height:1.4;">&ldquo;In the age of the instant, we choose the intentional.&rdquo;</h2>
+            <p>Every letter pressed, every ribbon tied, every card tucked into its envelope&mdash;these are small acts of devotion to the people and moments that matter most.</p>
         </div>
     </section>
 
-    <!-- Collections -->
+    <!-- ═══════════════════════════════════════════
+         STATS — Brand credibility
+         ═══════════════════════════════════════════ -->
     <section class="section section--cream">
         <div class="container">
-            <div class="featured-text">
-                <h2>Shop by Collection</h2>
-                <p>Find the perfect sentiment for every occasion.</p>
+            <div class="stats-row" data-reveal="fade-up">
+                <div class="stat">
+                    <div class="stat__number" data-count-to="46" data-count-suffix="+">0+</div>
+                    <div class="stat__label">Unique Designs</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number" data-count-to="100" data-count-suffix="%">0%</div>
+                    <div class="stat__label">Cotton Paper</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number" data-count-to="7" data-count-suffix="">0</div>
+                    <div class="stat__label">Years of Craft</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number" data-count-to="1" data-count-suffix="">0</div>
+                    <div class="stat__label">Press at a Time</div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         COLLECTIONS — Curated for occasions
+         ═══════════════════════════════════════════ -->
+    <section class="section section--white">
+        <div class="container">
+            <div class="text-center" style="margin-bottom:var(--spacing-xl);">
+                <span class="eyebrow" data-reveal="fade-up">Curated Collections</span>
+                <h2 data-reveal="fade-up" data-reveal-delay="100">For Every Occasion</h2>
+                <p class="lead-text" style="margin:var(--spacing-sm) auto 0;" data-reveal="fade-up" data-reveal-delay="200">From quiet sympathy to joyful celebration, find the words and designs for your moment.</p>
+            </div>
+
             <div class="collections-grid">
-                <a href="/shop.html#sympathy" class="collection-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/5_d920829c-0f90-4ce0-afba-4ae70002b774.png?v=1&width=600" alt="Sympathy and Support collection" loading="lazy">
+                <a href="/collections.html#sympathy" class="collection-card" data-reveal="fade-up" data-reveal-delay="0">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/45_7c1cd32d-897c-4cc9-971a-6c52f5d4f916.png?v=1&width=600" alt="Sympathy & Support Collection" loading="lazy">
                     <div class="collection-card__overlay">
                         <h3 class="collection-card__title">Sympathy &amp; Support</h3>
+                        <span class="collection-card__count">Thinking of You &middot; Wishing You Well</span>
                     </div>
                 </a>
-                <a href="/shop.html#gratitude" class="collection-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/21_8a0e79bc-4478-489a-939c-3fdd3b42e24f.png?v=1&width=600" alt="Thank You and Gratitude collection" loading="lazy">
+                <a href="/collections.html#gratitude" class="collection-card" data-reveal="fade-up" data-reveal-delay="100">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/21_8a0e79bc-4478-489a-939c-3fdd3b42e24f.png?v=1&width=600" alt="Thank You Collection" loading="lazy">
                     <div class="collection-card__overlay">
-                        <h3 class="collection-card__title">Thank You &amp; Gratitude</h3>
+                        <h3 class="collection-card__title">Thank You</h3>
+                        <span class="collection-card__count">Gratitude in Every Impression</span>
                     </div>
                 </a>
-                <a href="/shop.html#celebration" class="collection-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/13_95cb9a63-c9e1-4c9c-961e-b30e241762d6.png?v=1&width=600" alt="Celebration collection" loading="lazy">
+                <a href="/collections.html#celebration" class="collection-card" data-reveal="fade-up" data-reveal-delay="200">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/5_d920829c-0f90-4ce0-afba-4ae70002b774.png?v=1&width=600" alt="Celebration Collection" loading="lazy">
                     <div class="collection-card__overlay">
                         <h3 class="collection-card__title">Celebration</h3>
+                        <span class="collection-card__count">Birthday &middot; Congratulations &middot; Bravo</span>
                     </div>
                 </a>
-                <a href="/shop.html#baby" class="collection-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/53.png?v=1&width=600" alt="Baby collection" loading="lazy">
-                    <div class="collection-card__overlay">
-                        <h3 class="collection-card__title">Baby</h3>
-                    </div>
-                </a>
-                <a href="/shop.html#holiday" class="collection-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/57_8ec764dd-a55a-4cae-bc41-5f76f4da4479.png?v=1&width=600" alt="Holiday collection" loading="lazy">
-                    <div class="collection-card__overlay">
-                        <h3 class="collection-card__title">Holiday</h3>
-                    </div>
-                </a>
-                <a href="/shop.html" class="collection-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/7_7ff847aa-4391-4f27-a0e6-69f6c9063835.png?v=1&width=600" alt="Our Papers and Provisions" loading="lazy">
-                    <div class="collection-card__overlay">
-                        <h3 class="collection-card__title">Our Papers &amp; Provisions</h3>
-                    </div>
-                </a>
+            </div>
+
+            <div class="text-center" style="margin-top:var(--spacing-lg);">
+                <a href="/collections.html" class="btn btn--outline-dark" data-reveal="fade-up">View All Collections</a>
             </div>
         </div>
     </section>
 
-    <!-- Letterpress -->
+    <!-- ═══════════════════════════════════════════
+         THE CRAFT — Teaser
+         ═══════════════════════════════════════════ -->
     <section class="section section--forest">
         <div class="container">
-            <div class="split">
-                <div class="split__text">
-                    <h2>The Art of Letterpress</h2>
-                    <p>Each design is carefully composed using traditional techniques that date back centuries. The result is a tactile, deeply impressed print that you can feel with your fingertips &mdash; a quality that simply cannot be replicated by modern printing methods.</p>
-                    <a href="/letterpress.html" class="btn btn--outline">Learn More</a>
+            <div class="story-block" style="gap:var(--spacing-2xl);">
+                <div class="story-block__text" data-reveal="fade-right">
+                    <span class="eyebrow" style="color:var(--color-gold-light);">The Art of Letterpress</span>
+                    <h2 style="color:var(--color-cream);">550 Years of Tradition,<br>One Press at a Time</h2>
+                    <div class="divider" style="margin-left:0;background:var(--color-gold-light);"></div>
+                    <p style="color:rgba(250,247,244,0.75);">Born in Gutenberg&rsquo;s workshop and refined through centuries of master printers, letterpress is the art of pressing ink into paper with physical type and hand-carved plates. The result is a tactile impression&mdash;a gentle kiss between metal and cotton fiber&mdash;that no digital printer can replicate.</p>
+                    <p style="color:rgba(250,247,244,0.75);">At Longbourn, we honor this tradition while bringing it to life for modern occasions.</p>
+                    <a href="/letterpress.html" class="btn btn--gold" style="align-self:flex-start;">Explore the Process</a>
                 </div>
-                <div class="split__image" style="background-color:var(--color-forest-light);">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/3_31b0e732-851e-4731-9df7-80858497bc10.png?v=1&width=800" alt="Letterpress printing process" loading="lazy">
+                <div class="story-block__image" data-reveal="fade-left">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/1_8603e482-a3b2-48dd-8b4a-e8318ccfc447.png?v=1&width=800" alt="Letterpress printing process" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
+    <!-- ═══════════════════════════════════════════
+         PROCESS — Quick overview
+         ═══════════════════════════════════════════ -->
+    <section class="section section--sage">
+        <div class="container">
+            <div class="text-center" style="margin-bottom:var(--spacing-xl);">
+                <span class="eyebrow" data-reveal="fade-up">From Studio to Ribbon</span>
+                <h2 data-reveal="fade-up" data-reveal-delay="100">How Each Piece Comes to Life</h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="0">
+                    <h4>Design</h4>
+                    <p>Every motif is hand-illustrated and refined for the letterpress medium&mdash;designed to create the deepest, most beautiful impression.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="100">
+                    <h4>Plate &amp; Press</h4>
+                    <p>Custom photopolymer plates are locked into our press. Ink is mixed by hand to achieve the perfect hue, then applied with precision.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="200">
+                    <h4>Impression</h4>
+                    <p>Each sheet of cotton paper is fed individually through the press. The plate meets paper under thousands of pounds of pressure.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="300">
+                    <h4>Finishing</h4>
+                    <p>Cards are die-cut, paired with coordinating envelopes, and adorned with hand-tied satin ribbon. Ready to delight.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PULL QUOTE
+         ═══════════════════════════════════════════ -->
+    <section class="section section--cream">
+        <div class="container">
+            <div class="pull-quote" data-reveal="fade-up">
+                <p class="pull-quote__text">&ldquo;The most beautiful thing about a handwritten note is that it cannot be unsent. It is a permanent declaration of care.&rdquo;</p>
+                <span class="pull-quote__attribution">Alexandra, Founder</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         JOURNAL — Latest posts
+         ═══════════════════════════════════════════ -->
+    <section class="section section--white">
+        <div class="container">
+            <div class="text-center" style="margin-bottom:var(--spacing-xl);">
+                <span class="eyebrow" data-reveal="fade-up">The Longbourn Journal</span>
+                <h2 data-reveal="fade-up" data-reveal-delay="100">Stories from the Studio</h2>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card" data-reveal="fade-up" data-reveal-delay="0">
+                    <div class="blog-card__image">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/7_7ff847aa-4391-4f27-a0e6-69f6c9063835.png?v=1&width=600" alt="The Beauty of Imperfection" loading="lazy">
+                    </div>
+                    <div class="blog-card__content">
+                        <span class="blog-card__date">February 2026</span>
+                        <h3 class="blog-card__title"><a href="/blog.html">The Beauty of Imperfection</a></h3>
+                        <p class="blog-card__excerpt">Why the slight variations in letterpress printing aren&rsquo;t flaws&mdash;they&rsquo;re signatures of the handmade process.</p>
+                    </div>
+                </article>
+                <article class="blog-card" data-reveal="fade-up" data-reveal-delay="100">
+                    <div class="blog-card__image">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/5_4c49664b-341e-43fb-a838-e64e5c07c642.png?v=1&width=600" alt="Botanical Inspirations" loading="lazy">
+                    </div>
+                    <div class="blog-card__content">
+                        <span class="blog-card__date">January 2026</span>
+                        <h3 class="blog-card__title"><a href="/blog.html">Botanical Inspirations</a></h3>
+                        <p class="blog-card__excerpt">How garden botanicals and English countryside florals inspire our hand-illustrated designs.</p>
+                    </div>
+                </article>
+                <article class="blog-card" data-reveal="fade-up" data-reveal-delay="200">
+                    <div class="blog-card__image">
+                        <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/6_fe4d0d50-73b9-4ad1-b38c-2099549b52b2.png?v=1&width=600" alt="The Lost Art of the Handwritten Note" loading="lazy">
+                    </div>
+                    <div class="blog-card__content">
+                        <span class="blog-card__date">December 2025</span>
+                        <h3 class="blog-card__title"><a href="/blog.html">The Lost Art of the Handwritten Note</a></h3>
+                        <p class="blog-card__excerpt">In a digital world, a handwritten note is the most powerful form of connection.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         NEWSLETTER
+         ═══════════════════════════════════════════ -->
     <section class="section section--rose">
         <div class="container">
-            <div class="newsletter">
-                <h2>Stay in Touch</h2>
-                <p>Join our mailing list for new designs, seasonal collections, and the occasional love letter.</p>
+            <div class="newsletter" data-reveal="fade-up">
+                <span class="eyebrow">Stay in Touch</span>
+                <h2>Letters from Longbourn</h2>
+                <p>New designs, seasonal collections, and the occasional love letter&mdash;delivered to your inbox.</p>
                 <form class="newsletter-form web3form" data-form-type="newsletter">
                     <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
                     <input type="hidden" name="subject" value="New Newsletter Signup — Longbourn Papers">
@@ -240,7 +392,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Longbourn Papers</h3>
-                    <p>Letterpress stationery with intention and charm. Hand-pressed heirloom paper goods created using traditional techniques on rich cotton paper.</p>
+                    <p>Hand-pressed letterpress stationery for meaningful moments. Designed and printed with care on luxurious cotton paper in the U.S.A.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Shop</h4>
@@ -255,20 +407,20 @@
                 <div class="footer-col">
                     <h4>Collections</h4>
                     <ul>
-                        <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                        <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                        <li><a href="/shop.html#celebration">Celebration</a></li>
-                        <li><a href="/shop.html#baby">Baby</a></li>
-                        <li><a href="/shop.html#holiday">Holiday</a></li>
+                        <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                        <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                        <li><a href="/collections.html#celebration">Celebration</a></li>
+                        <li><a href="/collections.html#baby">Baby</a></li>
+                        <li><a href="/collections.html#holiday">Holiday</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Longbourn</h4>
                     <ul>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/letterpress.html">Art of Letterpress</a></li>
+                        <li><a href="/about.html">Our Story</a></li>
+                        <li><a href="/letterpress.html">The Craft</a></li>
+                        <li><a href="/blog.html">Journal</a></li>
                         <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
                     </ul>
                 </div>
             </div>
@@ -282,9 +434,8 @@
         </div>
     </footer>
 
-    <!-- Snipcart -->
-    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+    <script src="/js/shopify-cart.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
 </body>
 </html>

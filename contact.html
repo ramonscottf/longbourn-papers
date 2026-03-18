@@ -4,144 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — Longbourn Papers</title>
-    <meta name="description" content="Get in touch with Longbourn Papers. We'd love to hear from you.">
+    <meta name="description" content="Get in touch with Longbourn Papers. We'd love to hear from you about custom orders, wholesale inquiries, or just to say hello.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
 </head>
 <body>
 
+    <div class="reading-progress"></div>
+
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        <p>Free shipping on orders over $75</p>
+        <p>Complimentary shipping on orders over $75 &nbsp;&middot;&nbsp; Handmade in the U.S.A.</p>
     </div>
 
     <!-- Header -->
     <header class="site-header">
         <div class="container">
-            <div class="site-branding"><a href="/">Longbourn Papers</a></div>
+            <div class="site-branding">
+                <a href="/">Longbourn Papers</a>
+            </div>
             <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/shop.html#gift-tags">Gift Tags</a></li>
-                    <li><a href="/shop.html#grand-tags">Grand Tags</a></li>
-                    <li><a href="/shop.html#petite-cards">Petite Cards</a></li>
-                    <li><a href="/shop.html#stationery">Stationery</a></li>
+                    <li><a href="/shop.html">Shop</a></li>
                     <li>
-                        <a href="/shop.html">Collections</a>
+                        <a href="/collections.html">Collections</a>
                         <ul class="dropdown">
-                            <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                            <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                            <li><a href="/shop.html#celebration">Celebration</a></li>
-                            <li><a href="/shop.html#baby">Baby</a></li>
-                            <li><a href="/shop.html#holiday">Holiday</a></li>
+                            <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                            <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                            <li><a href="/collections.html#celebration">Celebration</a></li>
+                            <li><a href="/collections.html#baby">Baby</a></li>
+                            <li><a href="/collections.html#holiday">Holiday</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" class="active">Connect</a>
-                        <ul class="dropdown">
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/letterpress.html">Art of Letterpress</a></li>
-                            <li><a href="/contact.html" class="active">Contact</a></li>
-                            <li><a href="/blog.html">Blog</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/letterpress.html">The Craft</a></li>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="/blog.html">Journal</a></li>
+                    <li><a href="/contact.html" class="active">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-utils">
-                <button class="snipcart-checkout">Cart <span class="cart-count snipcart-items-count">0</span></button>
+                <button class="shopify-cart-toggle">
+                    Cart <span class="cart-count">0</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Get in Touch -->
-    <section class="section section--sage">
+    <!-- ═══════════════════════════════════════════
+         PAGE HEADER
+         ═══════════════════════════════════════════ -->
+    <section class="page-header page-header--elevated">
         <div class="container">
-            <div class="split">
-                <div class="split__image">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/6_fe4d0d50-73b9-4ad1-b38c-2099549b52b2.png?v=1&width=800" alt="Longbourn Papers stationery" loading="lazy">
-                </div>
-                <div class="split__text">
-                    <h1>Get in Touch</h1>
-                    <p>At Longbourn, we adore the romance of a handwritten letter sealed with wax and posted in a bright red box. But we understand that email, calls, and texts are rather convenient. Please feel free to reach out through any channel you prefer.</p>
-
-                    <div class="contact-info" style="margin-top:var(--spacing-md);">
-                        <p><strong>Phone:</strong> <a href="tel:8012056642">801-205-6642</a></p>
-                        <p><strong>Email:</strong> <a href="mailto:alexandra@longbournpapers.com">alexandra@longbournpapers.com</a></p>
-                        <p><strong>Mail:</strong> PO Box 22, Farmington UT 84025</p>
-                    </div>
-
-                    <div class="contact-social" style="margin-top:var(--spacing-md);">
-                        <a href="https://www.instagram.com/longbournpapers/" target="_blank" rel="noopener noreferrer" style="margin-right:var(--spacing-sm);">Instagram</a>
-                        <a href="https://www.pinterest.com/longbournpapers/" target="_blank" rel="noopener noreferrer">Pinterest</a>
-                    </div>
-                </div>
-            </div>
+            <span class="eyebrow" data-reveal="fade-up">Get in Touch</span>
+            <h1 data-reveal="fade-up" data-reveal-delay="100">We'd Love to Hear From You</h1>
+            <div class="divider" data-reveal="fade-up" data-reveal-delay="150"></div>
+            <p data-reveal="fade-up" data-reveal-delay="200">Whether you have a question about a custom order, a wholesale inquiry, or simply want to say hello&mdash;we are here for you.</p>
         </div>
     </section>
 
-    <!-- Contact Form (Web3Forms) -->
+    <!-- ═══════════════════════════════════════════
+         CONTACT SPLIT — Info + Form
+         ═══════════════════════════════════════════ -->
     <section class="section section--cream">
         <div class="container">
-            <div class="featured-text">
-                <h2>Write to Us</h2>
-            </div>
+            <div class="split">
+                <!-- LEFT: Contact Information -->
+                <div class="split__text" data-reveal="fade-up">
+                    <span class="eyebrow">Reach Out</span>
+                    <h2>Let&rsquo;s Connect</h2>
+                    <div class="divider divider--left"></div>
+                    <p>At Longbourn, we adore the romance of a handwritten letter sealed with wax and posted in a bright red box. But we understand that email, calls, and texts are rather convenient. Please feel free to reach out through any channel you prefer.</p>
 
-            <div class="contact-form">
-                <form class="web3form" data-form-type="contact">
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                    <input type="hidden" name="subject" value="New Contact Form Submission — Longbourn Papers">
-                    <input type="hidden" name="from_name" value="Longbourn Papers Website">
-                    <input type="checkbox" name="botcheck" style="display:none;">
-
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" required>
+                    <div class="contact-info" style="margin-top:var(--spacing-lg);">
+                        <div class="contact-info__item" data-reveal="fade-up" data-reveal-delay="100">
+                            <h4>Phone</h4>
+                            <p><a href="tel:8012056642">801-205-6642</a></p>
+                        </div>
+                        <div class="contact-info__item" data-reveal="fade-up" data-reveal-delay="150">
+                            <h4>Email</h4>
+                            <p><a href="mailto:alexandra@longbournpapers.com">alexandra@longbournpapers.com</a></p>
+                        </div>
+                        <div class="contact-info__item" data-reveal="fade-up" data-reveal-delay="200">
+                            <h4>Mail</h4>
+                            <p>PO Box 22, Farmington UT 84025</p>
+                        </div>
+                        <div class="contact-info__item" data-reveal="fade-up" data-reveal-delay="250">
+                            <h4>Business Hours</h4>
+                            <p>Monday &ndash; Friday, 9:00 am &ndash; 5:00 pm MT</p>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+                    <div class="divider divider--left" style="margin-top:var(--spacing-lg);" data-reveal="fade-up" data-reveal-delay="300"></div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
+                    <div class="contact-social" style="margin-top:var(--spacing-md);" data-reveal="fade-up" data-reveal-delay="350">
+                        <h4>Follow Along</h4>
+                        <div style="margin-top:var(--spacing-xs);">
+                            <a href="https://www.instagram.com/longbournpapers/" target="_blank" rel="noopener noreferrer" style="margin-right:var(--spacing-sm);">Instagram</a>
+                            <a href="https://www.pinterest.com/longbournpapers/" target="_blank" rel="noopener noreferrer">Pinterest</a>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="inquiry-type">Inquiry Type</label>
-                        <select id="inquiry-type" name="inquiry-type">
-                            <option value="">Select an option</option>
-                            <option value="General Inquiry">General Inquiry</option>
-                            <option value="Wholesale">Wholesale</option>
-                            <option value="Custom Orders">Custom Orders</option>
-                            <option value="Order Support">Order Support</option>
-                        </select>
+                <!-- RIGHT: Contact Form -->
+                <div class="split__form" data-reveal="fade-up" data-reveal-delay="100">
+                    <div class="contact-form">
+                        <span class="eyebrow">Write to Us</span>
+                        <h3 style="margin-bottom:var(--spacing-md);">Send a Message</h3>
+                        <form class="web3form" data-form-type="contact">
+                            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                            <input type="hidden" name="subject" value="New Contact Form Submission — Longbourn Papers">
+                            <input type="hidden" name="from_name" value="Longbourn Papers Website">
+                            <input type="checkbox" name="botcheck" style="display:none;">
+
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inquiry-type">Inquiry Type</label>
+                                <select id="inquiry-type" name="inquiry-type">
+                                    <option value="">Select an option</option>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Wholesale">Wholesale</option>
+                                    <option value="Custom Orders">Custom Orders</option>
+                                    <option value="Order Support">Order Support</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary" style="width:100%;">Send Message</button>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="message">Comment *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn--primary" style="width:100%;">Send</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Before You Go -->
+    <!-- ═══════════════════════════════════════════
+         FULL-BLEED QUOTE
+         ═══════════════════════════════════════════ -->
+    <section class="full-bleed" style="background-image:url('https://cdn.shopify.com/s/files/1/0693/9492/3685/files/7_7921cac5-89ba-4920-87db-7518f6e2e098.png?v=1&width=1600')">
+        <div class="full-bleed__overlay"></div>
+        <div class="full-bleed__content" data-reveal="fade-up">
+            <blockquote>
+                <p>&ldquo;In a world that moves at the speed of light, the most radical act of connection is to slow down, pick up a pen, and write.&rdquo;</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         NEWSLETTER
+         ═══════════════════════════════════════════ -->
     <section class="section section--rose">
         <div class="container">
-            <div class="featured-text">
-                <h2>Before You Go&hellip;</h2>
-                <p>Browse our collection of handcrafted gift tags, perfect for elevating every gift.</p>
-                <a href="/shop.html" class="btn btn--outline-dark" style="margin-top:var(--spacing-sm);">Shop Gift Tags</a>
+            <div class="newsletter" data-reveal="fade-up">
+                <span class="eyebrow">Stay in Touch</span>
+                <h2>Letters from Longbourn</h2>
+                <p>New designs, seasonal collections, and the occasional love letter&mdash;delivered to your inbox.</p>
+                <form class="newsletter-form web3form" data-form-type="newsletter">
+                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                    <input type="hidden" name="subject" value="New Newsletter Signup — Longbourn Papers">
+                    <input type="hidden" name="from_name" value="Longbourn Papers Website">
+                    <input type="checkbox" name="botcheck" style="display:none;">
+                    <input type="email" name="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
         </div>
     </section>
@@ -152,7 +199,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Longbourn Papers</h3>
-                    <p>Letterpress stationery with intention and charm. Hand-pressed heirloom paper goods created using traditional techniques on rich cotton paper.</p>
+                    <p>Hand-pressed letterpress stationery for meaningful moments. Designed and printed with care on luxurious cotton paper in the U.S.A.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Shop</h4>
@@ -167,20 +214,20 @@
                 <div class="footer-col">
                     <h4>Collections</h4>
                     <ul>
-                        <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                        <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                        <li><a href="/shop.html#celebration">Celebration</a></li>
-                        <li><a href="/shop.html#baby">Baby</a></li>
-                        <li><a href="/shop.html#holiday">Holiday</a></li>
+                        <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                        <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                        <li><a href="/collections.html#celebration">Celebration</a></li>
+                        <li><a href="/collections.html#baby">Baby</a></li>
+                        <li><a href="/collections.html#holiday">Holiday</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Longbourn</h4>
                     <ul>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/letterpress.html">Art of Letterpress</a></li>
+                        <li><a href="/about.html">Our Story</a></li>
+                        <li><a href="/letterpress.html">The Craft</a></li>
+                        <li><a href="/blog.html">Journal</a></li>
                         <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
                     </ul>
                 </div>
             </div>
@@ -194,8 +241,8 @@
         </div>
     </footer>
 
-    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+    <script src="/js/shopify-cart.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
 </body>
 </html>

@@ -57,7 +57,7 @@
         });
     });
 
-    // Variant selector: update product image and Snipcart button
+    // Variant selector: update product image and Shopify add-to-cart button
     document.querySelectorAll('.variant-select').forEach(function (select) {
         select.addEventListener('change', function () {
             var selectedOption = this.options[this.selectedIndex];
@@ -76,15 +76,16 @@
                 }
             }
 
-            // Update Snipcart button attributes
+            // Update Shopify add-to-cart button attributes
             var container = this.closest('.product-detail__info');
             if (!container) return;
 
-            var addBtn = container.querySelector('.snipcart-add-item');
+            var addBtn = container.querySelector('.shopify-add-item');
             if (!addBtn) return;
 
             var designName = selectedOption.textContent.trim();
             var variantValue = selectedOption.value;
+            var sku = selectedOption.getAttribute('data-sku') || '';
 
             // Handle petite card size selector
             if (productType === 'petite-cards-size') {
@@ -93,34 +94,31 @@
                 if (priceEl && price) {
                     priceEl.textContent = '$' + parseFloat(price).toFixed(2);
                 }
-                addBtn.setAttribute('data-item-price', price);
-                var sizeLabel = selectedOption.textContent.split('—')[0].trim();
-                addBtn.setAttribute('data-item-custom2-value', sizeLabel);
+                var sizeLabel = selectedOption.textContent.split('\u2014')[0].trim();
+                var sizeSuffix = variantValue === 'single' ? '-S' : '-6';
 
-                // Also update item ID and name with current design
+                // Update name and SKU with current design and size
                 var designSelect = container.querySelector('[data-product="petite-cards"]');
                 if (designSelect) {
-                    var design = designSelect.options[designSelect.selectedIndex].textContent.trim();
-                    var sizeSuffix = variantValue === '6-pack' ? '6pk' : 'single';
-                    addBtn.setAttribute('data-item-id', 'petite-' + designSelect.value + '-' + sizeSuffix);
-                    addBtn.setAttribute('data-item-name', 'Petite Letterpress Note Cards — ' + design + ' (' + sizeLabel + ')');
+                    var designOpt = designSelect.options[designSelect.selectedIndex];
+                    var design = designOpt.textContent.trim();
+                    var skuBase = designOpt.getAttribute('data-sku-base') || '';
+                    addBtn.setAttribute('data-item-name', 'Petite Letterpress Note Cards \u2014 ' + design + ' (' + sizeLabel + ')');
+                    addBtn.setAttribute('data-item-sku', skuBase + sizeSuffix);
                 }
                 return;
             }
 
             // Handle petite card design selector
             if (productType === 'petite-cards') {
-                addBtn.setAttribute('data-item-custom1-value', designName);
-                if (imgUrl) {
-                    addBtn.setAttribute('data-item-image', imgUrl.replace('width=800', 'width=400'));
-                }
-                // Update item ID with current size
                 var sizeSelect = container.querySelector('[data-product="petite-cards-size"]');
+                var skuBase2 = selectedOption.getAttribute('data-sku-base') || '';
                 if (sizeSelect) {
-                    var sizeSuffix2 = sizeSelect.value === '6-pack' ? '6pk' : 'single';
-                    var sizeLabel2 = sizeSelect.options[sizeSelect.selectedIndex].textContent.split('—')[0].trim();
-                    addBtn.setAttribute('data-item-id', 'petite-' + variantValue + '-' + sizeSuffix2);
-                    addBtn.setAttribute('data-item-name', 'Petite Letterpress Note Cards — ' + designName + ' (' + sizeLabel2 + ')');
+                    var sizeOpt = sizeSelect.options[sizeSelect.selectedIndex];
+                    var sizeLabel2 = sizeOpt.textContent.split('\u2014')[0].trim();
+                    var sizeSuffix2 = sizeOpt.value === 'single' ? '-S' : '-6';
+                    addBtn.setAttribute('data-item-name', 'Petite Letterpress Note Cards \u2014 ' + designName + ' (' + sizeLabel2 + ')');
+                    addBtn.setAttribute('data-item-sku', skuBase2 + sizeSuffix2);
                 }
                 return;
             }
@@ -133,12 +131,8 @@
             };
 
             var baseName = productNames[productType] || 'Product';
-            addBtn.setAttribute('data-item-id', productType.replace('-', '-') + '-' + variantValue);
-            addBtn.setAttribute('data-item-name', baseName + ' — ' + designName);
-            addBtn.setAttribute('data-item-custom1-value', designName);
-            if (imgUrl) {
-                addBtn.setAttribute('data-item-image', imgUrl.replace('width=800', 'width=400'));
-            }
+            addBtn.setAttribute('data-item-sku', sku);
+            addBtn.setAttribute('data-item-name', baseName + ' \u2014 ' + designName);
         });
     });
 

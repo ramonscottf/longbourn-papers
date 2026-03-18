@@ -4,118 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Art of Letterpress — Longbourn Papers</title>
-    <meta name="description" content="Discover the centuries-old craft of letterpress printing and how we create heirloom stationery at Longbourn Papers.">
+    <meta name="description" content="Discover the 550-year tradition of letterpress printing. From Gutenberg's movable type to our studio today, learn how we press ink into cotton paper to create heirloom stationery.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
 </head>
 <body>
 
+    <div class="reading-progress"></div>
+
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        <p>Free shipping on orders over $75</p>
+        <p>Complimentary shipping on orders over $75 &nbsp;&middot;&nbsp; Handmade in the U.S.A.</p>
     </div>
 
     <!-- Header -->
     <header class="site-header">
         <div class="container">
-            <div class="site-branding"><a href="/">Longbourn Papers</a></div>
+            <div class="site-branding">
+                <a href="/">Longbourn Papers</a>
+            </div>
             <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/shop.html#gift-tags">Gift Tags</a></li>
-                    <li><a href="/shop.html#grand-tags">Grand Tags</a></li>
-                    <li><a href="/shop.html#petite-cards">Petite Cards</a></li>
-                    <li><a href="/shop.html#stationery">Stationery</a></li>
+                    <li><a href="/shop.html">Shop</a></li>
                     <li>
-                        <a href="/shop.html">Collections</a>
+                        <a href="/collections.html">Collections</a>
                         <ul class="dropdown">
-                            <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                            <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                            <li><a href="/shop.html#celebration">Celebration</a></li>
-                            <li><a href="/shop.html#baby">Baby</a></li>
-                            <li><a href="/shop.html#holiday">Holiday</a></li>
+                            <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                            <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                            <li><a href="/collections.html#celebration">Celebration</a></li>
+                            <li><a href="/collections.html#baby">Baby</a></li>
+                            <li><a href="/collections.html#holiday">Holiday</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" class="active">Connect</a>
-                        <ul class="dropdown">
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/letterpress.html" class="active">Art of Letterpress</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                            <li><a href="/blog.html">Blog</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/letterpress.html" class="active">The Craft</a></li>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="/blog.html">Journal</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-utils">
-                <button class="snipcart-checkout">Cart <span class="cart-count snipcart-items-count">0</span></button>
+                <button class="shopify-cart-toggle">
+                    Cart <span class="cart-count">0</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero hero--short">
-        <div class="hero__bg" style="background-color:var(--color-forest);"></div>
+    <!-- ═══════════════════════════════════════════
+         HERO — Cinematic medium
+         ═══════════════════════════════════════════ -->
+    <section class="hero hero--medium">
+        <div class="hero__bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0693/9492/3685/files/1_8603e482-a3b2-48dd-8b4a-e8318ccfc447.png?v=1&width=1600')"></div>
+        <div class="hero__overlay"></div>
         <div class="hero__content">
-            <h1 class="hero__title">The Art of Letterpress</h1>
-            <p class="hero__subtitle">A centuries-old craft, reimagined for modern correspondence</p>
+            <span class="hero__eyebrow" data-reveal="fade-up">The Craft</span>
+            <h1 class="hero__title" data-reveal="fade-up" data-reveal-delay="100">The Art of Letterpress</h1>
+            <p class="hero__subtitle" data-reveal="fade-up" data-reveal-delay="200">A 550-year tradition of pressing ink into paper&mdash;one impression at a time.</p>
         </div>
+        <div class="hero__scroll-hint">Scroll</div>
     </section>
 
-    <!-- Tradition -->
+    <!-- ═══════════════════════════════════════════
+         HISTORY — The Gutenberg Legacy
+         ═══════════════════════════════════════════ -->
     <section class="section section--cream">
         <div class="container">
-            <div class="about-intro">
-                <h2>A Time-Honored Tradition</h2>
-                <p>Letterpress printing dates back to the 15th century when Johannes Gutenberg invented movable type. Today, we honor this tradition by using antique presses and hand-set type to create stationery with a depth and character that digital printing simply cannot replicate.</p>
+            <div class="story-block">
+                <div class="story-block__image" data-reveal="fade-right">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/3_31b0e732-851e-4731-9df7-80858497bc10.png?v=1&width=800" alt="The tradition of letterpress printing" loading="lazy">
+                </div>
+                <div class="story-block__text" data-reveal="fade-left">
+                    <span class="eyebrow">A Living History</span>
+                    <h2>Born in Gutenberg&rsquo;s Workshop</h2>
+                    <div class="divider" style="margin-left:0;"></div>
+                    <p class="lead-text">Around 1440, in the German city of Mainz, a goldsmith named Johannes Gutenberg changed the world forever. His invention of movable type and the mechanical printing press ignited a revolution&mdash;one that would spread knowledge, democratize literacy, and reshape civilization itself.</p>
+                    <p>For the first time, individual letters cast in metal could be arranged, inked, and pressed into paper with extraordinary precision. Each impression carried the physical weight of its creation: the bite of metal into fiber, the bloom of ink under pressure. The Gutenberg Bible, completed around 1455, remains one of the most beautiful printed works ever produced&mdash;proof that this was never merely a mechanical process, but an art form from its very first day.</p>
+                    <p>Over the next five and a half centuries, letterpress evolved through the hands of countless master printers, from Aldus Manutius in Renaissance Venice to William Morris and his Kelmscott Press in Victorian England. Each generation refined the craft while preserving its essential truth: that the meeting of ink, type, and paper under pressure creates something no other method can replicate.</p>
+                    <p>At Longbourn Papers, we are the inheritors of this tradition. Our studio carries forward Gutenberg&rsquo;s legacy&mdash;not as museum reproduction, but as living craft, creating stationery that honors 550 years of printing history with every single impression.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- The Process -->
+    <!-- ═══════════════════════════════════════════
+         PROCESS STEPS — From Design to Finishing
+         ═══════════════════════════════════════════ -->
     <section class="section section--sage">
         <div class="container">
-            <div class="split">
-                <div class="split__image">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/1_8603e482-a3b2-48dd-8b4a-e8318ccfc447.png?v=1&width=800" alt="Letterpress printing process" loading="lazy">
+            <div class="text-center" style="margin-bottom:var(--spacing-xl);">
+                <span class="eyebrow" data-reveal="fade-up">The Process</span>
+                <h2 data-reveal="fade-up" data-reveal-delay="100">From First Sketch to Final Ribbon</h2>
+                <p class="lead-text" style="margin:var(--spacing-sm) auto 0;" data-reveal="fade-up" data-reveal-delay="200">Every piece of Longbourn stationery passes through six meticulous stages, each demanding patience, precision, and an unwavering respect for the craft.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="0">
+                    <h4>Design</h4>
+                    <p>Every motif begins as a hand-drawn illustration&mdash;botanical studies, typographic compositions, and decorative flourishes sketched in pencil, then refined in ink. Each design is created specifically for the letterpress medium, with line weights and spacing calibrated to produce the deepest, most beautiful impression possible. What looks right on a screen rarely translates directly to the press; the design must anticipate the physics of impression.</p>
                 </div>
-                <div class="split__text">
-                    <h2>The Process</h2>
-                    <p>Each design begins as a hand-drawn illustration or carefully composed typographic layout. The design is then transferred to a photopolymer plate, which is locked into our antique press.</p>
-                    <p>Rich, custom-mixed inks are rolled onto the plate, and each sheet of cotton paper is fed through the press by hand. The result is a deeply impressed print with a tactile quality that is instantly recognizable.</p>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="100">
+                    <h4>Plate Making</h4>
+                    <p>The finished design is transferred onto a photopolymer plate&mdash;a light-sensitive material that, when exposed and washed, creates a raised surface identical to traditional metal type. The plate is carefully inspected under magnification, then trimmed and mounted to a base that locks into the press bed with absolute precision. A fraction of a millimeter matters.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="200">
+                    <h4>Ink Mixing</h4>
+                    <p>We mix our inks by hand, blending soy-based pigments on a glass slab until the hue is exactly right. Soy-based inks produce richer, more saturated color than petroleum alternatives, and they are gentler on the environment. Each color is tested on cotton paper stock before a single production sheet is printed&mdash;because ink behaves differently on cotton than on wood-pulp paper, and we demand perfection.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="300">
+                    <h4>Impression</h4>
+                    <p>This is the heart of letterpress: the moment when plate meets paper under thousands of pounds of pressure. Each sheet of cotton paper is fed into the press individually, by hand. The rollers distribute ink across the plate, the platen closes, and the design is pressed&mdash;not printed on top of, but physically pressed into&mdash;the paper. The result is a tactile debossing you can feel with your fingertips, a gentle sculptural quality unique to letterpress.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="400">
+                    <h4>Die Cutting</h4>
+                    <p>After printing, each piece is die-cut to its final shape using custom steel-rule dies. Gift tags receive their signature rounded corners and ribbon holes; cards are trimmed to precise dimensions with clean, deckle-free edges. The die must align perfectly with the printed impression&mdash;another step where handcraft and attention to detail determine the quality of the finished piece.</p>
+                </div>
+                <div class="process-step" data-reveal="fade-up" data-reveal-delay="500">
+                    <h4>Finishing</h4>
+                    <p>Every card is paired with a coordinating envelope. Gift tags and grand tags are threaded with hand-tied satin ribbon&mdash;each bow tied individually, each tail trimmed at a matching angle. The finished pieces are inspected one final time, then nestled into packaging designed to protect and present them beautifully. From studio to your hands, nothing is automated.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Materials -->
+    <!-- ═══════════════════════════════════════════
+         FULL BLEED — Parallax Quote
+         ═══════════════════════════════════════════ -->
+    <section class="full-bleed" style="background-image:url('https://cdn.shopify.com/s/files/1/0693/9492/3685/files/7_7921cac5-89ba-4920-87db-7518f6e2e098.png?v=1&width=1600')">
+        <div class="full-bleed__overlay"></div>
+        <div class="full-bleed__content" data-reveal="fade-up">
+            <span class="eyebrow" style="color:var(--color-gold-light);">The Impression</span>
+            <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-style:italic;margin-bottom:var(--spacing-md);line-height:1.4;">&ldquo;There is a profound beauty in the physical impression&mdash;the moment when ink is not merely placed upon paper, but pressed into it, becoming part of its very fiber.&rdquo;</h2>
+            <p>Letterpress is the only printing method that sculpts the paper itself. Each impression is a small act of permanence&mdash;a mark that cannot be erased, a gesture that endures.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         MATERIALS — Cotton, Ink & Ribbon
+         ═══════════════════════════════════════════ -->
     <section class="section section--cream">
         <div class="container">
-            <div class="split">
-                <div class="split__text">
-                    <h2>Our Materials</h2>
-                    <p>We exclusively use premium cotton paper &mdash; a material that is naturally soft, durable, and perfectly suited to the letterpress process. Cotton paper accepts ink beautifully and creates a pronounced impression that sets our stationery apart.</p>
-                    <p>Our satin ribbons, envelopes, and packaging are all chosen to complement the quality and elegance of the printed pieces they accompany.</p>
+            <div class="story-block">
+                <div class="story-block__text" data-reveal="fade-right">
+                    <span class="eyebrow">Our Materials</span>
+                    <h2>Cotton, Ink &amp; Satin</h2>
+                    <div class="divider" style="margin-left:0;"></div>
+                    <p class="lead-text">The materials we choose are as intentional as the craft itself. Every element is selected not only for its beauty, but for how it performs under the pressure of the press.</p>
+                    <p><strong>100% Cotton Paper.</strong> Our paper is made entirely from cotton fiber&mdash;no trees are harvested, no wood pulp is used. Cotton paper is naturally soft, remarkably strong, and archival in quality, meaning it will not yellow or deteriorate over decades. Most importantly, cotton fiber accepts the letterpress impression with extraordinary grace, creating that deep, sculptural debossing that defines our stationery. The weight is substantial: you feel it the instant you pick up a Longbourn card.</p>
+                    <p><strong>Soy-Based Inks.</strong> We use soy-based inks formulated with rich, lightfast pigments. These inks produce deeper saturation and truer color than conventional petroleum-based alternatives. They sit beautifully in the impression left by the press, pooling slightly at the edges of each letter and illustration to create the subtle ink variation that is a hallmark of genuine letterpress printing.</p>
+                    <p><strong>Satin Ribbon.</strong> Our gift tags and grand tags are finished with double-faced satin ribbon, hand-tied in our studio. The ribbon is chosen to complement each design&rsquo;s color palette&mdash;a final tactile detail that elevates the unboxing experience and signals that this is something made with care.</p>
                 </div>
-                <div class="split__image">
-                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/5_4c49664b-341e-43fb-a838-e64e5c07c642.png?v=1&width=800" alt="Premium cotton paper and materials" loading="lazy">
+                <div class="story-block__image" data-reveal="fade-left">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/5_4c49664b-341e-43fb-a838-e64e5c07c642.png?v=1&width=800" alt="Cotton paper and satin ribbon materials" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ═══════════════════════════════════════════
+         WHY LETTERPRESS — The Difference
+         ═══════════════════════════════════════════ -->
+    <section class="section section--white">
+        <div class="container">
+            <div class="text-center" style="margin-bottom:var(--spacing-xl);">
+                <span class="eyebrow" data-reveal="fade-up">The Difference</span>
+                <h2 data-reveal="fade-up" data-reveal-delay="100">Why Letterpress?</h2>
+                <p class="lead-text" style="margin:var(--spacing-sm) auto 0;" data-reveal="fade-up" data-reveal-delay="200">In a world of inkjet printers and laser toner, letterpress stands apart&mdash;not as nostalgia, but as a fundamentally different way of putting ink on paper.</p>
+            </div>
+
+            <div class="story-block">
+                <div class="story-block__image" data-reveal="fade-right">
+                    <img src="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/2_0400ed3a-6fba-4ad3-a3f3-a28831f63837.png?v=1&width=800" alt="The tactile quality of letterpress printing" loading="lazy">
+                </div>
+                <div class="story-block__text" data-reveal="fade-left">
+                    <h3>The Tactile Impression</h3>
+                    <p>Digital printing sits on the surface of paper. Letterpress presses into it. Run your fingertip across a Longbourn card and you will feel the design&mdash;each letter gently debossed, each illustration sculpted into the cotton fiber. This tactile dimension transforms a piece of stationery from something you see into something you experience. It is the difference between reading a message and holding one.</p>
+
+                    <h3 style="margin-top:var(--spacing-lg);">The Beautiful Imperfection</h3>
+                    <p>No two letterpress impressions are perfectly identical. The ink distributes with slight, natural variation&mdash;pooling a fraction deeper in one letter, kissing a touch lighter at the edge of a petal. These are not flaws. They are the signatures of a handmade process, proof that a human hand fed each sheet and a physical press made each mark. In a world of pixel-perfect uniformity, this honest variation is what makes letterpress feel alive.</p>
+
+                    <h3 style="margin-top:var(--spacing-lg);">The Weight of Real Paper</h3>
+                    <p>Mass-produced cards are printed on thin, wood-pulp stock that bends and creases. Our 100% cotton paper has a heft and presence that announces itself before a single word is read. When someone receives a Longbourn card, they notice the weight first&mdash;then the texture, then the impression, then the design. Every sense is engaged before they even begin to read your words. That is the power of letterpress on cotton: it gives your message a physical form worthy of its meaning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PULL QUOTE
+         ═══════════════════════════════════════════ -->
+    <section class="section section--cream">
+        <div class="container">
+            <div class="pull-quote" data-reveal="fade-up">
+                <p class="pull-quote__text">&ldquo;Letterpress is slow on purpose. It asks you to be deliberate&mdash;about the words you choose, the paper you hold, and the person you send it to.&rdquo;</p>
+                <span class="pull-quote__attribution">Alexandra, Founder</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         CTA — Shop the Collection
+         ═══════════════════════════════════════════ -->
     <section class="section section--forest">
         <div class="container">
-            <div class="featured-text" style="padding-bottom:0;">
-                <h2>Experience the Difference</h2>
-                <p style="color:rgba(250,247,244,0.8);">Feel the impression. See the craft. Hold a piece of history in your hands.</p>
-                <a href="/shop.html" class="btn btn--outline" style="margin-top:var(--spacing-sm);">Shop Our Collection</a>
+            <div class="text-center" data-reveal="fade-up">
+                <span class="eyebrow" style="color:var(--color-gold-light);">Experience the Craft</span>
+                <h2 style="color:var(--color-cream);margin-bottom:var(--spacing-sm);">Hold a Piece of History<br>in Your Hands</h2>
+                <div class="divider" style="background:var(--color-gold-light);"></div>
+                <p style="color:rgba(250,247,244,0.8);max-width:36rem;margin:0 auto var(--spacing-md);">Feel the impression. Trace the ink. Notice the weight of real cotton paper. Our stationery is designed to be experienced, not just seen.</p>
+                <div class="hero__actions">
+                    <a href="/shop.html" class="btn btn--outline" style="margin-top:var(--spacing-sm);">Shop the Collection</a>
+                    <a href="/contact.html" class="btn btn--gold" style="margin-top:var(--spacing-sm);">Get in Touch</a>
+                </div>
             </div>
         </div>
     </section>
@@ -126,7 +230,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Longbourn Papers</h3>
-                    <p>Letterpress stationery with intention and charm. Hand-pressed heirloom paper goods created using traditional techniques on rich cotton paper.</p>
+                    <p>Hand-pressed letterpress stationery for meaningful moments. Designed and printed with care on luxurious cotton paper in the U.S.A.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Shop</h4>
@@ -141,20 +245,20 @@
                 <div class="footer-col">
                     <h4>Collections</h4>
                     <ul>
-                        <li><a href="/shop.html#sympathy">Sympathy &amp; Support</a></li>
-                        <li><a href="/shop.html#gratitude">Thank You &amp; Gratitude</a></li>
-                        <li><a href="/shop.html#celebration">Celebration</a></li>
-                        <li><a href="/shop.html#baby">Baby</a></li>
-                        <li><a href="/shop.html#holiday">Holiday</a></li>
+                        <li><a href="/collections.html#sympathy">Sympathy &amp; Support</a></li>
+                        <li><a href="/collections.html#gratitude">Thank You &amp; Gratitude</a></li>
+                        <li><a href="/collections.html#celebration">Celebration</a></li>
+                        <li><a href="/collections.html#baby">Baby</a></li>
+                        <li><a href="/collections.html#holiday">Holiday</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Longbourn</h4>
                     <ul>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/letterpress.html">Art of Letterpress</a></li>
+                        <li><a href="/about.html">Our Story</a></li>
+                        <li><a href="/letterpress.html">The Craft</a></li>
+                        <li><a href="/blog.html">Journal</a></li>
                         <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,8 +272,8 @@
         </div>
     </footer>
 
-    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+    <script src="/js/shopify-cart.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
 </body>
 </html>
