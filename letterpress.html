@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
 </head>
 <body>
 
@@ -53,7 +52,7 @@
                 </ul>
             </nav>
             <div class="header-utils">
-                <button class="snipcart-checkout">Cart <span class="cart-count snipcart-items-count">0</span></button>
+                <button class="shopify-cart-toggle">Cart <span class="cart-count">0</span></button>
             </div>
         </div>
     </header>
@@ -168,8 +167,7 @@
         </div>
     </footer>
 
-    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+    <script src="/js/shopify-cart.js"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>

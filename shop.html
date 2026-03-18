@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
 </head>
 <body>
 
@@ -55,8 +54,8 @@
                 </ul>
             </nav>
             <div class="header-utils">
-                <button class="snipcart-checkout">
-                    Cart <span class="cart-count snipcart-items-count">0</span>
+                <button class="shopify-cart-toggle">
+                    Cart <span class="cart-count">0</span>
                 </button>
             </div>
         </div>
@@ -120,15 +119,9 @@
                             </select>
                         </div>
 
-                        <button class="btn btn--primary snipcart-add-item"
-                            data-item-id="gift-tag-bravo"
+                        <button class="btn btn--primary shopify-add-item"
+                            data-item-sku="301TT"
                             data-item-name="Letterpress Gift Tags — Bravo"
-                            data-item-price="24.00"
-                            data-item-url="/shop.html"
-                            data-item-description="Set of letterpress gift tags with satin ribbon."
-                            data-item-image="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/29_3338beea-dc59-4113-b1cb-932321031ed1.png?v=1&width=400"
-                            data-item-custom1-name="Design"
-                            data-item-custom1-value="Bravo"
                             style="margin-top:var(--spacing-sm);width:100%;">
                             Add to Cart
                         </button>
@@ -161,15 +154,9 @@
                             </select>
                         </div>
 
-                        <button class="btn btn--primary snipcart-add-item"
-                            data-item-id="grand-tag-blossom"
+                        <button class="btn btn--primary shopify-add-item"
+                            data-item-sku="205GT"
                             data-item-name="Letterpress Grand Tags — Blossom"
-                            data-item-price="20.00"
-                            data-item-url="/shop.html"
-                            data-item-description="Larger format letterpress tag with satin ribbon."
-                            data-item-image="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/2_0400ed3a-6fba-4ad3-a3f3-a28831f63837.png?v=1&width=400"
-                            data-item-custom1-name="Design"
-                            data-item-custom1-value="Blossom"
                             style="margin-top:var(--spacing-sm);width:100%;">
                             Add to Cart
                         </button>
@@ -219,17 +206,9 @@
                             </select>
                         </div>
 
-                        <button class="btn btn--primary snipcart-add-item"
-                            data-item-id="petite-birthday-cake-6pk"
+                        <button class="btn btn--primary shopify-add-item"
+                            data-item-sku=""
                             data-item-name="Petite Letterpress Note Cards — Birthday Cake (6-Pack)"
-                            data-item-price="18.00"
-                            data-item-url="/shop.html"
-                            data-item-description="Letterpress note cards printed on cotton paper."
-                            data-item-image="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/41_73d9181f-e427-4c60-95b7-257662fe891c.png?v=1&width=400"
-                            data-item-custom1-name="Design"
-                            data-item-custom1-value="Birthday Cake"
-                            data-item-custom2-name="Size"
-                            data-item-custom2-value="6-Pack"
                             style="margin-top:var(--spacing-sm);width:100%;">
                             Add to Cart
                         </button>
@@ -262,15 +241,9 @@
                             </select>
                         </div>
 
-                        <button class="btn btn--primary snipcart-add-item"
-                            data-item-id="stationery-baby-blue"
+                        <button class="btn btn--primary shopify-add-item"
+                            data-item-sku="402BAR"
                             data-item-name="Letterpress Note Card & Envelope Set — Baby Blue"
-                            data-item-price="24.00"
-                            data-item-url="/shop.html"
-                            data-item-description="Boxed set of letterpress note cards with coordinating envelopes."
-                            data-item-image="https://cdn.shopify.com/s/files/1/0693/9492/3685/files/25_9a9adbd5-3291-49a4-bdaf-4b43e0f2dd37.png?v=1&width=400"
-                            data-item-custom1-name="Design"
-                            data-item-custom1-value="Baby Blue"
                             style="margin-top:var(--spacing-sm);width:100%;">
                             Add to Cart
                         </button>
@@ -347,8 +320,7 @@
         </div>
     </footer>
 
-    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+    <script src="/js/shopify-cart.js"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>
