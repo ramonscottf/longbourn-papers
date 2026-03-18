@@ -1,1 +1,1 @@
-/* /404.html 404
+# No redirects needed - Cloudflare Workers handles 404 automatically
