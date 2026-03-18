@@ -6,7 +6,7 @@
     'use strict';
 
     var SHOPIFY_DOMAIN = 'hiresbighextract.myshopify.com';
-    var STOREFRONT_TOKEN = '6d5abd390b5f7b12bca26d53abf45010';
+    var STOREFRONT_TOKEN = '21e4207985aef673eeeae5c163148e21';
     var API_VERSION = '2025-01';
     var ENDPOINT = 'https://' + SHOPIFY_DOMAIN + '/api/' + API_VERSION + '/graphql.json';
 
