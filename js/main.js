@@ -95,12 +95,16 @@
                     priceEl.textContent = '$' + parseFloat(price).toFixed(2);
                 }
                 var sizeLabel = selectedOption.textContent.split('\u2014')[0].trim();
+                var sizeSuffix = variantValue === 'single' ? '-S' : '-6';
 
-                // Update name with current design and size
+                // Update name and SKU with current design and size
                 var designSelect = container.querySelector('[data-product="petite-cards"]');
                 if (designSelect) {
-                    var design = designSelect.options[designSelect.selectedIndex].textContent.trim();
+                    var designOpt = designSelect.options[designSelect.selectedIndex];
+                    var design = designOpt.textContent.trim();
+                    var skuBase = designOpt.getAttribute('data-sku-base') || '';
                     addBtn.setAttribute('data-item-name', 'Petite Letterpress Note Cards \u2014 ' + design + ' (' + sizeLabel + ')');
+                    addBtn.setAttribute('data-item-sku', skuBase + sizeSuffix);
                 }
                 return;
             }
@@ -108,9 +112,13 @@
             // Handle petite card design selector
             if (productType === 'petite-cards') {
                 var sizeSelect = container.querySelector('[data-product="petite-cards-size"]');
+                var skuBase2 = selectedOption.getAttribute('data-sku-base') || '';
                 if (sizeSelect) {
-                    var sizeLabel2 = sizeSelect.options[sizeSelect.selectedIndex].textContent.split('\u2014')[0].trim();
+                    var sizeOpt = sizeSelect.options[sizeSelect.selectedIndex];
+                    var sizeLabel2 = sizeOpt.textContent.split('\u2014')[0].trim();
+                    var sizeSuffix2 = sizeOpt.value === 'single' ? '-S' : '-6';
                     addBtn.setAttribute('data-item-name', 'Petite Letterpress Note Cards \u2014 ' + designName + ' (' + sizeLabel2 + ')');
+                    addBtn.setAttribute('data-item-sku', skuBase2 + sizeSuffix2);
                 }
                 return;
             }
