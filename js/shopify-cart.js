@@ -12,6 +12,8 @@
 
     var cart = null;
     var skuToVariantMap = {};
+    var titleToVariantMap = {};
+    var productsList = [];
 
     // ── GraphQL helper ──────────────────────────────────────────────
     function shopifyFetch(query, variables) {
@@ -53,24 +55,68 @@
         '}'
     ].join('\n');
 
-    // ── Fetch products & build SKU → variant ID map ─────────────────
+    // ── Fetch products & build lookup maps ──────────────────────────
     function fetchProducts() {
         var query = '{ products(first: 250) { edges { node { title handle variants(first: 100) { edges { node { id sku title price { amount } } } } } } } }';
         return shopifyFetch(query).then(function (data) {
+            if (data.errors) {
+                console.error('Shopify API errors:', data.errors);
+                return {};
+            }
             if (data.data && data.data.products) {
-                data.data.products.edges.forEach(function (edge) {
-                    edge.node.variants.edges.forEach(function (v) {
-                        if (v.node.sku) {
-                            skuToVariantMap[v.node.sku] = v.node.id;
+                productsList = data.data.products.edges.map(function (e) { return e.node; });
+                console.log('Shopify products loaded:', productsList.length);
+                productsList.forEach(function (product) {
+                    console.log('  Product:', product.title, '(' + product.handle + ')', '- variants:', product.variants.edges.length);
+                    product.variants.edges.forEach(function (v) {
+                        var variant = v.node;
+                        // Map by SKU
+                        if (variant.sku) {
+                            skuToVariantMap[variant.sku] = variant.id;
                         }
+                        // Map by "Product Title — Variant Title" (normalized)
+                        var key = (product.title + ' — ' + variant.title).toLowerCase().trim();
+                        titleToVariantMap[key] = variant.id;
+                        // Also map by "Product Title" alone if only one variant or Default Title
+                        if (variant.title === 'Default Title' || product.variants.edges.length === 1) {
+                            titleToVariantMap[product.title.toLowerCase().trim()] = variant.id;
+                        }
+                        console.log('    Variant:', variant.title, '| SKU:', variant.sku || '(none)', '| ID:', variant.id);
                     });
                 });
+            } else {
+                console.warn('No products returned from Shopify. Check that products are published to the Headless sales channel.');
             }
             return skuToVariantMap;
         }).catch(function (err) {
-            console.warn('Could not fetch Shopify products:', err);
+            console.error('Could not fetch Shopify products:', err);
             return {};
         });
+    }
+
+    // ── Resolve a variant ID from button attributes ─────────────────
+    function resolveVariantId(sku, itemName) {
+        // 1. Try exact SKU match
+        if (sku && skuToVariantMap[sku]) {
+            return skuToVariantMap[sku];
+        }
+        // 2. Try by item name (e.g. "Letterpress Gift Tags — Bravo")
+        if (itemName) {
+            var nameKey = itemName.toLowerCase().trim();
+            if (titleToVariantMap[nameKey]) return titleToVariantMap[nameKey];
+            // 3. Try fuzzy: check if any titleMap key contains the variant name
+            var parts = itemName.split(/\s*[—–-]\s*/);
+            if (parts.length >= 2) {
+                var variantName = parts[parts.length - 1].replace(/\s*\(.*\)\s*$/, '').trim().toLowerCase();
+                var productName = parts[0].trim().toLowerCase();
+                for (var key in titleToVariantMap) {
+                    if (key.indexOf(productName) !== -1 && key.indexOf(variantName) !== -1) {
+                        return titleToVariantMap[key];
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     // ── Cart operations ─────────────────────────────────────────────
@@ -338,11 +384,13 @@
     // ── Handle add-to-cart from product buttons ─────────────────────
     function handleAddToCart(btn) {
         var sku = btn.getAttribute('data-item-sku');
-        var variantId = sku ? skuToVariantMap[sku] : null;
+        var itemName = btn.getAttribute('data-item-name');
+        var variantId = resolveVariantId(sku, itemName);
 
         if (!variantId) {
-            // Fallback: try by item name
-            var itemName = btn.getAttribute('data-item-name');
+            console.error('Could not resolve variant for SKU:', sku, 'Name:', itemName);
+            console.log('Available SKUs:', Object.keys(skuToVariantMap));
+            console.log('Available titles:', Object.keys(titleToVariantMap));
             alert('Product "' + (itemName || 'Unknown') + '" is not yet available for checkout. Please ensure your Shopify store has this product with SKU: ' + (sku || 'N/A'));
             return;
         }
@@ -380,7 +428,7 @@
         });
 
         // Fetch products for SKU mapping
-        fetchProducts();
+        var productsReady = fetchProducts();
 
         // Wire up cart toggle buttons
         document.querySelectorAll('.shopify-cart-toggle').forEach(function (btn) {
@@ -390,11 +438,22 @@
             });
         });
 
-        // Wire up add-to-cart buttons
+        // Wire up add-to-cart buttons (wait for products to load first)
         document.querySelectorAll('.shopify-add-item').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
-                handleAddToCart(this);
+                var clickedBtn = this;
+                if (productsList.length === 0) {
+                    clickedBtn.disabled = true;
+                    clickedBtn.textContent = 'Loading...';
+                    productsReady.then(function () {
+                        clickedBtn.disabled = false;
+                        clickedBtn.textContent = 'Add to Cart';
+                        handleAddToCart(clickedBtn);
+                    });
+                } else {
+                    handleAddToCart(clickedBtn);
+                }
             });
         });
     }
