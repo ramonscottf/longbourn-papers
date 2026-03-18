@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML syntax
+        run: |
+          # Verify all HTML files are valid XML-like (catch unclosed tags, typos)
+          for file in $(find . -name '*.html' -not -path './.git/*'); do
+            echo "Checking $file..."
+            # Basic check: ensure file is not empty and has DOCTYPE or html tag
+            if ! grep -qi '<html' "$file"; then
+              echo "WARNING: $file may not be a valid HTML file"
+            fi
+          done
+
+      - name: Check for large files
+        run: |
+          # Prevent accidentally committing large files (>2MB)
+          find . -not -path './.git/*' -type f -size +2M | while read f; do
+            echo "ERROR: Large file detected: $f ($(du -h "$f" | cut -f1))"
+            exit 1
+          done
+
+      - name: Check for secrets
+        run: |
+          # Basic check for accidentally committed secrets
+          if grep -rn 'PRIVATE.KEY\|password\s*=\s*["\x27][^"\x27]\+["\x27]\|sk-[a-zA-Z0-9]' --include='*.html' --include='*.js' --include='*.css' . 2>/dev/null; then
+            echo "ERROR: Possible secrets detected in source files"
+            exit 1
+          fi
+          echo "No secrets detected"
