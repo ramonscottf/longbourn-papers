@@ -1,0 +1,155 @@
+/* ==========================================================================
+   LONGBOURN PAPERS — Layout
+   Grid, containers, responsive breakpoints
+   ========================================================================== */
+
+/* ── Containers ──────────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.container--narrow {
+  max-width: var(--max-width-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.container--wide {
+  max-width: var(--max-width-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* ── Sections ────────────────────────────────────────────────────── */
+
+.section {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+.section--sm {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+.section--lg {
+  padding-top: var(--space-5xl);
+  padding-bottom: var(--space-5xl);
+}
+
+.section--cream { background-color: var(--color-cream); }
+.section--ivory { background-color: var(--color-ivory); }
+.section--linen { background-color: var(--color-linen); }
+.section--navy  { background-color: var(--color-navy); color: var(--color-cream); }
+.section--navy h2,
+.section--navy h3,
+.section--navy h4 { color: var(--color-cream); }
+
+/* ── Grid System ─────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--auto {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.grid--products {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-2xl) var(--space-xl);
+}
+
+/* ── Flex utilities ──────────────────────────────────────────────── */
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-start { display: flex; align-items: flex-start; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+
+/* ── Split layout ────────────────────────────────────────────────── */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.split--reverse {
+  direction: rtl;
+}
+
+.split--reverse > * {
+  direction: ltr;
+}
+
+/* ── Spacing utilities ───────────────────────────────────────────── */
+
+.mt-0  { margin-top: 0; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.mt-2xl { margin-top: var(--space-2xl); }
+
+.mb-0  { margin-bottom: 0; }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .split { grid-template-columns: 1fr; gap: var(--space-2xl); }
+  .split--reverse { direction: ltr; }
+}
+
+@media (max-width: 768px) {
+  .grid--2 { grid-template-columns: 1fr; }
+  .grid--3 { grid-template-columns: 1fr; }
+  .grid--4 { grid-template-columns: 1fr; }
+  .grid--products { grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+  .hide-mobile { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .grid--products { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+}

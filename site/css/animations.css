@@ -1,0 +1,172 @@
+/* ==========================================================================
+   LONGBOURN PAPERS — Animations
+   GSAP-triggered classes + scroll reveal states
+   ========================================================================== */
+
+/* ── Reveal animations (GSAP sets initial state) ─────────────────── */
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slower) var(--ease-out),
+              transform var(--duration-slower) var(--ease-out);
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+[data-animate="slide-up"] {
+  transform: translateY(30px);
+}
+
+[data-animate="slide-left"] {
+  transform: translateX(-30px);
+}
+
+[data-animate="slide-right"] {
+  transform: translateX(30px);
+}
+
+[data-animate="scale"] {
+  transform: scale(0.95);
+}
+
+/* Stagger children */
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+[data-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-slower) var(--ease-out),
+              transform var(--duration-slower) var(--ease-out);
+}
+
+[data-stagger].is-visible > *:nth-child(1) { transition-delay: 0ms; }
+[data-stagger].is-visible > *:nth-child(2) { transition-delay: 100ms; }
+[data-stagger].is-visible > *:nth-child(3) { transition-delay: 200ms; }
+[data-stagger].is-visible > *:nth-child(4) { transition-delay: 300ms; }
+[data-stagger].is-visible > *:nth-child(5) { transition-delay: 400ms; }
+[data-stagger].is-visible > *:nth-child(6) { transition-delay: 500ms; }
+
+/* ── Hero animations ─────────────────────────────────────────────── */
+
+.hero__title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out),
+              transform 0.8s var(--ease-out);
+}
+
+.hero.is-loaded .hero__title span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out) 0.4s,
+              transform 0.6s var(--ease-out) 0.4s;
+}
+
+.hero.is-loaded .hero__subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__cta {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out) 0.6s,
+              transform 0.6s var(--ease-out) 0.6s;
+}
+
+.hero.is-loaded .hero__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Parallax ────────────────────────────────────────────────────── */
+
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ── Hover micro-interactions ────────────────────────────────────── */
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.btn--primary:hover::after {
+  transform: translateX(0);
+}
+
+/* Add to cart pulse */
+@keyframes cart-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.cart-count.pulse {
+  animation: cart-pulse 0.4s var(--ease-spring);
+}
+
+/* ── Image reveal ────────────────────────────────────────────────── */
+
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-cream);
+  transform-origin: right;
+  transition: transform 0.8s var(--ease-in-out);
+}
+
+.img-reveal.is-visible::after {
+  transform: scaleX(0);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  [data-stagger] > *,
+  .hero__title span,
+  .hero__subtitle,
+  .hero__cta {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .img-reveal::after {
+    display: none;
+  }
+}

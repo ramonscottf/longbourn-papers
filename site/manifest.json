@@ -1,0 +1,10 @@
+{
+  "name": "Longbourn Papers",
+  "short_name": "Longbourn",
+  "description": "Hand-pressed letterpress stationery on luxurious cotton paper.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FAF7F2",
+  "theme_color": "#8B2332",
+  "icons": []
+}

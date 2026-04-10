@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sympathy — Longbourn Papers</title>
+  <meta name="description" content="Thoughtful letterpress sympathy cards. Words that carry weight when they matter most.">
+  <meta property="og:title" content="Sympathy — Longbourn Papers">
+  <meta property="og:description" content="Thoughtful letterpress sympathy cards. Words that carry weight when they matter most.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://longbournpapers.com/collections/sympathy/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://longbournpapers.com/collections/sympathy/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/pages/shop.css">
+</head>
+<body>
+  <div class="announcement-bar"><p>Complimentary shipping on orders over $75 &middot; Handmade in the U.S.A.</p></div>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner container--wide">
+      <a href="/" class="site-header__logo" aria-label="Longbourn Papers — Home"><span class="logo-text">Longbourn Papers</span></a>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <ul class="site-nav__list">
+          <li><a href="/shop/">Shop</a></li>
+          <li class="site-nav__dropdown"><button class="site-nav__dropdown-trigger" aria-expanded="false">Collections</button><ul class="site-nav__dropdown-menu"><li><a href="/collections/note-cards/">Note Cards</a></li><li><a href="/collections/gift-tags/">Gift Tags</a></li><li><a href="/collections/grand-tags/">Grand Tags</a></li><li><a href="/collections/thank-you/">Thank You</a></li><li><a href="/collections/sympathy/">Sympathy</a></li><li><a href="/collections/celebration/">Celebration</a></li><li><a href="/collections/baby/">Baby</a></li><li><a href="/collections/holiday/">Holiday</a></li></ul></li>
+          <li><a href="/the-craft/">The Craft</a></li>
+          <li><a href="/our-story/">Our Story</a></li>
+          <li><a href="/journal/">Journal</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <button class="cart-toggle" id="cartToggle" aria-label="Open cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count" id="cartCount" aria-live="polite">0</span></button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false"><span class="hamburger"></span></button>
+      </div>
+    </div>
+  </header>
+  <main style="padding-top: 108px;">
+    <div class="collection-header">
+      <div class="container">
+        <h1 class="collection-header__title" id="collectionTitle">Sympathy</h1>
+        <p class="collection-header__description" id="collectionDescription">Thoughtful letterpress sympathy cards. Words that carry weight when they matter most.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="shop-controls">
+          <span class="shop-controls__count" id="productCount"></span>
+          <div class="shop-controls__filters">
+            <select class="shop-controls__sort select" id="sortSelect" aria-label="Sort products">
+              <option value="title-asc">Name: A–Z</option>
+              <option value="title-desc">Name: Z–A</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid--products" id="productGrid" data-collection="sympathy">
+          <div class="loading"><div class="loading__spinner"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__grid">
+        <div class="site-footer__col"><h4 class="site-footer__heading">Shop</h4><ul><li><a href="/shop/">All Products</a></li><li><a href="/collections/note-cards/">Note Cards</a></li><li><a href="/collections/gift-tags/">Gift Tags</a></li><li><a href="/gift-guide/">Gift Guide</a></li></ul></div>
+        <div class="site-footer__col"><h4 class="site-footer__heading">About</h4><ul><li><a href="/our-story/">Our Story</a></li><li><a href="/the-craft/">The Craft</a></li><li><a href="/journal/">Journal</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+        <div class="site-footer__col"><h4 class="site-footer__heading">Help</h4><ul><li><a href="/faq/">FAQ</a></li><li><a href="/shipping/">Shipping &amp; Returns</a></li><li><a href="/wholesale/">Wholesale</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul></div>
+        <div class="site-footer__col site-footer__newsletter"><h4 class="site-footer__heading">Monthly Correspondence</h4><p>Letters on craft, paper, and the art of slowing down.</p><form class="newsletter-form"><input type="email" placeholder="Your email" required class="input" aria-label="Email"><input type="text" name="_honey" class="form-hp" tabindex="-1" autocomplete="off"><button type="submit" class="btn btn--primary">Subscribe</button></form></div>
+      </div>
+      <div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p></div>
+    </div>
+  </footer>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart"><div class="cart-drawer__header"><h2 class="cart-drawer__title">Your Cart</h2><button class="cart-drawer__close" aria-label="Close cart">&times;</button></div><div class="cart-drawer__items"><p class="cart-drawer__empty">Your cart is empty</p></div><div class="cart-drawer__footer"><div class="cart-drawer__subtotal"><span>Subtotal</span><span class="cart-drawer__subtotal-amount">$0.00</span></div><p class="cart-drawer__note">Shipping and taxes calculated at checkout.</p><button class="btn btn--primary cart-drawer__checkout" disabled>Checkout</button></div></aside>
+  <script src="/js/utils.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/newsletter.js"></script>
+  <script src="/js/collection.js"></script>
+</body>
+</html>

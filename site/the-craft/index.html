@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Craft of Letterpress — Longbourn Papers</title>
+  <meta name="description" content="How we make letterpress stationery: the Heidelberg press, Crane Lettra cotton paper, hand-mixed inks, and the irreducible labor of feeding one sheet at a time.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Craft of Letterpress — Longbourn Papers">
+  <meta property="og:description" content="How we make letterpress stationery: the Heidelberg press, Crane Lettra cotton paper, hand-mixed inks, and the irreducible labor of feeding one sheet at a time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://longbournpapers.com/the-craft/">
+  <meta property="og:site_name" content="Longbourn Papers">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://longbournpapers.com/the-craft/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/pages/story.css">
+  <link rel="stylesheet" href="/css/pages/craft.css">
+</head>
+<body>
+
+  <!-- Announcement Bar + Header -->
+  <div class="announcement-bar"><p>Complimentary shipping on orders over $75 &middot; Handmade in the U.S.A.</p></div>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner container--wide">
+      <a href="/" class="site-header__logo" aria-label="Longbourn Papers — Home"><span class="logo-text">Longbourn Papers</span></a>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <ul class="site-nav__list">
+          <li><a href="/shop/">Shop</a></li>
+          <li class="site-nav__dropdown"><button class="site-nav__dropdown-trigger" aria-expanded="false">Collections</button><ul class="site-nav__dropdown-menu"><li><a href="/collections/note-cards/">Note Cards</a></li><li><a href="/collections/gift-tags/">Gift Tags</a></li><li><a href="/collections/grand-tags/">Grand Tags</a></li><li><a href="/collections/thank-you/">Thank You</a></li><li><a href="/collections/sympathy/">Sympathy</a></li><li><a href="/collections/celebration/">Celebration</a></li><li><a href="/collections/baby/">Baby</a></li><li><a href="/collections/holiday/">Holiday</a></li></ul></li>
+          <li><a href="/the-craft/" class="is-active">The Craft</a></li>
+          <li><a href="/our-story/">Our Story</a></li>
+          <li><a href="/journal/">Journal</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <button class="cart-toggle" id="cartToggle" aria-label="Open cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count" id="cartCount" aria-live="polite">0</span></button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false"><span class="hamburger"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══ STORY HERO ═══ -->
+    <section class="story-hero">
+      <div class="story-hero__bg" style="background-color:var(--color-navy)"></div>
+      <div class="story-hero__content" data-animate="fade">
+        <h1 class="story-hero__title">The Craft</h1>
+        <p class="story-hero__subtitle">Five hundred years of printing heritage, one sheet at a time.</p>
+      </div>
+    </section>
+
+    <!-- ═══ HISTORY OF LETTERPRESS ═══ -->
+    <section class="story-section" data-animate="slide-up">
+      <div class="split container">
+        <div class="story-section__content">
+          <span class="story-section__eyebrow">The Heritage</span>
+          <h2>A 500-Year-Old Art Form</h2>
+          <p>Letterpress printing began around 1440, when Johannes Gutenberg developed movable type in Mainz, Germany. For the next five centuries, every book, newspaper, broadside, and calling card was printed this way: raised type or image, pressed into paper with force and ink.</p>
+          <p>The industrial revolution brought offset and digital printing &mdash; faster, cheaper, infinitely scalable. Letterpress should have died. Instead, something unexpected happened: as the world went digital, people began to crave what machines couldn&rsquo;t replicate &mdash; the deep, tactile impression of type pressed into soft cotton paper.</p>
+          <p>Today, letterpress is a fine-art printing method prized for its texture, depth, and craftsmanship. Each piece carries the evidence of its own making &mdash; a quality that no laser printer or inkjet will ever reproduce.</p>
+        </div>
+        <div>
+          <!-- Placeholder: Historical letterpress imagery -->
+          <div style="width:100%;min-height:400px;background:var(--color-ivory);display:flex;align-items:center;justify-content:center;color:var(--color-stone);font-style:italic">Gutenberg Heritage &mdash; Photo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ THE HEIDELBERG ═══ -->
+    <section class="story-section story-section--alt" data-animate="slide-up">
+      <div class="split split--reverse container">
+        <div class="story-section__content">
+          <span class="story-section__eyebrow">The Press</span>
+          <h2>The Heidelberg Windmill</h2>
+          <p>Our press is a Heidelberg Windmill &mdash; a platen press manufactured in Germany in the 1960s. It is widely considered the finest platen press ever made: a mechanical masterpiece of cams, gears, and grippers that feeds, prints, and delivers each sheet with metronomic precision.</p>
+          <p>The &ldquo;Windmill&rdquo; name comes from the press&rsquo;s distinctive feeding arms, which rotate like windmill blades, picking up a single sheet from the feed pile, swinging it into the press for impression, and then depositing it on the delivery pile. The motion is mesmerizing &mdash; and it has remained essentially unchanged for over sixty years.</p>
+          <p>We run our Heidelberg at a deliberate pace. Speed is not the point. Impression quality is. Each sheet receives the full force of the press, creating that deep, three-dimensional bite into the paper that defines true letterpress.</p>
+        </div>
+        <div>
+          <!-- Placeholder: Heidelberg Windmill press photo -->
+          <div style="width:100%;min-height:400px;background:var(--color-linen);display:flex;align-items:center;justify-content:center;color:var(--color-stone);font-style:italic">Heidelberg Windmill &mdash; Photo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ THE PAPER ═══ -->
+    <section class="story-section" data-animate="slide-up">
+      <div class="split container">
+        <div class="story-section__content">
+          <span class="story-section__eyebrow">The Paper</span>
+          <h2>Crane Lettra Cotton Paper</h2>
+          <p>We print exclusively on Crane Lettra &mdash; 100% cotton paper made by Crane &amp; Co., an American mill with over two centuries of papermaking heritage. Crane Lettra was developed specifically for letterpress printing, and it remains the gold standard.</p>
+          <p>Cotton fiber gives the paper its extraordinary softness and strength. Unlike wood-pulp papers, cotton won&rsquo;t yellow or become brittle with age. It has a warm, substantial hand &mdash; you feel the quality the moment you pick it up.</p>
+          <p>The deep impression that defines our work is only possible because of this paper. Cotton fibers compress and hold their shape under the force of the press, creating a debossed surface you can see in raking light and feel with your fingertips. It is the tactile signature of letterpress &mdash; and the reason people keep our cards for years.</p>
+        </div>
+        <div>
+          <!-- Placeholder: Close-up of Crane Lettra paper and impression -->
+          <div style="width:100%;min-height:400px;background:var(--color-ivory);display:flex;align-items:center;justify-content:center;color:var(--color-stone);font-style:italic">Crane Lettra Detail &mdash; Photo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ THE INK ═══ -->
+    <section class="story-section story-section--alt" data-animate="slide-up">
+      <div class="split split--reverse container">
+        <div class="story-section__content">
+          <span class="story-section__eyebrow">The Ink</span>
+          <h2>Hand-Mixed, Pantone Matched</h2>
+          <p>Color matters. Every ink we use is hand-mixed to match a specific Pantone shade &mdash; the global standard for color accuracy. This means the sage green on your note cards is exactly the sage green we designed, not an approximation.</p>
+          <p>Letterpress ink is oil-based and slow-drying, formulated to transfer cleanly from plate to paper under pressure. It sits on the surface of the cotton fibers rather than being absorbed, which gives letterpress its characteristic crisp, saturated appearance.</p>
+          <p>We mix small batches and test each color on the actual paper stock before a production run begins. It is painstaking, but it ensures that every card meets our standard &mdash; because once ink meets paper under 20 tons of pressure, there are no second chances.</p>
+        </div>
+        <div>
+          <!-- Placeholder: Hand-mixing ink -->
+          <div style="width:100%;min-height:400px;background:var(--color-linen);display:flex;align-items:center;justify-content:center;color:var(--color-stone);font-style:italic">Hand-Mixed Ink &mdash; Photo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ THE PROCESS ═══ -->
+    <section class="section" data-animate="slide-up">
+      <div class="container">
+        <div class="text-center mb-2xl">
+          <span class="story-section__eyebrow">The Process</span>
+          <h2>From Design to Delivery</h2>
+          <p style="max-width:640px;margin:var(--space-md) auto 0;color:var(--color-slate)">Every card passes through six stages, each performed by hand. There are no shortcuts.</p>
+        </div>
+
+        <div class="process-steps container--narrow">
+          <div class="process-step" data-animate="slide-up">
+            <div class="process-step__number"></div>
+            <div class="process-step__content">
+              <h3>Design</h3>
+              <p>Each design begins as a sketch before moving to digital layout. Typography is set, spacing is refined, and every element is considered for how it will translate under pressure on cotton paper.</p>
+            </div>
+          </div>
+          <div class="process-step" data-animate="slide-up">
+            <div class="process-step__number"></div>
+            <div class="process-step__content">
+              <h3>Plate Making</h3>
+              <p>The digital design is output onto a photopolymer plate &mdash; a light-sensitive material that hardens where exposed to UV light, creating a raised printing surface. The plate is mounted on the press bed with precise registration.</p>
+            </div>
+          </div>
+          <div class="process-step" data-animate="slide-up">
+            <div class="process-step__number"></div>
+            <div class="process-step__content">
+              <h3>Press Setup</h3>
+              <p>Ink is mixed to the exact Pantone formula and distributed across the ink rollers. Packing is adjusted behind the platen to control impression depth. Test sheets are run until color density and registration are perfect.</p>
+            </div>
+          </div>
+          <div class="process-step" data-animate="slide-up">
+            <div class="process-step__number"></div>
+            <div class="process-step__content">
+              <h3>Hand-Feeding</h3>
+              <p>Sheets of Crane Lettra are loaded into the feed pile, and the Heidelberg begins its rhythm: feed, print, deliver. Each sheet is picked up, pressed with the full force of the platen, and set down &mdash; one at a time. For multi-color designs, the entire process is repeated for each color.</p>
+            </div>
+          </div>
+          <div class="process-step" data-animate="slide-up">
+            <div class="process-step__number"></div>
+            <div class="process-step__content">
+              <h3>Quality Check</h3>
+              <p>Every printed sheet is inspected by hand. We check for consistent ink coverage, clean impression, proper registration, and any flaws. Sheets that don&rsquo;t meet our standard are pulled. There is no &ldquo;close enough.&rdquo;</p>
+            </div>
+          </div>
+          <div class="process-step" data-animate="slide-up">
+            <div class="process-step__number"></div>
+            <div class="process-step__content">
+              <h3>Finishing &amp; Packaging</h3>
+              <p>Printed sheets are die-cut or hand-trimmed to their final size, scored for folding, and paired with envelopes. Each set is wrapped in tissue, sealed, and packaged with the same care that went into printing it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COMPARISON TABLE ═══ -->
+    <section class="section section--ivory" data-animate="slide-up">
+      <div class="container">
+        <div class="text-center mb-2xl">
+          <h2>Letterpress vs. Other Methods</h2>
+          <p style="max-width:640px;margin:var(--space-md) auto 0;color:var(--color-slate)">Not all printing is created equal. Here is how letterpress compares to the alternatives.</p>
+        </div>
+
+        <div style="overflow-x:auto">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Letterpress</th>
+                <th>Digital</th>
+                <th>Offset</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Impression</strong></td>
+                <td>Deep, tactile deboss into the paper</td>
+                <td>Flat &mdash; sits on the surface</td>
+                <td>Flat &mdash; sits on the surface</td>
+              </tr>
+              <tr>
+                <td><strong>Paper</strong></td>
+                <td>100% cotton (Crane Lettra)</td>
+                <td>Standard wood pulp or coated</td>
+                <td>Coated or uncoated wood pulp</td>
+              </tr>
+              <tr>
+                <td><strong>Ink</strong></td>
+                <td>Oil-based, hand-mixed to Pantone</td>
+                <td>Toner or inkjet (CMYK)</td>
+                <td>Offset ink (CMYK)</td>
+              </tr>
+              <tr>
+                <td><strong>Texture</strong></td>
+                <td>You can feel it with your fingertips</td>
+                <td>Smooth, no texture</td>
+                <td>Smooth, no texture</td>
+              </tr>
+              <tr>
+                <td><strong>Longevity</strong></td>
+                <td>Cotton paper lasts generations</td>
+                <td>Wood pulp yellows over time</td>
+                <td>Wood pulp yellows over time</td>
+              </tr>
+              <tr>
+                <td><strong>Production</strong></td>
+                <td>One sheet at a time, hand-fed</td>
+                <td>High speed, fully automated</td>
+                <td>High speed, fully automated</td>
+              </tr>
+              <tr>
+                <td><strong>Best for</strong></td>
+                <td>Stationery, invitations, art prints</td>
+                <td>Business documents, high volume</td>
+                <td>Magazines, brochures, packaging</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="section text-center" data-animate="fade">
+      <div class="container--narrow">
+        <h2>Feel the Difference</h2>
+        <p style="max-width:560px;margin:var(--space-md) auto var(--space-xl);color:var(--color-slate)">Words on a screen describe letterpress. Holding a card in your hands understands it. Experience the impression, the weight, the warmth of cotton paper for yourself.</p>
+        <a href="/shop/" class="btn btn--primary btn--lg">Shop the Collection</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer + Cart Drawer + Scripts -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__grid">
+        <div class="site-footer__col"><h4 class="site-footer__heading">Shop</h4><ul><li><a href="/shop/">All Products</a></li><li><a href="/collections/note-cards/">Note Cards</a></li><li><a href="/collections/gift-tags/">Gift Tags</a></li><li><a href="/gift-guide/">Gift Guide</a></li></ul></div>
+        <div class="site-footer__col"><h4 class="site-footer__heading">About</h4><ul><li><a href="/our-story/">Our Story</a></li><li><a href="/the-craft/">The Craft</a></li><li><a href="/journal/">Journal</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+        <div class="site-footer__col"><h4 class="site-footer__heading">Help</h4><ul><li><a href="/faq/">FAQ</a></li><li><a href="/shipping/">Shipping &amp; Returns</a></li><li><a href="/wholesale/">Wholesale</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul></div>
+        <div class="site-footer__col site-footer__newsletter"><h4 class="site-footer__heading">Monthly Correspondence</h4><p>Letters on craft, paper, and the art of slowing down.</p><form class="newsletter-form"><input type="email" placeholder="Your email" required class="input" aria-label="Email"><input type="text" name="_honey" class="form-hp" tabindex="-1" autocomplete="off"><button type="submit" class="btn btn--primary">Subscribe</button></form></div>
+      </div>
+      <div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p></div>
+    </div>
+  </footer>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart"><div class="cart-drawer__header"><h2 class="cart-drawer__title">Your Cart</h2><button class="cart-drawer__close" aria-label="Close cart">&times;</button></div><div class="cart-drawer__items"><p class="cart-drawer__empty">Your cart is empty</p></div><div class="cart-drawer__footer"><div class="cart-drawer__subtotal"><span>Subtotal</span><span class="cart-drawer__subtotal-amount">$0.00</span></div><p class="cart-drawer__note">Shipping and taxes calculated at checkout.</p><button class="btn btn--primary cart-drawer__checkout" disabled>Checkout</button></div></aside>
+  <script src="/js/utils.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/newsletter.js"></script>
+
+</body>
+</html>

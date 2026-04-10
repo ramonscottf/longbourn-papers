@@ -1,0 +1,240 @@
+/* ==========================================================================
+   LONGBOURN PAPERS — Product Detail Styles
+   ========================================================================== */
+
+.product-detail {
+  padding: var(--space-3xl) 0 var(--section-gap);
+}
+
+.product-detail__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+/* ── Gallery ─────────────────────────────────────────────────────── */
+
+.product-gallery {
+  position: sticky;
+  top: calc(72px + var(--space-xl));
+}
+
+.product-gallery__main {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ivory);
+  aspect-ratio: 3 / 4;
+  margin-bottom: var(--space-md);
+  cursor: zoom-in;
+}
+
+.product-gallery__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.product-gallery__thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: var(--space-sm);
+}
+
+.product-gallery__thumb {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.product-gallery__thumb.is-active,
+.product-gallery__thumb:hover {
+  opacity: 1;
+  border-color: var(--color-crimson);
+}
+
+.product-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Product info ────────────────────────────────────────────────── */
+
+.product-info {
+  padding-top: var(--space-md);
+}
+
+.product-info__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-crimson);
+  margin-bottom: var(--space-md);
+}
+
+.product-info__title {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-md);
+}
+
+.product-info__price {
+  font-size: var(--text-xl);
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-xl);
+}
+
+.product-info__price .compare-price {
+  text-decoration: line-through;
+  color: var(--color-stone);
+  margin-right: var(--space-sm);
+  font-size: var(--text-lg);
+}
+
+/* Variant selector */
+.variant-selector {
+  margin-bottom: var(--space-xl);
+}
+
+.variant-selector__label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-sm);
+}
+
+.variant-selector__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.variant-option {
+  padding: var(--space-sm) var(--space-lg);
+  border: var(--border-thin);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.variant-option:hover {
+  border-color: var(--color-charcoal);
+}
+
+.variant-option.is-selected {
+  border-color: var(--color-crimson);
+  background: var(--color-crimson-light);
+  color: var(--color-crimson);
+  font-weight: var(--weight-medium);
+}
+
+.variant-option.is-unavailable {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Quantity + Add to Cart */
+.product-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+}
+
+.qty-selector {
+  display: flex;
+  align-items: center;
+  border: var(--border-thin);
+}
+
+.qty-selector__btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--color-charcoal);
+  transition: background var(--duration-fast);
+}
+
+.qty-selector__btn:hover {
+  background: var(--color-ivory);
+}
+
+.qty-selector__value {
+  width: 48px;
+  text-align: center;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  border-left: var(--border-thin);
+  border-right: var(--border-thin);
+  padding: var(--space-sm) 0;
+}
+
+.product-actions .btn {
+  flex: 1;
+  height: 44px;
+}
+
+/* Product description */
+.product-description {
+  margin-bottom: var(--space-2xl);
+  color: var(--color-charcoal);
+  line-height: var(--leading-relaxed);
+}
+
+.product-description h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-md);
+}
+
+/* Product specs */
+.product-specs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm) var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-ivory);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+.product-specs dt {
+  font-weight: var(--weight-medium);
+  color: var(--color-charcoal);
+}
+
+.product-specs dd {
+  color: var(--color-slate);
+}
+
+/* Related products */
+.related-products {
+  padding: var(--section-gap) 0;
+  border-top: var(--border-thin);
+}
+
+.related-products__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .product-detail__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .product-gallery {
+    position: static;
+  }
+}

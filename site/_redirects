@@ -1,0 +1,9 @@
+/shop/p/*                                    /shop/           301
+/pages/the-art-of-letterpress-stationary     /the-craft/      301
+/pages/the-art-of-letterpress-stationery     /the-craft/      301
+/products/baby-blue-stationary               /collections/baby/ 301
+/products/baby-blue-stationery               /collections/baby/ 301
+/products/*                                  /shop/           301
+/blogs/*                                     /journal/        301
+/pages/contact                               /contact/        301
+/pages/our-story                             /our-story/      301

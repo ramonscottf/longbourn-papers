@@ -1,0 +1,218 @@
+/* ==========================================================================
+   LONGBOURN PAPERS — Our Story + Craft + Gift Guide Styles
+   ========================================================================== */
+
+/* ── Story hero ──────────────────────────────────────────────────── */
+
+.story-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  background: var(--color-navy);
+}
+
+.story-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+}
+
+.story-hero__content {
+  position: relative;
+  z-index: var(--z-base);
+  padding: var(--space-3xl) var(--gutter);
+  max-width: 720px;
+}
+
+.story-hero__title {
+  color: #fff;
+  margin-bottom: var(--space-lg);
+}
+
+.story-hero__subtitle {
+  font-size: var(--text-lg);
+  opacity: 0.85;
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+/* ── Story sections ──────────────────────────────────────────────── */
+
+.story-section {
+  padding: var(--section-gap) 0;
+}
+
+.story-section--alt {
+  background: var(--color-ivory);
+}
+
+.story-section__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-crimson);
+  margin-bottom: var(--space-lg);
+}
+
+.story-section__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+}
+
+.story-section__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-section__content h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.story-section__content p {
+  color: var(--color-charcoal);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Full-bleed image break ──────────────────────────────────────── */
+
+.image-break {
+  position: relative;
+  height: 50vh;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.image-break img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Quote callout ───────────────────────────────────────────────── */
+
+.quote-callout {
+  text-align: center;
+  padding: var(--space-5xl) var(--gutter);
+  background: var(--color-linen);
+}
+
+.quote-callout blockquote {
+  border: none;
+  padding: 0;
+  font-size: var(--text-2xl);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.quote-callout cite {
+  display: block;
+  margin-top: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--color-slate);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ── Craft page specifics ────────────────────────────────────────── */
+
+.process-steps {
+  counter-reset: step;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-xl);
+  padding: var(--space-2xl) 0;
+  border-bottom: var(--border-light);
+}
+
+.process-step__number {
+  counter-increment: step;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--color-crimson);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-crimson);
+}
+
+.process-step__number::before {
+  content: counter(step);
+}
+
+.process-step__content h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-sm);
+}
+
+.process-step__content p {
+  color: var(--color-charcoal);
+}
+
+/* ── Comparison table ────────────────────────────────────────────── */
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  margin: var(--space-2xl) 0;
+}
+
+.comparison-table th {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  text-align: left;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-ivory);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.comparison-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: var(--border-light);
+  color: var(--color-charcoal);
+}
+
+.comparison-table tr:hover td {
+  background: var(--color-ivory);
+}
+
+/* ── Gift guide ──────────────────────────────────────────────────── */
+
+.gift-section {
+  padding: var(--space-3xl) 0;
+  border-bottom: var(--border-light);
+}
+
+.gift-section:last-child {
+  border-bottom: none;
+}
+
+.gift-section__title {
+  margin-bottom: var(--space-sm);
+}
+
+.gift-section__subtitle {
+  color: var(--color-slate);
+  margin-bottom: var(--space-2xl);
+}

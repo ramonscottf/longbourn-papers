@@ -1,7 +1,21 @@
-.wrangler/
+# Dependencies
 node_modules/
 
+# Cloudflare
+.wrangler/
 .dev.vars*
 !.dev.vars.example
+
+# Environment
 .env*
 !.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build
+dist/

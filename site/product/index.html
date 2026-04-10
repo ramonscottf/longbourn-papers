@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Longbourn Papers</title>
+  <meta name="description" content="Hand-pressed letterpress stationery on luxurious Crane Lettra cotton paper.">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="Longbourn Papers">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/pages/product.css">
+</head>
+<body>
+  <div class="announcement-bar">
+    <p>Complimentary shipping on orders over $75 &middot; Handmade in the U.S.A.</p>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner container--wide">
+      <a href="/" class="site-header__logo" aria-label="Longbourn Papers — Home"><span class="logo-text">Longbourn Papers</span></a>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <ul class="site-nav__list">
+          <li><a href="/shop/">Shop</a></li>
+          <li class="site-nav__dropdown">
+            <button class="site-nav__dropdown-trigger" aria-expanded="false">Collections</button>
+            <ul class="site-nav__dropdown-menu">
+              <li><a href="/collections/note-cards/">Note Cards</a></li>
+              <li><a href="/collections/gift-tags/">Gift Tags</a></li>
+              <li><a href="/collections/grand-tags/">Grand Tags</a></li>
+              <li><a href="/collections/thank-you/">Thank You</a></li>
+              <li><a href="/collections/sympathy/">Sympathy</a></li>
+              <li><a href="/collections/celebration/">Celebration</a></li>
+              <li><a href="/collections/baby/">Baby</a></li>
+              <li><a href="/collections/holiday/">Holiday</a></li>
+            </ul>
+          </li>
+          <li><a href="/the-craft/">The Craft</a></li>
+          <li><a href="/our-story/">Our Story</a></li>
+          <li><a href="/journal/">Journal</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false"><span class="hamburger"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 108px;" id="productContent" class="loading">
+    <div class="container">
+      <nav class="breadcrumb" id="productBreadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span class="breadcrumb__sep">/</span> <a href="/shop/">Shop</a>
+      </nav>
+    </div>
+
+    <section class="product-detail">
+      <div class="container">
+        <div class="product-detail__layout">
+          <!-- Gallery -->
+          <div class="product-gallery">
+            <div class="product-gallery__main" id="galleryMain">
+              <div style="width:100%;height:100%;background:var(--color-ivory);display:flex;align-items:center;justify-content:center;color:var(--color-stone)">Loading...</div>
+            </div>
+            <div class="product-gallery__thumbs" id="galleryThumbs"></div>
+          </div>
+
+          <!-- Info -->
+          <div class="product-info">
+            <p class="product-info__eyebrow" id="productEyebrow">Letterpress Stationery</p>
+            <h1 class="product-info__title" id="productTitle">Loading...</h1>
+            <p class="product-info__price" id="productPrice"></p>
+
+            <!-- Variant selector (hidden by default, shown by JS if multiple variants) -->
+            <div class="variant-selector" id="variantSelector" style="display:none">
+              <p class="variant-selector__label">Design</p>
+              <div class="variant-selector__options"></div>
+            </div>
+
+            <!-- Quantity + Add to Cart -->
+            <div class="product-actions">
+              <div class="qty-selector">
+                <button class="qty-selector__btn" id="qtyMinus" aria-label="Decrease quantity">&minus;</button>
+                <span class="qty-selector__value" id="qtyValue">1</span>
+                <button class="qty-selector__btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="btn btn--primary" id="addToCart">Add to Cart</button>
+            </div>
+
+            <!-- Description -->
+            <div class="product-description" id="productDescription"></div>
+
+            <!-- Accordions -->
+            <div class="accordion">
+              <div class="accordion__item">
+                <button class="accordion__trigger">
+                  Materials &amp; Specs
+                  <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion__content">
+                  <div class="accordion__content-inner">
+                    <p>Printed on Crane Lettra 110lb cover weight, 100% cotton paper. Deep letterpress impression with rich, archival-quality ink. Each piece is hand-fed through our vintage Heidelberg Windmill press.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion__item">
+                <button class="accordion__trigger">
+                  Shipping
+                  <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion__content">
+                  <div class="accordion__content-inner">
+                    <p>Orders ship within 1&ndash;3 business days. Complimentary standard shipping on orders over $75. Expedited shipping available at checkout.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion__item">
+                <button class="accordion__trigger">
+                  Returns
+                  <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion__content">
+                  <div class="accordion__content-inner">
+                    <p>We want you to love your Longbourn Papers. If something isn&rsquo;t right, contact us within 14 days of delivery and we&rsquo;ll make it right.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__grid">
+        <div class="site-footer__col"><h4 class="site-footer__heading">Shop</h4><ul><li><a href="/shop/">All Products</a></li><li><a href="/collections/note-cards/">Note Cards</a></li><li><a href="/collections/gift-tags/">Gift Tags</a></li><li><a href="/gift-guide/">Gift Guide</a></li></ul></div>
+        <div class="site-footer__col"><h4 class="site-footer__heading">About</h4><ul><li><a href="/our-story/">Our Story</a></li><li><a href="/the-craft/">The Craft</a></li><li><a href="/journal/">Journal</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+        <div class="site-footer__col"><h4 class="site-footer__heading">Help</h4><ul><li><a href="/faq/">FAQ</a></li><li><a href="/shipping/">Shipping &amp; Returns</a></li><li><a href="/wholesale/">Wholesale</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul></div>
+        <div class="site-footer__col site-footer__newsletter"><h4 class="site-footer__heading">Monthly Correspondence</h4><p>Letters on craft, paper, and the art of slowing down.</p><form class="newsletter-form"><input type="email" placeholder="Your email" required class="input" aria-label="Email"><input type="text" name="_honey" class="form-hp" tabindex="-1" autocomplete="off"><button type="submit" class="btn btn--primary">Subscribe</button></form></div>
+      </div>
+      <div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p><div class="site-footer__social"><a href="https://instagram.com/longbournpapers" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a><a href="https://pinterest.com/longbournpapers" aria-label="Pinterest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a></div></div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-drawer__header"><h2 class="cart-drawer__title">Your Cart</h2><button class="cart-drawer__close" aria-label="Close cart">&times;</button></div>
+    <div class="cart-drawer__items"><p class="cart-drawer__empty">Your cart is empty</p></div>
+    <div class="cart-drawer__footer"><div class="cart-drawer__subtotal"><span>Subtotal</span><span class="cart-drawer__subtotal-amount">$0.00</span></div><p class="cart-drawer__note">Shipping and taxes calculated at checkout.</p><button class="btn btn--primary cart-drawer__checkout" disabled>Checkout</button></div>
+  </aside>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/newsletter.js"></script>
+  <script src="/js/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://longbournpapers.com/sitemap.xml

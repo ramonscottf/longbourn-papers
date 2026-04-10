@@ -1,0 +1,260 @@
+/* ==========================================================================
+   LONGBOURN PAPERS — Homepage Styles
+   ========================================================================== */
+
+/* ── Hero ────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__video,
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 26, 0.3) 0%,
+    rgba(26, 26, 26, 0.5) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: var(--z-base);
+  max-width: 800px;
+  padding: var(--space-2xl);
+}
+
+.hero__title {
+  font-size: var(--text-hero);
+  color: #fff;
+  margin-bottom: var(--space-lg);
+  line-height: 1.1;
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-light);
+  opacity: 0.9;
+  margin-bottom: var(--space-2xl);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-base);
+  animation: float 2s ease-in-out infinite;
+}
+
+.hero__scroll-indicator svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Brand Statement ─────────────────────────────────────────────── */
+
+.brand-statement {
+  text-align: center;
+  padding: var(--space-5xl) var(--gutter);
+  background: var(--color-cream);
+}
+
+.brand-statement__text {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-regular);
+  font-style: italic;
+  color: var(--color-charcoal);
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: var(--leading-snug);
+}
+
+/* ── Featured Products ───────────────────────────────────────────── */
+
+.featured-products {
+  padding: var(--section-gap) 0;
+}
+
+.featured-products__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.featured-products__header h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.featured-products__header p {
+  color: var(--color-slate);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Craft Teaser ────────────────────────────────────────────────── */
+
+.craft-teaser {
+  background: var(--color-linen);
+}
+
+.craft-teaser__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+}
+
+.craft-teaser__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-3xl) 0;
+}
+
+.craft-teaser__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-crimson);
+  margin-bottom: var(--space-lg);
+}
+
+.craft-teaser__content h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.craft-teaser__content p {
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-xl);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Collections Grid ────────────────────────────────────────────── */
+
+.home-collections {
+  padding: var(--section-gap) 0;
+}
+
+.home-collections__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.home-collections__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.home-collections__grid .collection-card:first-child {
+  grid-column: 1 / -1;
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .home-collections__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Heritage Section ────────────────────────────────────────────── */
+
+.heritage {
+  background: var(--color-navy);
+  color: var(--color-cream);
+}
+
+.heritage h2 { color: var(--color-cream); }
+
+.heritage__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-3xl) 0;
+}
+
+.heritage__content p {
+  color: rgba(250, 247, 242, 0.8);
+  margin-bottom: var(--space-xl);
+  line-height: var(--leading-relaxed);
+}
+
+.heritage__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+}
+
+/* ── Newsletter Section ──────────────────────────────────────────── */
+
+.home-newsletter {
+  text-align: center;
+  padding: var(--space-5xl) var(--gutter);
+  background: var(--color-ivory);
+}
+
+.home-newsletter__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-crimson);
+  margin-bottom: var(--space-md);
+}
+
+.home-newsletter h2 {
+  margin-bottom: var(--space-md);
+}
+
+.home-newsletter p {
+  color: var(--color-slate);
+  max-width: 480px;
+  margin: 0 auto var(--space-xl);
+}
+
+.home-newsletter .newsletter-form {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.home-newsletter .newsletter-form .input {
+  background: #fff;
+  border-color: var(--color-border);
+  color: var(--color-ink);
+}
