@@ -257,6 +257,55 @@
   line-height: var(--leading-relaxed);
 }
 
+/* Native details/summary accordion (FAQ pages) */
+details.accordion {
+  border-bottom: var(--border-thin);
+}
+
+details.accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+details.accordion summary::-webkit-details-marker { display: none; }
+
+details.accordion summary::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-slate);
+  border-bottom: 2px solid var(--color-slate);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease-in-out);
+}
+
+details.accordion[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+details.accordion .accordion__body {
+  padding-bottom: var(--space-xl);
+  color: var(--color-charcoal);
+  line-height: var(--leading-relaxed);
+}
+
+.accordion-group__heading {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-sm);
+  color: var(--color-crimson);
+}
+
 /* ── Forms ────────────────────────────────────────────────────────── */
 
 .form-group {
