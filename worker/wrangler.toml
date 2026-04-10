@@ -16,6 +16,6 @@ ALLOWED_ORIGIN = "https://longbournpapers.com"
 # CONTACT_EMAIL
 # CONTACT_PHONE
 
-# [[kv_namespaces]]
-# binding = "CACHE"
-# id = "" # Create via: wrangler kv namespace create LONGBOURN_CACHE
+[[kv_namespaces]]
+binding = "CACHE"
+id = "2b281dda1f7e4f84bf56049016fc49de"
