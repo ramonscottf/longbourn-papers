@@ -11,7 +11,7 @@
   var API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8787' : '/api';
   var selectedVariantIndex = 0;
   var product = null;
-  var currentImageIndex = 0;
+  var autoScrollTimer = null;
 
   // ── Fetch and render ──────────────────────────────────────────
   fetch(API_BASE + '/products/' + encodeURIComponent(handle))
@@ -32,7 +32,7 @@
     // Update page title
     document.title = p.title + ' — Longbourn Papers';
     var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', p.description.substring(0, 155));
+    if (metaDesc) metaDesc.setAttribute('content', (p.description || '').substring(0, 155));
 
     // Breadcrumb
     var breadcrumb = document.getElementById('productBreadcrumb');
@@ -50,8 +50,9 @@
     var title = document.getElementById('productTitle');
     if (title) title.textContent = p.title;
 
+    // Price — show range on initial load if min !== max
     var price = document.getElementById('productPrice');
-    if (price) price.textContent = '$' + p.variants[0].price.toFixed(2);
+    if (price) price.textContent = formatPriceRange(p);
 
     // Variants
     if (p.variants.length > 1) {
@@ -60,7 +61,7 @@
 
     // Description
     var desc = document.getElementById('productDescription');
-    if (desc) desc.innerHTML = p.descriptionHtml || '<p>' + p.description + '</p>';
+    if (desc) desc.innerHTML = p.descriptionHtml || '<p>' + (p.description || '') + '</p>';
 
     // Show content
     var content = document.getElementById('productContent');
@@ -70,88 +71,295 @@
     injectStructuredData(p);
   }
 
+  function formatPriceRange(p) {
+    if (p.priceRange && p.priceRange.min !== p.priceRange.max) {
+      return '$' + p.priceRange.min.toFixed(2) + ' – $' + p.priceRange.max.toFixed(2);
+    }
+    return '$' + p.variants[0].price.toFixed(2);
+  }
+
+  // ── Gallery ───────────────────────────────────────────────────
+
   function renderGallery(p) {
     var mainImg = document.getElementById('galleryMain');
     var thumbs = document.getElementById('galleryThumbs');
 
     if (!p.images || p.images.length === 0) return;
 
-    if (mainImg) {
-      mainImg.innerHTML = '<img src="' + p.images[0].url + '" alt="' + (p.images[0].altText || p.title) + '" width="' + (p.images[0].width || 800) + '" height="' + (p.images[0].height || 1000) + '">';
+    // Get one image per unique design (not all 30 variants)
+    var uniqueDesignImages = getUniqueDesignImages(p);
+
+    if (mainImg && uniqueDesignImages[0]) {
+      mainImg.innerHTML = '<img src="' + uniqueDesignImages[0].url + '" alt="' + escapeAttr(uniqueDesignImages[0].altText || p.title) + '" class="product-gallery__main-img">';
     }
 
-    if (thumbs && p.images.length > 1) {
-      thumbs.innerHTML = p.images.map(function(img, i) {
-        return '<button class="product-gallery__thumb' + (i === 0 ? ' is-active' : '') + '" data-index="' + i + '"><img src="' + img.url + '" alt="' + (img.altText || '') + '" width="72" height="72" loading="lazy"></button>';
+    if (thumbs) {
+      thumbs.innerHTML = uniqueDesignImages.map(function(img, i) {
+        return '<button class="product-gallery__thumb' + (i === 0 ? ' is-active' : '') + '" data-url="' + escapeAttr(img.url) + '"><img src="' + img.url + '" alt="' + escapeAttr(img.altText || '') + '" width="72" height="72" loading="lazy"></button>';
       }).join('');
 
       thumbs.addEventListener('click', function(e) {
         var thumb = e.target.closest('.product-gallery__thumb');
         if (!thumb) return;
-        var idx = parseInt(thumb.dataset.index, 10);
-        setActiveImage(idx);
+
+        // Stop auto-scroll on user interaction
+        stopAutoScroll();
+
+        var clickedUrl = thumb.dataset.url;
+        setActiveImageByUrl(clickedUrl);
+
+        // Sync the variant selector to the matching design
+        var matchingVariant = product.variants.find(function(v) {
+          return v.image && v.image.url === clickedUrl;
+        });
+        if (matchingVariant) {
+          var designOpt = (matchingVariant.selectedOptions || []).find(function(o) {
+            return o.name === 'Design';
+          });
+          if (designOpt) {
+            var designBtn = null;
+            document.querySelectorAll('.variant-option--design').forEach(function(b) {
+              if (b.dataset.optionValue === designOpt.value) designBtn = b;
+            });
+            if (designBtn && !designBtn.classList.contains('is-selected')) {
+              designBtn.click();
+            }
+          } else {
+            // Single-option product — select by index
+            var idx = product.variants.indexOf(matchingVariant);
+            if (idx >= 0) selectVariant(idx);
+          }
+        }
       });
+    }
+
+    // Auto-scroll through designs until user interacts
+    startAutoScroll(uniqueDesignImages);
+  }
+
+  function getUniqueDesignImages(p) {
+    var seen = {};
+    var images = [];
+
+    p.variants.forEach(function(v) {
+      var designOpt = (v.selectedOptions || []).find(function(o) {
+        return o.name === 'Design';
+      });
+      var designName = designOpt ? designOpt.value : v.title;
+
+      if (!seen[designName] && v.image) {
+        seen[designName] = true;
+        images.push({
+          url: v.image.url,
+          altText: v.image.altText || designName,
+          designName: designName
+        });
+      }
+    });
+
+    // Fall back to product images if no variant images
+    if (images.length === 0) {
+      images = (p.images || []).slice(0, 6).map(function(img) {
+        return { url: img.url, altText: img.altText, designName: '' };
+      });
+    }
+
+    return images;
+  }
+
+  function startAutoScroll(images) {
+    if (!images || images.length <= 1) return;
+    var idx = 0;
+    autoScrollTimer = setInterval(function() {
+      idx = (idx + 1) % images.length;
+      setActiveImageByUrl(images[idx].url);
+    }, 3000);
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
     }
   }
 
-  function setActiveImage(index) {
-    if (!product || !product.images[index]) return;
-    currentImageIndex = index;
+  function setActiveImageByUrl(url) {
+    if (!url) return;
 
     var mainImg = document.getElementById('galleryMain');
     if (mainImg) {
-      mainImg.innerHTML = '<img src="' + product.images[index].url + '" alt="' + (product.images[index].altText || product.title) + '">';
+      var img = mainImg.querySelector('img');
+      if (img) {
+        img.src = url;
+      } else {
+        mainImg.innerHTML = '<img src="' + url + '" alt="' + escapeAttr(product ? product.title : '') + '" class="product-gallery__main-img">';
+      }
     }
 
-    document.querySelectorAll('.product-gallery__thumb').forEach(function(t, i) {
-      t.classList.toggle('is-active', i === index);
+    document.querySelectorAll('.product-gallery__thumb').forEach(function(t) {
+      t.classList.toggle('is-active', t.dataset.url === url);
     });
   }
+
+  // ── Variants ──────────────────────────────────────────────────
 
   function renderVariants(p) {
     var container = document.getElementById('variantSelector');
     if (!container) return;
-
     container.style.display = 'block';
-    var label = container.querySelector('.variant-selector__label');
-    var options = container.querySelector('.variant-selector__options');
 
-    if (label) label.textContent = 'Design';
+    var firstVariant = p.variants[0];
+    var options = firstVariant.selectedOptions || [];
 
-    if (options) {
-      options.innerHTML = p.variants.map(function(v, i) {
-        var cls = 'variant-option';
-        if (i === 0) cls += ' is-selected';
-        if (!v.available) cls += ' is-unavailable';
-        return '<button class="' + cls + '" data-index="' + i + '"' + (!v.available ? ' disabled' : '') + '>' + v.title + '</button>';
-      }).join('');
-
-      options.addEventListener('click', function(e) {
-        var btn = e.target.closest('.variant-option');
-        if (!btn || btn.disabled) return;
-        var idx = parseInt(btn.dataset.index, 10);
-        selectVariant(idx);
-      });
+    if (options.length >= 2) {
+      renderMultiOptionVariants(p, container);
+    } else {
+      renderSingleOptionVariants(p, container);
     }
+  }
+
+  function renderMultiOptionVariants(p, container) {
+    var optionNames = p.variants[0].selectedOptions.map(function(o) { return o.name; });
+
+    var optionValues = {};
+    optionNames.forEach(function(name) {
+      optionValues[name] = [];
+      p.variants.forEach(function(v) {
+        var opt = v.selectedOptions.find(function(o) { return o.name === name; });
+        if (opt && optionValues[name].indexOf(opt.value) === -1) {
+          optionValues[name].push(opt.value);
+        }
+      });
+    });
+
+    // Default selections — match first variant
+    var currentSelections = {};
+    p.variants[0].selectedOptions.forEach(function(o) {
+      currentSelections[o.name] = o.value;
+    });
+
+    var html = '';
+    optionNames.forEach(function(name) {
+      html += '<div class="variant-group" data-option-name="' + escapeAttr(name) + '">';
+      html += '<label class="variant-group__label">' + escapeHtml(name) + '</label>';
+      html += '<div class="variant-group__options">';
+
+      optionValues[name].forEach(function(value) {
+        var isSelected = (currentSelections[name] === value) ? ' is-selected' : '';
+
+        if (name === 'Design') {
+          var sampleVariant = p.variants.find(function(v) {
+            return v.selectedOptions.some(function(o) {
+              return o.name === 'Design' && o.value === value;
+            });
+          });
+          var thumbUrl = sampleVariant && sampleVariant.image ? sampleVariant.image.url : '';
+
+          html += '<button type="button" class="variant-option variant-option--design' + isSelected + '" data-option-name="' + escapeAttr(name) + '" data-option-value="' + escapeAttr(value) + '">';
+          if (thumbUrl) {
+            html += '<img src="' + thumbUrl + '" alt="' + escapeAttr(value) + '" width="48" height="48" loading="lazy" class="variant-option__thumb">';
+          }
+          html += '<span class="variant-option__label">' + escapeHtml(value) + '</span>';
+          html += '</button>';
+        } else {
+          var sampleForPrice = p.variants.find(function(v) {
+            return v.selectedOptions.some(function(o) {
+              return o.name === name && o.value === value;
+            });
+          });
+          var priceHint = sampleForPrice ? ' ($' + sampleForPrice.price.toFixed(2) + ')' : '';
+
+          html += '<button type="button" class="variant-option variant-option--size' + isSelected + '" data-option-name="' + escapeAttr(name) + '" data-option-value="' + escapeAttr(value) + '">';
+          html += escapeHtml(value) + priceHint;
+          html += '</button>';
+        }
+      });
+
+      html += '</div></div>';
+    });
+
+    container.innerHTML = html;
+
+    container.addEventListener('click', function(e) {
+      var btn = e.target.closest('.variant-option');
+      if (!btn) return;
+
+      var optName = btn.dataset.optionName;
+      var optValue = btn.dataset.optionValue;
+      currentSelections[optName] = optValue;
+
+      var group = btn.closest('.variant-group');
+      group.querySelectorAll('.variant-option').forEach(function(b) {
+        b.classList.toggle('is-selected', b.dataset.optionValue === optValue);
+      });
+
+      var matchingVariant = p.variants.find(function(v) {
+        return v.selectedOptions.every(function(o) {
+          return currentSelections[o.name] === o.value;
+        });
+      });
+
+      if (matchingVariant) {
+        var idx = p.variants.indexOf(matchingVariant);
+        selectVariant(idx);
+      }
+    });
+
+    selectVariant(0);
+  }
+
+  function renderSingleOptionVariants(p, container) {
+    var optionName = (p.variants[0].selectedOptions && p.variants[0].selectedOptions[0])
+      ? p.variants[0].selectedOptions[0].name
+      : 'Design';
+
+    var html = '<div class="variant-group">';
+    html += '<label class="variant-group__label">' + escapeHtml(optionName) + '</label>';
+    html += '<div class="variant-group__options">';
+
+    p.variants.forEach(function(v, i) {
+      var thumbUrl = v.image ? v.image.url : '';
+      var cls = 'variant-option variant-option--design';
+      if (i === 0) cls += ' is-selected';
+      if (!v.available) cls += ' is-unavailable';
+
+      html += '<button type="button" class="' + cls + '" data-index="' + i + '"' + (!v.available ? ' disabled' : '') + '>';
+      if (thumbUrl) {
+        html += '<img src="' + thumbUrl + '" alt="' + escapeAttr(v.title) + '" width="48" height="48" loading="lazy" class="variant-option__thumb">';
+      }
+      html += '<span class="variant-option__label">' + escapeHtml(v.title) + '</span>';
+      html += '</button>';
+    });
+
+    html += '</div></div>';
+    container.innerHTML = html;
+
+    container.addEventListener('click', function(e) {
+      var btn = e.target.closest('.variant-option');
+      if (!btn || btn.disabled) return;
+      var idx = parseInt(btn.dataset.index, 10);
+      container.querySelectorAll('.variant-option').forEach(function(b, i) {
+        b.classList.toggle('is-selected', i === idx);
+      });
+      selectVariant(idx);
+    });
   }
 
   function selectVariant(index) {
     selectedVariantIndex = index;
     var variant = product.variants[index];
+    if (!variant) return;
+
+    // Stop auto-scroll on explicit selection
+    stopAutoScroll();
 
     // Update price
     var price = document.getElementById('productPrice');
     if (price) price.textContent = '$' + variant.price.toFixed(2);
 
-    // Update selected state
-    document.querySelectorAll('.variant-option').forEach(function(btn, i) {
-      btn.classList.toggle('is-selected', i === index);
-    });
-
-    // Update image if variant has one
+    // Update gallery to show this design's image
     if (variant.image) {
-      var imgIdx = product.images.findIndex(function(img) { return img.url === variant.image.url; });
-      if (imgIdx >= 0) setActiveImage(imgIdx);
+      setActiveImageByUrl(variant.image.url);
     }
   }
 
@@ -198,6 +406,24 @@
       var val = parseInt(qtyValue.textContent, 10);
       qtyValue.textContent = val + 1;
     });
+  }
+
+  // ── Helpers ───────────────────────────────────────────────────
+
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function escapeAttr(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function injectStructuredData(p) {

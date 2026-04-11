@@ -13,7 +13,7 @@
   text-align: center;
   color: #fff;
   overflow: hidden;
-  background: var(--color-navy);
+  background: var(--color-forest);
 }
 
 .story-hero__bg {
@@ -58,7 +58,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--color-primary);
   margin-bottom: var(--space-lg);
 }
 
@@ -147,12 +147,12 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border: 2px solid var(--color-crimson);
+  border: 2px solid var(--color-primary);
   border-radius: var(--radius-full);
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  color: var(--color-crimson);
+  color: var(--color-primary);
 }
 
 .process-step__number::before {
