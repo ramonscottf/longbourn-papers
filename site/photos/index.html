@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Longbourn Photo Studio</title>
+<style>
+  :root {
+    --green: #1d322d;
+    --green-light: #2a4a42;
+    --gold: #C5955F;
+    --cream: #FAF7F2;
+    --ivory: #F5F0E8;
+    --ink: #1A1A1A;
+    --charcoal: #3D3D3D;
+    --slate: #6B6B6B;
+    --border: #E0DBD2;
+    --error: #9B2C2C;
+    --success: #2D6A4F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Libre Franklin', 'Helvetica Neue', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .header {
+    background: var(--green);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  .header .badge {
+    background: var(--gold);
+    color: var(--green);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* ── Auth Gate ─── */
+  .auth-gate {
+    max-width: 400px;
+    margin: 4rem auto;
+    text-align: center;
+  }
+
+  .auth-gate h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    margin-bottom: 1rem;
+  }
+
+  .auth-gate input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+  }
+
+  .auth-gate button {
+    width: 100%;
+    padding: 12px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* ── Main Layout ─── */
+  .studio { display: none; }
+  .studio.active { display: block; }
+
+  .slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* ── Category Headers ─── */
+  .category-header {
+    grid-column: 1 / -1;
+    padding: 1rem 0 0.5rem;
+    border-bottom: 2px solid var(--green);
+    margin-top: 1rem;
+  }
+
+  .category-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--green);
+  }
+
+  .category-header p {
+    font-size: 0.8rem;
+    color: var(--slate);
+    margin-top: 0.25rem;
+  }
+
+  /* ── Slot Card ─── */
+  .slot {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .slot:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+  .slot__header {
+    padding: 0.75rem 1rem;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slot__name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--green);
+  }
+
+  .slot__path {
+    font-size: 0.7rem;
+    color: var(--slate);
+    font-family: monospace;
+  }
+
+  .slot__status {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .slot__status--empty { background: #FEF3C7; color: #92400E; }
+  .slot__status--processing { background: #DBEAFE; color: #1E40AF; }
+  .slot__status--done { background: #D1FAE5; color: #065F46; }
+  .slot__status--error { background: #FEE2E2; color: #991B1B; }
+
+  .slot__preview {
+    aspect-ratio: 1;
+    background: var(--ivory);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slot__preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .slot__preview .placeholder {
+    color: var(--border);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .slot__compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    aspect-ratio: 2/1;
+  }
+
+  .slot__compare img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--ivory);
+  }
+
+  .slot__compare-label {
+    position: absolute;
+    bottom: 4px;
+    font-size: 0.6rem;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  .slot__actions {
+    padding: 0.75rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .slot__drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .slot__drop-zone:hover,
+  .slot__drop-zone.drag-over {
+    border-color: var(--green);
+    background: rgba(29, 50, 45, 0.04);
+  }
+
+  .slot__drop-zone input { display: none; }
+
+  .slot__drop-zone span {
+    font-size: 0.75rem;
+    color: var(--slate);
+  }
+
+  .btn-sm {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    color: var(--charcoal);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+
+  .btn-sm:hover { border-color: var(--green); color: var(--green); }
+
+  .btn-sm--primary {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+  }
+
+  .btn-sm--primary:hover {
+    background: var(--green-light);
+  }
+
+  .btn-sm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ── Progress ─── */
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0.5rem 1rem;
+  }
+
+  .progress-bar__fill {
+    height: 100%;
+    background: var(--green);
+    width: 0%;
+    transition: width 0.5s;
+  }
+
+  /* ── Stats Bar ─── */
+  .stats {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat__value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--green);
+  }
+
+  .stat__label {
+    font-size: 0.7rem;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Description field ─── */
+  .slot__description {
+    padding: 0 1rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--slate);
+    line-height: 1.4;
+  }
+
+  /* ── Log ─── */
+  .log {
+    margin-top: 2rem;
+    background: var(--green);
+    color: #a8d5a2;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .log__entry { margin-bottom: 0.25rem; }
+  .log__entry--error { color: #ff6b6b; }
+  .log__entry--success { color: #69db7c; }
+
+  @media (max-width: 768px) {
+    .slot-grid { grid-template-columns: 1fr; }
+    .container { padding: 1rem; }
+    .stats { gap: 1rem; }
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap');
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Longbourn Photo Studio</h1>
+  <span class="badge">Internal Tool</span>
+</div>
+
+<!-- Auth Gate -->
+<div class="auth-gate" id="authGate">
+  <h2>Photo Studio</h2>
+  <p style="color: var(--slate); margin-bottom: 1.5rem; font-size: 0.9rem;">Enter the password to access the photo processing pipeline.</p>
+  <input type="password" id="authPassword" placeholder="Password" autofocus>
+  <button onclick="authenticate()">Enter</button>
+</div>
+
+<!-- Main Studio -->
+<div class="studio" id="studio">
+  <div class="container">
+
+    <div class="stats" id="stats">
+      <div class="stat">
+        <div class="stat__value" id="statTotal">0</div>
+        <div class="stat__label">Total Slots</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" id="statFilled">0</div>
+        <div class="stat__label">Uploaded</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" id="statProcessed">0</div>
+        <div class="stat__label">Enhanced</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" id="statDeployed">0</div>
+        <div class="stat__label">In R2</div>
+      </div>
+    </div>
+
+    <div class="slot-grid" id="slotGrid"></div>
+
+    <div class="log" id="log">
+      <div class="log__entry">Studio ready. Drop images into slots to begin.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const PASSWORD = 'TrustTheAwesome';
+const API_BASE = '/api/photos';
+
+// ── Auth ──
+function authenticate() {
+  const pw = document.getElementById('authPassword').value;
+  if (pw === PASSWORD) {
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('studio').classList.add('active');
+    initStudio();
+  } else {
+    document.getElementById('authPassword').style.borderColor = '#9B2C2C';
+    document.getElementById('authPassword').value = '';
+    document.getElementById('authPassword').placeholder = 'Wrong password';
+  }
+}
+document.getElementById('authPassword').addEventListener('keydown', e => {
+  if (e.key === 'Enter') authenticate();
+});
+
+// ── Image Slot Definitions ──
+const SLOTS = [
+  // PRODUCT PHOTOS — from Shopify, enhance in place
+  { category: 'Product Photos — Gift Tags', description: 'Existing Shopify product images. Upload the current photo, enhance it, push back to Shopify.' },
+
+  { id: 'product-gift-tag-bravo', name: 'Gift Tag — Bravo', r2Path: 'products/enhanced/gift-tag-bravo.png', shopifyVariant: 'Bravo', shopifyProduct: 'gift-tags', description: 'Tag with "Bravo" in navy script, blue satin ribbon' },
+  { id: 'product-gift-tag-celebrate', name: 'Gift Tag — Celebrate', r2Path: 'products/enhanced/gift-tag-celebrate.png', shopifyProduct: 'gift-tags', description: 'Tag with "Celebrate" text' },
+  { id: 'product-gift-tag-congratulations', name: 'Gift Tag — Congratulations', r2Path: 'products/enhanced/gift-tag-congratulations.png', shopifyProduct: 'gift-tags', description: 'Tag with "Congratulations" text' },
+  { id: 'product-gift-tag-deliver-to', name: 'Gift Tag — Deliver To', r2Path: 'products/enhanced/gift-tag-deliver-to.png', shopifyProduct: 'gift-tags', description: 'Tag with "Deliver To" text and lines' },
+  { id: 'product-gift-tag-for-baby-lamb', name: 'Gift Tag — For Baby Lamb', r2Path: 'products/enhanced/gift-tag-baby-lamb.png', shopifyProduct: 'gift-tags', description: 'Baby-themed tag with lamb illustration' },
+  { id: 'product-gift-tag-happy-birthday-grey', name: 'Gift Tag — Happy Birthday Grey', r2Path: 'products/enhanced/gift-tag-hb-grey.png', shopifyProduct: 'gift-tags', description: 'Birthday tag in grey ink' },
+  { id: 'product-gift-tag-happy-birthday-pink', name: 'Gift Tag — Happy Birthday Pink', r2Path: 'products/enhanced/gift-tag-hb-pink.png', shopifyProduct: 'gift-tags', description: 'Birthday tag in pink ink' },
+  { id: 'product-gift-tag-love-you', name: 'Gift Tag — Love You', r2Path: 'products/enhanced/gift-tag-love-you.png', shopifyProduct: 'gift-tags', description: 'Tag with "Love you" script' },
+  { id: 'product-gift-tag-thank-you-grey', name: 'Gift Tag — Thank You Grey', r2Path: 'products/enhanced/gift-tag-ty-grey.png', shopifyProduct: 'gift-tags', description: 'Thank you tag in grey ink' },
+  { id: 'product-gift-tag-thank-you-pink', name: 'Gift Tag — Thank You Pink', r2Path: 'products/enhanced/gift-tag-ty-pink.png', shopifyProduct: 'gift-tags', description: 'Thank you tag in pink ink' },
+  { id: 'product-gift-tag-thinking-of-you', name: 'Gift Tag — Thinking of You', r2Path: 'products/enhanced/gift-tag-thinking.png', shopifyProduct: 'gift-tags', description: 'Tag with "Thinking of You" text' },
+  { id: 'product-gift-tag-welcome-little-one', name: 'Gift Tag — Welcome Little One', r2Path: 'products/enhanced/gift-tag-welcome.png', shopifyProduct: 'gift-tags', description: 'Baby welcome tag' },
+  { id: 'product-gift-tag-wishing-you-well', name: 'Gift Tag — Wishing You Well', r2Path: 'products/enhanced/gift-tag-wishing.png', shopifyProduct: 'gift-tags', description: 'Get well / sympathy tag' },
+  { id: 'product-gift-tag-merry-christmas', name: 'Gift Tag — Merry Christmas', r2Path: 'products/enhanced/gift-tag-xmas.png', shopifyProduct: 'gift-tags', description: 'Christmas tag' },
+  { id: 'product-gift-tag-merry-christmas-banner', name: 'Gift Tag — Christmas Banner', r2Path: 'products/enhanced/gift-tag-xmas-banner.png', shopifyProduct: 'gift-tags', description: 'Christmas banner tag' },
+  { id: 'product-gift-tag-north-pole', name: 'Gift Tag — North Pole', r2Path: 'products/enhanced/gift-tag-north-pole.png', shopifyProduct: 'gift-tags', description: 'North Pole tag' },
+  { id: 'product-gift-tag-peace', name: 'Gift Tag — Peace', r2Path: 'products/enhanced/gift-tag-peace.png', shopifyProduct: 'gift-tags', description: 'Peace tag' },
+
+  { category: 'Product Photos — Grand Tags', description: 'Grand tag designs with botanical wreaths and illustrations.' },
+
+  { id: 'product-grand-tag-blossom', name: 'Grand Tag — Blossom', r2Path: 'products/enhanced/grand-tag-blossom.png', shopifyProduct: 'grand-tags', description: 'Botanical blossom wreath' },
+  { id: 'product-grand-tag-floral-wreath', name: 'Grand Tag — Floral Wreath', r2Path: 'products/enhanced/grand-tag-floral.png', shopifyProduct: 'grand-tags', description: 'Floral wreath design' },
+  { id: 'product-grand-tag-for-you-wreath', name: 'Grand Tag — For You Wreath', r2Path: 'products/enhanced/grand-tag-for-you.png', shopifyProduct: 'grand-tags', description: '"For You" with wreath' },
+  { id: 'product-grand-tag-hummingbird', name: 'Grand Tag — Hummingbird', r2Path: 'products/enhanced/grand-tag-hummingbird.png', shopifyProduct: 'grand-tags', description: 'Hummingbird wreath illustration' },
+  { id: 'product-grand-tag-strawberry', name: 'Grand Tag — Strawberry Fields', r2Path: 'products/enhanced/grand-tag-strawberry.png', shopifyProduct: 'grand-tags', description: 'Strawberry illustration' },
+  { id: 'product-grand-tag-toile', name: 'Grand Tag — Toile', r2Path: 'products/enhanced/grand-tag-toile.png', shopifyProduct: 'grand-tags', description: 'Classic toile pattern' },
+
+  { category: 'Product Photos — Petite Cards', description: 'Petite note cards with rounded corners. Each design needs one hero image.' },
+
+  { id: 'product-petite-queen-bee', name: 'Petite Card — Queen Bee', r2Path: 'products/enhanced/petite-queen-bee.png', shopifyProduct: 'petite-cards', description: 'Gold bee motif on cream' },
+  { id: 'product-petite-birthday-cake', name: 'Petite Card — Birthday Cake', r2Path: 'products/enhanced/petite-birthday-cake.png', shopifyProduct: 'petite-cards', description: 'Pink birthday cake illustration' },
+  { id: 'product-petite-dream', name: 'Petite Card — Dream', r2Path: 'products/enhanced/petite-dream.png', shopifyProduct: 'petite-cards', description: '"Dream" script text' },
+  { id: 'product-petite-laurel', name: 'Petite Card — Laurel', r2Path: 'products/enhanced/petite-laurel.png', shopifyProduct: 'petite-cards', description: 'Laurel wreath motif' },
+  { id: 'product-petite-queens-guard', name: 'Petite Card — Queen\'s Guard', r2Path: 'products/enhanced/petite-queens-guard.png', shopifyProduct: 'petite-cards', description: 'British Queen\'s Guard illustration' },
+  { id: 'product-petite-union-jack', name: 'Petite Card — Union Jack', r2Path: 'products/enhanced/petite-union-jack.png', shopifyProduct: 'petite-cards', description: 'Union Jack flag design' },
+  { id: 'product-petite-teapot', name: 'Petite Card — Teapot', r2Path: 'products/enhanced/petite-teapot.png', shopifyProduct: 'petite-cards', description: 'Classic teapot illustration' },
+  { id: 'product-petite-teacup', name: 'Petite Card — Teacup', r2Path: 'products/enhanced/petite-teacup.png', shopifyProduct: 'petite-cards', description: 'Teacup illustration' },
+  { id: 'product-petite-eleanor', name: 'Petite Card — Eleanor', r2Path: 'products/enhanced/petite-eleanor.png', shopifyProduct: 'petite-cards', description: 'Eleanor script monogram' },
+  { id: 'product-petite-thomas', name: 'Petite Card — Thomas', r2Path: 'products/enhanced/petite-thomas.png', shopifyProduct: 'petite-cards', description: 'Thomas monogram' },
+  { id: 'product-petite-oak-leaf', name: 'Petite Card — Oak Leaf', r2Path: 'products/enhanced/petite-oak-leaf.png', shopifyProduct: 'petite-cards', description: 'Oak leaf botanical' },
+  { id: 'product-petite-wheat-sheaf', name: 'Petite Card — Wheat Sheaf', r2Path: 'products/enhanced/petite-wheat-sheaf.png', shopifyProduct: 'petite-cards', description: 'Wheat sheaf botanical' },
+  { id: 'product-petite-kiss-me', name: 'Petite Card — Kiss Me', r2Path: 'products/enhanced/petite-kiss-me.png', shopifyProduct: 'petite-cards', description: 'Lips / kiss me design' },
+  { id: 'product-petite-star-david', name: 'Petite Card — Star of David', r2Path: 'products/enhanced/petite-star-david.png', shopifyProduct: 'petite-cards', description: 'Star of David motif' },
+  { id: 'product-petite-longbourn-hive', name: 'Petite Card — Longbourn Hive', r2Path: 'products/enhanced/petite-hive.png', shopifyProduct: 'petite-cards', description: 'Beehive illustration' },
+
+  { category: 'Product Photos — Note Card Sets', description: 'Note card and envelope sets.' },
+
+  { id: 'product-notecard-baby-blue', name: 'Note Card — Baby Blue', r2Path: 'products/enhanced/notecard-baby-blue.png', shopifyProduct: 'longbourn-stationery', description: 'Baby blue bordered card with envelope' },
+  { id: 'product-notecard-baby-blush', name: 'Note Card — Baby Blush', r2Path: 'products/enhanced/notecard-baby-blush.png', shopifyProduct: 'longbourn-stationery', description: 'Blush pink bordered card' },
+  { id: 'product-notecard-hearts', name: 'Note Card — Hearts', r2Path: 'products/enhanced/notecard-hearts.png', shopifyProduct: 'longbourn-stationery', description: 'Heart pattern card' },
+  { id: 'product-notecard-nautical', name: 'Note Card — Nautical', r2Path: 'products/enhanced/notecard-nautical.png', shopifyProduct: 'longbourn-stationery', description: 'Nautical trim card' },
+  { id: 'product-notecard-royal-we', name: 'Note Card — Royal We', r2Path: 'products/enhanced/notecard-royal-we.png', shopifyProduct: 'longbourn-stationery', description: 'Crown / royal design' },
+  { id: 'product-notecard-to-the-hive', name: 'Note Card — To the Hive', r2Path: 'products/enhanced/notecard-hive.png', shopifyProduct: 'longbourn-stationery', description: 'Bee / hive design card' },
+
+  { category: 'Site Images — Hero', description: 'Homepage hero images and video. These go on the homepage above the fold.' },
+
+  { id: 'hero-main', name: 'Homepage Hero', r2Path: 'hero/hero-main.jpg', description: 'Primary hero image. Best dramatic shot of press, paper, or finished cards. 2400x1600 minimum.' },
+  { id: 'hero-alt-1', name: 'Hero Alternative 1', r2Path: 'hero/hero-alt-1.jpg', description: 'Alternative hero option.' },
+  { id: 'hero-alt-2', name: 'Hero Alternative 2', r2Path: 'hero/hero-alt-2.jpg', description: 'Alternative hero option.' },
+
+  { category: 'Site Images — The Craft', description: 'Process photography for the letterpress craft page.' },
+
+  { id: 'craft-press-hero', name: 'Heidelberg Press — Hero', r2Path: 'craft/press/press-hero.jpg', description: 'THE shot of the Heidelberg. Full press, dramatic, straight-on.' },
+  { id: 'craft-press-detail-1', name: 'Press Detail — Rollers', r2Path: 'craft/press/press-rollers.jpg', description: 'Close-up of rollers, chase, or type bed.' },
+  { id: 'craft-press-detail-2', name: 'Press Detail — In Motion', r2Path: 'craft/press/press-motion.jpg', description: 'Press running, motion blur OK.' },
+  { id: 'craft-impression-1', name: 'Impression Macro — Text', r2Path: 'craft/detail/impression-text.jpg', description: 'MOST IMPORTANT: Extreme close-up of debossed text showing impression depth in cotton paper.' },
+  { id: 'craft-impression-2', name: 'Impression Macro — Side Angle', r2Path: 'craft/detail/impression-side.jpg', description: 'Side-angle shot showing shadow in letterpress impression.' },
+  { id: 'craft-impression-3', name: 'Impression Macro — Finger Touch', r2Path: 'craft/detail/impression-touch.jpg', description: 'Finger running over the debossed surface.' },
+  { id: 'craft-paper-stack', name: 'Paper — Stack', r2Path: 'craft/paper/paper-stack.jpg', description: 'Stack of blank Crane Lettra sheets showing thickness.' },
+  { id: 'craft-paper-texture', name: 'Paper — Texture Macro', r2Path: 'craft/paper/paper-texture.jpg', description: 'Macro of cotton paper surface. Fibers visible.' },
+  { id: 'craft-ink-mixing', name: 'Ink — Mixing', r2Path: 'craft/ink/ink-mixing.jpg', description: 'Ink being mixed on slab or palette.' },
+  { id: 'craft-ink-rollers', name: 'Ink — On Rollers', r2Path: 'craft/ink/ink-rollers.jpg', description: 'Ink spread on press rollers.' },
+
+  { category: 'Site Images — Our Story', description: 'Founder photos, Bath England, studio.' },
+
+  { id: 'story-bath-crescent', name: 'Bath — Royal Crescent', r2Path: 'story/bath/royal-crescent.jpg', description: 'The Royal Crescent in Bath. YOUR photo from living there.' },
+  { id: 'story-bath-street', name: 'Bath — Street Scene', r2Path: 'story/bath/street-scene.jpg', description: 'Georgian architecture, honey stone, any Bath street.' },
+  { id: 'story-bath-detail', name: 'Bath — Architectural Detail', r2Path: 'story/bath/detail.jpg', description: 'Doorway, ironwork, window, any charming detail.' },
+  { id: 'story-founder', name: 'Founder Portrait', r2Path: 'story/founder/portrait.jpg', description: 'Ali — at press, at desk, or with products.' },
+  { id: 'story-studio', name: 'Studio / Workspace', r2Path: 'story/studio/workspace.jpg', description: 'Wide shot of the workspace where the magic happens.' },
+
+  { category: 'Site Images — Lifestyle', description: 'Products in real-world settings. These sell the dream.' },
+
+  { id: 'lifestyle-desk', name: 'Lifestyle — Writing at Desk', r2Path: 'products/lifestyle/writing-desk.jpg', description: 'Card being written at a beautiful desk with pen.' },
+  { id: 'lifestyle-gift', name: 'Lifestyle — Gift Tag on Present', r2Path: 'products/lifestyle/gift-wrap.jpg', description: 'Tag tied to a wrapped gift.' },
+  { id: 'lifestyle-held', name: 'Lifestyle — Card in Hand', r2Path: 'products/lifestyle/card-in-hand.jpg', description: 'Someone holding a Longbourn card.' },
+  { id: 'lifestyle-flatlay', name: 'Lifestyle — Flat Lay', r2Path: 'products/lifestyle/flatlay.jpg', description: 'Overhead styled composition with cards, pen, flowers.' },
+  { id: 'lifestyle-packaging', name: 'Lifestyle — Gift Ready', r2Path: 'products/packaging/gift-ready.jpg', description: 'Cards packaged and ready to gift.' },
+];
+
+// ── State ──
+const slotState = {};
+
+function initStudio() {
+  const grid = document.getElementById('slotGrid');
+  let html = '';
+
+  SLOTS.forEach((slot, i) => {
+    if (slot.category) {
+      html += `<div class="category-header"><h2>${slot.category}</h2><p>${slot.description || ''}</p></div>`;
+      return;
+    }
+
+    slotState[slot.id] = { status: 'empty', originalUrl: null, enhancedUrl: null };
+
+    html += `
+      <div class="slot" id="slot-${slot.id}" data-slot-id="${slot.id}">
+        <div class="slot__header">
+          <div>
+            <div class="slot__name">${slot.name}</div>
+            <div class="slot__path">${slot.r2Path}</div>
+          </div>
+          <span class="slot__status slot__status--empty" id="status-${slot.id}">Needs Photo</span>
+        </div>
+        <div class="slot__preview" id="preview-${slot.id}">
+          <div class="placeholder">${slot.description || 'Drop image here'}</div>
+        </div>
+        <div class="slot__actions">
+          <label class="slot__drop-zone" id="drop-${slot.id}">
+            <input type="file" accept="image/*" onchange="handleFile(event, '${slot.id}')">
+            <span>Drop image or click to upload</span>
+          </label>
+        </div>
+        <div class="progress-bar" id="progress-${slot.id}" style="display:none">
+          <div class="progress-bar__fill" id="progressFill-${slot.id}"></div>
+        </div>
+      </div>
+    `;
+  });
+
+  grid.innerHTML = html;
+  updateStats();
+  setupDragDrop();
+}
+
+function setupDragDrop() {
+  document.querySelectorAll('.slot__drop-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      const slotId = zone.id.replace('drop-', '');
+      if (e.dataTransfer.files.length > 0) {
+        processFile(e.dataTransfer.files[0], slotId);
+      }
+    });
+  });
+}
+
+function handleFile(event, slotId) {
+  const file = event.target.files[0];
+  if (file) processFile(file, slotId);
+}
+
+async function processFile(file, slotId) {
+  const slot = SLOTS.find(s => s.id === slotId);
+  if (!slot) return;
+
+  log(`Uploading ${file.name} to "${slot.name}"...`);
+  setStatus(slotId, 'processing', 'Uploading...');
+  showProgress(slotId, 10);
+
+  // Show original preview
+  const reader = new FileReader();
+  reader.onload = e => {
+    const preview = document.getElementById(`preview-${slotId}`);
+    preview.innerHTML = `<img src="${e.target.result}" alt="Original">`;
+    slotState[slotId].originalUrl = e.target.result;
+  };
+  reader.readAsDataURL(file);
+
+  showProgress(slotId, 30);
+  setStatus(slotId, 'processing', 'Enhancing...');
+  log(`Sending to GPT-4o for enhancement...`);
+
+  try {
+    // Convert file to base64
+    const base64 = await fileToBase64(file);
+    showProgress(slotId, 40);
+
+    // Send to our Worker API for processing
+    const response = await fetch(API_BASE + '/enhance', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        image: base64,
+        slotId: slotId,
+        r2Path: slot.r2Path,
+        productType: slot.shopifyProduct || 'site',
+        description: slot.description || slot.name,
+      })
+    });
+
+    showProgress(slotId, 80);
+
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.error || 'Enhancement failed');
+    }
+
+    const result = await response.json();
+    showProgress(slotId, 100);
+
+    // Show the enhanced result
+    if (result.enhancedUrl) {
+      const preview = document.getElementById(`preview-${slotId}`);
+      preview.innerHTML = `
+        <div class="slot__compare" style="display:grid;grid-template-columns:1fr 1fr;">
+          <div style="position:relative">
+            <img src="${slotState[slotId].originalUrl}" alt="Original">
+            <span class="slot__compare-label" style="left:4px">BEFORE</span>
+          </div>
+          <div style="position:relative">
+            <img src="${result.enhancedUrl}" alt="Enhanced">
+            <span class="slot__compare-label" style="right:4px">AFTER</span>
+          </div>
+        </div>
+      `;
+      slotState[slotId].enhancedUrl = result.enhancedUrl;
+      slotState[slotId].status = 'done';
+
+      // Add deploy button
+      const actions = document.querySelector(`#slot-${slotId} .slot__actions`);
+      if (!actions.querySelector('.btn-deploy')) {
+        const deployBtn = document.createElement('button');
+        deployBtn.className = 'btn-sm btn-sm--primary btn-deploy';
+        deployBtn.textContent = result.deployed ? '✓ In R2' : 'Deploy to R2';
+        deployBtn.disabled = result.deployed;
+        if (!result.deployed) {
+          deployBtn.onclick = () => deployToR2(slotId);
+        }
+        actions.appendChild(deployBtn);
+      }
+
+      setStatus(slotId, result.deployed ? 'done' : 'done', result.deployed ? 'In R2' : 'Enhanced');
+      log(`✓ ${slot.name} enhanced successfully` + (result.deployed ? ' and deployed to R2' : ''), 'success');
+    }
+
+  } catch (err) {
+    setStatus(slotId, 'error', 'Error');
+    log(`✗ ${slot.name}: ${err.message}`, 'error');
+    showProgress(slotId, 0);
+  }
+
+  updateStats();
+}
+
+async function deployToR2(slotId) {
+  const slot = SLOTS.find(s => s.id === slotId);
+  if (!slot || !slotState[slotId].enhancedUrl) return;
+
+  setStatus(slotId, 'processing', 'Deploying...');
+  log(`Deploying ${slot.name} to R2: ${slot.r2Path}`);
+
+  try {
+    const response = await fetch(API_BASE + '/deploy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        slotId: slotId,
+        r2Path: slot.r2Path,
+        imageUrl: slotState[slotId].enhancedUrl,
+      })
+    });
+
+    if (!response.ok) throw new Error('Deploy failed');
+
+    setStatus(slotId, 'done', 'In R2');
+    const btn = document.querySelector(`#slot-${slotId} .btn-deploy`);
+    if (btn) { btn.textContent = '✓ In R2'; btn.disabled = true; }
+    log(`✓ Deployed to R2: ${slot.r2Path}`, 'success');
+
+  } catch (err) {
+    setStatus(slotId, 'error', 'Deploy Failed');
+    log(`✗ Deploy failed: ${err.message}`, 'error');
+  }
+
+  updateStats();
+}
+
+// ── Helpers ──
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function setStatus(slotId, type, text) {
+  const el = document.getElementById(`status-${slotId}`);
+  if (!el) return;
+  el.className = `slot__status slot__status--${type}`;
+  el.textContent = text;
+}
+
+function showProgress(slotId, pct) {
+  const bar = document.getElementById(`progress-${slotId}`);
+  const fill = document.getElementById(`progressFill-${slotId}`);
+  if (bar && fill) {
+    bar.style.display = pct > 0 ? 'block' : 'none';
+    fill.style.width = pct + '%';
+  }
+}
+
+function log(msg, type) {
+  const logEl = document.getElementById('log');
+  const entry = document.createElement('div');
+  entry.className = 'log__entry' + (type ? ` log__entry--${type}` : '');
+  entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  logEl.appendChild(entry);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function updateStats() {
+  const slots = SLOTS.filter(s => !s.category);
+  const filled = Object.values(slotState).filter(s => s.originalUrl).length;
+  const processed = Object.values(slotState).filter(s => s.enhancedUrl).length;
+  const deployed = Object.values(slotState).filter(s => s.status === 'done').length;
+
+  document.getElementById('statTotal').textContent = slots.length;
+  document.getElementById('statFilled').textContent = filled;
+  document.getElementById('statProcessed').textContent = processed;
+  document.getElementById('statDeployed').textContent = deployed;
+}
+</script>
+</body>
+</html>

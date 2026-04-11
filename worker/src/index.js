@@ -7,6 +7,7 @@ import { handleCartCreate, handleCartAdd, handleCartUpdate, handleCartRemove, ha
 import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';
 import { handleWholesale } from './wholesale.js';
+import { handlePhotoEnhance, handlePhotoDeploy, handlePhotoServe } from './photos.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -55,6 +56,16 @@ export default {
       }
       else if (path === '/api/wholesale' && request.method === 'POST') {
         response = await handleWholesale(request, env);
+      }
+      // Photo Studio
+      else if (path === '/api/photos/enhance' && request.method === 'POST') {
+        response = await handlePhotoEnhance(request, env);
+      }
+      else if (path === '/api/photos/deploy' && request.method === 'POST') {
+        response = await handlePhotoDeploy(request, env);
+      }
+      else if (path.startsWith('/api/photos/media/') && request.method === 'GET') {
+        return await handlePhotoServe(path, env);
       }
       // Health
       else if (path === '/api/health') {
