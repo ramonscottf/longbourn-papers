@@ -7,7 +7,7 @@ import { handleCartCreate, handleCartAdd, handleCartUpdate, handleCartRemove, ha
 import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';
 import { handleWholesale } from './wholesale.js';
-import { handlePhotoEnhance, handlePhotoDeploy, handlePhotoServe } from './photos.js';
+import { handlePhotoEnhance, handlePhotoDeploy, handlePhotoServe, handlePhotoClean, handleSetPrime, handleGenerateScene, handleApproveAndDeploy } from './photos.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -60,6 +60,18 @@ export default {
       // Photo Studio
       else if (path === '/api/photos/enhance' && request.method === 'POST') {
         response = await handlePhotoEnhance(request, env);
+      }
+      else if (path === '/api/photos/clean' && request.method === 'POST') {
+        response = await handlePhotoClean(request, env);
+      }
+      else if (path === '/api/photos/set-prime' && request.method === 'POST') {
+        response = await handleSetPrime(request, env);
+      }
+      else if (path === '/api/photos/generate-scene' && request.method === 'POST') {
+        response = await handleGenerateScene(request, env);
+      }
+      else if (path === '/api/photos/approve-deploy' && request.method === 'POST') {
+        response = await handleApproveAndDeploy(request, env);
       }
       else if (path === '/api/photos/deploy' && request.method === 'POST') {
         response = await handlePhotoDeploy(request, env);
