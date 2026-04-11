@@ -29,5 +29,8 @@
       "binding": "MEDIA",
       "bucket_name": "longbourn-media"
     }
-  ]
+  ],
+  "ai": {
+    "binding": "AI"
+  }
 }

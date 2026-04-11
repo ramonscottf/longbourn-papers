@@ -15,7 +15,15 @@ ALLOWED_ORIGIN = "https://longbournpapers.com"
 # TWILIO_FROM_NUMBER
 # CONTACT_EMAIL
 # CONTACT_PHONE
+# OPENAI_API_KEY
 
 [[kv_namespaces]]
 binding = "CACHE"
 id = "2b281dda1f7e4f84bf56049016fc49de"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "longbourn-media"
+
+[ai]
+binding = "AI"
