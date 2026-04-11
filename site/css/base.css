@@ -66,14 +66,14 @@ button {
 }
 
 a {
-  color: var(--color-crimson);
+  color: var(--color-primary);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color var(--duration-fast) var(--ease-out);
 }
 
 a:hover {
-  color: var(--color-crimson-hover);
+  color: var(--color-primary-hover);
 }
 
 a:focus-visible {
@@ -119,7 +119,7 @@ small {
 }
 
 blockquote {
-  border-left: 3px solid var(--color-crimson);
+  border-left: 3px solid var(--color-primary);
   padding-left: var(--space-lg);
   font-family: var(--font-display);
   font-style: italic;
@@ -130,7 +130,7 @@ blockquote {
 /* ── Selection ───────────────────────────────────────────────────── */
 
 ::selection {
-  background-color: var(--color-crimson-light);
+  background-color: var(--color-primary-light);
   color: var(--color-ink);
 }
 
@@ -190,7 +190,7 @@ blockquote {
 .text-lg { font-size: var(--text-lg); }
 .text-xl { font-size: var(--text-xl); }
 
-.color-crimson { color: var(--color-crimson); }
+.color-primary { color: var(--color-primary); }
 .color-slate { color: var(--color-slate); }
 .color-charcoal { color: var(--color-charcoal); }
 

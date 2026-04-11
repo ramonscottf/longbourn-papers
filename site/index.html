@@ -101,7 +101,7 @@
       <div class="hero__media">
         <div class="hero__overlay"></div>
         <!-- Placeholder: replace with real hero image/video -->
-        <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--color-navy) 0%, #2d1f3d 50%, var(--color-crimson) 100%)"></div>
+        <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--color-forest) 0%, #2a4a42 50%, var(--color-primary) 100%)"></div>
       </div>
       <div class="hero__content">
         <h1 class="hero__title">
@@ -331,16 +331,28 @@
         .then(function(res) { return res.json(); })
         .then(function(products) {
           grid.innerHTML = products.slice(0, 4).map(function(p) {
-            var img = (p.images && p.images[0]) ? p.images[0] : {};
-            var price = p.priceRange ? p.priceRange.min : 0;
+            var firstVariant = (p.variants && p.variants[0]) || null;
+            var variantImg = firstVariant && firstVariant.image ? firstVariant.image : null;
+            var img = variantImg || ((p.images && p.images[0]) ? p.images[0] : {});
+            var imgUrl = img.url || '';
+            var imgAlt = img.altText || p.title;
+
+            var priceHtml;
+            if (p.priceRange && p.priceRange.min !== p.priceRange.max) {
+              priceHtml = 'From $' + parseFloat(p.priceRange.min).toFixed(2);
+            } else {
+              var price = p.priceRange ? p.priceRange.min : (firstVariant ? firstVariant.price : 0);
+              priceHtml = '$' + parseFloat(price).toFixed(2);
+            }
+
             return '<article class="product-card">' +
               '<a href="/product/?handle=' + p.handle + '">' +
                 '<div class="product-card__image-wrap">' +
-                  '<img class="product-card__image" src="' + (img.url || '') + '" alt="' + (img.altText || p.title) + '" width="' + (img.width || 600) + '" height="' + (img.height || 800) + '" loading="lazy">' +
+                  '<img class="product-card__image" src="' + imgUrl + '" alt="' + imgAlt + '" loading="lazy">' +
                 '</div>' +
                 '<div class="product-card__body">' +
                   '<h3 class="product-card__title">' + p.title + '</h3>' +
-                  '<p class="product-card__price">$' + parseFloat(price).toFixed(2) + '</p>' +
+                  '<p class="product-card__price">' + priceHtml + '</p>' +
                 '</div>' +
               '</a>' +
             '</article>';
