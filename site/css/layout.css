@@ -50,10 +50,10 @@
 .section--cream { background-color: var(--color-cream); }
 .section--ivory { background-color: var(--color-ivory); }
 .section--linen { background-color: var(--color-linen); }
-.section--navy  { background-color: var(--color-navy); color: var(--color-cream); }
-.section--navy h2,
-.section--navy h3,
-.section--navy h4 { color: var(--color-cream); }
+.section--forest { background-color: var(--color-forest); color: var(--color-cream); }
+.section--forest h2,
+.section--forest h3,
+.section--forest h4 { color: var(--color-cream); }
 
 /* ── Grid System ─────────────────────────────────────────────────── */
 

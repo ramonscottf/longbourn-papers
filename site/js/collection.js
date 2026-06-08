@@ -56,17 +56,30 @@
     }
 
     grid.innerHTML = products.map(function(p) {
-      var img = (p.images && p.images[0]) ? p.images[0] : {};
-      var price = p.priceRange ? p.priceRange.min : (p.variants && p.variants[0] ? p.variants[0].price : 0);
+      // Prefer the first variant's image so the card matches a real design
+      var firstVariant = (p.variants && p.variants[0]) || null;
+      var variantImg = firstVariant && firstVariant.image ? firstVariant.image : null;
+      var fallbackImg = (p.images && p.images[0]) ? p.images[0] : {};
+      var img = variantImg || fallbackImg;
+      var imgUrl = img.url || '';
+      var imgAlt = img.altText || p.title;
+
+      var priceHtml;
+      if (p.priceRange && p.priceRange.min !== p.priceRange.max) {
+        priceHtml = 'From $' + parseFloat(p.priceRange.min).toFixed(2);
+      } else {
+        var price = p.priceRange ? p.priceRange.min : (firstVariant ? firstVariant.price : 0);
+        priceHtml = '$' + parseFloat(price).toFixed(2);
+      }
 
       return '<article class="product-card" data-animate="fade">' +
         '<a href="/product/?handle=' + p.handle + '">' +
           '<div class="product-card__image-wrap">' +
-            '<img class="product-card__image" src="' + (img.url || '') + '" alt="' + (img.altText || p.title) + '" width="' + (img.width || 600) + '" height="' + (img.height || 800) + '" loading="lazy">' +
+            '<img class="product-card__image" src="' + imgUrl + '" alt="' + imgAlt + '" loading="lazy">' +
           '</div>' +
           '<div class="product-card__body">' +
             '<h3 class="product-card__title">' + p.title + '</h3>' +
-            '<p class="product-card__price">$' + parseFloat(price).toFixed(2) + '</p>' +
+            '<p class="product-card__price">' + priceHtml + '</p>' +
           '</div>' +
         '</a>' +
       '</article>';

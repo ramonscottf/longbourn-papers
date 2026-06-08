@@ -61,9 +61,9 @@
 
 .filter-tag:hover,
 .filter-tag.is-active {
-  background: var(--color-crimson);
+  background: var(--color-primary);
   color: #fff;
-  border-color: var(--color-crimson);
+  border-color: var(--color-primary);
 }
 
 /* ── Empty state ─────────────────────────────────────────────────── */

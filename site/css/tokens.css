@@ -19,21 +19,22 @@
   --color-slate:          #6B6B6B;
   --color-stone:          #999590;
 
-  /* Brand accent — Longbourn crimson (the red envelope) */
-  --color-crimson:        #8B2332;
-  --color-crimson-hover:  #A63344;
-  --color-crimson-light:  rgba(139, 35, 50, 0.08);
+  /* Brand accent — Longbourn hunter green (rolling hills of England) */
+  --color-primary:        #1d322d;
+  --color-primary-hover:  #2a4a42;
+  --color-primary-light:  rgba(29, 50, 45, 0.08);
 
   /* Heritage accents — used sparingly */
-  --color-gold:           #B8965A;
-  --color-gold-light:     rgba(184, 150, 90, 0.12);
-  --color-sage:           #7A8B72;
-  --color-navy:           #1B2D4F;
+  --color-gold:           #C5955F;
+  --color-gold-hover:     #D4A76E;
+  --color-gold-light:     rgba(197, 149, 95, 0.12);
+  --color-sage:           #5b7670;
+  --color-forest:         #1d322d;
 
   /* Functional */
   --color-border:         #E0DBD2;
   --color-border-light:   #EDE8DF;
-  --color-focus:          #8B2332;
+  --color-focus:          #1d322d;
   --color-success:        #2D6A4F;
   --color-error:          #9B2C2C;
   --color-overlay:        rgba(26, 26, 26, 0.5);

@@ -24,16 +24,20 @@
   position: relative;
   overflow: hidden;
   background: var(--color-ivory);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   margin-bottom: var(--space-md);
-  cursor: zoom-in;
+  border-radius: var(--radius-md);
 }
 
-.product-gallery__main img {
+.product-gallery__main img,
+.product-gallery__main-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: var(--color-ivory);
+  border-radius: var(--radius-md);
+  transition: opacity var(--duration-base) var(--ease-out);
 }
 
 .product-gallery__thumbs {
@@ -46,8 +50,10 @@
   aspect-ratio: 1;
   overflow: hidden;
   border: 2px solid transparent;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   opacity: 0.6;
+  background: var(--color-ivory);
   transition: opacity var(--duration-fast) var(--ease-out),
               border-color var(--duration-fast) var(--ease-out);
 }
@@ -55,13 +61,14 @@
 .product-gallery__thumb.is-active,
 .product-gallery__thumb:hover {
   opacity: 1;
-  border-color: var(--color-crimson);
+  border-color: var(--color-primary);
 }
 
 .product-gallery__thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--color-ivory);
 }
 
 /* ── Product info ────────────────────────────────────────────────── */
@@ -75,7 +82,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--color-primary);
   margin-bottom: var(--space-md);
 }
 
@@ -102,36 +109,91 @@
   margin-bottom: var(--space-xl);
 }
 
-.variant-selector__label {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--color-charcoal);
-  margin-bottom: var(--space-sm);
+.variant-group {
+  margin-bottom: var(--space-lg);
 }
 
-.variant-selector__options {
+.variant-group:last-child {
+  margin-bottom: 0;
+}
+
+.variant-group__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.variant-group__options {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
 }
 
 .variant-option {
-  padding: var(--space-sm) var(--space-lg);
-  border: var(--border-thin);
-  font-size: var(--text-sm);
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-out);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-charcoal);
+  background: white;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
 }
 
-.variant-option:hover {
-  border-color: var(--color-charcoal);
+/* Design option — with thumbnail */
+.variant-option--design {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 12px 6px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
-.variant-option.is-selected {
-  border-color: var(--color-crimson);
-  background: var(--color-crimson-light);
-  color: var(--color-crimson);
-  font-weight: var(--weight-medium);
+.variant-option--design:hover {
+  border-color: var(--color-primary);
+}
+
+.variant-option--design.is-selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.variant-option__thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background: var(--color-ivory);
+}
+
+.variant-option__label {
+  white-space: nowrap;
+}
+
+/* Pack Size option — no thumbnail, cleaner */
+.variant-option--size {
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.variant-option--size:hover {
+  border-color: var(--color-primary);
+}
+
+.variant-option--size.is-selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
 }
 
 .variant-option.is-unavailable {

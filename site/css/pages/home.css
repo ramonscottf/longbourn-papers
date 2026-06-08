@@ -150,7 +150,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--color-primary);
   margin-bottom: var(--space-lg);
 }
 
@@ -195,7 +195,7 @@
 /* ── Heritage Section ────────────────────────────────────────────── */
 
 .heritage {
-  background: var(--color-navy);
+  background: var(--color-forest);
   color: var(--color-cream);
 }
 
@@ -234,7 +234,7 @@
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--color-primary);
   margin-bottom: var(--space-md);
 }
 

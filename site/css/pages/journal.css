@@ -44,7 +44,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--color-primary);
   margin-bottom: var(--space-sm);
 }
 
@@ -133,7 +133,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--color-primary);
   margin-bottom: var(--space-lg);
 }
 
