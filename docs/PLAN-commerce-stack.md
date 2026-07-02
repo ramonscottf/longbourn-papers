@@ -93,7 +93,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 - `POST /api/checkout`: validate line items against D1 prices (never trust client prices) → Stripe Checkout Session — Stripe Tax enabled, shipping address collection, shipping options (flat rate / free over $X, Ali sets numbers).
 - `POST /api/stripe/webhook`: signature-verified `checkout.session.completed` → order + items rows, inventory decrement, confirmation email via Resend.
 - `/order-confirmed/` success page + cancel return.
-- **Stripe account (resolved 2026-07-02):** NEW account under Wicko's Stripe login (the existing one is Mercury-managed — don't build on it). Descriptor `LONGBOURN PAPERS`, payouts → Wicko Mercury, restricted key → worker secret.
+- **Stripe account (Scott's call, 2026-07-02):** the EXISTING Mercury-managed Wicko account — Scott explicitly chose it over a fresh one. Made safe by architecture: STATELESS Stripe (no Products/Prices ever created; every session built inline from D1 `price_data`), so swapping accounts later = swap one secret + re-register one webhook. Statement descriptor suffix LONGBOURN on every session. Bonus discovered at build: Stripe Tax is ACTIVE on this account — automatic tax works today. Webhook verification is refetch-based (no signing-secret storage).
 **Accept:** full test-mode purchase → order in D1 → email received (to Scott's inbox only) → inventory decremented. ⚠️ HARD RULE: no live mode, no real customer emails without Scott's explicit "send it."
 
 ### Phase 3 — Order Dashboard
@@ -155,7 +155,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 |---|---|---|---|
 | 0 | Lock & Clean | ✅ DONE 2026-07-02 | 6 write routes 401 bare/bad-token + 200/400 with token on live worker; root clean; deploy green; commerce regression-tested |
 | 1 | Own the Catalog (D1) | ✅ DONE 2026-07-02 | deep-diff Shopify-vs-D1 = 0 diffs (list + 4 handles); 9 broken collection pages fixed; wholesale_cents verified 50% on all 59 variants; D1 707c2975-6555-40bf-b9fb-a0c61f0e7d49 |
-| 2 | Stripe Checkout | ⬜ NOT STARTED | — |
+| 2 | Stripe Checkout | 🟢 BUILT 2026-07-02 — awaiting Scott's live tap-through | cs_live session from D1 prices verified; Stripe Tax ACTIVE (tax+descriptor); webhook we_1Torg7Db1SbvRfTpOHDsWuct registered (refetch-verified); plumbing test order TEST-MR3ZKCLO paid→new, email delivered; EMAIL_MODE=off pending go-live |
 | 3 | Order Dashboard | ⬜ NOT STARTED | — |
 | 4 | Shipping & Labels | ⬜ NOT STARTED | — |
 | 5 | Brother Printing | ⬜ NOT STARTED | — |

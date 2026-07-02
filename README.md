@@ -14,7 +14,7 @@ Canonical: `skippy-plans/plans/2026-07-02-longbourn-commerce-stack.md` · Mirror
 |---|---|---|
 | 0 | Lock & Clean (photo-endpoint auth blocker) | ✅ DONE 2026-07-02 |
 | 1 | Own the Catalog (D1) | ✅ DONE 2026-07-02 |
-| 2 | Stripe Checkout (Stripe Tax, webhook → orders) | ⬜ NOT STARTED |
+| 2 | Stripe Checkout (Stripe Tax, webhook → orders) | 🟢 BUILT 2026-07-02 — awaiting live tap-through |
 | 3 | Order Dashboard (API-first → future iOS) | ⬜ NOT STARTED |
 | 4 | Shipping & Labels in dashboard | ⬜ NOT STARTED |
 | 5 | Brother label printing | ⬜ NOT STARTED |
