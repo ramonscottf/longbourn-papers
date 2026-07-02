@@ -8,9 +8,9 @@
 
 ---
 
-## Business structure (2026-07-02, pending signature)
+## Business structure (2026-07-02, pending signature) — CONSIGNMENT
 
-Wicko Waypoint LLC operates online sales as **exclusive online reseller + merchant of record**, buying wholesale from Longbourn Papers (Ali + her mom). Wicko owns the stack, the Stripe account, the tax obligation, and the customer relationship; Longbourn keeps the brand and in-person channels. Agreement drafted 2026-07-02 (`Exclusive Online Sales & Wholesale Supply Agreement`), v2 locks: **Wicko-fulfilled (model a — Wicko holds inventory + ships)** and **50% keystone wholesale**. Remaining brackets: effective date, Longbourn entity type, co-owner legal name, payment terms, brick-and-mortar wholesale carve-out, notice period, domain-on-exit. This is also the template for the reseller-storefront model behind Scott's next planned site.
+Structure is **CONSIGNMENT**, not wholesale-purchase (changed 2026-07-02). Longbourn's physical inventory is ALREADY in Scott's storage; the real driver is clearing that space (Ali + her mom haven't moved it). Wicko sells it online and once a month pays Longbourn the wholesale price (50% of MSRP) for units sold that month — Wicko buys nothing up front, owes nothing on unsold stock, and returns whatever doesn't move on exit. Wicko remains **seller/merchant of record** (checkout, sales-tax collection+remittance, customer service, returns); Longbourn keeps the brand + in-person channels. Agreement: `Consignment & Online Sales Agreement` (drafted 2026-07-02). Locked: Wicko-fulfilled shipping, 50% wholesale payout, monthly settlement. Remaining brackets: effective date, Longbourn entity type, co-owner legal name, settlement day (~15th), discount-below-wholesale policy, notice period, domain-on-exit. This is also the template for the reseller-storefront model behind Scott's next planned site.
 
 ## Why
 
@@ -82,7 +82,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 **Accept:** photo write endpoints 401 bare / 200 with token, verified on live worker; root clean; deploy green.
 
 ### Phase 1 — Own the Catalog (D1)
-- D1 `longbourn`: `products`, `variants`, `inventory`, `orders`, `order_items`, `order_events`. Inventory = REAL stock Wicko owns and holds (model a — Wicko-fulfilled, per signed structure).
+- D1 `longbourn`: `products`, `variants`, `inventory`, `orders`, `order_items`, `order_events`. Inventory = consigned stock Wicko physically holds but Longbourn OWNS until each unit sells. Every variant carries `wholesale_cents` (= 50% MSRP) for the monthly settlement math.
 - One-time import script: pull the 4 products/variants/prices/image URLs from the live Shopify API into D1.
 - Swap `/api/products` + `/api/products/:handle` to read D1. **Identical response shape.** KV cache stays.
 - Images keep Shopify CDN URLs for now; finals move to R2 in Phase 6.
@@ -99,6 +99,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 ### Phase 3 — Order Dashboard
 - `/admin/orders` on the same worker. Auth: ADMIN_TOKEN session (magic-link upgrade later if Ali wants — daviskids-cms pattern exists).
 - Views: **Open / Shipped / All** + order detail (items, address, payment, timeline). Status machine: `new → packed → shipped → delivered` (+ `refunded` via Stripe).
+- **Longbourn monthly statement** (consignment settlement): units sold in a calendar month × `wholesale_cents`, minus refunds = amount Scott owes Longbourn that month. This report IS how the monthly payment runs — export/print-friendly. Refund reverses that unit's wholesale on the next statement.
 - Built as authed JSON API + thin HTML/JS client — **the iOS contract.** Future home: SkippyCommand tab or standalone SwiftUI app; zero backend changes required.
 **Accept:** Ali opens it on her phone, sees the Phase-2 test order, flips its status.
 
