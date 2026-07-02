@@ -2,7 +2,7 @@
 // Routes requests, handles CORS, proxies Shopify Storefront API
 
 import { handleCORS, corsHeaders } from './cors.js';
-import { handleProducts, handleProduct, handleCollection } from './shopify.js';
+import { handleProducts, handleProduct, handleCollection } from './catalog.js'; // Phase 1: D1-backed (shopify.js retained for reference until Phase 2)
 import { handleCartCreate, handleCartAdd, handleCartUpdate, handleCartRemove, handleCartGet } from './cart.js';
 import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';

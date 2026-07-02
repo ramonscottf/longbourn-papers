@@ -32,5 +32,12 @@
   ],
   "ai": {
     "binding": "AI"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "longbourn",
+      "database_id": "707c2975-6555-40bf-b9fb-a0c61f0e7d49"
+    }
+  ]
 }
