@@ -10,7 +10,7 @@
 
 ## Business structure (2026-07-02, pending signature)
 
-Wicko Waypoint LLC operates online sales as **exclusive online reseller + merchant of record**, buying wholesale from Longbourn Papers (Ali + her mom). Wicko owns the stack, the Stripe account, the tax obligation, and the customer relationship; Longbourn keeps the brand and in-person channels. Agreement drafted 2026-07-02 (`Exclusive Online Sales & Wholesale Supply Agreement`); bracketed terms await Scott/Ali. This is also the template for the reseller-storefront model behind Scott's next planned site.
+Wicko Waypoint LLC operates online sales as **exclusive online reseller + merchant of record**, buying wholesale from Longbourn Papers (Ali + her mom). Wicko owns the stack, the Stripe account, the tax obligation, and the customer relationship; Longbourn keeps the brand and in-person channels. Agreement drafted 2026-07-02 (`Exclusive Online Sales & Wholesale Supply Agreement`), v2 locks: **Wicko-fulfilled (model a — Wicko holds inventory + ships)** and **50% keystone wholesale**. Remaining brackets: effective date, Longbourn entity type, co-owner legal name, payment terms, brick-and-mortar wholesale carve-out, notice period, domain-on-exit. This is also the template for the reseller-storefront model behind Scott's next planned site.
 
 ## Why
 
@@ -82,7 +82,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 **Accept:** photo write endpoints 401 bare / 200 with token, verified on live worker; root clean; deploy green.
 
 ### Phase 1 — Own the Catalog (D1)
-- D1 `longbourn`: `products`, `variants`, `inventory`, `orders`, `order_items`, `order_events`.
+- D1 `longbourn`: `products`, `variants`, `inventory`, `orders`, `order_items`, `order_events`. Inventory = REAL stock Wicko owns and holds (model a — Wicko-fulfilled, per signed structure).
 - One-time import script: pull the 4 products/variants/prices/image URLs from the live Shopify API into D1.
 - Swap `/api/products` + `/api/products/:handle` to read D1. **Identical response shape.** KV cache stays.
 - Images keep Shopify CDN URLs for now; finals move to R2 in Phase 6.
@@ -93,7 +93,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 - `POST /api/checkout`: validate line items against D1 prices (never trust client prices) → Stripe Checkout Session — Stripe Tax enabled, shipping address collection, shipping options (flat rate / free over $X, Ali sets numbers).
 - `POST /api/stripe/webhook`: signature-verified `checkout.session.completed` → order + items rows, inventory decrement, confirmation email via Resend.
 - `/order-confirmed/` success page + cancel return.
-- **Decision at phase start:** Stripe account — new Longbourn account (under Ali) vs existing Hires Enterprises. Recommend new: clean books, clean statement descriptor.
+- **Stripe account (resolved 2026-07-02):** NEW account under Wicko's Stripe login (the existing one is Mercury-managed — don't build on it). Descriptor `LONGBOURN PAPERS`, payouts → Wicko Mercury, restricted key → worker secret.
 **Accept:** full test-mode purchase → order in D1 → email received (to Scott's inbox only) → inventory decremented. ⚠️ HARD RULE: no live mode, no real customer emails without Scott's explicit "send it."
 
 ### Phase 3 — Order Dashboard
@@ -140,7 +140,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 6. Never sed HTML; Python/targeted scripts for markup edits.
 
 ## Open questions (resolve at the owning phase, not now)
-1. **Stripe account:** RESOLVED pending signature (2026-07-02) — Wicko Waypoint LLC is merchant of record under the Exclusive Online Sales & Wholesale Supply Agreement (Wicko buys wholesale from Longbourn = Ali + her mom, sells online, owns tax/customer-service obligations, stack is Wicko IP). Stripe account = Wicko's. Agreement drafted; awaiting terms confirmation + signatures.
+1. **Stripe account:** RESOLVED — Wicko is merchant of record. ⚠️ Do NOT build on the existing Wicko Stripe account: it is **Mercury-managed** (Stripe's dashboard banner explicitly recommends a fresh account for custom integrations). Create a NEW account under the same Stripe login: name/descriptor `LONGBOURN PAPERS`, entity Wicko Waypoint LLC, payouts → Wicko Mercury. Secret key → CF worker secret only (prefer a restricted key scoped to Checkout + Products + webhooks). Pattern for future storefronts: one Stripe account per brand under the Wicko org. Publishable keys are public by design — no rotation concern.
 2. **Brother printer model** → decides AirPrint vs relay. (Phase 5.)
 3. **Shippo vs EasyPost** 2026 pricing/API. (Phase 4.)
 4. **Sales tax registration:** Wicko's obligation as merchant of record (per pending agreement). Stripe Tax *calculates*; Wicko registers + remits. Utah nexus initially. (Phase 2.)
