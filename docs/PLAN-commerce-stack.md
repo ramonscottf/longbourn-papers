@@ -8,6 +8,10 @@
 
 ---
 
+## Business structure (2026-07-02, pending signature)
+
+Wicko Waypoint LLC operates online sales as **exclusive online reseller + merchant of record**, buying wholesale from Longbourn Papers (Ali + her mom). Wicko owns the stack, the Stripe account, the tax obligation, and the customer relationship; Longbourn keeps the brand and in-person channels. Agreement drafted 2026-07-02 (`Exclusive Online Sales & Wholesale Supply Agreement`); bracketed terms await Scott/Ali. This is also the template for the reseller-storefront model behind Scott's next planned site.
+
 ## Why
 
 Scott's directive (2026-07-02): *"I want to build this on our own... zero overhead... just our own stuff."*
@@ -136,10 +140,10 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 6. Never sed HTML; Python/targeted scripts for markup edits.
 
 ## Open questions (resolve at the owning phase, not now)
-1. **Stripe account:** new Longbourn vs Hires Enterprises. (Phase 2 — rec: new.)
+1. **Stripe account:** RESOLVED pending signature (2026-07-02) — Wicko Waypoint LLC is merchant of record under the Exclusive Online Sales & Wholesale Supply Agreement (Wicko buys wholesale from Longbourn = Ali + her mom, sells online, owns tax/customer-service obligations, stack is Wicko IP). Stripe account = Wicko's. Agreement drafted; awaiting terms confirmation + signatures.
 2. **Brother printer model** → decides AirPrint vs relay. (Phase 5.)
 3. **Shippo vs EasyPost** 2026 pricing/API. (Phase 4.)
-4. **Sales tax registration:** Stripe Tax *calculates*; registration + remittance are on us. Utah nexus only, initially? Confirm with Ali. (Phase 2.)
+4. **Sales tax registration:** Wicko's obligation as merchant of record (per pending agreement). Stripe Tax *calculates*; Wicko registers + remits. Utah nexus initially. (Phase 2.)
 5. **Sender domain:** orders@longbournpapers.com needs domain DNS on Resend → post-cutover; pre-cutover sends from wickowaypoint.com. (Phase 2/7.)
 
 ## Status table
