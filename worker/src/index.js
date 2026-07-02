@@ -18,6 +18,18 @@ export default {
       return handleCORS(request, env);
     }
 
+    // Phase 0: admin gate — every Photo Studio write route requires ADMIN_TOKEN.
+    // Fails closed: if the secret is unset, all photo POSTs 401.
+    if (path.startsWith('/api/photos/') && request.method === 'POST') {
+      const token = request.headers.get('X-Admin-Token') || '';
+      if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN) {
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
     try {
       let response;
 
@@ -58,6 +70,10 @@ export default {
         response = await handleWholesale(request, env);
       }
       // Photo Studio
+      else if (path === '/api/photos/auth-check' && request.method === 'POST') {
+        // Global admin gate already ran — reaching here means the token is valid.
+        response = new Response(JSON.stringify({ ok: true }), { headers: { 'Content-Type': 'application/json' } });
+      }
       else if (path === '/api/photos/enhance' && request.method === 'POST') {
         response = await handlePhotoEnhance(request, env);
       }

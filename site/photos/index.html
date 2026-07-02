@@ -702,24 +702,45 @@
 </div>
 
 <script>
-const PASSWORD = 'TrustTheAwesome';
+let ADMIN_PW = sessionStorage.getItem('lb_admin') || '';
 const API = '/api/photos';
 
+// Attach the admin token to every Studio API call (server validates — no secret in this file)
+const _fetch = window.fetch.bind(window);
+window.fetch = (url, opts = {}) => {
+  if (String(url).startsWith(API)) {
+    opts.headers = Object.assign({}, opts.headers || {}, { 'X-Admin-Token': ADMIN_PW });
+  }
+  return _fetch(url, opts);
+};
+
 // ── Auth ──────────────────────────────────────────────────────────
-function authenticate() {
-  const pw = document.getElementById('authPw').value;
-  if (pw === PASSWORD) {
-    document.getElementById('authOverlay').style.display = 'none';
-    document.getElementById('main').classList.add('active');
-    init();
+async function verifyToken(pw) {
+  try {
+    const r = await _fetch(`${API}/auth-check`, { method: 'POST', headers: { 'X-Admin-Token': pw } });
+    return r.ok;
+  } catch { return false; }
+}
+function enterStudio() {
+  document.getElementById('authOverlay').style.display = 'none';
+  document.getElementById('main').classList.add('active');
+  init();
+}
+async function authenticate() {
+  const input = document.getElementById('authPw');
+  const pw = input.value;
+  if (await verifyToken(pw)) {
+    ADMIN_PW = pw;
+    sessionStorage.setItem('lb_admin', pw);
+    enterStudio();
   } else {
-    const input = document.getElementById('authPw');
     input.classList.add('error');
     input.value = '';
     input.placeholder = 'Try again';
     setTimeout(() => { input.classList.remove('error'); input.placeholder = 'Password'; }, 1500);
   }
 }
+if (ADMIN_PW) verifyToken(ADMIN_PW).then(ok => { if (ok) enterStudio(); else { ADMIN_PW = ''; sessionStorage.removeItem('lb_admin'); } });
 document.getElementById('authPw').addEventListener('keydown', e => { if (e.key === 'Enter') authenticate(); });
 
 // ── Slot Definitions ──────────────────────────────────────────────
