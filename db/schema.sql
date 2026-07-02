@@ -76,3 +76,4 @@ CREATE TABLE IF NOT EXISTS order_events (
   detail TEXT,
   created_at TEXT DEFAULT (datetime('now'))
 );
+CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT);

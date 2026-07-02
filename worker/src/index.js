@@ -3,7 +3,7 @@
 
 import { handleCORS, corsHeaders } from './cors.js';
 import { handleProducts, handleProduct, handleCollection } from './catalog.js'; // Phase 1: D1-backed (shopify.js retained for reference until Phase 2)
-import { handleCartCreate, handleCartAdd, handleCartUpdate, handleCartRemove, handleCartGet } from './cart.js';
+import { handleCheckout, handleStripeWebhook, handleStripeSetup, handleTestOrder } from './checkout.js'; // Phase 2: Stripe-hosted checkout (Shopify cart proxy removed)
 import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';
 import { handleWholesale } from './wholesale.js';
@@ -18,9 +18,9 @@ export default {
       return handleCORS(request, env);
     }
 
-    // Phase 0: admin gate — every Photo Studio write route requires ADMIN_TOKEN.
-    // Fails closed: if the secret is unset, all photo POSTs 401.
-    if (path.startsWith('/api/photos/') && request.method === 'POST') {
+    // Admin gate — Photo Studio writes AND all /api/admin/* require ADMIN_TOKEN.
+    // Fails closed: if the secret is unset, these routes 401.
+    if ((path.startsWith('/api/photos/') || path.startsWith('/api/admin/')) && request.method === 'POST') {
       const token = request.headers.get('X-Admin-Token') || '';
       if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN) {
         return new Response(JSON.stringify({ error: 'Unauthorized' }), {
@@ -43,21 +43,18 @@ export default {
       else if (path.startsWith('/api/collections/') && request.method === 'GET') {
         response = await handleCollection(path.replace('/api/collections/', ''), env);
       }
-      // Cart
-      else if (path === '/api/cart/create' && request.method === 'POST') {
-        response = await handleCartCreate(request, env);
+      // Checkout (Stripe-hosted) + order plumbing
+      else if (path === '/api/checkout' && request.method === 'POST') {
+        response = await handleCheckout(request, env);
       }
-      else if (path === '/api/cart/add' && request.method === 'POST') {
-        response = await handleCartAdd(request, env);
+      else if (path === '/api/stripe/webhook' && request.method === 'POST') {
+        response = await handleStripeWebhook(request, env);
       }
-      else if (path === '/api/cart/update' && request.method === 'POST') {
-        response = await handleCartUpdate(request, env);
+      else if (path === '/api/admin/stripe/setup' && request.method === 'POST') {
+        response = await handleStripeSetup(request, env);
       }
-      else if (path === '/api/cart/remove' && request.method === 'POST') {
-        response = await handleCartRemove(request, env);
-      }
-      else if (path.startsWith('/api/cart/') && request.method === 'GET') {
-        response = await handleCartGet(decodeURIComponent(path.replace('/api/cart/', '')), env);
+      else if (path === '/api/admin/test-order' && request.method === 'POST') {
+        response = await handleTestOrder(request, env);
       }
       // Communications
       else if (path === '/api/contact' && request.method === 'POST') {

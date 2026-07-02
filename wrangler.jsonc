@@ -14,9 +14,11 @@
     "nodejs_compat"
   ],
   "vars": {
-    "SHOPIFY_STORE_DOMAIN": "a0fbzu-bw.myshopify.com",
-    "SHOPIFY_API_VERSION": "2026-04",
-    "ALLOWED_ORIGIN": "https://longbournpapers.com"
+    "ALLOWED_ORIGIN": "https://longbournpapers.com",
+    "SHIPPING_FLAT_CENTS": "600",
+    "SHIPPING_FREE_OVER_CENTS": "7500",
+    "EMAIL_MODE": "off",
+    "EMAIL_FROM": "Longbourn Papers <scott@wickowaypoint.com>"
   },
   "kv_namespaces": [
     {

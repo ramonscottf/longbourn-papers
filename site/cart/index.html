@@ -77,10 +77,18 @@
       }
 
       html += '<p class="color-slate text-sm" style="margin-bottom:1.5rem">Shipping and taxes calculated at checkout.</p>';
-      html += '<a href="' + (cart.checkoutUrl || '#') + '" class="btn btn--primary btn--lg" style="width:100%;text-align:center;display:block">Proceed to Checkout</a>';
+      html += '<button id="cartCheckoutBtn" class="btn btn--primary btn--lg" style="width:100%;text-align:center;display:block">Proceed to Checkout</button>';
       html += '<p class="text-center mt-lg"><a href="/shop/" class="btn btn--ghost">Continue Shopping</a></p>';
 
       container.innerHTML = html;
+      var co = document.getElementById('cartCheckoutBtn');
+      if (co) co.addEventListener('click', function() {
+        co.disabled = true; co.textContent = 'One moment\u2026';
+        window.LB.Cart.checkout().catch(function() {
+          co.disabled = false; co.textContent = 'Proceed to Checkout';
+          alert('Sorry \u2014 checkout could not be started. Please try again.');
+        });
+      });
     }).catch(function() {
       container.innerHTML = '<div class="text-center" style="padding:3rem 0"><p class="color-slate">Unable to load cart. Please try again.</p></div>';
     });

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Longbourn Papers</title>
+  <meta name="description" content="Your Longbourn Papers order is confirmed.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <div class="announcement-bar"><p>Complimentary shipping on orders over $75 &middot; Handmade in the U.S.A.</p></div>
+  <header class="site-header"><div class="site-header__inner container--wide"><a href="/" class="site-header__logo" aria-label="Longbourn Papers — Home"><span class="logo-text">Longbourn Papers</span></a></div></header>
+
+  <main>
+    <section class="section">
+      <div class="container container--narrow text-center" style="padding:4rem 1.5rem">
+        <p style="font-size:2.5rem;line-height:1;margin-bottom:1rem">&#10003;</p>
+        <h1 style="margin-bottom:1rem">Thank you — your order is confirmed.</h1>
+        <p class="color-slate" style="margin-bottom:.5rem">A confirmation email is on its way.</p>
+        <p class="color-slate" style="margin-bottom:2.5rem">Each piece is hand-pressed; orders ship within 1&ndash;3 business days.</p>
+        <p id="orderRef" class="color-slate text-sm" style="margin-bottom:2.5rem"></p>
+        <a href="/shop/" class="btn btn--primary">Continue Shopping</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__inner container"><div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p></div></div></footer>
+
+  <script>
+  // Payment done — clear the local cart (and the legacy Shopify cart id).
+  localStorage.removeItem('longbourn_cart_v2');
+  localStorage.removeItem('longbourn_cart_id');
+  var sid = new URLSearchParams(location.search).get('session_id');
+  if (sid) document.getElementById('orderRef').textContent = 'Reference: ' + sid.slice(-10).toUpperCase();
+  </script>
+</body>
+</html>
