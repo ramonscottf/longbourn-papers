@@ -151,7 +151,7 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 
 | Phase | Name | Status | Verified |
 |---|---|---|---|
-| 0 | Lock & Clean | ⬜ NOT STARTED | — |
+| 0 | Lock & Clean | ✅ DONE 2026-07-02 | 6 write routes 401 bare/bad-token + 200/400 with token on live worker; root clean; deploy green; commerce regression-tested |
 | 1 | Own the Catalog (D1) | ⬜ NOT STARTED | — |
 | 2 | Stripe Checkout | ⬜ NOT STARTED | — |
 | 3 | Order Dashboard | ⬜ NOT STARTED | — |
