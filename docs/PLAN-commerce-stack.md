@@ -146,13 +146,15 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
 3. **Shippo vs EasyPost** 2026 pricing/API. (Phase 4.)
 4. **Sales tax registration:** Wicko's obligation as merchant of record (per pending agreement). Stripe Tax *calculates*; Wicko registers + remits. Utah nexus initially. (Phase 2.)
 5. **Sender domain:** orders@longbournpapers.com needs domain DNS on Resend → post-cutover; pre-cutover sends from wickowaypoint.com. (Phase 2/7.)
+6. **Inventory counts:** all 59 variants seeded quantity=NULL (uncounted). Scott counts the storage room whenever; Phase 3 dashboard gets a count-entry view.
+7. **Thematic collections** (thank-you/celebration/baby/holiday/sympathy): default to full catalog (curated=0). Curate with Ali in Phase 6. Structural 4 are mapped correctly.
 
 ## Status table
 
 | Phase | Name | Status | Verified |
 |---|---|---|---|
 | 0 | Lock & Clean | ✅ DONE 2026-07-02 | 6 write routes 401 bare/bad-token + 200/400 with token on live worker; root clean; deploy green; commerce regression-tested |
-| 1 | Own the Catalog (D1) | ⬜ NOT STARTED | — |
+| 1 | Own the Catalog (D1) | ✅ DONE 2026-07-02 | deep-diff Shopify-vs-D1 = 0 diffs (list + 4 handles); 9 broken collection pages fixed; wholesale_cents verified 50% on all 59 variants; D1 707c2975-6555-40bf-b9fb-a0c61f0e7d49 |
 | 2 | Stripe Checkout | ⬜ NOT STARTED | — |
 | 3 | Order Dashboard | ⬜ NOT STARTED | — |
 | 4 | Shipping & Labels | ⬜ NOT STARTED | — |
