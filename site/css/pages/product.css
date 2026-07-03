@@ -1,3 +1,11 @@
+/* Dynamic design accent — JS extracts the selected variant's ink/ribbon color
+   and sets --accent on :root; crimson remains the default before/without JS. */
+:root {
+  --accent: var(--color-crimson);
+  --accent-dark: var(--color-crimson-hover);
+  --accent-soft: var(--color-crimson-light);
+}
+
 /* ==========================================================================
    LONGBOURN PAPERS — Product Detail Styles
    ========================================================================== */
@@ -55,7 +63,7 @@
 .product-gallery__thumb.is-active,
 .product-gallery__thumb:hover {
   opacity: 1;
-  border-color: var(--color-crimson);
+  border-color: var(--accent);
 }
 
 .product-gallery__thumb img {
@@ -75,7 +83,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-crimson);
+  color: var(--accent);
   margin-bottom: var(--space-md);
 }
 
@@ -128,9 +136,9 @@
 }
 
 .variant-option.is-selected {
-  border-color: var(--color-crimson);
-  background: var(--color-crimson-light);
-  color: var(--color-crimson);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-weight: var(--weight-medium);
 }
 
@@ -237,4 +245,17 @@
   .product-gallery {
     position: static;
   }
+}
+
+/* Add to Cart takes the design's ink color */
+.product-detail .btn--primary,
+#addToCart {
+  background: var(--accent);
+  border-color: var(--accent);
+  transition: background .35s ease, border-color .35s ease;
+}
+.product-detail .btn--primary:hover,
+#addToCart:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
 }
