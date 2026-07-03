@@ -4,6 +4,7 @@
 import { handleCORS, corsHeaders } from './cors.js';
 import { handleProducts, handleProduct, handleCollection } from './catalog.js'; // Phase 1: D1-backed (shopify.js retained for reference until Phase 2)
 import { handleCheckout, handleStripeWebhook, handleStripeSetup, handleTestOrder } from './checkout.js'; // Phase 2: Stripe-hosted checkout (Shopify cart proxy removed)
+import { handleMedia } from './media.js'; // Asset independence: R2-served site media with Range support
 import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';
 import { handleWholesale } from './wholesale.js';
@@ -16,6 +17,11 @@ export default {
 
     if (request.method === 'OPTIONS') {
       return handleCORS(request, env);
+    }
+
+    // Site media from R2 (images, video) — GET/HEAD only, cached immutable
+    if (path.startsWith('/media/') && (request.method === 'GET' || request.method === 'HEAD')) {
+      return handleMedia(request, env, path);
     }
 
     // Admin gate — Photo Studio writes AND all /api/admin/* require ADMIN_TOKEN.

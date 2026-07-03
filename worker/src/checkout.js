@@ -105,6 +105,7 @@ export async function handleCheckout(request, env) {
       img = v.image_json ? JSON.parse(v.image_json)?.url
                          : JSON.parse(v.images_json || '[]')[0]?.url;
     } catch { /* image optional */ }
+    if (img && img.startsWith('/')) img = origin + img; // R2-hosted media stored relative in D1
     if (img && img.startsWith('https://')) {
       add(`line_items[${i}][price_data][product_data][images][0]`, img);
     }
