@@ -41,30 +41,50 @@
   <link rel="icon" type="image/png" href="/media/brand/Untitled_design-10.png">
   <link rel="apple-touch-icon" href="/media/brand/Untitled_design-10.png">
   <meta property="og:image" content="https://longbournpapers.com/media/brand/AdobeStock_296642693.jpg">
+  <link rel="stylesheet" href="/assets/wicko-pill-nav/wicko-pill-nav.css">
+  <link rel="stylesheet" href="/assets/wicko-pill-nav/longbourn-theme.css">
 </head>
 <body>
-
-<div class="announcement-bar"><p>Complimentary shipping on orders over $75 &middot; Handmade in the U.S.A.</p></div>
-<header class="site-header" id="siteHeader">
-  <div class="site-header__inner container--wide">
-    <a href="/" class="site-header__logo" aria-label="Longbourn Papers — Home"><span class="logo-text">Longbourn Papers</span></a>
-    <nav class="site-nav" id="siteNav" aria-label="Main navigation">
-      <ul class="site-nav__list">
-        <li><a href="/shop/">Shop</a></li>
-        <li class="site-nav__dropdown"><button class="site-nav__dropdown-trigger" aria-expanded="false">Collections</button><ul class="site-nav__dropdown-menu"><li><a href="/collections/note-cards/">Note Cards</a></li><li><a href="/collections/gift-tags/">Gift Tags</a></li><li><a href="/collections/grand-tags/">Grand Tags</a></li><li><a href="/collections/thank-you/">Thank You</a></li><li><a href="/collections/sympathy/">Sympathy</a></li><li><a href="/collections/celebration/">Celebration</a></li><li><a href="/collections/baby/">Baby</a></li><li><a href="/collections/holiday/">Holiday</a></li></ul></li>
-        <li><a href="/the-craft/">The Craft</a></li>
-        <li><a href="/our-story/">Our Story</a></li>
-        <li><a href="/journal/">Journal</a></li>
-      </ul>
-    </nav>
-    <div class="site-header__actions">
-      <button class="cart-toggle" id="cartToggle" aria-label="Open cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count" id="cartCount" aria-live="polite">0</span></button>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false"><span class="hamburger"></span></button>
+<header class="wpn" aria-label="Site navigation">
+  <div class="wpn__inner">
+    <a href="/" class="wpn__brand" aria-label="Longbourn Papers — Home"><span class="wpn__brand-icon"><img src="/media/brand/Longbourn_Papers_Logo_1.png" alt="Longbourn Papers"></span></a>
+    <ul class="wpn__links">
+      <li class="wpn__group">
+        <div class="wpn__group-row">
+          <a href="/shop/">Collections</a>
+          <button class="wpn__group-toggle" aria-label="Expand collections"><svg viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l5 5 5-5"/></svg></button>
+        </div>
+        <ul class="wpn__sub">
+          <li><a href="/collections/note-cards/">Note Cards</a></li>
+          <li><a href="/collections/gift-tags/">Gift Tags</a></li>
+          <li><a href="/collections/grand-tags/">Grand Tags</a></li>
+          <li><a href="/collections/stationery-sets/">Stationery Sets</a></li>
+          <li><a href="/collections/thank-you/">Thank You</a></li>
+          <li><a href="/collections/celebration/">Celebration</a></li>
+          <li><a href="/collections/baby/">Baby</a></li>
+          <li><a href="/collections/holiday/">Holiday</a></li>
+          <li><a href="/collections/sympathy/">Sympathy</a></li>
+        </ul>
+      </li>
+      <li><a href="/the-craft/">The Craft</a></li>
+      <li><a href="/our-story/">Our Story</a></li>
+      <li><a href="/journal/">Journal</a></li>
+      <li><a class="wpn__cta" href="/shop/">Shop</a></li>
+      <li class="wpn__status">Hand-pressed in Salt Lake City &middot; Complimentary shipping over $75</li>
+    </ul>
+    <div class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+      <div class="cart-drawer__header"><h2 class="cart-drawer__title">Your Cart</h2><button class="cart-drawer__close" aria-label="Close cart">&times;</button></div>
+      <div class="cart-drawer__items"><p class="cart-drawer__empty">Your cart is empty</p></div>
+      <div class="cart-drawer__footer"><div class="cart-drawer__subtotal"><span>Subtotal</span><span class="cart-drawer__subtotal-amount">$0.00</span></div><p class="cart-drawer__note">Shipping and taxes calculated at checkout.</p><button class="cart-drawer__checkout" disabled>Checkout</button></div>
+    </div>
+    <div class="wpn__actions">
+      <button class="cart-toggle wpn__cart" id="cartToggle" aria-label="Open cart"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count" id="cartCount" aria-live="polite">0</span></button>
+      <button class="wpn__toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-  <main style="padding-top: 108px;">
+  <main>
     <div class="page-header">
       <div class="container">
         <h1 class="page-header__title">Contact</h1>
@@ -147,13 +167,12 @@
     <div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p></div>
   </div>
 </footer>
-<div class="cart-overlay" id="cartOverlay"></div>
-<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart"><div class="cart-drawer__header"><h2 class="cart-drawer__title">Your Cart</h2><button class="cart-drawer__close" aria-label="Close cart">&times;</button></div><div class="cart-drawer__items"><p class="cart-drawer__empty">Your cart is empty</p></div><div class="cart-drawer__footer"><div class="cart-drawer__subtotal"><span>Subtotal</span><span class="cart-drawer__subtotal-amount">$0.00</span></div><p class="cart-drawer__note">Shipping and taxes calculated at checkout.</p><button class="btn btn--primary cart-drawer__checkout" disabled>Checkout</button></div></aside>
 <script src="/js/utils.js"></script>
 <script src="/js/cart.js"></script>
 <script src="/js/nav.js"></script>
 <script src="/js/animations.js"></script>
 <script src="/js/newsletter.js"></script>
 <script src="/js/contact.js"></script>
+  <script src="/assets/wicko-pill-nav/wicko-pill-nav.js" defer></script>
 </body>
 </html>

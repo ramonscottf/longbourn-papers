@@ -188,25 +188,26 @@ const Cart = {
   },
 
   openDrawer() {
+    // Cart is a card that rolls out of the pill — close the menu card first.
+    document.querySelectorAll('.wpn__links.is-open').forEach(function(l) { l.classList.remove('is-open'); });
+    document.querySelectorAll('.wpn__toggle.is-open').forEach(function(t) {
+      t.classList.remove('is-open'); t.setAttribute('aria-expanded', 'false');
+    });
     var drawer = document.getElementById('cartDrawer');
-    var overlay = document.getElementById('cartOverlay');
     if (drawer) drawer.classList.add('is-open');
-    if (overlay) overlay.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
   },
 
   closeDrawer() {
     var drawer = document.getElementById('cartDrawer');
-    var overlay = document.getElementById('cartOverlay');
     if (drawer) drawer.classList.remove('is-open');
-    if (overlay) overlay.classList.remove('is-open');
-    document.body.style.overflow = '';
   },
 
   init() {
     var self = this;
     document.querySelectorAll('.cart-toggle, #cartToggle').forEach(function(btn) {
       btn.addEventListener('click', function() {
+        var drawer = document.getElementById('cartDrawer');
+        if (drawer && drawer.classList.contains('is-open')) { self.closeDrawer(); return; }
         self.get().then(function(cart) {
           self.updateUI(cart);
           self.openDrawer();
@@ -218,6 +219,17 @@ const Cart = {
     if (overlay) overlay.addEventListener('click', function() { self.closeDrawer(); });
     var closeBtn = document.querySelector('.cart-drawer__close');
     if (closeBtn) closeBtn.addEventListener('click', function() { self.closeDrawer(); });
+
+    // Card physics: click outside the card closes it; opening the menu closes it.
+    document.addEventListener('click', function(e) {
+      var drawer = document.getElementById('cartDrawer');
+      if (!drawer || !drawer.classList.contains('is-open')) return;
+      if (drawer.contains(e.target) || e.target.closest('.cart-toggle, #cartToggle')) return;
+      self.closeDrawer();
+    });
+    document.querySelectorAll('.wpn__toggle').forEach(function(t) {
+      t.addEventListener('click', function() { self.closeDrawer(); });
+    });
 
     var drawer = document.getElementById('cartDrawer');
     if (drawer) {
