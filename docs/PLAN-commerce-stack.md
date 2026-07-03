@@ -164,3 +164,26 @@ The April build shipped image-less (every placeholder literal) and Phase 1's D1 
 | 5 | Brother Printing | ⬜ NOT STARTED | — |
 | 6 | Site Enhancement | ⬜ NOT STARTED | — |
 | 7 | Cutover & Decommission | ⬜ NOT STARTED | — |
+
+---
+
+## Session close — 2026-07-02 (the big build day) · START HERE TOMORROW
+
+**One day, in order:** consignment agreement drafted (v3, signable) → Phase 0 (photo endpoints locked) → Phase 1 (catalog owned in D1, 0-diff swap, 9 broken collection pages fixed) → Phase 2 (Stripe checkout live-mode on Scott's Mercury account, stateless architecture, Stripe Tax active) → asset independence (236 files off Shopify CDN, hero video live) → Phase 3 (order dashboard + settlement engine + inventory counts) → Phase 4 built (EasyPost decided by live research). Site confirmed at **https://longbourn.wickowaypoint.com** (custom domain existed since April; workers.dev is its twin — same worker).
+
+**URLs:** store `longbourn.wickowaypoint.com` · dashboard `/admin/` · photo studio `/photos/` (password for both = SKIPPY_KV `longbourn_admin_token`) · prod domain `longbournpapers.com` still on Shopify until Phase 7.
+
+### Scott's unlock list (~15 min total)
+1. **EasyPost key** — app.easypost.com/account/api-keys (if the API Keys tab is hidden: complete Billing first — payment method + address; fund wallet by ACH, card costs 3.75%). Copy TEST key `EZTK…` → CF secret `EASYPOST_API_KEY` on longbourn-papers. Also delete the two stale wesupply.xyz production webhooks.
+2. **Ship-from street** — tell Skippy or set `SHIP_FROM_STREET1` var (city/state/zip already Farmington UT 84025).
+3. **Live tap-through** — buy the $4 petite card + $6 shipping on your own card at the site; webhook should auto-record it; Skippy refunds after.
+4. **Show Ali** the dashboard on her phone (closes Phase 3 acceptance).
+5. (When ready) sign the Consignment & Online Sales Agreement with Ali + her mom — remaining brackets are family facts.
+
+### Skippy's queue (in order, after unlocks)
+1. Phase 4 close: E2E test label on the TEST order (free, watermarked) → verify tracking + R2 PDF → flip Phase 4 ✅.
+2. Phase 5: Brother printing — label-PDF→AirPrint already works from the dashboard; need the Brother **model number** to decide AirPrint-only vs Dutchman print-relay.
+3. Phase 6: art-direction pass with Scott + Ali (image placements are first-pass by provenance), Photo Studio v2 finish, JSON-LD, copy polish.
+4. Phase 7: cutover longbournpapers.com → worker, redirect map, verification window, cancel Shopify.
+
+**Standing state:** EMAIL_MODE=off (no customer emails until Scott's go). Inventory quantities NULL until counted. Statement engine live (month view, print-ready; TEST orders excluded by default). Stripe = Mercury-managed account per Scott's call, made safe by stateless sessions.

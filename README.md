@@ -2,7 +2,7 @@
 
 Luxury letterpress stationery brand (Alexandra "Ali" Foster). Custom storefront replacing the hosted Shopify theme — and, per the [Commerce Stack plan](docs/PLAN-commerce-stack.md), replacing the Shopify backend entirely with a Stripe-native, Cloudflare-native stack.
 
-**Live (pre-cutover):** https://longbourn-papers.ramonscottf.workers.dev
+**Live (pre-cutover):** https://longbourn.wickowaypoint.com (custom domain; workers.dev twin: longbourn-papers.ramonscottf.workers.dev) · Dashboard: /admin/ · **Start here tomorrow:** bottom of [docs/PLAN-commerce-stack.md](docs/PLAN-commerce-stack.md)
 **Production domain:** longbournpapers.com — ⚠️ still on Shopify's hosted theme; cutover is Phase 7 of the plan.
 **Built by:** Wicko Waypoint LLC · proof case #1 for the **Wicko Commerce** pattern.
 
