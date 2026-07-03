@@ -16,7 +16,7 @@ Canonical: `skippy-plans/plans/2026-07-02-longbourn-commerce-stack.md` · Mirror
 | 1 | Own the Catalog (D1) | ✅ DONE 2026-07-02 |
 | 2 | Stripe Checkout (Stripe Tax, webhook → orders) | 🟢 BUILT 2026-07-02 — awaiting live tap-through |
 | 3 | Order Dashboard (API-first → future iOS) | 🟢 BUILT 2026-07-02 |
-| 4 | Shipping & Labels in dashboard | ⬜ NOT STARTED |
+| 4 | Shipping & Labels in dashboard | 🟠 BUILT 2026-07-02 — needs EasyPost key |
 | 5 | Brother label printing | ⬜ NOT STARTED |
 | 6 | Site Enhancement (story/flow/graphics/photos) | ⬜ NOT STARTED |
 | 7 | Cutover longbournpapers.com + decommission Shopify | ⬜ NOT STARTED |

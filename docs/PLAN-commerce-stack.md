@@ -146,7 +146,7 @@ The April build shipped image-less (every placeholder literal) and Phase 1's D1 
 ## Open questions (resolve at the owning phase, not now)
 1. **Stripe account:** RESOLVED — Wicko is merchant of record. ⚠️ Do NOT build on the existing Wicko Stripe account: it is **Mercury-managed** (Stripe's dashboard banner explicitly recommends a fresh account for custom integrations). Create a NEW account under the same Stripe login: name/descriptor `LONGBOURN PAPERS`, entity Wicko Waypoint LLC, payouts → Wicko Mercury. Secret key → CF worker secret only (prefer a restricted key scoped to Checkout + Products + webhooks). Pattern for future storefronts: one Stripe account per brand under the Wicko org. Publishable keys are public by design — no rotation concern.
 2. **Brother printer model** → decides AirPrint vs relay. (Phase 5.)
-3. **Shippo vs EasyPost** 2026 pricing/API. (Phase 4.)
+3. **Shippo vs EasyPost:** RESOLVED 2026-07-02 — EasyPost Free Access Wallet (3,000 free labels/mo, \$0 monthly, \$0.08/label only beyond; 2026 pricing change). Shippo's free tier fell to 30 labels/mo; Pirate Ship still has no API. Fund EasyPost wallet via ACH (card = 3.75% fee). Scott's tasks: easypost.com signup → TEST key (EZTK…) → worker secret EASYPOST_API_KEY; set SHIP_FROM_STREET1 var.
 4. **Sales tax registration:** Wicko's obligation as merchant of record (per pending agreement). Stripe Tax *calculates*; Wicko registers + remits. Utah nexus initially. (Phase 2.)
 5. **Sender domain:** orders@longbournpapers.com needs domain DNS on Resend → post-cutover; pre-cutover sends from wickowaypoint.com. (Phase 2/7.)
 6. **Inventory counts:** all 59 variants seeded quantity=NULL (uncounted). Scott counts the storage room whenever; Phase 3 dashboard gets a count-entry view.
@@ -160,7 +160,7 @@ The April build shipped image-less (every placeholder literal) and Phase 1's D1 
 | 1 | Own the Catalog (D1) | ✅ DONE 2026-07-02 | deep-diff Shopify-vs-D1 = 0 diffs (list + 4 handles); 9 broken collection pages fixed; wholesale_cents verified 50% on all 59 variants; D1 707c2975-6555-40bf-b9fb-a0c61f0e7d49 |
 | 2 | Stripe Checkout | 🟢 BUILT 2026-07-02 — awaiting Scott's live tap-through | cs_live session from D1 prices verified; Stripe Tax ACTIVE (tax+descriptor); webhook we_1Torg7Db1SbvRfTpOHDsWuct registered (refetch-verified); plumbing test order TEST-MR3ZKCLO paid→new, email delivered; EMAIL_MODE=off pending go-live |
 | 3 | Order Dashboard | 🟢 BUILT 2026-07-02 — awaiting Ali's phone look | /admin/ live; API-first (iOS contract); status machine + tracking + Stripe refunds verified on TEST order; consignment statement verified incl. same-month-refund net-zero; inventory count view live (carry-forward #6 resolved) |
-| 4 | Shipping & Labels | ⬜ NOT STARTED | — |
+| 4 | Shipping & Labels | 🟠 BUILT 2026-07-02 — needs EASYPOST_API_KEY + ship-from street | Provider RESOLVED by live research: EasyPost Free Access (3,000 free labels/mo, \$0 monthly; Shippo free tier now 30/mo). Rates+buy+R2 PDF+tracking+gated ship email built & deployed; clean 503 until key lands; test-label E2E pending |
 | 5 | Brother Printing | ⬜ NOT STARTED | — |
 | 6 | Site Enhancement | ⬜ NOT STARTED | — |
 | 7 | Cutover & Decommission | ⬜ NOT STARTED | — |
