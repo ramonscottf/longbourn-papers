@@ -1,26 +1,25 @@
 /* ============================================================
-   WICKO PILL NAV — Longbourn Papers theme v2 (DARK)
-   Hunter green glass, gold accents, cream serif. Jane Austen
-   by way of the English countryside. Everything centered.
-   The cart is a second card that rolls out of the pill.
+   WICKO PILL NAV — Longbourn Papers theme v3 (CREAM)
+   Cream glass pill + cards, hunter text, gold accents.
+   The dark house lockup reads properly on cream.
    Component: wicko-pill-nav.css v1.0 (verbatim — do not edit).
    ============================================================ */
 
 :root {
-  --wpn-bg:               rgba(29, 50, 45, 0.94);      /* hunter glass */
-  --wpn-bg-scrolled:      rgba(24, 42, 37, 0.98);
-  --wpn-border:           rgba(197, 149, 95, 0.35);    /* gold hairline */
-  --wpn-shadow:           rgba(12, 22, 19, 0.35);
-  --wpn-shadow-scrolled:  rgba(12, 22, 19, 0.50);
-  --wpn-fg:               #FAF7F2;                     /* cream */
-  --wpn-fg-soft:          rgba(250, 247, 242, 0.72);
-  --wpn-fg-strong:        #FAF7F2;
+  --wpn-bg:               rgba(250, 247, 242, 0.92);
+  --wpn-bg-scrolled:      rgba(250, 247, 242, 0.98);
+  --wpn-border:           rgba(197, 149, 95, 0.30);
+  --wpn-shadow:           rgba(29, 50, 45, 0.12);
+  --wpn-shadow-scrolled:  rgba(29, 50, 45, 0.20);
+  --wpn-fg:               #1D322D;
+  --wpn-fg-soft:          rgba(29, 50, 45, 0.68);
+  --wpn-fg-strong:        #1D322D;
 
-  --wpn-card-bg:          #1D322D;                     /* hunter card */
-  --wpn-card-shadow:      rgba(12, 22, 19, 0.60);
-  --wpn-card-divider:     rgba(250, 247, 242, 0.10);
+  --wpn-card-bg:          #FAF7F2;
+  --wpn-card-shadow:      rgba(29, 50, 45, 0.25);
+  --wpn-card-divider:     rgba(29, 50, 45, 0.08);
 
-  --wpn-cta-bg:           #C5955F;                     /* gold */
+  --wpn-cta-bg:           #C5955F;
   --wpn-cta-bg-hover:     #b3854f;
   --wpn-cta-fg:           #1D322D;
   --wpn-cta-shadow:       rgba(197, 149, 95, 0.35);
@@ -34,7 +33,7 @@
   --wpn-cta-size:         13px;
 }
 
-/* ── Brand: the house lockup (light colorway on hunter) ── */
+/* ── Brand: dark house lockup on cream ── */
 .wpn__brand-icon { height: 42px; }
 @media (max-width: 768px) { .wpn__brand-icon { height: 34px; } }
 
@@ -64,14 +63,14 @@
   .wpn__group-toggle { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--wpn-fg); }
   .wpn__sub a {
     text-align: center !important;
-    color: rgba(250, 247, 242, 0.75) !important;
+    color: rgba(29, 50, 45, 0.7) !important;
     font-family: var(--wpn-cta-font) !important;
   }
   .wpn__sub a:hover { color: var(--wpn-accent) !important; }
-  .wpn__status { color: rgba(250, 247, 242, 0.45); }
+  .wpn__status { color: rgba(29, 50, 45, 0.45); }
 }
 
-/* Desktop: pill runs full-width nav; accordion is mobile-only */
+/* Desktop: accordion is mobile-only */
 @media (min-width: 769px) {
   .wpn__sub, .wpn__group-toggle, .wpn__status { display: none !important; }
   .wpn__group-row > a { padding-right: 0; }
@@ -84,7 +83,7 @@
   left: 0; right: 0;
   background: var(--wpn-card-bg);
   border-radius: 16px;
-  box-shadow: 0 20px 60px var(--wpn-card-shadow), 0 4px 12px rgba(12,22,19,.25);
+  box-shadow: 0 20px 60px var(--wpn-card-shadow), 0 4px 12px rgba(29,50,45,.10);
   z-index: 1001;
   max-height: 0; opacity: 0; transform: translateY(-6px);
   overflow: hidden; pointer-events: none;
@@ -104,24 +103,24 @@
 
 .wpn .cart-drawer__header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--wpn-card-divider); }
 .wpn .cart-drawer__title { font-family: var(--wpn-link-font); font-size: 19px; font-weight: 400; color: var(--wpn-fg); margin: 0; }
-.wpn .cart-drawer__close { background: none; border: none; color: var(--wpn-fg); font-size: 26px; line-height: 1; cursor: pointer; opacity: .7; padding: 4px 8px; }
+.wpn .cart-drawer__close { background: none; border: none; color: var(--wpn-fg); font-size: 26px; line-height: 1; cursor: pointer; opacity: .6; padding: 4px 8px; }
 .wpn .cart-drawer__close:hover { opacity: 1; }
 
-.wpn .cart-drawer__empty { color: rgba(250,247,242,.55); text-align: center; padding: 22px 0; font-style: italic; }
+.wpn .cart-drawer__empty { color: rgba(29,50,45,.55); text-align: center; padding: 22px 0; font-style: italic; }
 .wpn .cart-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--wpn-card-divider); position: relative; }
 .wpn .cart-item__image { border-radius: 8px; width: 64px; height: 80px; object-fit: cover; }
 .wpn .cart-item__details { flex: 1; }
 .wpn .cart-item__title { color: var(--wpn-fg); font-family: var(--wpn-link-font); font-size: 15px; margin: 0 0 2px; }
-.wpn .cart-item__variant { color: rgba(250,247,242,.6); font-size: 12px; margin: 0 0 4px; }
-.wpn .cart-item__price { color: var(--wpn-accent); font-size: 13px; margin: 0 0 6px; }
+.wpn .cart-item__variant { color: rgba(29,50,45,.6); font-size: 12px; margin: 0 0 4px; }
+.wpn .cart-item__price { color: #8a6534; font-size: 13px; margin: 0 0 6px; }
 .wpn .cart-item__qty { display: flex; align-items: center; gap: 10px; color: var(--wpn-fg); font-size: 13px; }
-.wpn .cart-item__qty-btn { background: none; border: 1px solid rgba(250,247,242,.35); color: var(--wpn-fg); width: 24px; height: 24px; border-radius: 6px; cursor: pointer; line-height: 1; }
-.wpn .cart-item__remove { position: absolute; top: 10px; right: 0; background: none; border: none; color: rgba(250,247,242,.5); font-size: 18px; cursor: pointer; }
+.wpn .cart-item__qty-btn { background: none; border: 1px solid rgba(29,50,45,.35); color: var(--wpn-fg); width: 24px; height: 24px; border-radius: 6px; cursor: pointer; line-height: 1; }
+.wpn .cart-item__remove { position: absolute; top: 10px; right: 0; background: none; border: none; color: rgba(29,50,45,.45); font-size: 18px; cursor: pointer; }
 .wpn .cart-item__remove:hover { color: var(--wpn-fg); }
 
 .wpn .cart-drawer__footer { padding-top: 12px; }
 .wpn .cart-drawer__subtotal { display: flex; justify-content: space-between; color: var(--wpn-fg); font-family: var(--wpn-link-font); font-size: 16px; margin-bottom: 4px; }
-.wpn .cart-drawer__note { color: rgba(250,247,242,.5); font-size: 11.5px; margin: 0 0 12px; text-align: center; }
+.wpn .cart-drawer__note { color: rgba(29,50,45,.5); font-size: 11.5px; margin: 0 0 12px; text-align: center; }
 .wpn .cart-drawer__checkout {
   display: block; width: 100%;
   background: var(--wpn-cta-bg) !important; color: var(--wpn-cta-fg) !important;
@@ -134,6 +133,7 @@
 .wpn .cart-drawer__checkout:hover:not(:disabled) { background: var(--wpn-cta-bg-hover) !important; transform: translateY(-1px); }
 .wpn .cart-drawer__checkout:disabled { opacity: .45; cursor: default; box-shadow: none; }
 
-/* Fixed pill needs page clearance */
+/* Fixed pill needs page clearance — EXCEPT full-bleed hero pages */
 body { padding-top: 92px; }
 @media (max-width: 768px) { body { padding-top: 72px; } }
+body.wpn-overlay { padding-top: 0 !important; }

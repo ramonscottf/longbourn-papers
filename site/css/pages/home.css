@@ -7,6 +7,7 @@
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; /* iOS toolbar-aware full screen */
   display: flex;
   align-items: center;
   justify-content: center;
