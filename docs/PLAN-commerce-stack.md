@@ -115,6 +115,9 @@ $0/mo fixed. Per-transaction: Stripe ~2.9% + 30¢; Stripe Tax ~0.5% on taxed ord
   - **Path B — print relay (one-tap):** tiny launchd script on Dutchman polls `/admin/print-queue` → `lp` to CUPS → Brother. Dutchman-is-dev-only rule noted; printing is inherently local hardware, so a local relay is the legitimate exception. Cloudflare never needs to reach the LAN.
 **Accept:** physical label out of the Brother from a dashboard action.
 
+### Asset independence (2026-07-02) — ✅ DONE (was an unlisted cutover blocker)
+The April build shipped image-less (every placeholder literal) and Phase 1's D1 catalog pointed at cdn.shopify.com — which may purge after cancellation. Fixed: 236 assets (~245MB) harvested from the live Shopify theme into R2 `longbourn-media`; served at `/media/*` (immutable cache, video Range support); D1 rewritten to relative /media paths (zero Shopify URLs verified); checkout absolutizes for Stripe. All 15 page placeholders filled by old-site provenance (hero video on home, Windmill photo on the Windmill section, etc.); favicon + og:image on all 25 pages. **Placements are first-pass — Phase 6 is the art-direction pass with Scott + Ali's eyes.**
+
 ### Phase 6 — Site Enhancement (pre-relaunch)
 - **Story pass:** homepage narrative arc (Bath/Austen heritage → the craft → the product), tighten shop → product → checkout flow, copy polish.
 - **Photos:** finish Photo Studio v2 approve-first pipeline — Scott approves every image, nothing auto-deploys (April lesson: GPT-image-1 corrupted letterforms). Finals to R2.
