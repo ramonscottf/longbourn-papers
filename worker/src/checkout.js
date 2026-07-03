@@ -21,7 +21,7 @@ function json(obj, status = 200) {
 }
 const jerr = (status, error) => json({ error }, status);
 
-async function stripe(env, method, path, params) {
+export async function stripe(env, method, path, params) {
   const r = await fetch(`https://api.stripe.com/v1/${path}`, {
     method,
     headers: {

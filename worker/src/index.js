@@ -5,6 +5,7 @@ import { handleCORS, corsHeaders } from './cors.js';
 import { handleProducts, handleProduct, handleCollection } from './catalog.js'; // Phase 1: D1-backed (shopify.js retained for reference until Phase 2)
 import { handleCheckout, handleStripeWebhook, handleStripeSetup, handleTestOrder } from './checkout.js'; // Phase 2: Stripe-hosted checkout (Shopify cart proxy removed)
 import { handleMedia } from './media.js'; // Asset independence: R2-served site media with Range support
+import { handleAdmin } from './admin.js'; // Phase 3: order dashboard API (iOS contract)
 import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';
 import { handleWholesale } from './wholesale.js';
@@ -24,9 +25,9 @@ export default {
       return handleMedia(request, env, path);
     }
 
-    // Admin gate — Photo Studio writes AND all /api/admin/* require ADMIN_TOKEN.
-    // Fails closed: if the secret is unset, these routes 401.
-    if ((path.startsWith('/api/photos/') || path.startsWith('/api/admin/')) && request.method === 'POST') {
+    // Admin gate — Photo Studio writes (POST) AND all /api/admin/* (any method)
+    // require ADMIN_TOKEN. Fails closed: if the secret is unset, these routes 401.
+    if ((path.startsWith('/api/photos/') && request.method === 'POST') || path.startsWith('/api/admin/')) {
       const token = request.headers.get('X-Admin-Token') || '';
       if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN) {
         return new Response(JSON.stringify({ error: 'Unauthorized' }), {
@@ -61,6 +62,10 @@ export default {
       }
       else if (path === '/api/admin/test-order' && request.method === 'POST') {
         response = await handleTestOrder(request, env);
+      }
+      // Phase 3: orders, statement, inventory — the iOS-portable admin API
+      else if (path.startsWith('/api/admin/')) {
+        response = await handleAdmin(request, env, path);
       }
       // Communications
       else if (path === '/api/contact' && request.method === 'POST') {

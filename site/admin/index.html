@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders — Longbourn Papers</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --green:#1d322d; --gold:#C5955F; --cream:#FAF7F2; --ink:#2b2b28; --slate:#6d675e; --line:#e5ded2; }
+    * { box-sizing:border-box; margin:0; }
+    body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); padding-bottom:4rem; }
+    header.bar { background:var(--green); color:var(--cream); padding:.9rem 1rem; display:flex; justify-content:space-between; align-items:baseline; }
+    header.bar h1 { font-size:1.05rem; font-weight:normal; letter-spacing:.06em; }
+    header.bar .sum { font-size:.8rem; color:var(--gold); }
+    nav.tabs { display:flex; background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+    nav.tabs button { flex:1; padding:.8rem .2rem; background:none; border:none; border-bottom:3px solid transparent; font:inherit; font-size:.85rem; color:var(--slate); cursor:pointer; }
+    nav.tabs button.on { color:var(--green); border-bottom-color:var(--gold); font-weight:bold; }
+    main { padding:1rem; max-width:720px; margin:0 auto; }
+    .seg { display:flex; gap:.4rem; margin-bottom:1rem; }
+    .seg button { flex:1; padding:.5rem; border:1px solid var(--line); background:#fff; font:inherit; font-size:.8rem; border-radius:6px; color:var(--slate); }
+    .seg button.on { background:var(--green); color:var(--cream); border-color:var(--green); }
+    .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem; margin-bottom:.7rem; }
+    .card .row1 { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; }
+    .oid { font-size:.85rem; letter-spacing:.03em; }
+    .chip { font-size:.68rem; padding:.15rem .55rem; border-radius:99px; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap; }
+    .chip.new{background:#eef3f0;color:var(--green);border:1px solid var(--green)} .chip.packed{background:#f6ecdf;color:#8a6d3b;border:1px solid var(--gold)}
+    .chip.shipped{background:#e9eef6;color:#33507a;border:1px solid #33507a} .chip.delivered{background:#eef6ee;color:#2e6b2e;border:1px solid #2e6b2e}
+    .chip.refunded{background:#f8ecec;color:#8a3b3b;border:1px solid #8a3b3b} .chip.pending{background:#f2f2f0;color:var(--slate);border:1px solid var(--slate)}
+    .meta { font-size:.78rem; color:var(--slate); margin-top:.35rem; }
+    .detail { border-top:1px dashed var(--line); margin-top:.8rem; padding-top:.8rem; display:none; }
+    .card.open .detail { display:block; }
+    .items td { padding:.25rem 0; font-size:.85rem; } .items { width:100%; border-collapse:collapse; }
+    .addr { font-size:.82rem; color:var(--slate); white-space:pre-line; margin:.6rem 0; }
+    .timeline { font-size:.72rem; color:var(--slate); margin:.6rem 0; }
+    .acts { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.6rem; }
+    .acts button { font:inherit; font-size:.78rem; padding:.5rem .8rem; border-radius:7px; border:1px solid var(--green); background:var(--green); color:var(--cream); cursor:pointer; }
+    .acts button.ghost { background:#fff; color:var(--green); }
+    .acts button.danger { background:#fff; color:#8a3b3b; border-color:#8a3b3b; }
+    .stmt-head { display:flex; gap:.6rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap; }
+    .stmt-head input { font:inherit; padding:.4rem .6rem; border:1px solid var(--line); border-radius:6px; }
+    .owe { background:var(--green); color:var(--cream); border-radius:10px; padding:1rem 1.2rem; margin:.8rem 0 1rem; display:flex; justify-content:space-between; align-items:baseline; }
+    .owe strong { font-size:1.4rem; color:var(--gold); }
+    table.stmt { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+    table.stmt th, table.stmt td { padding:.55rem .7rem; font-size:.82rem; text-align:left; border-bottom:1px solid var(--line); }
+    table.stmt th { background:#f4efe6; font-weight:normal; letter-spacing:.04em; font-size:.72rem; text-transform:uppercase; color:var(--slate); }
+    table.stmt td.n, table.stmt th.n { text-align:right; }
+    .inv-group { margin-bottom:1.2rem; } .inv-group h3 { font-weight:normal; font-size:.95rem; margin-bottom:.4rem; }
+    .inv-row { display:flex; align-items:center; gap:.6rem; background:#fff; border:1px solid var(--line); border-radius:8px; padding:.5rem .7rem; margin-bottom:.35rem; }
+    .inv-row .t { flex:1; font-size:.82rem; } .inv-row .p { font-size:.72rem; color:var(--slate); }
+    .inv-row input { width:74px; font:inherit; padding:.35rem; border:1px solid var(--line); border-radius:6px; text-align:center; }
+    .inv-row .saved { font-size:.7rem; color:#2e6b2e; min-width:38px; }
+    .empty { color:var(--slate); font-style:italic; text-align:center; padding:2rem 0; }
+    #gate { position:fixed; inset:0; background:var(--green); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; z-index:50; }
+    #gate h2 { color:var(--cream); font-weight:normal; letter-spacing:.1em; } 
+    #gate input { font:inherit; padding:.7rem 1rem; border-radius:8px; border:none; width:260px; text-align:center; }
+    #gate input.error { outline:2px solid #c66; }
+    #gate button { font:inherit; padding:.6rem 1.6rem; border-radius:8px; border:1px solid var(--gold); background:var(--gold); color:var(--green); cursor:pointer; }
+    @media print {
+      nav.tabs, .seg, .stmt-head, header.bar .sum, #vOrders, #vInventory, .noprint { display:none !important; }
+      body { background:#fff; } .owe { color:#000; background:#fff; border:2px solid #000; } .owe strong { color:#000; }
+    }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h2>LONGBOURN — ORDERS</h2>
+    <input type="password" id="pw" placeholder="Password" autocomplete="current-password">
+    <button onclick="auth()">Enter</button>
+  </div>
+
+  <header class="bar">
+    <h1>Longbourn Papers — Orders</h1>
+    <span class="sum" id="sum"></span>
+  </header>
+  <nav class="tabs">
+    <button class="on" data-v="Orders">Orders</button>
+    <button data-v="Statement">Statement</button>
+    <button data-v="Inventory">Inventory</button>
+  </nav>
+  <main>
+    <div id="vOrders">
+      <div class="seg" id="seg">
+        <button class="on" data-s="open">Open</button>
+        <button data-s="shipped">Shipped</button>
+        <button data-s="all">All</button>
+      </div>
+      <div id="orders"><p class="empty">Loading…</p></div>
+    </div>
+
+    <div id="vStatement" style="display:none">
+      <div class="stmt-head noprint">
+        <input type="month" id="month">
+        <button class="acts-like" onclick="loadStatement()" style="font:inherit;padding:.45rem .9rem;border-radius:6px;border:1px solid var(--green);background:var(--green);color:var(--cream)">Load</button>
+        <button onclick="window.print()" style="font:inherit;padding:.45rem .9rem;border-radius:6px;border:1px solid var(--green);background:#fff;color:var(--green)">Print</button>
+      </div>
+      <div id="stmt"><p class="empty">Pick a month.</p></div>
+    </div>
+
+    <div id="vInventory" style="display:none">
+      <p class="meta" style="margin-bottom:.8rem">Consigned stock on hand (Longbourn owns it until sold). Blank = not yet counted. Counts auto-save.</p>
+      <div id="inv"><p class="empty">Loading…</p></div>
+    </div>
+  </main>
+
+<script>
+const API = '/api/admin';
+let PW = sessionStorage.getItem('lb_admin') || '';
+const $ = id => document.getElementById(id);
+const money = c => '$' + (c/100).toFixed(2);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+async function api(path, opts = {}) {
+  opts.headers = Object.assign({}, opts.headers || {}, { 'X-Admin-Token': PW });
+  if (opts.body && !opts.headers['Content-Type']) opts.headers['Content-Type'] = 'application/json';
+  const r = await fetch(API + path, opts);
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d.error || ('HTTP ' + r.status));
+  return d;
+}
+
+async function auth() {
+  const pw = $('pw').value;
+  try {
+    const r = await fetch(API + '/auth-check', { method:'POST', headers:{ 'X-Admin-Token': pw } });
+    if (!r.ok) throw 0;
+    PW = pw; sessionStorage.setItem('lb_admin', pw);
+    enter();
+  } catch {
+    $('pw').classList.add('error'); $('pw').value=''; $('pw').placeholder='Try again';
+    setTimeout(()=>{ $('pw').classList.remove('error'); $('pw').placeholder='Password'; }, 1400);
+  }
+}
+$('pw').addEventListener('keydown', e => { if (e.key==='Enter') auth(); });
+
+function enter() {
+  $('gate').style.display='none';
+  loadSummary(); loadOrders();
+  $('month').value = new Date().toISOString().slice(0,7);
+}
+if (PW) fetch(API+'/auth-check',{method:'POST',headers:{'X-Admin-Token':PW}})
+  .then(r=>{ if(r.ok) enter(); else { PW=''; sessionStorage.removeItem('lb_admin'); } });
+
+// tabs
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  ['Orders','Statement','Inventory'].forEach(v => $('v'+v).style.display = v===b.dataset.v ? '' : 'none');
+  if (b.dataset.v==='Statement' && $('stmt').dataset.loaded!=='1') loadStatement();
+  if (b.dataset.v==='Inventory' && $('inv').dataset.loaded!=='1') loadInventory();
+});
+let VIEW='open';
+$('seg').querySelectorAll('button').forEach(b => b.onclick = () => {
+  $('seg').querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); VIEW=b.dataset.s; loadOrders();
+});
+
+async function loadSummary() {
+  try { const s = await api('/summary');
+    $('sum').textContent = `${s.open_orders} open · owed ${money(s.owed_this_month_cents)} (${s.month})`;
+  } catch {}
+}
+
+async function loadOrders() {
+  $('orders').innerHTML = '<p class="empty">Loading…</p>';
+  try {
+    const { orders } = await api('/orders?status=' + VIEW);
+    if (!orders.length) { $('orders').innerHTML = '<p class="empty">No orders here.</p>'; return; }
+    $('orders').innerHTML = orders.map(o => `
+      <div class="card" data-id="${esc(o.id)}">
+        <div class="row1" onclick="toggle(this.closest('.card'))">
+          <span class="oid"><strong>${esc(o.id)}</strong>${o.id.startsWith('TEST-')?' <span class="chip pending">test</span>':''}</span>
+          <span class="chip ${esc(o.status)}">${esc(o.status)}</span>
+        </div>
+        <div class="meta">${esc(o.customer_name||'—')} · ${o.units||0} item${o.units==1?'':'s'} · ${o.total_cents!=null?money(o.total_cents):money(o.subtotal_cents||0)} · ${esc((o.created_at||'').slice(0,16))}${o.tracking_number?' · 📦 '+esc(o.tracking_number):''}</div>
+        <div class="detail"></div>
+      </div>`).join('');
+  } catch (e) { $('orders').innerHTML = '<p class="empty">'+esc(e.message)+'</p>'; }
+}
+
+async function toggle(card) {
+  if (card.classList.contains('open')) { card.classList.remove('open'); return; }
+  card.classList.add('open');
+  const box = card.querySelector('.detail');
+  box.innerHTML = 'Loading…';
+  try {
+    const { order:o, items, events } = await api('/orders/' + encodeURIComponent(card.dataset.id));
+    let ship = '';
+    try { const s = JSON.parse(o.ship_to_json||'null'); if (s?.address) {
+      const a=s.address; ship = [s.name,a.line1,a.line2,(a.city?a.city+', ':'')+(a.state||'')+' '+(a.postal_code||'')].filter(Boolean).join('\n');
+    }} catch {}
+    box.innerHTML = `
+      <table class="items">${items.map(i=>`<tr><td>${esc(i.product_title)}${i.variant_title&&i.variant_title!=='Default Title'?' — '+esc(i.variant_title):''} × ${i.quantity}</td><td style="text-align:right">${money(i.unit_price_cents*i.quantity)}</td></tr>`).join('')}</table>
+      <div class="meta">Subtotal ${money(o.subtotal_cents||0)} · Ship ${money(o.shipping_cents||0)} · Tax ${money(o.tax_cents||0)} · <strong>Total ${o.total_cents!=null?money(o.total_cents):'—'}</strong> · <span style="color:var(--gold)">Longbourn ${money(items.reduce((s,i)=>s+i.wholesale_cents*i.quantity,0))}</span></div>
+      ${o.email?`<div class="meta">${esc(o.email)}</div>`:''}
+      ${ship?`<div class="addr">${esc(ship)}</div>`:''}
+      <div class="timeline">${events.map(e=>`${esc((e.created_at||'').slice(5,16))} — ${esc(e.event)}${e.detail?': '+esc(e.detail):''}`).join('<br>')}</div>
+      <div class="acts">${actions(o)}</div>`;
+  } catch(e) { box.innerHTML = esc(e.message); }
+}
+
+function actions(o) {
+  const b = [];
+  if (o.status==='new')     b.push(`<button onclick="setStatus('${esc(o.id)}','packed')">Mark Packed</button>`);
+  if (o.status==='packed' || o.status==='new') b.push(`<button onclick="shipIt('${esc(o.id)}')">Mark Shipped…</button>`);
+  if (o.status==='shipped') b.push(`<button onclick="setStatus('${esc(o.id)}','delivered')">Mark Delivered</button>`);
+  if (!['refunded','pending'].includes(o.status)) b.push(`<button class="danger" onclick="refund('${esc(o.id)}')">Refund</button>`);
+  return b.join('');
+}
+async function setStatus(id, status) {
+  try { await api('/orders/'+encodeURIComponent(id)+'/update', { method:'POST', body: JSON.stringify({ status }) });
+    loadOrders(); loadSummary();
+  } catch(e){ alert(e.message); }
+}
+async function shipIt(id) {
+  const t = prompt('Tracking number (optional):') ;
+  if (t === null) return;
+  try { await api('/orders/'+encodeURIComponent(id)+'/update', { method:'POST', body: JSON.stringify({ status:'shipped', tracking_number: t }) });
+    loadOrders(); loadSummary();
+  } catch(e){ alert(e.message); }
+}
+async function refund(id) {
+  if (!confirm('Refund '+id+' in full? This returns the customer\u2019s money.')) return;
+  try { const r = await api('/orders/'+encodeURIComponent(id)+'/refund', { method:'POST', body:'{}' });
+    alert('Refunded: '+r.detail); loadOrders(); loadSummary();
+  } catch(e){ alert(e.message); }
+}
+
+async function loadStatement() {
+  $('stmt').dataset.loaded='1';
+  const m = $('month').value || new Date().toISOString().slice(0,7);
+  $('stmt').innerHTML = '<p class="empty">Loading…</p>';
+  try {
+    const s = await api('/statement?month=' + m);
+    const rows = s.sold.map(r=>`<tr><td>${esc(r.product_title)}${r.variant_title&&r.variant_title!=='Default Title'?' — '+esc(r.variant_title):''}</td><td class="n">${r.units}</td><td class="n">${money(r.wholesale_cents)}</td><td class="n">${money(r.owed_cents)}</td></tr>`).join('');
+    const creds = s.credits.map(r=>`<tr><td>Credit — ${esc(r.product_title)}${r.variant_title&&r.variant_title!=='Default Title'?' — '+esc(r.variant_title):''} (returned)</td><td class="n">${r.units}</td><td class="n"></td><td class="n">−${money(r.credit_cents)}</td></tr>`).join('');
+    $('stmt').innerHTML = `
+      <h2 style="font-weight:normal;margin-bottom:.2rem">Longbourn Papers — Consignment Statement</h2>
+      <p class="meta">Month: ${esc(s.month)} · Wholesale = 50% of MSRP per unit sold (per agreement §3) · Generated ${esc(s.generated_at.slice(0,10))}</p>
+      <div class="owe"><span>Owed to Longbourn</span><strong>${money(s.owed_cents)}</strong></div>
+      ${s.sold.length||s.credits.length ? `
+      <table class="stmt">
+        <tr><th>Item</th><th class="n">Units</th><th class="n">Wholesale</th><th class="n">Owed</th></tr>
+        ${rows}${creds}
+        <tr><td><strong>Total</strong></td><td class="n"></td><td class="n"></td><td class="n"><strong>${money(s.owed_cents)}</strong></td></tr>
+      </table>` : '<p class="empty">No sales this month.</p>'}`;
+  } catch(e){ $('stmt').innerHTML = '<p class="empty">'+esc(e.message)+'</p>'; }
+}
+
+async function loadInventory() {
+  $('inv').dataset.loaded='1';
+  $('inv').innerHTML = '<p class="empty">Loading…</p>';
+  try {
+    const { inventory } = await api('/inventory');
+    const groups = {};
+    inventory.forEach(v => (groups[v.product_title] ||= []).push(v));
+    $('inv').innerHTML = Object.entries(groups).map(([p, vs]) => `
+      <div class="inv-group"><h3>${esc(p)}</h3>
+        ${vs.map(v=>`
+        <div class="inv-row">
+          <span class="t">${esc(v.variant_title)}<br><span class="p">${money(v.price_cents)} · wholesale ${money(v.wholesale_cents)}</span></span>
+          <input type="number" min="0" value="${v.quantity ?? ''}" placeholder="—"
+                 onchange="saveCount('${esc(v.variant_id)}', this)">
+          <span class="saved"></span>
+        </div>`).join('')}
+      </div>`).join('');
+  } catch(e){ $('inv').innerHTML = '<p class="empty">'+esc(e.message)+'</p>'; }
+}
+async function saveCount(variantId, input) {
+  const val = input.value === '' ? null : parseInt(input.value, 10);
+  const badge = input.parentElement.querySelector('.saved');
+  try {
+    await api('/inventory', { method:'POST', body: JSON.stringify({ variantId, quantity: val }) });
+    badge.textContent = 'saved'; setTimeout(()=>badge.textContent='', 1500);
+  } catch(e){ badge.textContent = '!'; alert(e.message); }
+}
+</script>
+</body>
+</html>
