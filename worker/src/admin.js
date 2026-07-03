@@ -8,6 +8,7 @@
 // current catalog prices. TEST- orders are excluded from statements by default.
 
 import { stripe } from './checkout.js';
+import { handleRates, handleBuyLabel, notifyShipped } from './shipping.js';
 
 function json(obj, status = 200) {
   return new Response(JSON.stringify(obj), {
@@ -74,6 +75,15 @@ export async function handleAdmin(request, env, path) {
     return json({ order, items, events });
   }
 
+  // POST /api/admin/orders/:id/rates — Phase 4: EasyPost rate shopping
+  if (/^orders\/[^/]+\/rates$/.test(sub) && method === 'POST') {
+    return handleRates(request, env, decodeURIComponent(sub.split('/')[1]));
+  }
+  // POST /api/admin/orders/:id/label — Phase 4: buy label, PDF to R2, tracking saved
+  if (/^orders\/[^/]+\/label$/.test(sub) && method === 'POST') {
+    return handleBuyLabel(request, env, decodeURIComponent(sub.split('/')[1]));
+  }
+
   // POST /api/admin/orders/:id/update  {status?, tracking_number?}
   if (/^orders\/[^/]+\/update$/.test(sub) && method === 'POST') {
     const id = decodeURIComponent(sub.split('/')[1]);
@@ -86,6 +96,7 @@ export async function handleAdmin(request, env, path) {
       if (!STATUSES.includes(body.status)) return jerr(400, `status must be one of ${STATUSES.join(', ')}`);
       if (body.status === 'refunded') return jerr(400, 'Use the refund endpoint for refunds');
       if (order.status === 'pending') return jerr(400, 'Order has not been paid');
+      if (order.status === 'refunded') return jerr(400, 'Order is refunded — status is final');
       sets.push('status=?'); binds.push(body.status);
       events.push(['status', `${order.status} → ${body.status}`]);
     }
@@ -102,6 +113,7 @@ export async function handleAdmin(request, env, path) {
         env.DB.prepare('INSERT INTO order_events (order_id,event,detail) VALUES (?,?,?)').bind(id, e, d)),
     ];
     await env.DB.batch(stmts);
+    if (body.status === 'shipped') await notifyShipped(env, id); // hard-gated by EMAIL_MODE
     const updated = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first();
     return json({ ok: true, order: updated });
   }

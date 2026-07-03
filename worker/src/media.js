@@ -5,7 +5,7 @@
 const TYPES = {
   jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp',
   gif: 'image/gif', svg: 'image/svg+xml', avif: 'image/avif', ico: 'image/x-icon',
-  mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime',
+  mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime', pdf: 'application/pdf',
 };
 
 function contentType(key) {

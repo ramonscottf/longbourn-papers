@@ -194,7 +194,9 @@ async function toggle(card) {
       ${o.email?`<div class="meta">${esc(o.email)}</div>`:''}
       ${ship?`<div class="addr">${esc(ship)}</div>`:''}
       <div class="timeline">${events.map(e=>`${esc((e.created_at||'').slice(5,16))} — ${esc(e.event)}${e.detail?': '+esc(e.detail):''}`).join('<br>')}</div>
-      <div class="acts">${actions(o)}</div>`;
+      ${o.label_r2_key ? `<div class="meta">🏷️ <a href="/${esc(o.label_r2_key)}" target="_blank"><strong>Open Label (PDF)</strong></a>${o.tracking_number?' · '+esc(o.tracking_number):''}</div>` : ''}
+      <div class="acts">${actions(o)}${ship && !['refunded','pending','delivered'].includes(o.status) ? `<button class="ghost" onclick="ratePanel('${esc(o.id)}', this)">Ship: Get Rates…</button>` : ''}</div>
+      <div class="rate-panel"></div>`;
   } catch(e) { box.innerHTML = esc(e.message); }
 }
 
@@ -272,6 +274,59 @@ async function saveCount(variantId, input) {
     await api('/inventory', { method:'POST', body: JSON.stringify({ variantId, quantity: val }) });
     badge.textContent = 'saved'; setTimeout(()=>badge.textContent='', 1500);
   } catch(e){ badge.textContent = '!'; alert(e.message); }
+}
+
+// ── Phase 4: shipping ──────────────────────────────────────────────
+const PRESETS = {
+  mailer: { label:'Rigid Mailer 12.5×9.5×1', length:12.5, width:9.5, height:1 },
+  padded: { label:'Padded Envelope 10×7×1', length:10, width:7, height:1 },
+  box:    { label:'Small Box 8×6×4', length:8, width:6, height:4 },
+};
+function ratePanel(id, btn) {
+  const panel = btn.closest('.detail').querySelector('.rate-panel');
+  panel.innerHTML = `
+    <div style="border-top:1px dashed var(--line);margin-top:.8rem;padding-top:.8rem">
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+        <select id="pkg-${esc(id)}" style="font:inherit;padding:.4rem;border:1px solid var(--line);border-radius:6px">
+          ${Object.entries(PRESETS).map(([k,p])=>`<option value="${k}">${p.label}</option>`).join('')}
+        </select>
+        <label style="font-size:.78rem;color:var(--slate)">Weight
+          <input id="wt-${esc(id)}" type="number" value="8" min="1" max="1600" style="width:60px;font:inherit;padding:.35rem;border:1px solid var(--line);border-radius:6px"> oz
+        </label>
+        <button onclick="getRates('${esc(id)}')" style="font:inherit;font-size:.78rem;padding:.5rem .8rem;border-radius:7px;border:1px solid var(--green);background:var(--green);color:var(--cream)">Get Rates</button>
+      </div>
+      <div class="rate-list" style="margin-top:.6rem"></div>
+    </div>`;
+}
+async function getRates(id) {
+  const list = document.querySelector(`#wt-${CSS.escape(id)}`).closest('div').parentElement.querySelector('.rate-list');
+  list.innerHTML = '<span class="meta">Quoting…</span>';
+  const preset = PRESETS[document.getElementById('pkg-'+id).value];
+  const weight = parseInt(document.getElementById('wt-'+id).value, 10) || 8;
+  try {
+    const r = await api('/orders/'+encodeURIComponent(id)+'/rates', {
+      method:'POST',
+      body: JSON.stringify({ weight_oz: weight, length: preset.length, width: preset.width, height: preset.height })
+    });
+    list.innerHTML = (r.mode==='test' ? '<div class="meta">⚠️ TEST mode — labels are watermarked, no postage charged.</div>' : '')
+      + r.rates.map(rt => `
+      <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.5rem .7rem;margin-bottom:.35rem">
+        <span style="font-size:.82rem">${esc(rt.carrier)} ${esc(rt.service)}${rt.days?` · ${rt.days}d`:''}</span>
+        <button onclick="buyLabel('${esc(id)}','${esc(r.shipment_id)}','${esc(rt.rate_id)}','${esc(rt.rate)}')"
+          style="font:inherit;font-size:.78rem;padding:.4rem .7rem;border-radius:7px;border:1px solid var(--gold);background:var(--gold);color:var(--green)">Buy $${esc(rt.rate)}</button>
+      </div>`).join('');
+  } catch(e){ list.innerHTML = '<span class="meta">'+esc(e.message)+'</span>'; }
+}
+async function buyLabel(id, shipmentId, rateId, amt) {
+  if (!confirm('Buy this label for $'+amt+'?')) return;
+  try {
+    const r = await api('/orders/'+encodeURIComponent(id)+'/label', {
+      method:'POST', body: JSON.stringify({ shipment_id: shipmentId, rate_id: rateId })
+    });
+    alert('Label purchased'+(r.mode==='test'?' (TEST)':'')+'. Tracking: '+r.tracking);
+    if (r.label) window.open(r.label, '_blank');
+    loadOrders(); loadSummary();
+  } catch(e){ alert(e.message); }
 }
 </script>
 </body>

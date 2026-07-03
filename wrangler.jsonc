@@ -18,7 +18,14 @@
     "SHIPPING_FLAT_CENTS": "600",
     "SHIPPING_FREE_OVER_CENTS": "7500",
     "EMAIL_MODE": "off",
-    "EMAIL_FROM": "Longbourn Papers <scott@wickowaypoint.com>"
+    "EMAIL_FROM": "Longbourn Papers <scott@wickowaypoint.com>",
+    "SHIP_FROM_NAME": "Longbourn Papers",
+    "SHIP_FROM_STREET1": "SET_ME",
+    "SHIP_FROM_CITY": "Farmington",
+    "SHIP_FROM_STATE": "UT",
+    "SHIP_FROM_ZIP": "84025",
+    "SHIP_FROM_PHONE": "8018106642",
+    "SHIP_FROM_EMAIL": "scott@wickowaypoint.com"
   },
   "kv_namespaces": [
     {
