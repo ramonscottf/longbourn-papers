@@ -159,7 +159,7 @@ The April build shipped image-less (every placeholder literal) and Phase 1's D1 
 | 0 | Lock & Clean | ✅ DONE 2026-07-02 | 6 write routes 401 bare/bad-token + 200/400 with token on live worker; root clean; deploy green; commerce regression-tested |
 | 1 | Own the Catalog (D1) | ✅ DONE 2026-07-02 | deep-diff Shopify-vs-D1 = 0 diffs (list + 4 handles); 9 broken collection pages fixed; wholesale_cents verified 50% on all 59 variants; D1 707c2975-6555-40bf-b9fb-a0c61f0e7d49 |
 | 2 | Stripe Checkout | 🟢 BUILT 2026-07-02 — awaiting Scott's live tap-through | cs_live session from D1 prices verified; Stripe Tax ACTIVE (tax+descriptor); webhook we_1Torg7Db1SbvRfTpOHDsWuct registered (refetch-verified); plumbing test order TEST-MR3ZKCLO paid→new, email delivered; EMAIL_MODE=off pending go-live |
-| 3 | Order Dashboard | ⬜ NOT STARTED | — |
+| 3 | Order Dashboard | 🟢 BUILT 2026-07-02 — awaiting Ali's phone look | /admin/ live; API-first (iOS contract); status machine + tracking + Stripe refunds verified on TEST order; consignment statement verified incl. same-month-refund net-zero; inventory count view live (carry-forward #6 resolved) |
 | 4 | Shipping & Labels | ⬜ NOT STARTED | — |
 | 5 | Brother Printing | ⬜ NOT STARTED | — |
 | 6 | Site Enhancement | ⬜ NOT STARTED | — |
