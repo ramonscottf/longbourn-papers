@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>The Writing Desk — Longbourn Papers</title>
-  <meta name="description" content="Free tools, guides, and lessons for the lost art of letter writing — from the Longbourn Papers print shop.">
+  <title>Calligraphy Practice Sheet Maker — free printable guides — Longbourn Papers</title>
+  <meta name="description" content="Type any phrase and print proper calligraphy practice sheets — x-height guides, 55° slant lines, ghost letters. Free, no signup, US Letter and A4.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Journal — Longbourn Papers">
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Longbourn Papers">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="canonical" href="https://longbournpapers.com/writing-desk/">
+  <link rel="canonical" href="https://longbournpapers.com/writing-desk/practice-sheets/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -31,14 +31,28 @@
   <link rel="stylesheet" href="/assets/wicko-pill-nav/longbourn-theme.css">
   <link rel="stylesheet" href="/css/refined.css">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Sacramento&display=swap" rel="stylesheet">
   <style>
-    .wd-cards { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:2.5rem; }
-    .wd-card { border:1px solid rgba(29,50,45,.14); border-radius:2px; background:#FFFDF9; padding:28px 26px; display:flex; flex-direction:column; }
-    .wd-card h3 { margin:.4rem 0 .6rem; }
-    .wd-card p { font-size:14.5px; line-height:1.7; color:rgba(29,50,45,.75); flex:1; }
-    .wd-soon { display:inline-block; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(29,50,45,.5); border:1px solid rgba(29,50,45,.2); border-radius:999px; padding:4px 12px; align-self:flex-start; }
+    .ps-controls { margin: 1.4rem 0 2rem; }
+    .ps-row { margin-bottom: 14px; }
+    .ps-label { display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(29,50,45,.55); margin-bottom:8px; font-family:var(--font-body); }
+    .ps-input { width:100%; max-width:520px; font-family:var(--font-body); font-size:15px; padding:12px 16px; border:1px solid rgba(29,50,45,.25); border-radius:2px; background:#fff; color:var(--color-ink); }
+    .ps-input:focus { outline:none; border-color:var(--color-hunter); }
+    .ps-actions { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:1.6rem 0; }
+    #sheetWrap { border:1px solid rgba(29,50,45,.16); background:#fff; box-shadow:0 1px 0 rgba(29,50,45,.06); overflow:auto; }
+    #sheetWrap svg { display:block; max-width:100%; height:auto; }
+    @media print {
+      body * { visibility:hidden !important; }
+      #sheetWrap, #sheetWrap * { visibility:visible !important; }
+      #sheetWrap { position:absolute; left:0; top:0; border:none; box-shadow:none; overflow:visible; }
+      #sheetWrap svg { max-width:none; }
+    }
   </style>
-</head><body>
+  <style id="pageStyle">@page { size: letter portrait; margin: 0; }</style>
+</head>
+<body>
   <header class="wpn" aria-label="Site navigation">
   <div class="wpn__inner">
     <a href="/" class="wpn__brand" aria-label="Longbourn Papers — Home"><span class="wpn__brand-icon"><img src="/media/brand/Longbourn_Papers_Logo_1.png" alt="Longbourn Papers"></span></a>
@@ -80,36 +94,26 @@
 </header>
   <main><section class="section"><div class="container">
     <div style="max-width:680px">
-      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk</span>
-      <h1 style="margin:.4em 0 .5em">Everything here is free.</h1>
-      <p class="prose">We sell paper, but the thing we actually care about is what gets written on it. The Writing Desk is our collection of free tools, guides, and lessons for the lost art of correspondence — no account, no catch. Use them with our cards or anyone else's.</p>
+      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk · Free tool</span>
+      <h1 style="margin:.4em 0 .5em">Practice Sheet Maker</h1>
+      <p class="prose">Type any phrase — or run the drills — and print a proper guided practice sheet: x-height rules, true 55° slant lines, ghost letters to trace. Print at 100% scale. Free forever, no signup, share them with your whole class.</p>
     </div>
-    <div class="wd-cards">
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
-        <h3>What Do I Write?</h3>
-        <p>Staring at a blank card? Choose the occasion, who it's for, and the tone — get real opening lines, body prompts, and closings you can borrow outright.</p>
-        <a class="btn btn--primary" href="/writing-desk/what-do-i-write/">Open the tool</a>
-      </div>
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Guides</span>
-        <h3>The Letter-Writing Guides</h3>
-        <p>Deep, practical guides from the Journal — how to write a thank-you note people keep, what to say in a sympathy card, and a growing library of occasions.</p>
-        <a class="btn btn--ghost" href="/journal/">Read the guides</a>
-      </div>
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
-        <h3>Calligraphy Practice Sheets</h3>
-        <p>Type any phrase and print proper guided practice sheets — x-height rules, true 55° slant lines, ghost letters to trace. US Letter and A4, free forever.</p>
-        <a class="btn btn--primary" href="/writing-desk/practice-sheets/">Make a sheet</a>
-      </div>
-      <div class="wd-card">
-        <span class="wd-soon">Coming soon</span>
-        <h3>The Lost Art — a free course</h3>
-        <p>Five short lessons on writing letters worth keeping, delivered to your inbox. Filmed at the press, taught from the writing desk.</p>
-      </div>
+    <div class="ps-controls">
+      <div class="ps-row"><span class="ps-label">Sheet style</span><div class="variant-pills" id="psStyle"></div></div>
+      <div class="ps-row" id="phraseRow"><span class="ps-label">Your phrase (repeats each row)</span>
+        <input class="ps-input" id="psPhrase" type="text" maxlength="60" value="practice makes progress" autocomplete="off"></div>
+      <div class="ps-row"><span class="ps-label">X-height</span><div class="variant-pills" id="psX"></div></div>
+      <div class="ps-row"><span class="ps-label">Slant lines</span><div class="variant-pills" id="psSlant"></div></div>
+      <div class="ps-row"><span class="ps-label">Paper</span><div class="variant-pills" id="psPaper"></div></div>
     </div>
+    <div class="ps-actions">
+      <button class="btn btn--primary" id="psPrint">Print the sheet</button>
+      <span style="font-size:13px;color:rgba(29,50,45,.6)">Set your printer to 100% / actual size — never "fit to page."</span>
+    </div>
+    <div id="sheetWrap"></div>
+    <p class="prose" style="margin-top:2rem;max-width:680px">New to the pen? Start with <a href="/journal/calligraphy-for-beginners/">the beginner’s guide</a>, run <a href="/journal/calligraphy-drills-that-actually-work/">the seven strokes</a> daily, and when the wobbles persist, <a href="/journal/fixing-common-calligraphy-mistakes/">the troubleshooting guide</a> names the cure.</p>
   </div></section></main>
+  <script src="/js/practice-sheets.js" defer></script>
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__grid">
