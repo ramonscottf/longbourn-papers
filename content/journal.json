@@ -1,5 +1,59 @@
 [
  {
+  "slug": "calligraphy-for-beginners",
+  "title": "Calligraphy for Beginners: Start Tonight with the Pen You Own",
+  "category": "Calligraphy",
+  "author": "Ellie Hartwell",
+  "date": "2024-08-12",
+  "hero": "/media/studio/lodge-writing.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "choosing-your-first-nib-and-ink",
+  "title": "Choosing Your First Nib and Ink (The Under-$30 Kit)",
+  "category": "Calligraphy",
+  "author": "Scott Foster",
+  "date": "2025-04-15",
+  "hero": "/media/studio/real-ink-knife.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "calligraphy-drills-that-actually-work",
+  "title": "The Seven Strokes: Calligraphy Drills That Actually Work",
+  "category": "Calligraphy",
+  "author": "Ellie Hartwell",
+  "date": "2025-09-09",
+  "hero": "/media/studio/studio-sheet.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "modern-calligraphy-vs-copperplate",
+  "title": "Modern Calligraphy vs. Copperplate: Choose by Temperament",
+  "category": "Calligraphy",
+  "author": "Ellie Hartwell",
+  "date": "2025-11-18",
+  "hero": "/media/studio/real-nameplate-bw.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "calligraphy-envelope-addressing",
+  "title": "Addressing Envelopes in Calligraphy: Pencil to Postbox",
+  "category": "Calligraphy",
+  "author": "Ellie Hartwell",
+  "date": "2026-05-20",
+  "hero": "/media/brand/AdobeStock_165416507.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "fixing-common-calligraphy-mistakes",
+  "title": "Railroad Tracks and Shaky Hairlines: Fixing Common Calligraphy Mistakes",
+  "category": "Calligraphy",
+  "author": "Scott Foster",
+  "date": "2026-07-01",
+  "hero": "/media/studio/studio-hands.jpg",
+  "read_min": 4
+ },
+ {
   "slug": "what-to-write-in-a-christmas-card",
   "title": "What to Write in a Christmas Card (Beyond 'Merry Christmas')",
   "category": "Occasions",
