@@ -180,3 +180,14 @@ html, body { overflow-x: clip; }
    the full object, every time, in a quiet framed field ── */
 .product-gallery__main { background: #FFFFFF; border: var(--hairline-soft); }
 .product-gallery__main img { object-fit: contain !important; }
+
+/* ── Pill selector: universal pattern (product pages + Writing Desk tools) ── */
+.variant-pills { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 2px 2px 6px; margin: 0 -2px; max-width: 100%; }
+.variant-pills::-webkit-scrollbar { display: none; }
+.vpill { flex: 0 0 auto; scroll-snap-align: start; font-family: var(--font-body);
+  font-size: 12.5px; letter-spacing: .02em; padding: 9px 15px; border-radius: 999px;
+  border: 1px solid var(--color-linen, #DDD6C8); background: #fff; color: var(--color-ink);
+  cursor: pointer; white-space: nowrap; transition: border-color .25s, background .25s, color .25s; }
+.vpill:hover { border-color: var(--accent, var(--color-hunter)); }
+.vpill.is-selected { background: var(--accent, var(--color-hunter)); border-color: var(--accent, var(--color-hunter)); color: #fff; }

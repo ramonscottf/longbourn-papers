@@ -115,7 +115,7 @@ open('site/journal/index.html','w').write(s)
 # ── sitemap ──
 BASE='https://longbournpapers.com'
 urls=[BASE+'/']
-for d in sorted(glob.glob('site/*/index.html')):
+for d in sorted(glob.glob('site/*/index.html')) + sorted(glob.glob('site/writing-desk/*/index.html')):
     seg=d.split('/')[1]
     if seg in ('admin','photos','checkout'): continue
     urls.append(f"{BASE}/{seg}/")

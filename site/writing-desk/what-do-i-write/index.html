@@ -3,30 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Note Cards — Longbourn Papers</title>
-  <meta name="description" content="Elegant letterpress note cards for every occasion. Printed on Crane Lettra cotton paper.">
-  <meta property="og:title" content="Note Cards — Longbourn Papers">
-  <meta property="og:description" content="Elegant letterpress note cards for every occasion. Printed on Crane Lettra cotton paper.">
+  <title>What Do I Write? — a free letter-writing helper — Longbourn Papers</title>
+  <meta name="description" content="Choose the occasion, relationship, and tone — get real opening lines, prompts, and closings for your card. Free from Longbourn Papers.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Journal — Longbourn Papers">
+  <meta property="og:description" content="Thoughts on letterpress, paper, correspondence, and the art of slowing down. The Longbourn Papers journal.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://longbournpapers.com/collections/note-cards/">
+  <meta property="og:url" content="https://longbournpapers.com/journal/">
+  <meta property="og:site_name" content="Longbourn Papers">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://longbournpapers.com/collections/note-cards/">
+
+  <link rel="canonical" href="https://longbournpapers.com/writing-desk/what-do-i-write/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/animations.css">
-  <link rel="stylesheet" href="/css/pages/shop.css">
+  <link rel="stylesheet" href="/css/pages/journal.css">
   <link rel="icon" type="image/png" href="/media/brand/Untitled_design-10.png">
   <link rel="apple-touch-icon" href="/media/brand/Untitled_design-10.png">
   <meta property="og:image" content="https://longbournpapers.com/media/brand/AdobeStock_296642693.jpg">
   <link rel="stylesheet" href="/assets/wicko-pill-nav/wicko-pill-nav.css">
   <link rel="stylesheet" href="/assets/wicko-pill-nav/longbourn-theme.css">
   <link rel="stylesheet" href="/css/refined.css">
-</head>
-<body>
+
+  <style>
+    .wt-step { margin: 1.6rem 0; }
+    .wt-out { margin-top: 2.4rem; }
+    .wt-block { border:1px solid rgba(29,50,45,.14); border-radius:2px; background:#FFFDF9; padding:22px 24px; margin-bottom:16px; }
+    .wt-block h3 { margin:0 0 4px; font-size:13px; letter-spacing:.2em; text-transform:uppercase; font-family:var(--font-body); color:var(--color-gold,#B8965A); }
+    .wt-line { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid rgba(29,50,45,.08); }
+    .wt-line:last-child { border-bottom:none; }
+    .wt-line p { margin:0; flex:1; font-family:var(--font-display); font-size:16.5px; line-height:1.55; }
+    .wt-copy { flex:none; background:none; border:1px solid rgba(29,50,45,.25); border-radius:999px; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; cursor:pointer; color:var(--color-ink); transition:.25s; }
+    .wt-copy:hover { border-color: var(--color-hunter); }
+    .wt-copy.did { background:var(--color-hunter); color:#fff; border-color:var(--color-hunter); }
+    .wt-avoid li::before { content:"✕" !important; color:#9a4a3f !important; font-size:11px; top:14px; }
+    .wt-guide { margin-top:6px; font-size:14px; }
+  </style>
+</head><body>
   <header class="wpn" aria-label="Site navigation">
   <div class="wpn__inner">
     <a href="/" class="wpn__brand" aria-label="Longbourn Papers — Home"><span class="wpn__brand-icon"><img src="/media/brand/Longbourn_Papers_Logo_1.png" alt="Longbourn Papers"></span></a>
@@ -66,32 +85,18 @@
     </div>
   </div>
 </header>
-  <main>
-    <div class="collection-header">
-      <div class="container">
-        <h1 class="collection-header__title" id="collectionTitle">Note Cards</h1>
-        <p class="collection-header__description" id="collectionDescription">Elegant letterpress note cards for every occasion. Printed on Crane Lettra cotton paper.</p>
-      </div>
+  <main><section class="section"><div class="container">
+    <div style="max-width:680px">
+      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk · Free tool</span>
+      <h1 style="margin:.4em 0 .5em">What do I write?</h1>
+      <p class="prose">Three choices, then borrow anything below outright — the lines are yours. The best card is the one that gets posted.</p>
     </div>
-    <section class="section">
-      <div class="container">
-        <div class="shop-controls">
-          <span class="shop-controls__count" id="productCount"></span>
-          <div class="shop-controls__filters">
-            <select class="shop-controls__sort select" id="sortSelect" aria-label="Sort products">
-              <option value="title-asc">Name: A–Z</option>
-              <option value="title-desc">Name: Z–A</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-            </select>
-          </div>
-        </div>
-        <div class="grid grid--products" id="productGrid" data-collection="note-cards">
-          <div class="loading"><div class="loading__spinner"></div></div>
-        </div>
-      </div>
-    </section>
-  </main>
+    <div class="wt-step"><span class="vsel-label" style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(29,50,45,.55);margin-bottom:8px">Occasion</span><div class="variant-pills" id="occ"></div></div>
+    <div class="wt-step"><span class="vsel-label" style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(29,50,45,.55);margin-bottom:8px">Writing to</span><div class="variant-pills" id="rel"></div></div>
+    <div class="wt-step"><span class="vsel-label" style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(29,50,45,.55);margin-bottom:8px">Tone</span><div class="variant-pills" id="tone"></div></div>
+    <div class="wt-out" id="out"></div>
+  </div></section></main>
+  <script src="/js/what-do-i-write.js" defer></script>
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__grid">
@@ -104,12 +109,7 @@
       <div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p></div>
     </div>
   </footer>
-  <script src="/js/utils.js"></script>
-  <script src="/js/cart.js"></script>
-  <script src="/js/nav.js"></script>
-  <script src="/js/animations.js"></script>
-  <script src="/js/newsletter.js"></script>
-  <script src="/js/collection.js"></script>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/cart.js" defer></script>
   <script src="/assets/wicko-pill-nav/wicko-pill-nav.js" defer></script>
-</body>
-</html>
+</body></html>

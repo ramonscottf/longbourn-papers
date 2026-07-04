@@ -3,30 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Note Cards — Longbourn Papers</title>
-  <meta name="description" content="Elegant letterpress note cards for every occasion. Printed on Crane Lettra cotton paper.">
-  <meta property="og:title" content="Note Cards — Longbourn Papers">
-  <meta property="og:description" content="Elegant letterpress note cards for every occasion. Printed on Crane Lettra cotton paper.">
+  <title>The Writing Desk — Longbourn Papers</title>
+  <meta name="description" content="Free tools, guides, and lessons for the lost art of letter writing — from the Longbourn Papers print shop.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Journal — Longbourn Papers">
+  <meta property="og:description" content="Thoughts on letterpress, paper, correspondence, and the art of slowing down. The Longbourn Papers journal.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://longbournpapers.com/collections/note-cards/">
+  <meta property="og:url" content="https://longbournpapers.com/journal/">
+  <meta property="og:site_name" content="Longbourn Papers">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://longbournpapers.com/collections/note-cards/">
+
+  <link rel="canonical" href="https://longbournpapers.com/writing-desk/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/animations.css">
-  <link rel="stylesheet" href="/css/pages/shop.css">
+  <link rel="stylesheet" href="/css/pages/journal.css">
   <link rel="icon" type="image/png" href="/media/brand/Untitled_design-10.png">
   <link rel="apple-touch-icon" href="/media/brand/Untitled_design-10.png">
   <meta property="og:image" content="https://longbournpapers.com/media/brand/AdobeStock_296642693.jpg">
   <link rel="stylesheet" href="/assets/wicko-pill-nav/wicko-pill-nav.css">
   <link rel="stylesheet" href="/assets/wicko-pill-nav/longbourn-theme.css">
   <link rel="stylesheet" href="/css/refined.css">
-</head>
-<body>
+
+  <style>
+    .wd-cards { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:2.5rem; }
+    .wd-card { border:1px solid rgba(29,50,45,.14); border-radius:2px; background:#FFFDF9; padding:28px 26px; display:flex; flex-direction:column; }
+    .wd-card h3 { margin:.4rem 0 .6rem; }
+    .wd-card p { font-size:14.5px; line-height:1.7; color:rgba(29,50,45,.75); flex:1; }
+    .wd-soon { display:inline-block; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(29,50,45,.5); border:1px solid rgba(29,50,45,.2); border-radius:999px; padding:4px 12px; align-self:flex-start; }
+  </style>
+</head><body>
   <header class="wpn" aria-label="Site navigation">
   <div class="wpn__inner">
     <a href="/" class="wpn__brand" aria-label="Longbourn Papers — Home"><span class="wpn__brand-icon"><img src="/media/brand/Longbourn_Papers_Logo_1.png" alt="Longbourn Papers"></span></a>
@@ -66,32 +78,37 @@
     </div>
   </div>
 </header>
-  <main>
-    <div class="collection-header">
-      <div class="container">
-        <h1 class="collection-header__title" id="collectionTitle">Note Cards</h1>
-        <p class="collection-header__description" id="collectionDescription">Elegant letterpress note cards for every occasion. Printed on Crane Lettra cotton paper.</p>
+  <main><section class="section"><div class="container">
+    <div style="max-width:680px">
+      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk</span>
+      <h1 style="margin:.4em 0 .5em">Everything here is free.</h1>
+      <p class="prose">We sell paper, but the thing we actually care about is what gets written on it. The Writing Desk is our collection of free tools, guides, and lessons for the lost art of correspondence — no account, no catch. Use them with our cards or anyone else's.</p>
+    </div>
+    <div class="wd-cards">
+      <div class="wd-card">
+        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
+        <h3>What Do I Write?</h3>
+        <p>Staring at a blank card? Choose the occasion, who it's for, and the tone — get real opening lines, body prompts, and closings you can borrow outright.</p>
+        <a class="btn btn--primary" href="/writing-desk/what-do-i-write/">Open the tool</a>
+      </div>
+      <div class="wd-card">
+        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Guides</span>
+        <h3>The Letter-Writing Guides</h3>
+        <p>Deep, practical guides from the Journal — how to write a thank-you note people keep, what to say in a sympathy card, and a growing library of occasions.</p>
+        <a class="btn btn--ghost" href="/journal/">Read the guides</a>
+      </div>
+      <div class="wd-card">
+        <span class="wd-soon">Coming soon</span>
+        <h3>Calligraphy Practice Sheets</h3>
+        <p>Type any phrase and print proper guided practice sheets — x-height rules, slant lines, ghost letters — sized for real nibs and real desks.</p>
+      </div>
+      <div class="wd-card">
+        <span class="wd-soon">Coming soon</span>
+        <h3>The Lost Art — a free course</h3>
+        <p>Five short lessons on writing letters worth keeping, delivered to your inbox. Filmed at the press, taught from the writing desk.</p>
       </div>
     </div>
-    <section class="section">
-      <div class="container">
-        <div class="shop-controls">
-          <span class="shop-controls__count" id="productCount"></span>
-          <div class="shop-controls__filters">
-            <select class="shop-controls__sort select" id="sortSelect" aria-label="Sort products">
-              <option value="title-asc">Name: A–Z</option>
-              <option value="title-desc">Name: Z–A</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-            </select>
-          </div>
-        </div>
-        <div class="grid grid--products" id="productGrid" data-collection="note-cards">
-          <div class="loading"><div class="loading__spinner"></div></div>
-        </div>
-      </div>
-    </section>
-  </main>
+  </div></section></main>
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__grid">
@@ -104,12 +121,7 @@
       <div class="site-footer__bottom"><p>&copy; 2026 Longbourn Papers. Crafted in Salt Lake City, Utah.</p></div>
     </div>
   </footer>
-  <script src="/js/utils.js"></script>
-  <script src="/js/cart.js"></script>
-  <script src="/js/nav.js"></script>
-  <script src="/js/animations.js"></script>
-  <script src="/js/newsletter.js"></script>
-  <script src="/js/collection.js"></script>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/cart.js" defer></script>
   <script src="/assets/wicko-pill-nav/wicko-pill-nav.js" defer></script>
-</body>
-</html>
+</body></html>
