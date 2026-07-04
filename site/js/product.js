@@ -60,7 +60,10 @@
 
     // Description
     var desc = document.getElementById('productDescription');
-    if (desc) desc.innerHTML = p.descriptionHtml || '<p>' + p.description + '</p>';
+    if (desc) {
+      var raw = p.descriptionHtml || '<p>' + p.description + '</p>';
+      desc.innerHTML = raw.replace(/\s(?:style|class|data-[a-z-]+)="[^"]*"/gi, '');
+    }
 
     // Show content
     var content = document.getElementById('productContent');

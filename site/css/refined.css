@@ -1,0 +1,170 @@
+/* ============================================================================
+   LONGBOURN PAPERS — REFINED (universal layer, loaded last on every page)
+   The de-template pass: hairlines not shadows, near-square corners, wide-
+   tracked small caps, book-set prose. Mobile-first. British stationer codes.
+   ============================================================================ */
+
+:root {
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --hairline: 1px solid rgba(29, 50, 45, 0.14);
+  --hairline-soft: 1px solid rgba(29, 50, 45, 0.09);
+  --space-section: clamp(56px, 10vw, 120px);
+  --measure: 65ch;
+}
+
+/* ── Typography foundation ── */
+body { font-size: clamp(16px, 1.4vw, 17px); line-height: 1.75; }
+h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.01em; }
+h1 { font-size: clamp(34px, 8vw, 62px); line-height: 1.06; }
+h2 { font-size: clamp(26px, 5.2vw, 40px); line-height: 1.12; }
+h3 { font-size: clamp(19px, 3.4vw, 24px); line-height: 1.25; }
+
+/* Eyebrows / small labels — the small-caps voice, everywhere the same */
+.eyebrow, .section__eyebrow, .post-card__category, .product-detail__eyebrow,
+#productEyebrow, .vsel-label, .breadcrumb, .footer__heading {
+  font-family: var(--font-body);
+  font-size: 11px !important;
+  font-weight: 500;
+  letter-spacing: 0.26em !important;
+  text-transform: uppercase;
+}
+.post-card__category, #productEyebrow { color: var(--color-gold, #B8965A); }
+
+/* ── Surfaces: hairlines, not shadows ── */
+.product-card, .post-card, .collection-card, .value-card, .journal-featured,
+.craft-card, .story-card {
+  box-shadow: none !important;
+  border: var(--hairline);
+  border-radius: var(--radius-sm);
+  background: #FFFDF9;
+  transition: border-color .3s ease, transform .3s ease;
+}
+.product-card:hover, .post-card:hover, .collection-card:hover {
+  box-shadow: none !important;
+  border-color: rgba(29, 50, 45, 0.34);
+  transform: translateY(-2px);
+}
+.product-card img, .post-card img, .journal-featured img,
+.product-gallery__main img { border-radius: var(--radius-sm); }
+
+/* ── Buttons: sharp, quiet, tracked ── */
+.btn {
+  border-radius: 0 !important;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  box-shadow: none !important;
+  transition: background .3s ease, color .3s ease, border-color .3s ease;
+}
+.btn--sm { padding: 11px 20px; font-size: 10.5px; }
+.btn--lg { padding: 17px 38px; }
+.btn--ghost, .btn--secondary {
+  background: transparent;
+  border: 1px solid var(--color-hunter, #1D322D);
+  color: var(--color-hunter, #1D322D);
+}
+.btn--ghost:hover, .btn--secondary:hover {
+  background: var(--color-hunter, #1D322D);
+  color: var(--color-cream, #FAF7F2);
+}
+.btn--ghost::after { display: none; }
+
+/* ── PROSE — the formatting layer for item text + journal bodies ── */
+#productDescription, .jp-body, .prose {
+  font-size: clamp(15.5px, 1.4vw, 16.5px);
+  line-height: 1.85;
+  color: var(--color-ink, #23211C);
+}
+#productDescription p, .jp-body p, .prose p {
+  margin: 0 0 1em;
+  max-width: var(--measure);
+}
+.jp-body p { margin-bottom: 1.25em; }
+#productDescription ul, .prose ul, .jp-body ul {
+  list-style: none; padding: 0; margin: 1.25em 0;
+  border-top: var(--hairline-soft);
+}
+#productDescription li, .prose li, .jp-body li {
+  padding: 10px 0 10px 26px;
+  border-bottom: var(--hairline-soft);
+  position: relative;
+  max-width: var(--measure);
+}
+#productDescription li::before, .prose li::before, .jp-body li::before {
+  content: "–";
+  position: absolute; left: 2px;
+  color: var(--color-gold, #B8965A);
+}
+.jp-body h2, .prose h2 {
+  font-size: clamp(22px, 4vw, 30px);
+  margin: 2em 0 0.6em;
+  max-width: var(--measure);
+}
+.jp-body h3, .prose h3 { margin: 1.6em 0 0.5em; }
+.jp-body hr, .prose hr {
+  border: none; border-top: var(--hairline);
+  width: 72px; margin: 2.6em auto;
+}
+.jp-body blockquote, .prose blockquote {
+  margin: 1.8em 0; padding: 0.2em 0 0.2em 1.4em;
+  border-left: 2px solid var(--color-gold, #B8965A);
+  font-family: var(--font-display); font-style: italic;
+  font-size: 1.1em; color: rgba(29, 50, 45, 0.85);
+}
+.jp-body a, .prose a, #productDescription a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold, #B8965A);
+  text-underline-offset: 3px;
+}
+.jp-body b, .jp-body strong { font-weight: 600; }
+/* Journal opener: larger first graf + drop cap — the editorial voice */
+.jp-body > p:first-of-type { font-size: 1.1em; }
+.jp-body > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.1em; line-height: 0.82;
+  float: left; padding: 4px 10px 0 0;
+  color: var(--color-hunter, #1D322D);
+}
+
+/* ── Journal chrome ── */
+.jp-head h1 { margin-bottom: 0.5em; }
+.post-card__meta { font-size: 12px; letter-spacing: 0.04em; color: rgba(29,50,45,.55); }
+.post-card__title a { text-decoration: none; }
+.post-card__excerpt { font-size: 14.5px; line-height: 1.7; color: rgba(29,50,45,.72); }
+
+/* ── Product page rhythm ── */
+.product-detail h1, #productTitle { margin: 0.35em 0 0.4em; }
+#productPrice {
+  font-family: var(--font-body);
+  font-size: 17px; letter-spacing: 0.06em;
+  color: rgba(29, 50, 45, 0.8);
+}
+.product-gallery__thumbs {
+  display: flex !important;
+  gap: 8px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  padding-bottom: 6px;
+}
+.product-gallery__thumbs::-webkit-scrollbar { display: none; }
+.product-gallery__thumb {
+  flex: 0 0 auto; width: 64px; height: 64px;
+  border-radius: var(--radius-sm);
+  border: var(--hairline); overflow: hidden;
+  opacity: .75; transition: opacity .25s, border-color .25s;
+}
+.product-gallery__thumb.is-active { opacity: 1; border-color: var(--accent, var(--color-hunter)); }
+.product-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Section + footer rhythm, mobile-first ── */
+.section { padding-top: var(--space-section); padding-bottom: var(--space-section); }
+@media (max-width: 768px) {
+  .container { padding-left: 22px; padding-right: 22px; }
+  .section { --space-section: clamp(44px, 12vw, 64px); }
+}
+.site-footer { border-top: 1px solid rgba(250, 247, 242, 0.14); }
+.site-footer a { text-decoration: none; }
