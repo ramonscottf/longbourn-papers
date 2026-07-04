@@ -168,3 +168,15 @@ h3 { font-size: clamp(19px, 3.4vw, 24px); line-height: 1.25; }
 }
 .site-footer { border-top: 1px solid rgba(250, 247, 242, 0.14); }
 .site-footer a { text-decoration: none; }
+
+/* ── Layout blowout guard (2026-07-03): the nowrap pill strip was inflating its
+   grid track via min-width:auto — clipped title, mile-wide button, page overflow ── */
+.product-detail__layout > * { min-width: 0; }
+.variant-pills { max-width: 100%; }
+.product-info__title { overflow-wrap: break-word; }
+html, body { overflow-x: clip; }
+
+/* ── Gallery presentation: white-studio product photos want CONTAIN, not cover —
+   the full object, every time, in a quiet framed field ── */
+.product-gallery__main { background: #FFFFFF; border: var(--hairline-soft); }
+.product-gallery__main img { object-fit: contain !important; }

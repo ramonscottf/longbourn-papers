@@ -132,17 +132,25 @@
         var x = c.getContext('2d', { willReadFrequently: true });
         x.drawImage(im, 0, 0, s, s);
         var d = x.getImageData(0, 0, s, s).data;
-        var buckets = {}, best = null;
-        for (var i = 0; i < d.length; i += 4) {
-          var r = d[i], g = d[i + 1], b = d[i + 2];
-          var mx = Math.max(r, g, b), mn = Math.min(r, g, b), sat = mx - mn;
-          if (mx > 235 && mn > 205) continue;  // paper whites
-          if (mx < 30) continue;               // shadows
-          if (sat < 28) continue;              // grays
-          var key = (r >> 5) + ',' + (g >> 5) + ',' + (b >> 5);
-          var bk = buckets[key] || (buckets[key] = { w: 0, r: 0, g: 0, b: 0 });
-          bk.w += sat; bk.r += r * sat; bk.g += g * sat; bk.b += b * sat;
+        // two-pass: prefer VIVID ink (dark-enough, saturated) so navy script wins
+        // over aged-paper tones; fall back to gentler thresholds if nothing vivid.
+        function harvest(minSat, maxBright) {
+          var bks = {}, bb = null;
+          for (var i = 0; i < d.length; i += 4) {
+            var r = d[i], g = d[i + 1], b = d[i + 2];
+            var mx = Math.max(r, g, b), mn = Math.min(r, g, b), sat = mx - mn;
+            if (mx > maxBright) continue;
+            if (mx < 30) continue;
+            if (sat < minSat) continue;
+            var key = (r >> 5) + ',' + (g >> 5) + ',' + (b >> 5);
+            var bk = bks[key] || (bks[key] = { w: 0, r: 0, g: 0, b: 0 });
+            var w = sat * sat;
+            bk.w += w; bk.r += r * w; bk.g += g * w; bk.b += b * w;
+          }
+          for (var k in bks) if (!bb || bks[k].w > bb.w) bb = bks[k];
+          return bb;
         }
+        var best = harvest(55, 215) || harvest(28, 250);
         for (var k in buckets) if (!best || buckets[k].w > best.w) best = buckets[k];
         if (!best) return;
         var R = best.r / best.w, G = best.g / best.w, B = best.b / best.w;
