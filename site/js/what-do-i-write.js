@@ -39,7 +39,7 @@ var D=[
  prompt:['Name the achievement precisely — the promotion, the degree, the finish line.','Say what you witnessed along the way: the late nights, the second attempt, the nerve it took.','Raise a glass forward: what this opens up, and when you\u2019ll celebrate together.'],
  close:[{t:'Cheering loudly,',tone:['light']},{t:'With admiration,'},{t:'So very proud of you,',rel:['family','friend']},{t:'Congratulations again,',tone:['formal']}],
  avoid:['Making it about you (\u201CI always said\u2026\u201D).','\u201CFinally!\u201D — it lands as a jab.','Hedging the praise with advice for what\u2019s next.']},
-{id:'baby',l:'New baby',
+{id:'baby',l:'New baby',guide:'/journal/what-to-write-for-a-new-baby/',
  open:[
   {t:'Welcome to the world, little one — and congratulations to the luckiest parents in it.'},
   {t:'A whole new person! We are so happy for you.'},
@@ -48,7 +48,7 @@ var D=[
  prompt:['Use the baby\u2019s name if you know it — it\u2019s music to new parents.','Say something kind about the parents they\u2019ll be — evidence-based if possible.','Offer the dated, concrete kind of help: a meal on the porch, an errand run, a specific evening.'],
  close:[{t:'With so much love to all three of you,',rel:['family','friend']},{t:'Welcome, little one,'},{t:'With warmest wishes,',tone:['formal']},{t:'Sleep when you can,',tone:['light']}],
  avoid:['Advice. All of it. They\u2019ve heard it.','\u201CEnjoy every moment\u201D — some moments are 3 a.m.','Asking when you can visit inside the congratulations card.']},
-{id:'wedding',l:'Wedding',
+{id:'wedding',l:'Wedding',guide:'/journal/what-to-write-in-a-wedding-card/',
  open:[
   {t:'Watching you two today, everything made sense. Congratulations.'},
   {t:'Here\u2019s to the easiest \u201Cyes\u201D either of you will ever say. Congratulations!',tone:['light']},
@@ -57,7 +57,7 @@ var D=[
  prompt:['Say what you see in them as a pair — the specific way they fit.','If you were there: name one moment from the day you\u2019ll keep.','Wish them something real: a kitchen full of laughter, arguments that end kindly, a long table of friends.'],
  close:[{t:'To the two of you,'},{t:'With all our love,',rel:['family','friend']},{t:'With every good wish for your marriage,',tone:['formal']},{t:'Save us a dance at the fiftieth,',tone:['light']}],
  avoid:['Marriage advice, unless you\u2019re their grandmother and it\u2019s one line.','Jokes about losing freedom — retire them.','Mentioning the ex. Obviously. And yet.']},
-{id:'getwell',l:'Get well',
+{id:'getwell',l:'Get well',guide:'/journal/what-to-write-in-a-get-well-card/',
  open:[
   {t:'I heard you\u2019re under the weather, and the weather should be ashamed of itself.',tone:['light']},
   {t:'Thinking of you and sending every good thing toward a quick recovery.'},
@@ -75,7 +75,7 @@ var D=[
  prompt:['Name the trigger: the song, the street, the recipe, the joke that summoned them.','Share one small piece of your news — a note is a visit, bring something.','Ask them one real question; give the reply somewhere to land.'],
  close:[{t:'Missing you,',rel:['family','friend']},{t:'Fondly,'},{t:'Thinking of you often,'},{t:'Write back when the mood strikes,',tone:['light']}],
  avoid:['Guilt about the time since you last spoke — one warm clause, maximum.','Making it a life-update essay. Notes are visits, not memoirs.']},
-{id:'apology',l:'Apology',
+{id:'apology',l:'Apology',guide:'/journal/how-to-write-an-apology-letter/',
  open:[
   {t:'I owe you an apology, and I wanted to make it in ink: I\u2019m sorry.'},
   {t:'I\u2019ve thought a great deal about [what happened], and I got it wrong. I\u2019m sorry.'},

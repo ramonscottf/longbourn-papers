@@ -1,5 +1,50 @@
 [
  {
+  "slug": "how-to-start-a-letter",
+  "title": "How to Start a Letter (When the First Line Won't Come)",
+  "category": "Letter Writing",
+  "author": "Scott Foster",
+  "date": "2024-11-05",
+  "hero": "/media/studio/studio-feeding.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "what-to-write-in-a-wedding-card",
+  "title": "What to Write in a Wedding Card",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2025-03-18",
+  "hero": "/media/brand/AdobeStock_296642693.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "what-to-write-for-a-new-baby",
+  "title": "What to Write in a New-Baby Card",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2025-06-10",
+  "hero": "/media/brand/AdobeStock_169276589.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "what-to-write-in-a-get-well-card",
+  "title": "What to Write in a Get-Well Card",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2026-02-11",
+  "hero": "/media/brand/AdobeStock_165416507.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-to-write-an-apology-letter",
+  "title": "How to Write an Apology Letter That Actually Repairs",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2026-06-19",
+  "hero": "/media/studio/studio-hands.jpg",
+  "read_min": 4
+ },
+ {
   "slug": "how-to-write-a-thank-you-note",
   "title": "How to Write a Thank-You Note People Keep",
   "category": "Letter Writing",
