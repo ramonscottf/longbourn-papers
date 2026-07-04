@@ -66,7 +66,7 @@ var D=[
  prompt:['Keep it light on the illness, heavy on the person — what you miss, what\u2019s waiting for them.','Offer one dated, specific thing: soup Thursday, the school run, taking a shift with the dog.','Give permission to rest — no reply required, no visitors expected.'],
  close:[{t:'Mend well and slowly,'},{t:'Thinking of you daily,'},{t:'With warm wishes for your recovery,',tone:['formal']},{t:'Back soon, or else,',tone:['light']}],
  avoid:['Prognosis talk or comparing them to someone you knew with the same thing.','\u201CEverything happens for a reason.\u201D','Demanding updates — the sick owe you nothing.']},
-{id:'thinking',l:'Thinking of you',
+{id:'thinking',l:'Thinking of you',guide:'/journal/thinking-of-you-notes/',
  open:[
   {t:'No occasion — you just crossed my mind and I decided to make it official.'},
   {t:'This card exists because I miss you, and paper felt more honest than a text.'},

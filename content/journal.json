@@ -1,5 +1,59 @@
 [
  {
+  "slug": "what-to-write-in-a-christmas-card",
+  "title": "What to Write in a Christmas Card (Beyond 'Merry Christmas')",
+  "category": "Occasions",
+  "author": "Ellie Hartwell",
+  "date": "2024-12-03",
+  "hero": "/media/studio/studio-stacking.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-to-write-a-love-letter",
+  "title": "How to Write a Love Letter (Without Sounding Like a Greeting Card)",
+  "category": "Correspondence",
+  "author": "Ellie Hartwell",
+  "date": "2025-02-04",
+  "hero": "/media/studio/congrats-desk.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "thank-you-note-for-a-teacher",
+  "title": "The Teacher Thank-You Note They'll Keep for Twenty Years",
+  "category": "Occasions",
+  "author": "Scott Foster",
+  "date": "2025-05-13",
+  "hero": "/media/studio/studio-sheet.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "hostess-thank-you-note",
+  "title": "The Bread-and-Butter Letter: Hostess Thank-Yous Done Right",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2025-08-19",
+  "hero": "/media/brand/AdobeStock_169276589.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "thank-you-note-after-an-interview",
+  "title": "The Interview Thank-You: Email First, Paper to Be Remembered",
+  "category": "Letter Writing",
+  "author": "Scott Foster",
+  "date": "2026-04-08",
+  "hero": "/media/studio/studio-lever.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "thinking-of-you-notes",
+  "title": "The Thinking-of-You Note: The Highest Form of Mail",
+  "category": "Correspondence",
+  "author": "Ellie Hartwell",
+  "date": "2026-06-30",
+  "hero": "/media/studio/lodge-writing.jpg",
+  "read_min": 3
+ },
+ {
   "slug": "how-to-start-a-letter",
   "title": "How to Start a Letter (When the First Line Won't Come)",
   "category": "Letter Writing",
