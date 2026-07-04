@@ -1,5 +1,50 @@
 [
  {
+  "slug": "paper-weights-explained",
+  "title": "Paper Weights Explained: GSM, Pounds, and the 80lb Scandal",
+  "category": "Materials",
+  "author": "Scott Foster",
+  "date": "2024-09-30",
+  "hero": "/media/studio/studio-sheet.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "envelope-size-guide",
+  "title": "The Envelope Size Guide: A2 to A7, \u211610 to DL",
+  "category": "Materials",
+  "author": "Ellie Hartwell",
+  "date": "2025-01-06",
+  "hero": "/media/studio/congrats-desk.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "wax-seals-101",
+  "title": "Wax Seals 101: The Cold-Stamp Trick and Other Ceremonies",
+  "category": "Materials",
+  "author": "Ellie Hartwell",
+  "date": "2025-11-04",
+  "hero": "/media/studio/lodge-writing.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "the-complete-stationery-wardrobe",
+  "title": "The Complete Stationery Wardrobe: A Capsule for Correspondence",
+  "category": "Materials",
+  "author": "Ellie Hartwell",
+  "date": "2026-04-22",
+  "hero": "/media/studio/studio-stacking.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-long-should-a-note-be",
+  "title": "How Long Should a Note Be? One True Thing, Fully Said",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2026-05-06",
+  "hero": "/media/studio/studio-lever.jpg",
+  "read_min": 2
+ },
+ {
   "slug": "anatomy-of-a-personal-letter",
   "title": "The Anatomy of a Personal Letter: Five Movements",
   "category": "Letter Writing",
