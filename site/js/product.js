@@ -70,33 +70,51 @@
     injectStructuredData(p);
   }
 
-  // ── Variant-aware gallery ─────────────────────────────────────
-  // Images are positionally grouped: each variant's primary image anchors its
-  // run of lifestyle shots. Segment = [my anchor .. next anchor). Variants whose
-  // primary image isn't in the list show just their own shot. No anchors at all
-  // (or single-design products) -> full gallery.
+  // ── Design/Pack variant model ─────────────────────────────────
+  // Variant titles like "Birthday Cake / 6-Pack" collapse into DESIGNS
+  // (photo segment + accent live at design level) x PACKS (price/SKU level).
+  // Gallery anchors: a design's anchor = the lowest gallery index among its
+  // variants' images; segment = [anchor .. next design's anchor). Unanchored
+  // designs show their own variant shots. Single-title products = one row.
   var galleryImages = [];
+  var designs = [];
+  var selectedDesign = 0;
+  var selectedPack = 0;
 
-  function imagesForVariant(p, vi) {
-    if (!p.images || !p.images.length) return [];
-    if (!p.variants || p.variants.length <= 1) return p.images;
-    var anchors = [];
-    p.variants.forEach(function(v, i) {
-      if (!v.image) return;
-      var idx = p.images.findIndex(function(img) { return img.url === v.image.url; });
-      if (idx >= 0) anchors.push({ vi: i, idx: idx });
+  function buildDesigns(p) {
+    var groups = [], byName = {};
+    (p.variants || []).forEach(function(v, i) {
+      var parts = v.title.split(' / ');
+      var name = parts.length > 1 ? parts[0] : v.title;
+      var pack = parts.length > 1 ? parts.slice(1).join(' / ') : null;
+      if (!byName[name]) { byName[name] = { name: name, variants: [] }; groups.push(byName[name]); }
+      byName[name].variants.push({ v: v, idx: i, pack: pack });
     });
-    if (!anchors.length) return p.images;
-    anchors.sort(function(a, b) { return a.idx - b.idx; });
-    var mine = null;
-    for (var a = 0; a < anchors.length; a++) if (anchors[a].vi === vi) { mine = anchors[a]; break; }
-    if (!mine) {
-      var v = p.variants[vi];
-      return v.image ? [v.image] : p.images;
-    }
-    var next = null;
-    for (var b = 0; b < anchors.length; b++) if (anchors[b].idx > mine.idx) { next = anchors[b]; break; }
-    return p.images.slice(mine.idx, next ? next.idx : p.images.length);
+    groups.forEach(function(g) {
+      g.anchor = -1;
+      g.variants.forEach(function(x) {
+        if (!x.v.image) return;
+        var gi = p.images.findIndex(function(im) { return im.url === x.v.image.url; });
+        if (gi >= 0 && (g.anchor < 0 || gi < g.anchor)) g.anchor = gi;
+      });
+    });
+    var anchored = groups.filter(function(g) { return g.anchor >= 0; })
+                         .sort(function(a, b) { return a.anchor - b.anchor; });
+    groups.forEach(function(g) {
+      if (g.anchor >= 0) {
+        var nxt = null;
+        for (var i = 0; i < anchored.length; i++) if (anchored[i].anchor > g.anchor) { nxt = anchored[i]; break; }
+        g.imgs = p.images.slice(g.anchor, nxt ? nxt.anchor : p.images.length);
+      } else {
+        var seen = {}, imgs = [];
+        g.variants.forEach(function(x) {
+          var u = x.v.image && x.v.image.url;
+          if (u && !seen[u]) { seen[u] = 1; imgs.push(x.v.image); }
+        });
+        g.imgs = imgs.length ? imgs : p.images;
+      }
+    });
+    return groups;
   }
 
   // Pull the design's ink/ribbon color from its own image; theme the page with it.
@@ -142,16 +160,38 @@
   }
 
   function renderGallery(p) {
-    galleryImages = imagesForVariant(p, 0);
-    renderGalleryImages(p.title);
-    applyAccent(p.variants && p.variants[0], galleryImages);
+    designs = buildDesigns(p);
+    applyDesign(0, 0, true);
+  }
+
+  function designVariantImage(g) {
+    for (var i = 0; i < g.variants.length; i++) if (g.variants[i].v.image) return g.variants[i].v;
+    return g.variants[0].v;
+  }
+
+  function applyDesign(di, packIdx, initial) {
+    if (!designs[di]) return;
+    selectedDesign = di;
+    var g = designs[di];
+    if (packIdx == null || !g.variants[packIdx]) packIdx = 0;
+    selectedPack = packIdx;
+    selectedVariantIndex = g.variants[selectedPack].idx;
+
+    var v = product.variants[selectedVariantIndex];
+    var price = document.getElementById('productPrice');
+    if (price && v) price.textContent = '$' + v.price.toFixed(2);
+
+    galleryImages = g.imgs;
+    renderGalleryImages(product.title);
+    applyAccent(designVariantImage(g), galleryImages);
+    if (!initial) renderPackRow();
+    syncPillStates();
   }
 
   function renderGalleryImages(title) {
     var mainImg = document.getElementById('galleryMain');
     var thumbs = document.getElementById('galleryThumbs');
     if (!galleryImages.length) return;
-
     if (mainImg) {
       mainImg.innerHTML = '<img src="' + galleryImages[0].url + '" alt="' + (galleryImages[0].altText || title || '') + '" width="' + (galleryImages[0].width || 800) + '" height="' + (galleryImages[0].height || 1000) + '">';
     }
@@ -173,7 +213,6 @@
   function setActiveImage(index) {
     if (!galleryImages[index]) return;
     currentImageIndex = index;
-
     var mainImg = document.getElementById('galleryMain');
     if (mainImg) {
       mainImg.innerHTML = '<img src="' + galleryImages[index].url + '" alt="' + (galleryImages[index].altText || (product && product.title) || '') + '">';
@@ -183,50 +222,58 @@
     });
   }
 
+  // ── Pill selector: designs scroll horizontally; packs are a small toggle ──
   function renderVariants(p) {
     var container = document.getElementById('variantSelector');
     if (!container) return;
-
     container.style.display = 'block';
-    var label = container.querySelector('.variant-selector__label');
-    var options = container.querySelector('.variant-selector__options');
+    var hasPacks = designs.some(function(g) { return g.variants.length > 1 || g.variants[0].pack; });
 
-    if (label) label.textContent = 'Design';
+    container.innerHTML =
+      '<div class="vsel-row"><span class="vsel-label">Design</span>' +
+      '<div class="variant-pills" id="designPills">' +
+      designs.map(function(g, i) {
+        var avail = g.variants.some(function(x) { return x.v.available; });
+        return '<button class="vpill' + (i === selectedDesign ? ' is-selected' : '') + (avail ? '' : ' is-unavailable') + '" data-design="' + i + '"' + (avail ? '' : ' disabled') + '>' + g.name + '</button>';
+      }).join('') + '</div></div>' +
+      (hasPacks ? '<div class="vsel-row"><span class="vsel-label">Format</span><div class="variant-pills variant-pills--static" id="packPills"></div></div>' : '');
 
-    if (options) {
-      options.innerHTML = p.variants.map(function(v, i) {
-        var cls = 'variant-option';
-        if (i === 0) cls += ' is-selected';
-        if (!v.available) cls += ' is-unavailable';
-        return '<button class="' + cls + '" data-index="' + i + '"' + (!v.available ? ' disabled' : '') + '>' + v.title + '</button>';
-      }).join('');
-
-      options.addEventListener('click', function(e) {
-        var btn = e.target.closest('.variant-option');
-        if (!btn || btn.disabled) return;
-        var idx = parseInt(btn.dataset.index, 10);
-        selectVariant(idx);
-      });
-    }
+    container.addEventListener('click', function(e) {
+      var d = e.target.closest('[data-design]');
+      if (d && !d.disabled) {
+        var di = parseInt(d.dataset.design, 10);
+        // keep the same pack label across designs when it exists
+        var cur = designs[selectedDesign].variants[selectedPack];
+        var want = cur && cur.pack;
+        var pi = 0;
+        if (want) designs[di].variants.forEach(function(x, i) { if (x.pack === want) pi = i; });
+        applyDesign(di, pi);
+        d.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        return;
+      }
+      var pk = e.target.closest('[data-pack]');
+      if (pk && !pk.disabled) applyDesign(selectedDesign, parseInt(pk.dataset.pack, 10));
+    });
+    renderPackRow();
+    syncPillStates();
   }
 
-  function selectVariant(index) {
-    selectedVariantIndex = index;
-    var variant = product.variants[index];
+  function renderPackRow() {
+    var row = document.getElementById('packPills');
+    if (!row) return;
+    var g = designs[selectedDesign];
+    row.innerHTML = g.variants.map(function(x, i) {
+      return '<button class="vpill' + (i === selectedPack ? ' is-selected' : '') + (x.v.available ? '' : ' is-unavailable') + '" data-pack="' + i + '"' + (x.v.available ? '' : ' disabled') + '>' + (x.pack || x.v.title) + '</button>';
+    }).join('');
+  }
 
-    // Update price
-    var price = document.getElementById('productPrice');
-    if (price) price.textContent = '$' + variant.price.toFixed(2);
-
-    // Update selected state
-    document.querySelectorAll('.variant-option').forEach(function(btn, i) {
-      btn.classList.toggle('is-selected', i === index);
+  function syncPillStates() {
+    document.querySelectorAll('#designPills .vpill').forEach(function(b, i) {
+      b.classList.toggle('is-selected', i === selectedDesign);
     });
-
-    // Re-segment the gallery to this design only + take on its ink color
-    galleryImages = imagesForVariant(product, index);
-    renderGalleryImages(product.title);
-    applyAccent(variant, galleryImages);
+    document.querySelectorAll('#packPills .vpill').forEach(function(b, i) {
+      b.classList.toggle('is-selected', i === selectedPack);
+    });
   }
 
   // ── Add to cart ───────────────────────────────────────────────

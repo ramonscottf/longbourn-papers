@@ -259,3 +259,29 @@
   background: var(--accent-dark);
   border-color: var(--accent-dark);
 }
+
+/* ── Modern pill selector (design row scrolls; selected pill takes the accent) ── */
+.vsel-row { margin-bottom: 16px; }
+.vsel-label {
+  display: block; font-family: var(--font-body);
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--color-slate, #6F6F68); margin-bottom: 8px;
+}
+.variant-pills {
+  display: flex; gap: 8px; overflow-x: auto;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; padding: 2px 2px 6px; margin: 0 -2px;
+}
+.variant-pills::-webkit-scrollbar { display: none; }
+.variant-pills--static { overflow-x: visible; flex-wrap: wrap; }
+.vpill {
+  flex: 0 0 auto; scroll-snap-align: start;
+  font-family: var(--font-body); font-size: 12.5px; letter-spacing: .02em;
+  padding: 9px 15px; border-radius: 999px;
+  border: 1px solid var(--color-linen, #DDD6C8); background: #fff;
+  color: var(--color-ink); cursor: pointer; white-space: nowrap;
+  transition: border-color .25s, background .25s, color .25s;
+}
+.vpill:hover { border-color: var(--accent); }
+.vpill.is-selected { background: var(--accent); border-color: var(--accent); color: #fff; }
+.vpill.is-unavailable { opacity: .4; cursor: default; text-decoration: line-through; }
