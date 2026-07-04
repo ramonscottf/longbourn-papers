@@ -1,5 +1,41 @@
 [
  {
+  "slug": "what-is-letterpress",
+  "title": "What Is Letterpress? The Craft, the History, and the Beautiful Flaw",
+  "category": "The Craft",
+  "author": "Scott Foster",
+  "date": "2024-08-26",
+  "hero": "/media/studio/real-nameplate-bw.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-a-heidelberg-windmill-works",
+  "title": "How a Heidelberg Windmill Works: The Gripper Ballet",
+  "category": "The Craft",
+  "author": "Scott Foster",
+  "date": "2025-03-04",
+  "hero": "/media/studio/real-press-shop.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "deboss-vs-emboss-vs-foil",
+  "title": "Deboss vs. Emboss vs. Foil: A Field Guide for the Fingertip",
+  "category": "The Craft",
+  "author": "Scott Foster",
+  "date": "2025-10-07",
+  "hero": "/media/studio/studio-feeding.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "a-day-in-the-print-shop",
+  "title": "A Day in the Print Shop",
+  "category": "The Craft",
+  "author": "Scott Foster",
+  "date": "2026-07-04",
+  "hero": "/media/studio/studio-wide.jpg",
+  "read_min": 3
+ },
+ {
   "slug": "paper-weights-explained",
   "title": "Paper Weights Explained: GSM, Pounds, and the 80lb Scandal",
   "category": "Materials",
