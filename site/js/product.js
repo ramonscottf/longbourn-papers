@@ -151,7 +151,6 @@
           return bb;
         }
         var best = harvest(55, 215) || harvest(28, 250);
-        for (var k in buckets) if (!best || buckets[k].w > best.w) best = buckets[k];
         if (!best) return;
         var R = best.r / best.w, G = best.g / best.w, B = best.b / best.w;
         function lum(r, g, b) {
