@@ -49,4 +49,6 @@
       "database_id": "707c2975-6555-40bf-b9fb-a0c61f0e7d49"
     }
   ]
+,
+  "triggers": { "crons": ["0 15 * * *"] }
 }

@@ -2,6 +2,7 @@
 // Routes requests, handles CORS, proxies Shopify Storefront API
 
 import { handleCORS, corsHeaders } from './cors.js';
+import { handleCourseSignup, handleCourseUnsubscribe, courseDrip } from './course.js';
 import { handleProducts, handleProduct, handleCollection } from './catalog.js'; // Phase 1: D1-backed (shopify.js retained for reference until Phase 2)
 import { handleCheckout, handleStripeWebhook, handleStripeSetup, handleTestOrder } from './checkout.js'; // Phase 2: Stripe-hosted checkout (Shopify cart proxy removed)
 import { handleMedia } from './media.js'; // Asset independence: R2-served site media with Range support
@@ -12,6 +13,9 @@ import { handleWholesale } from './wholesale.js';
 import { handlePhotoEnhance, handlePhotoDeploy, handlePhotoServe, handlePhotoClean, handleSetPrime, handleGenerateScene, handleApproveAndDeploy } from './photos.js';
 
 export default {
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(courseDrip(env));
+  },
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
@@ -70,6 +74,12 @@ export default {
       // Communications
       else if (path === '/api/contact' && request.method === 'POST') {
         response = await handleContact(request, env);
+      }
+      else if (path === '/api/course/signup' && request.method === 'POST') {
+        response = await handleCourseSignup(request, env);
+      }
+      else if (path === '/api/course/unsubscribe' && request.method === 'GET') {
+        response = await handleCourseUnsubscribe(url, env);
       }
       else if (path === '/api/newsletter' && request.method === 'POST') {
         response = await handleNewsletter(request, env);

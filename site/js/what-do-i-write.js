@@ -29,7 +29,7 @@ var D=[
   'Make one concrete offer with a date on it: \u201CI\u2019m dropping dinner Thursday — no need to answer the door.\u201D'],
  close:[{t:'With love,'},{t:'Holding you all close,'},{t:'With deepest sympathy,',tone:['formal']},{t:'With you in this,'}],
  avoid:['\u201CEverything happens for a reason\u201D / \u201Cthey\u2019re in a better place\u201D — comfort only if you know they share the faith.','\u201CI know how you feel\u201D — grief isn\u2019t transferable.','Any sentence that begins with \u201Cat least.\u201D','\u201CLet me know if you need anything\u201D — make the offer specific and dated instead.']},
-{id:'congrats',l:'Congratulations',
+{id:'congrats',l:'Congratulations',guide:'/journal/how-to-write-a-congratulations-card/',
  open:[
   {t:'You did it — and nobody deserves it more. Congratulations.'},
   {t:'I heard the news and grinned for a solid minute. Congratulations!'},

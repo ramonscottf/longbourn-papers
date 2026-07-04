@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>The Writing Desk — Longbourn Papers</title>
-  <meta name="description" content="Free tools, guides, and lessons for the lost art of letter writing — from the Longbourn Papers print shop.">
+  <title>The Lost Art — a free letter-writing course — Longbourn Papers</title>
+  <meta name="description" content="Five short lessons on writing letters worth keeping — free by email or read now. From the Longbourn Papers print shop.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Journal — Longbourn Papers">
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Longbourn Papers">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="canonical" href="https://longbournpapers.com/writing-desk/">
+  <link rel="canonical" href="https://longbournpapers.com/writing-desk/lost-art/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -32,11 +32,16 @@
   <link rel="stylesheet" href="/css/refined.css">
 
   <style>
-    .wd-cards { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:2.5rem; }
-    .wd-card { border:1px solid rgba(29,50,45,.14); border-radius:2px; background:#FFFDF9; padding:28px 26px; display:flex; flex-direction:column; }
-    .wd-card h3 { margin:.4rem 0 .6rem; }
-    .wd-card p { font-size:14.5px; line-height:1.7; color:rgba(29,50,45,.75); flex:1; }
-    .wd-soon { display:inline-block; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(29,50,45,.5); border:1px solid rgba(29,50,45,.2); border-radius:999px; padding:4px 12px; align-self:flex-start; }
+    .la-form { display:flex; gap:10px; flex-wrap:wrap; margin:1.6rem 0 .6rem; max-width:520px; }
+    .la-form input { flex:1; min-width:220px; font-family:var(--font-body); font-size:15px; padding:13px 16px; border:1px solid rgba(29,50,45,.25); border-radius:2px; background:#fff; color:var(--color-ink); }
+    .la-form input:focus { outline:none; border-color:var(--color-hunter); }
+    .la-note { font-size:12.5px; color:rgba(29,50,45,.55); }
+    .la-msg { font-family:var(--font-display); font-size:17px; margin-top:1rem; display:none; }
+    .la-syllabus { margin-top:3rem; max-width:680px; }
+    .la-lesson { display:flex; gap:16px; padding:18px 0; border-bottom:1px solid rgba(29,50,45,.1); align-items:baseline; }
+    .la-lesson .n { font-family:var(--font-display); font-size:22px; color:var(--color-gold,#B8965A); flex:none; width:28px; }
+    .la-lesson h3 { margin:0 0 2px; font-size:18px; }
+    .la-lesson p { margin:0; font-size:14px; color:rgba(29,50,45,.7); }
   </style>
 </head><body>
   <header class="wpn" aria-label="Site navigation">
@@ -80,37 +85,43 @@
 </header>
   <main><section class="section"><div class="container">
     <div style="max-width:680px">
-      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk</span>
-      <h1 style="margin:.4em 0 .5em">Everything here is free.</h1>
-      <p class="prose">We sell paper, but the thing we actually care about is what gets written on it. The Writing Desk is our collection of free tools, guides, and lessons for the lost art of correspondence — no account, no catch. Use them with our cards or anyone else's.</p>
+      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk &middot; Free course</span>
+      <h1 style="margin:.4em 0 .5em">The Lost Art</h1>
+      <p class="prose">Five short lessons on writing letters worth keeping — the five-sentence note, the hard occasions, the hand you already have, and the drawer that makes it all permanent. One small assignment each. Get them by email every couple of days, or read them all right now; both are free, forever, no catch.</p>
+      <div class="la-form">
+        <input type="email" id="laEmail" placeholder="you@example.com" autocomplete="email" maxlength="254">
+        <button class="btn btn--primary" id="laGo">Start the course</button>
+      </div>
+      <p class="la-note">One email per lesson, then we stop. Unsubscribe in one click, lessons stay free either way.</p>
+      <p class="la-msg" id="laMsg"></p>
     </div>
-    <div class="wd-cards">
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
-        <h3>What Do I Write?</h3>
-        <p>Staring at a blank card? Choose the occasion, who it's for, and the tone — get real opening lines, body prompts, and closings you can borrow outright.</p>
-        <a class="btn btn--primary" href="/writing-desk/what-do-i-write/">Open the tool</a>
-      </div>
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Guides</span>
-        <h3>The Letter-Writing Guides</h3>
-        <p>Deep, practical guides from the Journal — how to write a thank-you note people keep, what to say in a sympathy card, and a growing library of occasions.</p>
-        <a class="btn btn--ghost" href="/journal/">Read the guides</a>
-      </div>
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
-        <h3>Calligraphy Practice Sheets</h3>
-        <p>Type any phrase and print proper guided practice sheets — x-height rules, true 55° slant lines, ghost letters to trace. US Letter and A4, free forever.</p>
-        <a class="btn btn--primary" href="/writing-desk/practice-sheets/">Make a sheet</a>
-      </div>
-      <div class="wd-card">
-        <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Free course</span>
-        <h3>The Lost Art</h3>
-        <p>Five short lessons on writing letters worth keeping — by email every couple of days, or read them all right now. One small assignment each.</p>
-        <a class="btn btn--primary" href="/writing-desk/lost-art/">Start the course</a>
-      </div>
+    <div class="la-syllabus">
+      <div class="la-lesson"><span class="n">1</span><div><h3><a href="/writing-desk/lost-art/lesson-1/">Why write letters at all</a></h3><p>The case for paper, and the drawer that makes writers out of intenders.</p></div></div>
+      <div class="la-lesson"><span class="n">2</span><div><h3><a href="/writing-desk/lost-art/lesson-2/">The five-sentence note</a></h3><p>The machine behind every great note. You will never fear a blank card again.</p></div></div>
+      <div class="la-lesson"><span class="n">3</span><div><h3><a href="/writing-desk/lost-art/lesson-3/">Occasions without fear</a></h3><p>Sympathy, congratulations, and the unprompted note — disarmed.</p></div></div>
+      <div class="la-lesson"><span class="n">4</span><div><h3><a href="/writing-desk/lost-art/lesson-4/">Your hand is good enough</a></h3><p>Retiring the handwriting excuse, twice — plus the ten-minute calligraphy ramp.</p></div></div>
+      <div class="la-lesson"><span class="n">5</span><div><h3><a href="/writing-desk/lost-art/lesson-5/">The wardrobe (graduation)</a></h3><p>Stage one of the stationery capsule, the memory box, and the habit made permanent.</p></div></div>
     </div>
   </div></section></main>
+  <script>
+  (function(){
+    var go=document.getElementById('laGo'), em=document.getElementById('laEmail'), msg=document.getElementById('laMsg');
+    function say(t){ msg.textContent=t; msg.style.display='block'; }
+    go.addEventListener('click', function(){
+      var v=(em.value||'').trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ say('That email looks unfinished — one more look?'); return; }
+      go.disabled=true; go.textContent='One moment…';
+      fetch('/api/course/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v})})
+        .then(function(r){return r.json();})
+        .then(function(d){
+          if(d.ok){ say('You\u2019re in. Lesson 1 is ready right now \u2014 and the rest will find you.'); go.textContent='Enrolled \u2713'; em.disabled=true;
+            setTimeout(function(){ window.location.href='/writing-desk/lost-art/lesson-1/'; }, 1600); }
+          else { say(d.error||'Something hiccuped — try once more?'); go.disabled=false; go.textContent='Start the course'; }
+        })
+        .catch(function(){ say('Something hiccuped — try once more?'); go.disabled=false; go.textContent='Start the course'; });
+    });
+  })();
+  </script>
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__grid">
