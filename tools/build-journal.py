@@ -116,9 +116,9 @@ open('site/journal/index.html','w').write(s)
 BASE='https://longbournpapers.com'
 urls=[BASE+'/']
 for d in sorted(glob.glob('site/*/index.html')) + sorted(glob.glob('site/writing-desk/*/index.html')):
-    seg=d.split('/')[1]
-    if seg in ('admin','photos','checkout'): continue
-    urls.append(f"{BASE}/{seg}/")
+    path=d[len('site/'):-len('index.html')]
+    if path.split('/')[0] in ('admin','photos','checkout'): continue
+    urls.append(f"{BASE}/{path}")
 for p in posts: urls.append(f"{BASE}/journal/{p['slug']}/")
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 sm+=''.join(f'  <url><loc>{u}</loc></url>\n' for u in dict.fromkeys(urls))
