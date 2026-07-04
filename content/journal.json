@@ -1,5 +1,59 @@
 [
  {
+  "slug": "anatomy-of-a-personal-letter",
+  "title": "The Anatomy of a Personal Letter: Five Movements",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2024-10-08",
+  "hero": "/media/studio/congrats-desk.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-to-find-a-pen-pal",
+  "title": "How to Find a Pen Pal (and Keep One)",
+  "category": "Correspondence",
+  "author": "Ellie Hartwell",
+  "date": "2025-07-15",
+  "hero": "/media/brand/AdobeStock_165416507.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "keeping-letters-the-memory-box",
+  "title": "Keeping Letters: The Memory Box",
+  "category": "Correspondence",
+  "author": "Scott Foster",
+  "date": "2025-12-09",
+  "hero": "/media/brand/AdobeStock_296642693.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "letters-between-grandparents-and-kids",
+  "title": "Letters Between Grandparents and Kids: Building the Bridge",
+  "category": "Letter Writing",
+  "author": "Scott Foster",
+  "date": "2026-01-13",
+  "hero": "/media/brand/AdobeStock_169276589.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-to-end-a-letter",
+  "title": "How to End a Letter: Forward Motion and the Sign-Off Ladder",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2026-03-04",
+  "hero": "/media/studio/studio-stacking.jpg",
+  "read_min": 3
+ },
+ {
+  "slug": "how-to-address-an-envelope",
+  "title": "How to Address an Envelope: Titles, Couples, and the Tender Cases",
+  "category": "Letter Writing",
+  "author": "Ellie Hartwell",
+  "date": "2026-07-03",
+  "hero": "/media/studio/studio-wide.jpg",
+  "read_min": 3
+ },
+ {
   "slug": "calligraphy-for-beginners",
   "title": "Calligraphy for Beginners: Start Tonight with the Pen You Own",
   "category": "Calligraphy",
