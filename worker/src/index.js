@@ -1,4 +1,5 @@
 // Longbourn Papers — API Worker
+import { handleEmailPreview, handleEmailLog } from './email-admin.js';
 // Routes requests, handles CORS, proxies Shopify Storefront API
 
 import { handleCORS, corsHeaders } from './cors.js';
@@ -68,6 +69,12 @@ export default {
         response = await handleTestOrder(request, env);
       }
       // Phase 3: orders, statement, inventory — the iOS-portable admin API
+      else if (path === '/api/admin/email-preview' && request.method === 'GET') {
+        response = await handleEmailPreview(url, env);
+      }
+      else if (path === '/api/admin/email-log' && request.method === 'GET') {
+        response = await handleEmailLog(url, env);
+      }
       else if (path.startsWith('/api/admin/')) {
         response = await handleAdmin(request, env, path);
       }

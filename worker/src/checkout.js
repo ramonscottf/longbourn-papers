@@ -1,4 +1,5 @@
 // Longbourn checkout — Stripe-hosted (Phase 2).
+import { sendEmail, TEMPLATES } from './email.js';
 // Design principles:
 //  - STATELESS STRIPE: no Stripe Products/Prices ever created. Every session is built
 //    inline from D1 price_data. Swapping Stripe accounts later = swap one secret.
@@ -202,40 +203,18 @@ async function recordPaidOrder(env, orderId, s) {
 
   // Customer confirmation — gated hard until Scott says go.
   const to = s.customer_details?.email;
-  if (!to) await logEvent(env, orderId, 'email_skipped', 'no recipient');
-  else if ((env.EMAIL_MODE || 'off') !== 'on') await logEvent(env, orderId, 'email_skipped', 'EMAIL_MODE=off');
-  else await sendOrderEmail(env, to, orderId, items, s);
+  await sendOrderEmail(env, to, orderId, items, s); // engine gates on EMAIL_MODE
   return { recorded: true, items: items.length };
 }
 
 async function sendOrderEmail(env, to, orderId, items, s) {
-  if (!env.RESEND_API_KEY) return logEvent(env, orderId, 'email_skipped', 'no RESEND_API_KEY');
-  const rows = items.map(it =>
-    `<tr><td style="padding:6px 0">${it.product_title}${it.variant_title && it.variant_title !== 'Default Title' ? ' — ' + it.variant_title : ''} × ${it.quantity}</td>` +
-    `<td style="padding:6px 0;text-align:right">$${((it.unit_price_cents * it.quantity) / 100).toFixed(2)}</td></tr>`
-  ).join('');
-  const total = s.amount_total != null ? `$${(s.amount_total / 100).toFixed(2)}` : '';
-  const html =
-    `<div style="font-family:Georgia,serif;max-width:520px;margin:0 auto;color:#1d322d">` +
-    `<h2 style="font-weight:normal;letter-spacing:.5px">Longbourn Papers</h2>` +
-    `<p>Thank you — your order <strong>${orderId}</strong> is confirmed.</p>` +
-    `<table style="width:100%;border-collapse:collapse;border-top:1px solid #e5ded2;border-bottom:1px solid #e5ded2">${rows}</table>` +
-    (total ? `<p style="text-align:right"><strong>Total ${total}</strong></p>` : '') +
-    `<p>We'll email again when it ships. Each piece is hand-pressed — orders ship within 1–3 business days.</p>` +
-    `<p style="color:#8a8378;font-size:13px">Longbourn Papers · Salt Lake City, Utah</p></div>`;
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: env.EMAIL_FROM || 'Longbourn Papers <scott@wickowaypoint.com>',
-      to: [to],
-      subject: `Order confirmed — ${orderId}`,
-      html,
-    }),
+  const t = TEMPLATES.order_confirmation({ orderId, items, amountTotal: s.amount_total });
+  await sendEmail(env, {
+    to, subject: t.subject, html: t.html, kind: 'order_confirmation', ref: orderId,
+    onResult: (status, detail) => logEvent(env, orderId,
+      status === 'sent' ? 'email_sent' : status === 'dry-run' ? 'email_dryrun' : 'email_' + status,
+      `${to} ${detail}`),
   });
-  const resp = await r.json().catch(() => ({}));
-  await logEvent(env, orderId, r.ok ? 'email_sent' : 'email_failed',
-    r.ok ? `${to} id=${resp.id || ''}` : JSON.stringify(resp).slice(0, 300));
 }
 
 // ── POST /api/admin/stripe/setup (ADMIN-gated by router) ─────────────────────

@@ -1,4 +1,5 @@
 // The Lost Art — free 5-part email course.
+import { shell } from './email.js';
 // HARD RULE compliance: capture is live (D1); SENDING is gated by EMAIL_MODE
 // ('off' => every due send is logged as status 'dry-run' instead of dispatched).
 // Lessons are also web pages, so the course is fully usable before email goes live.
@@ -95,15 +96,13 @@ async function sendLesson(env, sub, lesson) {
 }
 
 function lessonEmailHtml(lesson, sub, base) {
-  return `<!doctype html><body style="margin:0;background:#FAF7F2;font-family:Georgia,serif;color:#1D322D">
-  <div style="max-width:560px;margin:0 auto;padding:32px 24px">
-    <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#B8965A;margin:0 0 6px">The Lost Art · Lesson ${lesson.n} of 5</p>
-    <h1 style="font-weight:500;font-size:26px;margin:0 0 16px">${lesson.subject.replace(/^Lesson \d+ — /, '')}</h1>
-    <p style="line-height:1.75">This lesson is waiting for you at the Writing Desk — two minutes of reading, one small assignment, no homework police.</p>
-    <p style="margin:26px 0"><a href="${base}/writing-desk/lost-art/lesson-${lesson.n}/" style="background:#1D322D;color:#FAF7F2;text-decoration:none;padding:14px 26px;font-size:12px;letter-spacing:.2em;text-transform:uppercase">Read Lesson ${lesson.n}</a></p>
-    <p style="line-height:1.75;color:rgba(29,50,45,.7);font-size:14px">— Longbourn Papers, printed one sheet at a time.</p>
-    <p style="font-size:11px;color:rgba(29,50,45,.5);margin-top:34px"><a href="${base}/api/course/unsubscribe?token=${sub.token}" style="color:rgba(29,50,45,.5)">Unsubscribe</a> · Longbourn Papers, Salt Lake City, Utah</p>
-  </div></body>`;
+  return shell({
+    eyebrow: `The Lost Art · Lesson ${lesson.n} of 5`,
+    heading: lesson.subject.replace(/^Lesson \d+ — /, ''),
+    bodyHtml: `<p style="margin:0 0 14px">This lesson is waiting at the Writing Desk — two minutes of reading, one small assignment, no homework police.</p>`,
+    cta: { href: `${base}/writing-desk/lost-art/lesson-${lesson.n}/`, label: `Read Lesson ${lesson.n}` },
+    unsubUrl: `${base}/api/course/unsubscribe?token=${sub.token}`,
+  });
 }
 
 function json(obj, status = 200) {

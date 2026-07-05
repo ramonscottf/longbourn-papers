@@ -1,4 +1,5 @@
 // Contact form handler — Resend email + Twilio SMS notification
+import { sendEmail, ownerInbox } from './email.js';
 
 export async function handleContact(request, env) {
   const { name, email, subject, message, _honey } = await request.json();
@@ -28,31 +29,16 @@ export async function handleContact(request, env) {
     await env.CACHE.put(rateKey, '1', { expirationTtl: 3600 });
   }
 
-  // Send email via Resend
-  if (env.RESEND_API_KEY) {
-    try {
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          from: 'Longbourn Papers <hello@longbournpapers.com>',
-          to: [env.CONTACT_EMAIL || 'alexandra@longbournpapers.com'],
-          reply_to: email,
-          subject: `Contact: ${subject || 'General Inquiry'} — ${name}`,
-          html: `<div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:40px 20px">
-            <h2 style="color:#8B2332;font-size:20px;margin-bottom:24px">New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Subject:</strong> ${subject || 'General Inquiry'}</p>
-            <hr style="border:none;border-top:1px solid #E0DBD2;margin:24px 0">
-            <p style="white-space:pre-wrap">${message}</p>
-            <hr style="border:none;border-top:1px solid #E0DBD2;margin:24px 0">
-            <p style="color:#6B6B6B;font-size:13px">Sent from longbournpapers.com contact form</p>
-          </div>`,
-        }),
-      });
-    } catch (err) { console.error('Resend error:', err); }
-  }
+  // Owner notice — internal (Scott/Ali inbox), routed through the unified engine.
+  await sendEmail(env, {
+    to: ownerInbox(env), kind: 'contact', internal: true, ref: email,
+    subject: `Contact: ${subject || 'General Inquiry'} — ${name}`,
+    html: `<div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:32px 20px;color:#23211C">` +
+      `<h2 style="color:#1D322D;font-size:20px;margin-bottom:20px;font-weight:normal">New contact form submission</h2>` +
+      `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>` +
+      `<p><strong>Subject:</strong> ${subject || 'General Inquiry'}</p>` +
+      `<hr style="border:none;border-top:1px solid #E5DED2;margin:20px 0"><p style="white-space:pre-wrap">${message}</p></div>`,
+  });
 
   // SMS via Twilio
   if (env.TWILIO_ACCOUNT_SID && env.TWILIO_AUTH_TOKEN && env.CONTACT_PHONE) {

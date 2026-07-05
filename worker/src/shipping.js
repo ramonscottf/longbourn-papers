@@ -1,4 +1,5 @@
 // Longbourn shipping — EasyPost (Phase 4).
+import { sendEmail, TEMPLATES } from './email.js';
 // Provider decision 2026-07-02 (researched live): EasyPost Free Access Wallet —
 // 3,000 free labels/month, $0 monthly, $0.08/label only above that (never at our
 // volume). Shippo's free tier fell to 30 labels/mo in 2026; Pirate Ship has no API.
@@ -157,34 +158,15 @@ export async function handleBuyLabel(request, env, orderId) {
 export async function notifyShipped(env, orderId) {
   const order = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(orderId).first();
   if (!order) return;
-  if (!order.email) return logEvent(env, orderId, 'ship_email_skipped', 'no recipient');
-  if ((env.EMAIL_MODE || 'off') !== 'on') return logEvent(env, orderId, 'ship_email_skipped', 'EMAIL_MODE=off');
-  if (!env.RESEND_API_KEY) return logEvent(env, orderId, 'ship_email_skipped', 'no RESEND_API_KEY');
-
   const ev = await env.DB.prepare(
     "SELECT detail FROM order_events WHERE order_id=? AND event='label_purchased' ORDER BY id DESC LIMIT 1"
   ).bind(orderId).first();
   const trackerUrl = (ev?.detail?.match(/tracker=(\S+)/) || [])[1] || '';
-  const t = order.tracking_number || '';
-
-  const html =
-    `<div style="font-family:Georgia,serif;max-width:520px;margin:0 auto;color:#1d322d">` +
-    `<h2 style="font-weight:normal;letter-spacing:.5px">Longbourn Papers</h2>` +
-    `<p>Good news — your order <strong>${order.id}</strong> is on its way.</p>` +
-    (t ? `<p>Tracking: ${trackerUrl ? `<a href="${trackerUrl}">${t}</a>` : `<strong>${t}</strong>`}</p>` : '') +
-    `<p>Thank you for letting us be part of your correspondence.</p>` +
-    `<p style="color:#8a8378;font-size:13px">Longbourn Papers · Salt Lake City, Utah</p></div>`;
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: env.EMAIL_FROM || 'Longbourn Papers <scott@wickowaypoint.com>',
-      to: [order.email],
-      subject: `Your order has shipped — ${order.id}`,
-      html,
-    }),
+  const t = TEMPLATES.shipping({ orderId: order.id, tracking: order.tracking_number || '', trackerUrl });
+  await sendEmail(env, {
+    to: order.email, subject: t.subject, html: t.html, kind: 'shipping', ref: order.id,
+    onResult: (status, detail) => logEvent(env, orderId,
+      status === 'sent' ? 'ship_email_sent' : status === 'dry-run' ? 'ship_email_dryrun' : 'ship_email_' + status,
+      `${order.email} ${detail}`),
   });
-  const resp = await r.json().catch(() => ({}));
-  await logEvent(env, orderId, r.ok ? 'ship_email_sent' : 'ship_email_failed',
-    r.ok ? `${order.email} id=${resp.id || ''}` : JSON.stringify(resp).slice(0, 300));
 }
