@@ -1,5 +1,6 @@
 // Longbourn checkout — Stripe-hosted (Phase 2).
 import { sendEmail, TEMPLATES } from './email.js';
+import { markCartsConverted } from './lifecycle.js';
 // Design principles:
 //  - STATELESS STRIPE: no Stripe Products/Prices ever created. Every session is built
 //    inline from D1 price_data. Swapping Stripe accounts later = swap one secret.
@@ -203,6 +204,7 @@ async function recordPaidOrder(env, orderId, s) {
 
   // Customer confirmation — gated hard until Scott says go.
   const to = s.customer_details?.email;
+  await markCartsConverted(env, to);
   await sendOrderEmail(env, to, orderId, items, s); // engine gates on EMAIL_MODE
   return { recorded: true, items: items.length };
 }

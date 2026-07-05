@@ -6,7 +6,7 @@ import { previewTemplate, ensureEmailLog } from './email.js';
 export async function handleEmailPreview(url, env) {
   const type = url.searchParams.get('type') || '';
   if (type === 'index' || !type) {
-    const types = ['order_confirmation', 'shipping', 'newsletter_welcome'];
+    const types = ['order_confirmation', 'shipping', 'delivered', 'refund_confirmation', 'newsletter_welcome', 'post_delivery_welcome', 'review_request', 'replenishment', 'winback', 'abandoned_cart'];
     const links = types.map(t => `<li><a href="/api/admin/email-preview?type=${t}">${t}</a></li>`).join('');
     return html(`<h1 style="font-family:Georgia,serif;color:#1D322D">Email previews</h1><ul style="font-family:Georgia,serif;line-height:2">${links}</ul><p style="font-family:Georgia,serif"><a href="/api/admin/email-log">→ activity feed (dry-run log)</a></p>`);
   }

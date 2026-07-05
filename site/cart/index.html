@@ -71,6 +71,14 @@
         <div id="cartPageContent">
           <div class="loading"><div class="loading__spinner"></div></div>
         </div>
+        <div id="cartReminder" style="display:none;margin-top:2rem;padding-top:1.75rem;border-top:1px solid rgba(29,50,45,.12)">
+          <p class="color-slate" style="font-size:14px;line-height:1.6;margin:0 0 10px">We press to order &mdash; leave your email and we&rsquo;ll hold this cart and send one gentle reminder. Entirely optional.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;max-width:460px">
+            <input type="email" id="cartReminderEmail" placeholder="you@example.com" class="input" style="flex:1;min-width:200px" aria-label="Email for cart reminder" autocomplete="email">
+            <button class="btn btn--ghost" id="cartReminderBtn" type="button">Hold my cart</button>
+          </div>
+          <p id="cartReminderMsg" style="font-size:13px;color:rgba(29,50,45,.6);margin:10px 0 0;display:none"></p>
+        </div>
       </div>
     </section>
   </main>
@@ -137,5 +145,28 @@
   })();
   </script>
   <script src="/assets/wicko-pill-nav/wicko-pill-nav.js" defer></script>
+  <script>
+  (function(){
+    var box=document.getElementById('cartReminder'), btn=document.getElementById('cartReminderBtn'),
+        em=document.getElementById('cartReminderEmail'), msg=document.getElementById('cartReminderMsg');
+    if(!box||!window.LB||!window.LB.Cart) return;
+    function show(t){ msg.textContent=t; msg.style.display='block'; }
+    function lines(cart){ return (cart&&cart.lines&&cart.lines.edges)||[]; }
+    function items(cart){ return lines(cart).map(function(e){ var n=e.node||{}, m=n.merchandise||{};
+      return { title:(m.product&&m.product.title)||n.title||m.title||'', variant:(m.title&&m.title!=='Default Title')?m.title:'', quantity:n.quantity||1 }; }); }
+    window.LB.Cart.get().then(function(cart){ if(lines(cart).length) box.style.display='block'; });
+    btn.addEventListener('click',function(){
+      var v=(em.value||'').trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ show('That email looks unfinished.'); return; }
+      window.LB.Cart.get().then(function(cart){
+        btn.disabled=true; btn.textContent='Saving\u2026';
+        fetch('/api/cart/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v,items:items(cart)})})
+          .then(function(r){return r.json();})
+          .then(function(d){ show(d.ok?'Held. We\u2019ll send one gentle reminder if you don\u2019t make it back.':'Hmm — try again?'); btn.textContent=d.ok?'Saved \u2713':'Hold my cart'; if(!d.ok)btn.disabled=false; })
+          .catch(function(){ show('Hmm — try again?'); btn.disabled=false; btn.textContent='Hold my cart'; });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

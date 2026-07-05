@@ -1,4 +1,5 @@
 // Longbourn Papers — API Worker
+import { handleCartSave, runLifecycleSweep } from './lifecycle.js';
 import { handleEmailPreview, handleEmailLog } from './email-admin.js';
 // Routes requests, handles CORS, proxies Shopify Storefront API
 
@@ -16,6 +17,7 @@ import { handlePhotoEnhance, handlePhotoDeploy, handlePhotoServe, handlePhotoCle
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(courseDrip(env));
+    ctx.waitUntil(runLifecycleSweep(env));
   },
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -69,6 +71,9 @@ export default {
         response = await handleTestOrder(request, env);
       }
       // Phase 3: orders, statement, inventory — the iOS-portable admin API
+      else if (path === '/api/admin/lifecycle-sweep' && request.method === 'POST') {
+        response = new Response(JSON.stringify(await runLifecycleSweep(env)), { headers: { 'Content-Type': 'application/json' } });
+      }
       else if (path === '/api/admin/email-preview' && request.method === 'GET') {
         response = await handleEmailPreview(url, env);
       }
@@ -81,6 +86,9 @@ export default {
       // Communications
       else if (path === '/api/contact' && request.method === 'POST') {
         response = await handleContact(request, env);
+      }
+      else if (path === '/api/cart/save' && request.method === 'POST') {
+        response = await handleCartSave(request, env);
       }
       else if (path === '/api/course/signup' && request.method === 'POST') {
         response = await handleCourseSignup(request, env);

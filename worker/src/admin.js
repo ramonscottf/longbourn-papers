@@ -1,4 +1,5 @@
 // Longbourn admin API (Phase 3) — the iOS contract.
+import { sendEmail, TEMPLATES } from './email.js';
 // Every route lives under /api/admin/* and is ADMIN_TOKEN-gated at the router
 // (all methods). The dashboard at /admin/ is just one client of this JSON API;
 // a future SwiftUI app consumes these same endpoints with the same header.
@@ -114,6 +115,10 @@ export async function handleAdmin(request, env, path) {
     ];
     await env.DB.batch(stmts);
     if (body.status === 'shipped') await notifyShipped(env, id); // hard-gated by EMAIL_MODE
+    if (body.status === 'delivered') {
+      const t = TEMPLATES.delivered({ orderId: id });
+      await sendEmail(env, { to: order.email, subject: t.subject, html: t.html, kind: 'delivered', ref: id });
+    }
     const updated = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first();
     return json({ ok: true, order: updated });
   }
@@ -143,6 +148,8 @@ export async function handleAdmin(request, env, path) {
       env.DB.prepare("UPDATE orders SET status='refunded', updated_at=datetime('now') WHERE id=?").bind(id),
       env.DB.prepare("INSERT INTO order_events (order_id,event,detail) VALUES (?,'refunded',?)").bind(id, detail),
     ]);
+    const rt = TEMPLATES.refund_confirmation({ orderId: id, amount: order.total_cents });
+    await sendEmail(env, { to: order.email, subject: rt.subject, html: rt.html, kind: 'refund_confirmation', ref: id });
     return json({ ok: true, detail });
   }
 

@@ -157,6 +157,121 @@ export const TEMPLATES = {
       }),
     };
   },
+
+  delivered({ orderId }) {
+    return {
+      subject: `Your order has arrived — ${orderId}`,
+      html: shell({
+        eyebrow: 'Delivered',
+        heading: 'It has arrived.',
+        bodyHtml:
+          `<p style="margin:0 0 14px">Order <strong>${orderId}</strong> should now be in your hands. We hope the impression is as satisfying to hold as it was to press.</p>` +
+          `<p style="margin:0">If anything isn&rsquo;t right, simply reply &mdash; a real person reads every note.</p>`,
+        cta: { href: 'https://longbournpapers.com/writing-desk/what-do-i-write/', label: 'What to write first' },
+        footNote: 'Every card leaves the shop pressed one sheet at a time.',
+      }),
+    };
+  },
+
+  post_delivery_welcome({ name } = {}) {
+    const hi = name ? `Dear ${name},` : 'Hello,';
+    return {
+      subject: 'Making the most of your Longbourn cards',
+      html: shell({
+        eyebrow: 'From the Writing Desk',
+        heading: 'Now, the good part.',
+        bodyHtml:
+          `<p style="margin:0 0 14px">${hi} thank you again for letting us be part of your correspondence. The cards are yours now &mdash; here are a few free things to make the writing easier.</p>` +
+          `<p style="margin:0 0 7px">&mdash; The five-sentence note that never fails</p>` +
+          `<p style="margin:0 0 7px">&mdash; What to write for the hard occasions</p>` +
+          `<p style="margin:0">&mdash; A tool that hands you the opening line</p>`,
+        cta: { href: 'https://longbournpapers.com/writing-desk/', label: 'Visit the Writing Desk' },
+        footNote: 'No occasion required &mdash; the best notes rarely have one.',
+      }),
+    };
+  },
+
+  review_request({ orderId, name } = {}) {
+    const hi = name ? `Dear ${name},` : 'Hello,';
+    return {
+      subject: 'A word, if you have one?',
+      html: shell({
+        eyebrow: 'A small favour',
+        heading: 'How did they land?',
+        bodyHtml:
+          `<p style="margin:0 0 14px">${hi} your cards from order <strong>${orderId}</strong> have had a couple of weeks to find their moment. If they served you well, a sentence or two &mdash; or a photograph of one in the wild &mdash; would mean a great deal to a small shop.</p>` +
+          `<p style="margin:0">And if something fell short, we&rsquo;d rather hear that first. Just reply.</p>`,
+        cta: { href: 'https://longbournpapers.com/shop/', label: 'Leave a word' },
+        footNote: 'Reviews from real desks are how a letterpress shop is found.',
+      }),
+    };
+  },
+
+  replenishment({ name } = {}) {
+    const hi = name ? `Dear ${name},` : 'Hello,';
+    return {
+      subject: 'Running low?',
+      html: shell({
+        eyebrow: 'The well-stocked drawer',
+        heading: 'A quiet restock note.',
+        bodyHtml:
+          `<p style="margin:0 0 14px">${hi} it&rsquo;s been a while since your last order, which &mdash; if the drawer is doing its job &mdash; may mean the good cards are running thin. The best correspondents keep the drawer full, so the note gets written the day it&rsquo;s owed.</p>` +
+          `<p style="margin:0">No pressure, only a nudge from the shop that remembers you.</p>`,
+        cta: { href: 'https://longbournpapers.com/shop/', label: 'Restock the drawer' },
+        footNote: 'The wardrobe&rsquo;s real product is response time.',
+      }),
+    };
+  },
+
+  winback({ name } = {}) {
+    const hi = name ? `Dear ${name},` : 'Hello,';
+    return {
+      subject: 'We&rsquo;ve been thinking of you',
+      html: shell({
+        eyebrow: 'A note, no occasion',
+        heading: 'It&rsquo;s been a while.',
+        bodyHtml:
+          `<p style="margin:0 0 14px">${hi} in the spirit of the very notes we sell &mdash; this one has no occasion. It&rsquo;s simply the shop, thinking of you, hoping the writing life is treating you kindly.</p>` +
+          `<p style="margin:0">The press is still turning, the collection has grown, and there&rsquo;s always a fresh sheet waiting whenever you are.</p>`,
+        cta: { href: 'https://longbournpapers.com/shop/', label: 'See what&rsquo;s new' },
+        footNote: 'The unprompted note is the highest form of mail &mdash; even from us.',
+      }),
+    };
+  },
+
+  abandoned_cart({ items, cartUrl } = {}) {
+    const rows = (items || []).map(it =>
+      `<tr><td style="padding:7px 0;border-bottom:1px solid ${BRAND.line};font-size:14.5px">${it.title}${it.variant ? ' &mdash; ' + it.variant : ''}${it.quantity > 1 ? ' &times; ' + it.quantity : ''}</td></tr>`
+    ).join('');
+    return {
+      subject: 'Your cards are waiting',
+      html: shell({
+        eyebrow: 'Left at the desk',
+        heading: 'You left something lovely behind.',
+        bodyHtml:
+          `<p style="margin:0 0 12px">Your selections are still here, held exactly as you left them:</p>` +
+          `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:4px 0 6px">${rows}</table>` +
+          `<p style="margin:12px 0 0">No rush &mdash; we press to order, and nothing sells out overnight. Pick up where you left off whenever the moment&rsquo;s right.</p>`,
+        cta: { href: cartUrl || 'https://longbournpapers.com/cart/', label: 'Return to your cart' },
+        footNote: 'Questions before you commit? Simply reply.',
+      }),
+    };
+  },
+
+  refund_confirmation({ orderId, amount } = {}) {
+    const amt = amount != null ? money(amount) : 'your refund';
+    return {
+      subject: `Your refund is on its way — ${orderId}`,
+      html: shell({
+        eyebrow: 'Refund Processed',
+        heading: 'That&rsquo;s sorted.',
+        bodyHtml:
+          `<p style="margin:0 0 14px">We&rsquo;ve processed a refund of <strong>${amt}</strong> for order <strong>${orderId}</strong>. Depending on your bank, it should reappear within 5&ndash;10 business days.</p>` +
+          `<p style="margin:0">Thank you for your patience &mdash; and if there&rsquo;s anything we could have done better, we&rsquo;d genuinely like to know.</p>`,
+        footNote: 'A real person is on the other end of every reply.',
+      }),
+    };
+  },
 };
 
 // Render a named template with sample data for the admin preview harness.
@@ -168,6 +283,16 @@ export function previewTemplate(type) {
     ] },
     shipping: { orderId: 'LB-10428', tracking: '9400 1000 0000 0000 0000 00', trackerUrl: 'https://tools.usps.com/go/TrackConfirmAction' },
     newsletter_welcome: { unsubUrl: 'https://longbournpapers.com/api/newsletter/unsubscribe?token=SAMPLE' },
+    delivered: { orderId: 'LB-10428' },
+    post_delivery_welcome: { name: 'Eleanor' },
+    review_request: { orderId: 'LB-10428', name: 'Eleanor' },
+    replenishment: { name: 'Eleanor' },
+    winback: { name: 'Eleanor' },
+    abandoned_cart: { cartUrl: 'https://longbournpapers.com/cart/', items: [
+      { title: 'Letterpress Gift Tags with Satin Ribbon', variant: 'Bravo', quantity: 1 },
+      { title: 'Petite Letterpress Note Cards', variant: 'Queen Bee / 6-Pack', quantity: 2 },
+    ] },
+    refund_confirmation: { orderId: 'LB-10428', amount: 2400 },
   };
   const fn = TEMPLATES[type];
   if (!fn) return null;
