@@ -100,3 +100,32 @@ Principle: the community offer is the *practice of writing*, not the paper. Peop
 3. Correspondence Club name — keep, or something more Longbourn ("The Longbourn Post"?).
 4. Giveaway budget for Sep 1 (product-only, ~$50 COGS).
 5. SKU expansion: 4 SKUs is thin for Q4 — is there consigned inventory in storage beyond the 4 listed (the storage-clearing driver suggests yes)? If so, photograph + list before October.
+
+---
+
+## Cutover staging — DNS/domain (added 2026-07-08)
+
+**Registrant access: ✅ RESOLVED.** longbournpapers.com is registered at Squarespace Domains II LLC
+(ex-Google Domains, reg. 2020-11-15) in **Ali's account** (registrant Alexandra Foster /
+alexandrahfoster@gmail.com). Renews **2026-11-15, auto-renew ON, billed via Google Workspace** —
+Ali keeps paying there. Earlier lapse-risk alarm downgraded: auto-renew is on. (Only open hygiene
+item: confirm the card on the Google Workspace billing is current before the Nov charge.)
+
+**Cloudflare zone STAGED (no live impact — nameservers still on Google):**
+- Zone `longbournpapers.com` id `6634184556947edb89dc32ffce69884f`, status **pending**.
+- CF nameservers assigned: `oaklyn.ns.cloudflare.com` + `wesley.ns.cloudflare.com`.
+- Email replicated byte-exact: 5 Google MX (prio 1/5/5/10/10), SPF TXT, full DKIM
+  (google._domainkey, 410 chars), gv verification CNAME (uuv6swp4jz7a → gv-7k5ogdstyllizv.dv.googlehosted.com).
+- Website: apex + www bound to worker `longbourn-papers` (production) as custom domains. Old Shopify
+  A (23.227.38.65) + shops.myshopify.com CNAMEs intentionally NOT copied — flip lands on the worker.
+
+**Remaining = the cutover (Scott's manual click, reserved):** in Squarespace DNS/Advanced, confirm
+custom-nameservers is available, then set NS → the two Cloudflare NS above. That activates the zone
+and serves the worker; mail stays intact. TTL currently 4h. Post-flip Skippy tasks: verify
+apex/www/MX/DKIM resolve against CF, add old-Shopify-URL redirect map. Gate before flip: confirm the
+live Stripe tap-through succeeded on the worker (once NS propagates, this domain IS the store).
+
+**Also staged today (same pattern):** CF zones created for regencyhoney.com
+(id 745581bd0ab2ad00d86ce4c91a83c530) and litzaspizza.com (id d5ea12b4f3b5b382d71acfd86ce8e60b) —
+both empty pending zones awaiting GoDaddy zone-file export before record replication + NS flip.
+Registrar for those two = GoDaddy (domaincontrol NS). regency = now; litzas = next week.
