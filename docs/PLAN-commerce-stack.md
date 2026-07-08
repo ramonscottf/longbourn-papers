@@ -1,6 +1,6 @@
 # Longbourn Commerce Stack — Stripe-native, zero-subscription
 
-**Status:** 🟡 PLANNED — build not started
+**Status:** 🟢 PHASES 0–4 BUILT (2026-07-02) · 5–7 pending — see phase table + session close below
 **Created:** 2026-07-02 · **Owner:** Scott (Joe) / Skippy
 **Repos:** [ramonscottf/longbourn-papers](https://github.com/ramonscottf/longbourn-papers) (build) · skippy-plans (canonical plan)
 **Mirror:** `longbourn-papers/docs/PLAN-commerce-stack.md`
