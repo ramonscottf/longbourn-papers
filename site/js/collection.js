@@ -40,6 +40,8 @@
         if (titleEl) titleEl.textContent = data.title;
         var descEl = document.getElementById('collectionDescription');
         if (descEl && data.description) descEl.textContent = data.description;
+        var heroImg = document.querySelector('.collection-hero__img');
+        if (heroImg && data.image && data.image.url) heroImg.src = data.image.url;
         document.title = data.title + ' — Longbourn Papers';
       }
 

@@ -33,6 +33,32 @@ export default {
       return handleMedia(request, env, path);
     }
 
+    // Dynamic collection pages: collections created in HQ have no static file.
+    // Assets serve first, so only unknown handles land here — render from template.
+    const colMatch = path.match(/^\/collections\/([a-z0-9-]+)\/?$/);
+    if (colMatch && request.method === 'GET') {
+      const handle = colMatch[1];
+      const c = await env.DB.prepare('SELECT title, description, image_json FROM collections WHERE handle = ?').bind(handle).first();
+      if (c) {
+        const tpl = await env.ASSETS.fetch(new URL('/collections/thank-you/index.html', request.url));
+        if (tpl.ok) {
+          let html = await tpl.text();
+          const escAttr = (x) => String(x || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+          const img = c.image_json ? JSON.parse(c.image_json) : null;
+          html = html
+            .split('thank-you').join(handle)
+            .replace(/<h1 class="collection-hero__title"[^>]*>[^<]*<\/h1>/, `<h1 class="collection-hero__title" id="collectionTitle">${escAttr(c.title)}</h1>`)
+            .replace(/<p class="collection-hero__description"[^>]*>[^<]*<\/p>/, `<p class="collection-hero__description" id="collectionDescription">${escAttr(c.description)}</p>`)
+            .replace(/<title>[^<]*<\/title>/, `<title>${escAttr(c.title)} — Longbourn Papers</title>`);
+          if (img && img.url) {
+            html = html.replace(/(<img class="collection-hero__img"[^>]*src=")[^"]*(")/, `$1${escAttr(img.url)}$2`);
+          }
+          return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+        }
+      }
+      // fall through to normal 404 handling below
+    }
+
     // Admin gate — Photo Studio writes (POST) AND all /api/admin/* (any method)
     // require ADMIN_TOKEN. Fails closed: if the secret is unset, these routes 401.
     if ((path.startsWith('/api/photos/') && request.method === 'POST') || path.startsWith('/api/admin/')) {

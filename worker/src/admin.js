@@ -251,6 +251,7 @@ export async function handleAdmin(request, env, path) {
       const sets = [], vals = [];
       if (typeof f.title === 'string' && f.title.trim()) { sets.push('title=?'); vals.push(f.title.trim()); }
       if (typeof f.description === 'string') { sets.push('description=?'); vals.push(f.description); sets.push('description_html=?'); vals.push('<p>' + f.description.replace(/&/g,'&amp;').replace(/</g,'&lt;').split(/\n{2,}/).join('</p><p>') + '</p>'); }
+      if (typeof f.product_type === 'string' && f.product_type.trim()) { sets.push('product_type=?'); vals.push(f.product_type.trim()); }
       if (!sets.length) return jerr(400, 'No editable fields provided');
       vals.push(body.productId);
       const r = await env.DB.prepare('UPDATE products SET ' + sets.join(', ') + ' WHERE id=?').bind(...vals).run();
@@ -291,5 +292,92 @@ export async function handleAdmin(request, env, path) {
     return json({ ok: true });
   }
 
+  // ── Collections manager (Wicko HQ merchandising) ────────────────
+  // GET /api/admin/collections — all collections + members
+  if (sub === 'collections' && method === 'GET') {
+    const { results: cols } = await env.DB.prepare('SELECT * FROM collections ORDER BY title').all();
+    const { results: members } = await env.DB.prepare(
+      `SELECT cp.collection_handle AS handle, p.id AS product_id, p.title, p.handle AS product_handle, cp.position
+       FROM collection_products cp JOIN products p ON p.id = cp.product_id ORDER BY cp.position`
+    ).all();
+    const byC = {};
+    for (const m of members) (byC[m.handle] ||= []).push(m);
+    return json({ collections: cols.map(c => ({
+      id: c.id, handle: c.handle, title: c.title, description: c.description,
+      image: c.image_json ? JSON.parse(c.image_json) : null,
+      products: byC[c.handle] || [],
+    })) });
+  }
+
+  // POST /api/admin/collections/create  {handle, title, description?, image_url?, productIds?}
+  if (sub === 'collections/create' && method === 'POST') {
+    let b; try { b = await request.json(); } catch { return jerr(400, 'Invalid JSON'); }
+    const handle = String(b.handle || '').toLowerCase().trim().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '');
+    if (!handle || !b.title) return jerr(400, 'handle and title required');
+    const exists = await env.DB.prepare('SELECT handle FROM collections WHERE handle=?').bind(handle).first();
+    if (exists) return jerr(409, 'Collection handle already exists');
+    const img = b.image_url ? JSON.stringify({ url: b.image_url }) : null;
+    await env.DB.prepare(
+      "INSERT INTO collections (id, handle, title, description, image_json) VALUES (?, ?, ?, ?, ?)"
+    ).bind('col_' + handle, handle, String(b.title).trim(), b.description || '', img).run();
+    for (const [i, pid] of (b.productIds || []).entries()) {
+      await env.DB.prepare('INSERT OR IGNORE INTO collection_products (collection_handle, product_id, position) VALUES (?, ?, ?)')
+        .bind(handle, pid, i).run();
+    }
+    await flushCatalogCache(env);
+    return json({ ok: true, handle, url: '/collections/' + handle + '/' });
+  }
+
+  // POST /api/admin/collections/update  {handle, fields:{title?, description?, image_url?}}
+  if (sub === 'collections/update' && method === 'POST') {
+    let b; try { b = await request.json(); } catch { return jerr(400, 'Invalid JSON'); }
+    if (!b.handle) return jerr(400, 'handle required');
+    const f = b.fields || {};
+    const sets = [], vals = [];
+    if (typeof f.title === 'string' && f.title.trim()) { sets.push('title=?'); vals.push(f.title.trim()); }
+    if (typeof f.description === 'string') { sets.push('description=?'); vals.push(f.description); }
+    if (typeof f.image_url === 'string') { sets.push('image_json=?'); vals.push(f.image_url ? JSON.stringify({ url: f.image_url }) : null); }
+    if (!sets.length) return jerr(400, 'No editable fields');
+    vals.push(b.handle);
+    const r = await env.DB.prepare('UPDATE collections SET ' + sets.join(', ') + ' WHERE handle=?').bind(...vals).run();
+    if (!r.meta.changes) return jerr(404, 'Unknown collection');
+    await flushCatalogCache(env);
+    return json({ ok: true });
+  }
+
+  // POST /api/admin/collections/members  {handle, productId, action:'add'|'remove'}
+  if (sub === 'collections/members' && method === 'POST') {
+    let b; try { b = await request.json(); } catch { return jerr(400, 'Invalid JSON'); }
+    if (!b.handle || !b.productId || !['add','remove'].includes(b.action)) return jerr(400, 'handle, productId, action required');
+    if (b.action === 'add') {
+      const { results } = await env.DB.prepare('SELECT COALESCE(MAX(position),0) AS m FROM collection_products WHERE collection_handle=?').bind(b.handle).all();
+      await env.DB.prepare('INSERT OR IGNORE INTO collection_products (collection_handle, product_id, position) VALUES (?, ?, ?)')
+        .bind(b.handle, b.productId, (results[0]?.m || 0) + 1).run();
+    } else {
+      await env.DB.prepare('DELETE FROM collection_products WHERE collection_handle=? AND product_id=?').bind(b.handle, b.productId).run();
+    }
+    await flushCatalogCache(env);
+    return json({ ok: true });
+  }
+
+  // POST /api/admin/collections/delete  {handle}
+  if (sub === 'collections/delete' && method === 'POST') {
+    let b; try { b = await request.json(); } catch { return jerr(400, 'Invalid JSON'); }
+    if (!b.handle) return jerr(400, 'handle required');
+    await env.DB.prepare('DELETE FROM collection_products WHERE collection_handle=?').bind(b.handle).run();
+    const r = await env.DB.prepare('DELETE FROM collections WHERE handle=?').bind(b.handle).run();
+    if (!r.meta.changes) return jerr(404, 'Unknown collection');
+    await flushCatalogCache(env);
+    return json({ ok: true });
+  }
+
   return jerr(404, 'Not found');
+}
+
+async function flushCatalogCache(env) {
+  if (!env.CACHE) return;
+  for (const prefix of ['products:', 'product:', 'collection:']) {
+    const list = await env.CACHE.list({ prefix });
+    for (const k of list.keys) await env.CACHE.delete(k.name);
+  }
 }
