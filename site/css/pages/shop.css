@@ -95,3 +95,99 @@
   margin: 0 auto;
   font-size: var(--text-lg);
 }
+
+
+/* ── Provenance strip (added 2026-07-08) ─────────────────────────── */
+
+.shop-provenance {
+  border-top: var(--border-light);
+  border-bottom: var(--border-light);
+  background: var(--color-ivory);
+}
+
+.shop-provenance__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  padding: var(--space-lg) var(--gutter);
+}
+
+.shop-provenance__item {
+  font-size: var(--text-sm);
+  color: var(--color-charcoal);
+  line-height: var(--leading-snug);
+}
+
+.shop-provenance__label {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2xs);
+}
+
+@media (max-width: 720px) {
+  .shop-provenance__row { grid-template-columns: 1fr; gap: var(--space-md); }
+}
+
+/* ── Story band (added 2026-07-08) ───────────────────────────────── */
+
+.shop-story {
+  background: var(--color-navy); /* hunter */
+  color: var(--color-cream);
+}
+
+.shop-story__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+.shop-story__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.shop-story__eyebrow {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-md);
+}
+
+.shop-story__title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: #fff;
+  margin-bottom: var(--space-lg);
+}
+
+.shop-story__copy p {
+  color: var(--color-parchment);
+  max-width: 46ch;
+  margin-bottom: var(--space-xl);
+}
+
+.shop-story .btn--secondary {
+  border-color: rgba(250, 247, 242, 0.4);
+  color: var(--color-cream);
+}
+
+.shop-story .btn--secondary:hover {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  border-color: var(--color-cream);
+}
+
+@media (max-width: 860px) {
+  .shop-story__inner { grid-template-columns: 1fr; }
+}

@@ -111,7 +111,7 @@
   position: relative;
   overflow: hidden;
   background: var(--color-ivory);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1; /* photography is 1000x1000 — square frames, no letterboxing */
 }
 
 .product-card__image {
