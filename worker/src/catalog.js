@@ -40,6 +40,7 @@ function buildVariant(v) {
     available: !!v.available,
     image: v.image_json ? JSON.parse(v.image_json) : null,
     selectedOptions: JSON.parse(v.selected_options_json || '[]'),
+    tags: JSON.parse(v.tags_json || '[]'),
   };
 }
 
@@ -82,6 +83,7 @@ function buildCollectionProduct(p, variants) {
       currencyCode: v.currency,
       available: !!v.available,
       image: v.image_json ? JSON.parse(v.image_json) : null,
+      tags: JSON.parse(v.tags_json || '[]'),
     })),
     priceRange: {
       min: p.price_min_cents / 100,

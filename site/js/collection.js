@@ -1,21 +1,26 @@
 // Longbourn Papers — Collection / Shop Page
-// Fetches products, renders grid, handles filtering and sorting
+// DESIGN-LEVEL browsing (2026-07-08): every design is its own card.
+// - Category collections (gift-tags, grand-tags, …): all designs of those products
+// - Occasion collections (holiday, thank-you, …): designs tagged with that occasion
+// - Shop All: every design in the catalog, filterable by product type
+// Cards deep-link to /product/?handle=X&design=Y (PDP preselects, stays switchable)
 
 (function() {
   'use strict';
 
   var API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8787' : '/api';
+  var OCCASIONS = ['thank-you', 'sympathy', 'celebration', 'baby', 'holiday'];
+
   var grid = document.getElementById('productGrid');
   var countEl = document.getElementById('productCount');
   var sortSelect = document.getElementById('sortSelect');
   var filterContainer = document.getElementById('filterTags');
   var collectionHandle = grid ? grid.dataset.collection : null;
-  var allProducts = [];
+  var allDesigns = [];
   var activeFilter = 'all';
 
   if (!grid) return;
 
-  // ── Fetch products ────────────────────────────────────────────
   var endpoint = collectionHandle
     ? API_BASE + '/collections/' + encodeURIComponent(collectionHandle)
     : API_BASE + '/products';
@@ -28,9 +33,8 @@
       return res.json();
     })
     .then(function(data) {
-      allProducts = collectionHandle ? (data.products || []) : data;
+      var products = collectionHandle ? (data.products || []) : data;
 
-      // Set collection header if available
       if (collectionHandle && data.title) {
         var titleEl = document.getElementById('collectionTitle');
         if (titleEl) titleEl.textContent = data.title;
@@ -39,60 +43,119 @@
         document.title = data.title + ' — Longbourn Papers';
       }
 
-      buildFilters(allProducts);
-      renderProducts(allProducts);
+      allDesigns = explodeDesigns(products);
+
+      // Occasion pages: only designs tagged with this occasion
+      if (collectionHandle && OCCASIONS.indexOf(collectionHandle) !== -1) {
+        allDesigns = allDesigns.filter(function(d) {
+          return d.tags.indexOf(collectionHandle) !== -1;
+        });
+      }
+
+      buildFilters(allDesigns);
+      sortAndRender(allDesigns);
     })
     .catch(function() {
       grid.innerHTML = '<div class="shop-empty"><h3>Unable to load products</h3><p>Please try again later.</p></div>';
     });
 
-  // ── Render products ───────────────────────────────────────────
-  function renderProducts(products) {
-    if (countEl) countEl.textContent = products.length + ' product' + (products.length !== 1 ? 's' : '');
+  // ── Explode products into one entry per DESIGN ────────────────
+  // Pack variants ("Teacup / Single", "Teacup / 6-Pack") collapse into one
+  // design with a price range; the design keeps its parent product context.
+  function explodeDesigns(products) {
+    var out = [];
+    products.forEach(function(p) {
+      var byName = {};
+      (p.variants || []).forEach(function(v) {
+        var name = String(v.title).split(' / ')[0].trim();
+        if (!byName[name]) {
+          byName[name] = {
+            name: name,
+            handle: p.handle,
+            productTitle: p.title,
+            productType: p.productType || '',
+            image: null,
+            prices: [],
+            tags: [],
+            available: false
+          };
+          out.push(byName[name]);
+        }
+        var d = byName[name];
+        if (!d.image && v.image && v.image.url) d.image = v.image;
+        if (typeof v.price === 'number') d.prices.push(v.price);
+        (v.tags || []).forEach(function(t) {
+          if (d.tags.indexOf(t) === -1) d.tags.push(t);
+        });
+        if (v.available) d.available = true;
+      });
+      // fall back to the product's first image if a design has none
+      Object.keys(byName).forEach(function(k) {
+        if (!byName[k].image && p.images && p.images[0]) byName[k].image = p.images[0];
+      });
+    });
+    out.forEach(function(d) {
+      d.min = d.prices.length ? Math.min.apply(null, d.prices) : 0;
+      d.max = d.prices.length ? Math.max.apply(null, d.prices) : 0;
+    });
+    return out;
+  }
 
-    if (products.length === 0) {
-      grid.innerHTML = '<div class="shop-empty"><h3>No products found</h3><p>Try a different filter or check back soon.</p></div>';
+  // ── Render design cards ───────────────────────────────────────
+  function renderDesigns(designs) {
+    if (countEl) countEl.textContent = designs.length + ' design' + (designs.length !== 1 ? 's' : '');
+
+    if (designs.length === 0) {
+      grid.innerHTML = '<div class="shop-empty"><h3>No designs found</h3><p>Try a different filter or check back soon.</p></div>';
       return;
     }
 
-    grid.innerHTML = products.map(function(p) {
-      var img = (p.images && p.images[0]) ? p.images[0] : {};
-      var price = p.priceRange ? p.priceRange.min : (p.variants && p.variants[0] ? p.variants[0].price : 0);
+    grid.innerHTML = designs.map(function(d) {
+      var img = d.image || {};
+      var price = d.min === d.max
+        ? '$' + d.min.toFixed(2)
+        : 'From $' + d.min.toFixed(2);
+      var href = '/product/?handle=' + encodeURIComponent(d.handle) +
+                 '&design=' + encodeURIComponent(d.name);
 
       return '<article class="product-card" data-animate="fade">' +
-        '<a href="/product/?handle=' + p.handle + '">' +
+        '<a href="' + href + '">' +
           '<div class="product-card__image-wrap">' +
-            '<img class="product-card__image" src="' + (img.url || '') + '" alt="' + (img.altText || p.title) + '" width="' + (img.width || 600) + '" height="' + (img.height || 800) + '" loading="lazy">' +
+            '<img class="product-card__image" src="' + (img.url || '') + '" alt="' + escapeHtml(d.name + ' — ' + d.productTitle) + '" width="' + (img.width || 600) + '" height="' + (img.height || 800) + '" loading="lazy">' +
           '</div>' +
           '<div class="product-card__body">' +
-            '<h3 class="product-card__title">' + p.title + '</h3>' +
-            '<p class="product-card__price">$' + parseFloat(price).toFixed(2) + '</p>' +
+            '<p class="product-card__context">' + escapeHtml(d.productTitle) + '</p>' +
+            '<h3 class="product-card__title">' + escapeHtml(d.name) + '</h3>' +
+            '<p class="product-card__price">' + price + '</p>' +
           '</div>' +
         '</a>' +
       '</article>';
     }).join('');
 
-    // Trigger scroll animations
     if (window.LB && window.LB.observeAnimations) {
       window.LB.observeAnimations();
     }
   }
 
-  // ── Build filter tags ─────────────────────────────────────────
-  function buildFilters(products) {
-    if (!filterContainer || collectionHandle) return;
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // ── Filter pills (by product type — shown when types vary) ────
+  function buildFilters(designs) {
+    if (!filterContainer) return;
 
     var types = {};
-    products.forEach(function(p) {
-      if (p.productType) types[p.productType] = (types[p.productType] || 0) + 1;
+    designs.forEach(function(d) {
+      if (d.productType) types[d.productType] = (types[d.productType] || 0) + 1;
     });
 
     var typeKeys = Object.keys(types);
-    if (typeKeys.length <= 1) return;
+    if (typeKeys.length <= 1) { filterContainer.innerHTML = ''; return; }
 
     var html = '<button class="filter-tag is-active" data-filter="all">All</button>';
     typeKeys.sort().forEach(function(type) {
-      html += '<button class="filter-tag" data-filter="' + type + '">' + type + '</button>';
+      html += '<button class="filter-tag" data-filter="' + escapeHtml(type) + '">' + escapeHtml(type) + '</button>';
     });
     filterContainer.innerHTML = html;
 
@@ -104,51 +167,40 @@
       filterContainer.querySelectorAll('.filter-tag').forEach(function(t) {
         t.classList.toggle('is-active', t.dataset.filter === activeFilter);
       });
-
-      var filtered = activeFilter === 'all'
-        ? allProducts
-        : allProducts.filter(function(p) { return p.productType === activeFilter; });
-
-      sortAndRender(filtered);
+      sortAndRender(currentSet());
     });
+  }
+
+  function currentSet() {
+    return activeFilter === 'all'
+      ? allDesigns.slice()
+      : allDesigns.filter(function(d) { return d.productType === activeFilter; });
   }
 
   // ── Sort ──────────────────────────────────────────────────────
   if (sortSelect) {
-    sortSelect.addEventListener('change', function() {
-      var filtered = activeFilter === 'all'
-        ? allProducts.slice()
-        : allProducts.filter(function(p) { return p.productType === activeFilter; });
-      sortAndRender(filtered);
-    });
+    sortSelect.addEventListener('change', function() { sortAndRender(currentSet()); });
   }
 
-  function sortAndRender(products) {
+  function sortAndRender(designs) {
     var sortVal = sortSelect ? sortSelect.value : 'title-asc';
-    var sorted = products.slice();
+    var sorted = designs.slice();
 
     switch (sortVal) {
       case 'price-asc':
-        sorted.sort(function(a, b) { return getPrice(a) - getPrice(b); });
+        sorted.sort(function(a, b) { return a.min - b.min; });
         break;
       case 'price-desc':
-        sorted.sort(function(a, b) { return getPrice(b) - getPrice(a); });
-        break;
-      case 'title-asc':
-        sorted.sort(function(a, b) { return a.title.localeCompare(b.title); });
+        sorted.sort(function(a, b) { return b.min - a.min; });
         break;
       case 'title-desc':
-        sorted.sort(function(a, b) { return b.title.localeCompare(a.title); });
+        sorted.sort(function(a, b) { return b.name.localeCompare(a.name); });
         break;
+      default:
+        sorted.sort(function(a, b) { return a.name.localeCompare(b.name); });
     }
 
-    renderProducts(sorted);
-  }
-
-  function getPrice(p) {
-    if (p.priceRange) return p.priceRange.min;
-    if (p.variants && p.variants[0]) return p.variants[0].price;
-    return 0;
+    renderDesigns(sorted);
   }
 
 })();

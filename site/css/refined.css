@@ -191,3 +191,18 @@ html, body { overflow-x: clip; }
   cursor: pointer; white-space: nowrap; transition: border-color .25s, background .25s, color .25s; }
 .vpill:hover { border-color: var(--accent, var(--color-hunter)); }
 .vpill.is-selected { background: var(--accent, var(--color-hunter)); border-color: var(--accent, var(--color-hunter)); color: #fff; }
+
+
+/* ── Design pills: show ALL of them — wrap instead of hidden scroll (2026-07-08).
+   A hidden-scrollbar row reads as "this is everything"; it isn't. ── */
+.variant-pills { flex-wrap: wrap; overflow-x: visible; scroll-snap-type: none; }
+
+/* ── Design-card grid additions: design cards show their parent product ── */
+.product-card__context {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-slate, #6F6F68);
+  margin: 0 0 4px;
+}

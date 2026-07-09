@@ -171,7 +171,13 @@
 
   function renderGallery(p) {
     designs = buildDesigns(p);
-    applyDesign(0, 0, true);
+    var want = params.get('design');
+    var di = 0;
+    if (want) {
+      var wl = want.toLowerCase();
+      designs.forEach(function(g, i) { if (g.name.toLowerCase() === wl) di = i; });
+    }
+    applyDesign(di, 0, true);
   }
 
   function designVariantImage(g) {
@@ -186,6 +192,13 @@
     if (packIdx == null || !g.variants[packIdx]) packIdx = 0;
     selectedPack = packIdx;
     selectedVariantIndex = g.variants[selectedPack].idx;
+
+    // keep the URL shareable: /product/?handle=X&design=Y
+    try {
+      var u = new URL(window.location.href);
+      u.searchParams.set('design', g.name);
+      window.history.replaceState(null, '', u.pathname + u.search);
+    } catch (e) {}
 
     var v = product.variants[selectedVariantIndex];
     var price = document.getElementById('productPrice');
