@@ -206,3 +206,66 @@ html, body { overflow-x: clip; }
   color: var(--color-slate, #6F6F68);
   margin: 0 0 4px;
 }
+
+
+/* ── Mobile PDP compaction (2026-07-08): photo, title, designs, price, Add
+   to Cart on the FIRST screen. Swipe gallery; breadcrumbs hidden; spacing
+   tightened. Desktop untouched. ── */
+.pg-track { display: none; }
+
+@media (max-width: 768px) {
+  #productContent { padding-top: 88px !important; }
+  #productBreadcrumb { display: none; }
+  .product-detail { padding-top: var(--space-md, 1rem); }
+  .product-detail__layout { gap: var(--space-lg, 1.5rem); }
+
+  /* gallery -> horizontal swipe, nothing underneath */
+  .product-gallery__main { display: none; }
+  .product-gallery__thumbs { display: none !important; }  /* beats the flex !important at the top of this file */
+  .pg-track {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 calc(var(--gutter) * -1);      /* edge-to-edge swipe field */
+    padding: 0 var(--gutter);
+  }
+  .pg-track::-webkit-scrollbar { display: none; }
+  .pg-slide {
+    flex: 0 0 84%;
+    scroll-snap-align: center;
+    aspect-ratio: 5 / 4;
+    background: #FFFFFF;
+    border: var(--hairline-soft, 1px solid rgba(29,50,45,.08));
+  }
+  .pg-slide:only-child { flex-basis: 100%; }
+  .pg-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  /* compact the buy block */
+  .product-info__eyebrow { margin-bottom: 4px; }
+  .product-info__title { font-size: var(--text-2xl); margin-bottom: 6px; }
+  .product-info__price { font-size: var(--text-lg); margin-bottom: 12px; }
+  .variant-selector__label, .vsel-label { margin-bottom: 6px; }
+  .vsel-row { margin-bottom: 10px; }
+  .variant-pills { gap: 6px; padding-bottom: 2px; }
+  .vpill { padding: 6px 11px; font-size: 11.5px; }
+  /* Add to Cart: fixed bottom bar — on screen one for EVERY product,
+     no matter how many designs wrap above it */
+  .product-actions {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    margin: 0;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(250, 247, 240, .96);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(29, 50, 45, .12);
+  }
+  .product-actions .btn { flex: 1; }
+  .qty-selector { flex: 0 0 auto; }
+  /* keep page content clear of the bar */
+  #productContent { padding-bottom: 96px; }
+}

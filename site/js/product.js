@@ -215,6 +215,23 @@
     var mainImg = document.getElementById('galleryMain');
     var thumbs = document.getElementById('galleryThumbs');
     if (!galleryImages.length) return;
+
+    // Mobile swipe track (CSS shows this <=768px and hides main+thumbs).
+    // Next slide peeks at the edge — the scroll affordance, no chrome under.
+    var gallery = mainImg ? mainImg.parentNode : null;
+    if (gallery) {
+      var track = document.getElementById('galleryTrack');
+      if (!track) {
+        track = document.createElement('div');
+        track.id = 'galleryTrack';
+        track.className = 'pg-track';
+        gallery.insertBefore(track, mainImg);
+      }
+      track.innerHTML = galleryImages.map(function(img, i) {
+        return '<div class="pg-slide"><img src="' + img.url + '" alt="' + (img.altText || title || '') + '"' + (i > 0 ? ' loading="lazy"' : '') + '></div>';
+      }).join('');
+      track.scrollLeft = 0;
+    }
     if (mainImg) {
       mainImg.innerHTML = '<img src="' + galleryImages[0].url + '" alt="' + (galleryImages[0].altText || title || '') + '" width="' + (galleryImages[0].width || 800) + '" height="' + (galleryImages[0].height || 1000) + '">';
     }
