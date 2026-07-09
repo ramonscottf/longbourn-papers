@@ -97,7 +97,7 @@
   --max-width:        1280px;
   --max-width-narrow: 680px;
   --max-width-wide:   1440px;
-  --gutter:           clamp(1.25rem, 4vw, 3rem);
+  --gutter:           clamp(1.5rem, 4.5vw, 4rem);
 
   /* ── Borders & Radius ──────────────────────────────────────────── */
 

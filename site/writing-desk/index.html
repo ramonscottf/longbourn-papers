@@ -32,10 +32,16 @@
   <link rel="stylesheet" href="/css/refined.css">
 
   <style>
-    .wd-cards { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:2.5rem; }
-    .wd-card { border:1px solid rgba(29,50,45,.14); border-radius:2px; background:#FFFDF9; padding:28px 26px; display:flex; flex-direction:column; }
-    .wd-card h3 { margin:.4rem 0 .6rem; }
-    .wd-card p { font-size:14.5px; line-height:1.7; color:rgba(29,50,45,.75); flex:1; }
+    .wd-cards { display:grid; gap:clamp(1.25rem,2.4vw,2rem); grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); margin-top:3rem; }
+    .wd-card { border:1px solid rgba(29,50,45,.12); border-radius:3px; background:#FFFDF9; display:flex; flex-direction:column; overflow:hidden; transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+    .wd-card:hover { transform:translateY(-4px); box-shadow:0 18px 40px -24px rgba(29,50,45,.45); border-color:rgba(29,50,45,.22); }
+    .wd-card__plate { aspect-ratio:16/11; overflow:hidden; background:var(--color-ivory); border-bottom:1px solid rgba(29,50,45,.10); }
+    .wd-card__photo { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
+    .wd-card:hover .wd-card__photo { transform:scale(1.04); }
+    .wd-card__body { padding:22px 24px 26px; display:flex; flex-direction:column; flex:1; }
+    .wd-card h3 { margin:.5rem 0 .55rem; }
+    .wd-card p { font-size:14.5px; line-height:1.7; color:rgba(29,50,45,.75); flex:1; margin-bottom:1.25rem; }
+    .wd-card .btn { width:100%; justify-content:center; text-align:center; }
     .wd-soon { display:inline-block; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(29,50,45,.5); border:1px solid rgba(29,50,45,.2); border-radius:999px; padding:4px 12px; align-self:flex-start; }
   </style>
 </head><body>
@@ -78,36 +84,52 @@
     </div>
   </div>
 </header>
-  <main><section class="section"><div class="container">
-    <div style="max-width:680px">
-      <span class="eyebrow" style="color:var(--color-gold,#B8965A)">The Writing Desk</span>
-      <h1 style="margin:.4em 0 .5em">Everything here is free.</h1>
-      <p class="prose">We sell paper, but the thing we actually care about is what gets written on it. The Writing Desk is our collection of free tools, guides, and lessons for the lost art of correspondence — no account, no catch. Use them with our cards or anyone else's.</p>
+  <main>
+  <section class="page-hero" style="background-image:url(/media/posters/artisan-paper-making.jpg)">
+    <video class="page-hero__video" autoplay muted loop playsinline preload="metadata" poster="/media/posters/artisan-paper-making.jpg" aria-hidden="true"><source src="/media/video/artisan-paper-making.mp4" type="video/mp4"></video>
+    <div class="container">
+      <span class="page-hero__eyebrow">The Writing Desk</span>
+      <h1 class="page-hero__title">Everything here is free.</h1>
+      <p class="page-hero__subtitle">Free tools, guides, and lessons for the lost art of correspondence — no account, no catch. Use them with our cards or anyone else's.</p>
     </div>
+  </section>
+  <section class="section"><div class="container">
     <div class="wd-cards">
       <div class="wd-card">
+        <div class="wd-card__plate"><img class="wd-card__photo" src="/media/studio/lodge-writing.jpg" alt="Writing a note at the desk" loading="lazy"></div>
+        <div class="wd-card__body">
         <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
         <h3>What Do I Write?</h3>
         <p>Staring at a blank card? Choose the occasion, who it's for, and the tone — get real opening lines, body prompts, and closings you can borrow outright.</p>
         <a class="btn btn--primary" href="/writing-desk/what-do-i-write/">Open the tool</a>
       </div>
+      </div>
       <div class="wd-card">
+        <div class="wd-card__plate"><img class="wd-card__photo" src="/media/studio/studio-sheet.jpg" alt="A freshly pressed sheet" loading="lazy"></div>
+        <div class="wd-card__body">
         <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Guides</span>
         <h3>The Letter-Writing Guides</h3>
         <p>Deep, practical guides from the Journal — how to write a thank-you note people keep, what to say in a sympathy card, and a growing library of occasions.</p>
-        <a class="btn btn--ghost" href="/journal/">Read the guides</a>
+        <a class="btn btn--primary" href="/journal/">Read the guides</a>
+      </div>
       </div>
       <div class="wd-card">
+        <div class="wd-card__plate"><img class="wd-card__photo" src="/media/studio/real-ink-knife.jpg" alt="Ink knife and mixing slab" loading="lazy"></div>
+        <div class="wd-card__body">
         <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Tool</span>
         <h3>Calligraphy Practice Sheets</h3>
         <p>Type any phrase and print proper guided practice sheets — x-height rules, true 55° slant lines, ghost letters to trace. US Letter and A4, free forever.</p>
         <a class="btn btn--primary" href="/writing-desk/practice-sheets/">Make a sheet</a>
       </div>
+      </div>
       <div class="wd-card">
+        <div class="wd-card__plate"><img class="wd-card__photo" src="/media/studio/real-press-shop.jpg" alt="The Heidelberg in the shop" loading="lazy"></div>
+        <div class="wd-card__body">
         <span class="eyebrow" style="color:var(--color-gold,#B8965A)">Free course</span>
         <h3>The Lost Art</h3>
         <p>Five short lessons on writing letters worth keeping — by email every couple of days, or read them all right now. One small assignment each.</p>
         <a class="btn btn--primary" href="/writing-desk/lost-art/">Start the course</a>
+      </div>
       </div>
     </div>
   </div></section></main>
