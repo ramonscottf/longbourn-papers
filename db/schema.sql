@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS variants (
   selected_options_json TEXT DEFAULT '[]',
   wholesale_cents INTEGER NOT NULL,  -- consignment: owed to Longbourn per unit sold (50% MSRP)
   position INTEGER NOT NULL DEFAULT 0,
-  tags_json TEXT DEFAULT '[]'  -- design-level occasion tags (holiday/thank-you/sympathy/celebration/baby); drives occasion-collection filtering
+  tags_json TEXT DEFAULT '[]',  -- design-level collection tags; any collection handle here pulls the design onto that collection page
+  description TEXT  -- optional design-level description; PDP falls back to the parent product's
 );
 CREATE INDEX IF NOT EXISTS idx_variants_product ON variants(product_id);
 -- consigned stock: Wicko holds it, Longbourn owns it until sold; quantity NULL = not yet counted

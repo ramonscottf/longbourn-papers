@@ -41,6 +41,7 @@ function buildVariant(v) {
     image: v.image_json ? JSON.parse(v.image_json) : null,
     selectedOptions: JSON.parse(v.selected_options_json || '[]'),
     tags: JSON.parse(v.tags_json || '[]'),
+    description: v.description || null,
   };
 }
 

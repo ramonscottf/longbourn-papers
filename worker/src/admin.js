@@ -269,15 +269,26 @@ export async function handleAdmin(request, env, path) {
         try { JSON.parse(f.tags_json); } catch { return jerr(400, 'tags_json must be valid JSON'); }
         sets.push('tags_json=?'); vals.push(f.tags_json);
       }
+      if (typeof f.description === 'string') { sets.push('description=?'); vals.push(f.description || null); }
+      let movedFrom = null;
+      if (typeof f.product_id === 'string' && f.product_id) {
+        const dest = await env.DB.prepare('SELECT id FROM products WHERE id=?').bind(f.product_id).first();
+        if (!dest) return jerr(400, 'Unknown destination category');
+        const cur = await env.DB.prepare('SELECT product_id FROM variants WHERE id=?').bind(body.variantId).first();
+        movedFrom = cur ? cur.product_id : null;
+        sets.push('product_id=?'); vals.push(f.product_id);
+      }
       if (!sets.length) return jerr(400, 'No editable fields provided');
       vals.push(body.variantId);
       const r = await env.DB.prepare('UPDATE variants SET ' + sets.join(', ') + ' WHERE id=?').bind(...vals).run();
       if (!r.meta.changes) return jerr(404, 'Unknown variant');
-      // keep product price range honest after price edits
+      // keep product price ranges honest after price edits and category moves
       const v = await env.DB.prepare('SELECT product_id FROM variants WHERE id=?').bind(body.variantId).first();
-      if (v) await env.DB.prepare(
+      const recalc = async (pid) => pid && env.DB.prepare(
         'UPDATE products SET price_min_cents=(SELECT MIN(price_cents) FROM variants WHERE product_id=?), price_max_cents=(SELECT MAX(price_cents) FROM variants WHERE product_id=?) WHERE id=?'
-      ).bind(v.product_id, v.product_id, v.product_id).run();
+      ).bind(pid, pid, pid).run();
+      if (v) await recalc(v.product_id);
+      if (movedFrom && (!v || movedFrom !== v.product_id)) await recalc(movedFrom);
     } else {
       return jerr(400, 'productId or variantId required');
     }

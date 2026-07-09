@@ -204,6 +204,15 @@
     var price = document.getElementById('productPrice');
     if (price && v) price.textContent = '$' + v.price.toFixed(2);
 
+    // Design-level description if the design has one; otherwise the category's
+    var descEl = document.getElementById('productDescription');
+    if (descEl && v) {
+      var dRaw = v.description
+        ? '<p>' + String(v.description).replace(/&/g,'&amp;').replace(/</g,'&lt;').split(/\n{2,}/).join('</p><p>') + '</p>'
+        : (product.descriptionHtml || '<p>' + (product.description || '') + '</p>');
+      descEl.innerHTML = dRaw.replace(/\s(?:style|class|data-[a-z-]+)="[^"]*"/gi, '');
+    }
+
     galleryImages = g.imgs;
     renderGalleryImages(product.title);
     applyAccent(designVariantImage(g), galleryImages);

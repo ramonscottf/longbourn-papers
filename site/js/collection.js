@@ -27,12 +27,15 @@
 
   grid.innerHTML = '<div class="loading"><div class="loading__spinner"></div></div>';
 
-  fetch(endpoint)
-    .then(function(res) {
-      if (!res.ok) throw new Error('Failed to fetch');
-      return res.json();
-    })
-    .then(function(data) {
+  // Any collection = designs of member products UNION designs tagged with the
+  // collection's handle anywhere in the catalog (themes work without moving products).
+  var fetches = [fetch(endpoint).then(function(res){ if(!res.ok) throw new Error('Failed'); return res.json(); })];
+  if (collectionHandle) fetches.push(fetch(API_BASE + '/products').then(function(res){ return res.ok ? res.json() : []; }).catch(function(){ return []; }));
+
+  Promise.all(fetches)
+    .then(function(results) {
+      var data = results[0];
+      var catalog = results[1] || [];
       var products = collectionHandle ? (data.products || []) : data;
 
       if (collectionHandle && data.title) {
@@ -47,11 +50,23 @@
 
       allDesigns = explodeDesigns(products);
 
-      // Occasion pages: only designs tagged with this occasion
-      if (collectionHandle && OCCASIONS.indexOf(collectionHandle) !== -1) {
-        allDesigns = allDesigns.filter(function(d) {
-          return d.tags.indexOf(collectionHandle) !== -1;
-        });
+      if (collectionHandle) {
+        if (OCCASIONS.indexOf(collectionHandle) !== -1) {
+          // Occasion pages stay tag-only (curated, not whole categories)
+          allDesigns = explodeDesigns(catalog).filter(function(d) {
+            return d.tags.indexOf(collectionHandle) !== -1;
+          });
+        } else {
+          // Theme/category pages: member designs + tagged designs, deduped
+          var seen = {};
+          allDesigns.forEach(function(d) { seen[d.handle + '|' + d.name] = true; });
+          explodeDesigns(catalog).forEach(function(d) {
+            if (d.tags.indexOf(collectionHandle) !== -1 && !seen[d.handle + '|' + d.name]) {
+              seen[d.handle + '|' + d.name] = true;
+              allDesigns.push(d);
+            }
+          });
+        }
       }
 
       buildFilters(allDesigns);
