@@ -78,3 +78,18 @@ CREATE TABLE IF NOT EXISTS order_events (
   created_at TEXT DEFAULT (datetime('now'))
 );
 CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT);
+
+-- Shot Studio: every photo/video slot across the site, tracked (2026-07-09)
+CREATE TABLE IF NOT EXISTS shots (
+  slot_key TEXT PRIMARY KEY,     -- e.g. product-primary:gift-tags:bravo
+  kind TEXT NOT NULL,            -- product-primary|product-secondary|collection-hero|page-hero|writing-desk|video|story
+  title TEXT NOT NULL,
+  subject TEXT,                  -- what the shot depicts (feeds prompt generation)
+  target_path TEXT,              -- R2 key the asset deploys to
+  current_url TEXT,              -- what is live today (reference thumbnail)
+  prompt TEXT,                   -- generated from house style + kind template; editable
+  status TEXT NOT NULL DEFAULT 'needed',  -- needed|generated|review|live|skip
+  notes TEXT,
+  sort INTEGER DEFAULT 0,
+  updated_at TEXT
+);

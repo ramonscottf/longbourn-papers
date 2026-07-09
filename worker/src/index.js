@@ -13,6 +13,7 @@ import { handleContact } from './contact.js';
 import { handleNewsletter } from './newsletter.js';
 import { handleWholesale } from './wholesale.js';
 import { handlePhotoEnhance, handlePhotoDeploy, handlePhotoServe, handlePhotoClean, handleSetPrime, handleGenerateScene, handleApproveAndDeploy } from './photos.js';
+import { handleShotsList, handleShotsUpsert, handleShotsStatus, handleShotsDelete, handleShotsSeed } from './shots.js';
 
 export default {
   async scheduled(event, env, ctx) {
@@ -79,6 +80,21 @@ export default {
       }
       else if (path === '/api/admin/email-log' && request.method === 'GET') {
         response = await handleEmailLog(url, env);
+      }
+      else if (path === '/api/admin/shots' && request.method === 'GET') {
+        response = await handleShotsList(env);
+      }
+      else if (path === '/api/admin/shots' && request.method === 'POST') {
+        response = await handleShotsUpsert(request, env);
+      }
+      else if (path === '/api/admin/shots/status' && request.method === 'POST') {
+        response = await handleShotsStatus(request, env);
+      }
+      else if (path === '/api/admin/shots/delete' && request.method === 'POST') {
+        response = await handleShotsDelete(request, env);
+      }
+      else if (path === '/api/admin/shots/seed' && request.method === 'POST') {
+        response = await handleShotsSeed(request, env);
       }
       else if (path.startsWith('/api/admin/')) {
         response = await handleAdmin(request, env, path);

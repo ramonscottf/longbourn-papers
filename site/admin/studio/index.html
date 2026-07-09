@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Shot Studio — Longbourn Papers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#1D322D; --cream:#FAF7F0; --ivory:#F5F0E8; --gold:#B8965A; --line:rgba(29,50,45,.14); --slate:#6F6F68; }
+* { box-sizing:border-box; margin:0; }
+body { font-family:'Libre Franklin',sans-serif; background:var(--cream); color:var(--ink); font-size:14px; }
+h1 { font-family:'Playfair Display',serif; font-size:1.6rem; }
+.wrap { max-width:1180px; margin:0 auto; padding:24px 20px 120px; }
+.topbar { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:18px; }
+.topbar .sub { color:var(--slate); font-size:12.5px; }
+.chips { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
+.chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 13px; cursor:pointer; font-size:12px; }
+.chip.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+.chip b { font-weight:600; }
+input[type=text], input[type=password], textarea, select { font:inherit; border:1px solid var(--line); border-radius:3px; padding:8px 10px; background:#fff; width:100%; }
+textarea { min-height:96px; line-height:1.5; font-size:12.5px; }
+button { font:inherit; cursor:pointer; border-radius:3px; border:1px solid var(--ink); background:var(--ink); color:#fff; padding:8px 14px; font-size:12.5px; letter-spacing:.04em; }
+button.ghost { background:#fff; color:var(--ink); }
+button.gold { background:var(--gold); border-color:var(--gold); }
+button:disabled { opacity:.5; cursor:default; }
+.kindhead { font-family:'Playfair Display',serif; font-size:1.15rem; margin:26px 0 10px; display:flex; align-items:baseline; gap:10px; }
+.kindhead .n { font-family:'Libre Franklin'; font-size:12px; color:var(--slate); }
+.card { background:#fff; border:1px solid var(--line); border-radius:4px; padding:14px; margin-bottom:10px; display:grid; grid-template-columns:88px 1fr; gap:14px; }
+.thumb { width:88px; height:88px; background:var(--ivory); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden; font-size:10px; color:var(--slate); text-align:center; }
+.thumb img { width:100%; height:100%; object-fit:contain; }
+.row1 { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.title { font-weight:600; font-size:14.5px; }
+.subject { color:var(--slate); font-size:12px; margin-top:2px; }
+.status { border-radius:999px; padding:3px 11px; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; cursor:pointer; border:1px solid transparent; }
+.st-needed { background:#FBEAE6; color:#8C3B2E; }
+.st-generated { background:#F3ECDC; color:#7A6230; }
+.st-review { background:#E8EDF5; color:#33507A; }
+.st-live { background:#E6EFE8; color:#2E5B3C; }
+.st-skip { background:#EEEDEA; color:#77756E; }
+.meta { font-size:11px; color:var(--slate); margin-top:5px; }
+.tools { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+.tools button { padding:6px 11px; font-size:11.5px; }
+.expand { display:none; margin-top:12px; border-top:1px dashed var(--line); padding-top:12px; }
+.card.open .expand { display:block; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+label { display:block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); margin:8px 0 4px; }
+.preview { max-width:280px; border:1px solid var(--line); margin-top:8px; display:block; }
+.addbox { background:#fff; border:1px dashed var(--gold); border-radius:4px; padding:16px; margin:26px 0; }
+.msg { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 18px; border-radius:3px; font-size:12.5px; opacity:0; transition:opacity .3s; pointer-events:none; z-index:99; }
+.msg.show { opacity:1; }
+#gate { max-width:360px; margin:120px auto; text-align:center; }
+#gate h1 { margin-bottom:14px; }
+#app { display:none; }
+@media (max-width:640px){ .card { grid-template-columns:64px 1fr; } .thumb { width:64px; height:64px; } .grid2 { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1>Shot Studio</h1>
+  <p style="color:var(--slate);margin-bottom:14px">Longbourn Papers — photo &amp; video shot list</p>
+  <input type="password" id="pw" placeholder="Admin token" style="margin-bottom:10px">
+  <button onclick="unlock()" style="width:100%">Enter</button>
+  <p id="gateErr" style="color:#8C3B2E;font-size:12px;margin-top:10px"></p>
+</div>
+
+<div id="app" class="wrap">
+  <div class="topbar">
+    <h1>Shot Studio</h1>
+    <span class="sub">every photo &amp; video slot · unified house background · prompts ready to copy</span>
+    <span style="flex:1"></span>
+    <button class="ghost" onclick="seed()">Re-seed from catalog</button>
+  </div>
+
+  <input type="text" id="search" placeholder="Search designs, pages, subjects…" oninput="render()" style="max-width:420px">
+  <div class="chips" id="statusChips"></div>
+  <div id="board"></div>
+
+  <div class="addbox">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:8px">Add a slot</div>
+    <div class="grid2">
+      <div><label>Kind</label>
+        <select id="addKind">
+          <option value="product-primary">Product — primary</option>
+          <option value="product-secondary">Product — secondary scene</option>
+          <option value="collection-hero">Collection hero</option>
+          <option value="page-hero">Page hero</option>
+          <option value="writing-desk">Writing Desk card</option>
+          <option value="story">Story / editorial</option>
+          <option value="video">Video</option>
+        </select></div>
+      <div><label>Title</label><input type="text" id="addTitle" placeholder="e.g. Holiday gift wrap scene"></div>
+    </div>
+    <label>Subject — what should this be prompted as?</label>
+    <input type="text" id="addSubject" placeholder="e.g. stack of holiday tags beside pine sprigs and twine">
+    <div class="grid2">
+      <div><label>Target path (R2 key, optional)</label><input type="text" id="addTarget" placeholder="media/…"></div>
+      <div><label>Notes</label><input type="text" id="addNotes"></div>
+    </div>
+    <div style="margin-top:12px"><button class="gold" onclick="addSlot()">Add to shot list — prompt auto-generates</button></div>
+  </div>
+</div>
+
+<div class="msg" id="msg"></div>
+
+<script>
+var TOKEN = localStorage.getItem('lb_admin_token') || '';
+var SHOTS = [];
+var FILTER = 'all';
+var STATUSES = ['needed','generated','review','live','skip'];
+var KIND_LABELS = { 'product-primary':'Product — Primary', 'product-secondary':'Product — Secondary Scenes',
+  'collection-hero':'Collection Heroes', 'page-hero':'Page Heroes', 'writing-desk':'Writing Desk Cards',
+  'video':'Video', 'story':'Story / Editorial' };
+
+function api(path, opts) {
+  opts = opts || {};
+  opts.headers = Object.assign({ 'X-Admin-Token': TOKEN, 'Content-Type': 'application/json' }, opts.headers || {});
+  return fetch(path, opts).then(function(r) {
+    if (r.status === 401) { localStorage.removeItem('lb_admin_token'); location.reload(); throw new Error('unauthorized'); }
+    return r.json();
+  });
+}
+function toast(t) { var m = document.getElementById('msg'); m.textContent = t; m.classList.add('show'); setTimeout(function(){ m.classList.remove('show'); }, 2200); }
+
+function unlock() {
+  TOKEN = document.getElementById('pw').value.trim();
+  api('/api/photos/auth-check', { method: 'POST', body: '{}' }).then(function() {
+    localStorage.setItem('lb_admin_token', TOKEN);
+    boot();
+  }).catch(function() { document.getElementById('gateErr').textContent = 'Invalid token.'; });
+}
+
+function boot() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  load();
+}
+
+function load() {
+  api('/api/admin/shots').then(function(d) { SHOTS = d.shots || []; render(); });
+}
+
+function seed() {
+  api('/api/admin/shots/seed', { method: 'POST', body: '{}' }).then(function(d) {
+    toast('Seed: ' + d.inserted + ' new of ' + d.considered + ' considered'); load();
+  });
+}
+
+function counts() {
+  var c = { all: SHOTS.length };
+  STATUSES.forEach(function(s){ c[s] = SHOTS.filter(function(x){ return x.status === s; }).length; });
+  return c;
+}
+
+function render() {
+  var q = (document.getElementById('search').value || '').toLowerCase();
+  var c = counts();
+  var chips = ['all'].concat(STATUSES).map(function(s) {
+    return '<span class="chip' + (FILTER === s ? ' on' : '') + '" onclick="FILTER=\'' + s + '\';render()">' +
+      s + ' <b>' + (c[s] || 0) + '</b></span>';
+  }).join('');
+  document.getElementById('statusChips').innerHTML = chips;
+
+  var list = SHOTS.filter(function(s) {
+    if (FILTER !== 'all' && s.status !== FILTER) return false;
+    if (q && (s.title + ' ' + (s.subject||'') + ' ' + s.kind).toLowerCase().indexOf(q) === -1) return false;
+    return true;
+  });
+
+  var byKind = {};
+  list.forEach(function(s){ (byKind[s.kind] = byKind[s.kind] || []).push(s); });
+
+  var html = '';
+  Object.keys(KIND_LABELS).forEach(function(k) {
+    var rows = byKind[k]; if (!rows || !rows.length) return;
+    html += '<div class="kindhead">' + KIND_LABELS[k] + ' <span class="n">' + rows.length + '</span></div>';
+    rows.forEach(function(s) { html += card(s); });
+  });
+  document.getElementById('board').innerHTML = html || '<p style="color:var(--slate)">Nothing matches. Try Re-seed from catalog.</p>';
+}
+
+function esc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+function card(s) {
+  var thumb = s.current_url ? '<img src="' + esc(s.current_url) + '" loading="lazy">' : (s.kind === 'video' ? 'video' : 'no image yet');
+  return '<div class="card" id="c-' + esc(s.slot_key) + '">' +
+    '<div class="thumb">' + thumb + '</div>' +
+    '<div>' +
+      '<div class="row1">' +
+        '<span class="title">' + esc(s.title) + '</span>' +
+        '<span class="status st-' + esc(s.status) + '" onclick="cycle(\'' + esc(s.slot_key) + '\')" title="Click to advance status">' + esc(s.status) + '</span>' +
+      '</div>' +
+      '<div class="subject">' + esc(s.subject || '') + '</div>' +
+      '<div class="meta">' + esc(s.slot_key) + (s.target_path ? ' → ' + esc(s.target_path) : '') + '</div>' +
+      '<div class="tools">' +
+        '<button class="ghost" onclick="copyPrompt(\'' + esc(s.slot_key) + '\')">Copy prompt</button>' +
+        '<button class="ghost" onclick="toggle(\'' + esc(s.slot_key) + '\')">Edit / Upload</button>' +
+      '</div>' +
+      '<div class="expand">' +
+        '<label>Prompt (editable — Copy uses this text)</label>' +
+        '<textarea id="p-' + esc(s.slot_key) + '">' + esc(s.prompt || '') + '</textarea>' +
+        '<label>Notes</label>' +
+        '<input type="text" id="n-' + esc(s.slot_key) + '" value="' + esc(s.notes || '') + '">' +
+        '<div class="tools">' +
+          '<button onclick="save(\'' + esc(s.slot_key) + '\')">Save</button>' +
+          (s.kind !== 'video' ?
+            '<input type="file" accept="image/*" id="f-' + esc(s.slot_key) + '" style="display:none" onchange="picked(\'' + esc(s.slot_key) + '\')">' +
+            '<button class="ghost" onclick="document.getElementById(\'f-' + esc(s.slot_key) + '\').click()">Choose image…</button>' +
+            '<button class="ghost" id="clean-' + esc(s.slot_key) + '" style="display:none" onclick="cleanBg(\'' + esc(s.slot_key) + '\')">Remove background</button>' +
+            '<button class="gold" id="dep-' + esc(s.slot_key) + '" style="display:none" onclick="deploy(\'' + esc(s.slot_key) + '\')">Deploy to site</button>'
+          : '') +
+          '<button class="ghost" style="border-color:#8C3B2E;color:#8C3B2E" onclick="del(\'' + esc(s.slot_key) + '\')">Delete slot</button>' +
+        '</div>' +
+        '<img class="preview" id="prev-' + esc(s.slot_key) + '" style="display:none">' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+var STAGED = {};
+
+function find(k){ return SHOTS.filter(function(s){ return s.slot_key === k; })[0]; }
+function toggle(k){ document.getElementById('c-' + k).classList.toggle('open'); }
+
+function cycle(k) {
+  var s = find(k); if (!s) return;
+  var next = STATUSES[(STATUSES.indexOf(s.status) + 1) % STATUSES.length];
+  api('/api/admin/shots/status', { method: 'POST', body: JSON.stringify({ slot_key: k, status: next }) })
+    .then(function(){ s.status = next; render(); });
+}
+
+function copyPrompt(k) {
+  var ta = document.getElementById('p-' + k);
+  var text = ta ? ta.value : (find(k) || {}).prompt || '';
+  navigator.clipboard.writeText(text).then(function(){ toast('Prompt copied'); });
+}
+
+function save(k) {
+  var s = find(k); if (!s) return;
+  s.prompt = document.getElementById('p-' + k).value;
+  s.notes = document.getElementById('n-' + k).value;
+  api('/api/admin/shots', { method: 'POST', body: JSON.stringify(s) }).then(function(){ toast('Saved'); });
+}
+
+function picked(k) {
+  var f = document.getElementById('f-' + k).files[0]; if (!f) return;
+  var r = new FileReader();
+  r.onload = function() {
+    STAGED[k] = r.result.split(',')[1];
+    var img = document.getElementById('prev-' + k);
+    img.src = r.result; img.style.display = 'block';
+    document.getElementById('clean-' + k).style.display = 'inline-block';
+    document.getElementById('dep-' + k).style.display = 'inline-block';
+  };
+  r.readAsDataURL(f);
+}
+
+function cleanBg(k) {
+  if (!STAGED[k]) return;
+  toast('Removing background…');
+  api('/api/photos/clean', { method: 'POST', body: JSON.stringify({ image: STAGED[k], slotId: k }) })
+    .then(function(d) {
+      if (!d.success) { toast('Clean failed: ' + (d.error || '')); return; }
+      STAGED[k] = d.cleanedUrl.split(',')[1];
+      document.getElementById('prev-' + k).src = d.cleanedUrl;
+      toast(d.usedAI ? 'Background removed' : 'AI unavailable — original kept');
+    });
+}
+
+function deploy(k) {
+  var s = find(k);
+  if (!s || !STAGED[k]) return;
+  if (!s.target_path) { toast('No target path set'); return; }
+  toast('Deploying…');
+  api('/api/photos/approve-deploy', { method: 'POST', body: JSON.stringify({ slotId: k, r2Path: s.target_path, imageData: STAGED[k] }) })
+    .then(function(d) {
+      if (!d.success) { toast('Deploy failed: ' + (d.error || '')); return; }
+      return api('/api/admin/shots/status', { method: 'POST', body: JSON.stringify({ slot_key: k, status: 'live' }) })
+        .then(function(){ toast('Live at ' + s.target_path); s.status = 'live'; s.current_url = '/' + s.target_path; render(); });
+    });
+}
+
+function del(k) {
+  if (!confirm('Delete this slot from the shot list? (Does not touch any live image.)')) return;
+  api('/api/admin/shots/delete', { method: 'POST', body: JSON.stringify({ slot_key: k }) })
+    .then(function(){ SHOTS = SHOTS.filter(function(s){ return s.slot_key !== k; }); render(); toast('Deleted'); });
+}
+
+function addSlot() {
+  var b = { kind: document.getElementById('addKind').value, title: document.getElementById('addTitle').value.trim(),
+            subject: document.getElementById('addSubject').value.trim(), target_path: document.getElementById('addTarget').value.trim(),
+            notes: document.getElementById('addNotes').value.trim(), status: 'needed' };
+  if (!b.title) { toast('Title required'); return; }
+  api('/api/admin/shots', { method: 'POST', body: JSON.stringify(b) }).then(function() {
+    toast('Added'); document.getElementById('addTitle').value=''; document.getElementById('addSubject').value='';
+    document.getElementById('addTarget').value=''; document.getElementById('addNotes').value=''; load();
+  });
+}
+
+if (TOKEN) { api('/api/photos/auth-check', { method: 'POST', body: '{}' }).then(boot).catch(function(){}); }
+</script>
+</body>
+</html>
