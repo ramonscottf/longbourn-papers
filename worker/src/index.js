@@ -37,7 +37,9 @@ export default {
     // require ADMIN_TOKEN. Fails closed: if the secret is unset, these routes 401.
     if ((path.startsWith('/api/photos/') && request.method === 'POST') || path.startsWith('/api/admin/')) {
       const token = request.headers.get('X-Admin-Token') || '';
-      if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN) {
+      const tokenOk = (env.ADMIN_TOKEN && token === env.ADMIN_TOKEN) ||
+                      (env.ADMIN_TOKEN_2 && token === env.ADMIN_TOKEN_2); // HQ's own credential
+      if (!tokenOk) {
         return new Response(JSON.stringify({ error: 'Unauthorized' }), {
           status: 401,
           headers: { 'Content-Type': 'application/json' },

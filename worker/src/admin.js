@@ -227,5 +227,69 @@ export async function handleAdmin(request, env, path) {
     return json({ ok: true, variantId: body.variantId, quantity: q });
   }
 
+  // ── Products CRUD (Phase: Wicko HQ) ─────────────────────────────
+  // GET /api/admin/products — full editable catalog
+  if (sub === 'products' && method === 'GET') {
+    const { results: products } = await env.DB.prepare(
+      'SELECT id, handle, title, description, product_type, price_min_cents, price_max_cents, tags_json FROM products ORDER BY title'
+    ).all();
+    const { results: variants } = await env.DB.prepare(
+      'SELECT id, product_id, title, price_cents, available, tags_json, position FROM variants ORDER BY position'
+    ).all();
+    const byP = {};
+    for (const v of variants) (byP[v.product_id] ||= []).push(v);
+    return json({ products: products.map(p => ({ ...p, variants: byP[p.id] || [] })) });
+  }
+
+  // POST /api/admin/products/update
+  // { productId, fields:{title?, description?} } OR { variantId, fields:{title?, price_cents?, available?, tags_json?} }
+  if (sub === 'products/update' && method === 'POST') {
+    let body; try { body = await request.json(); } catch { return jerr(400, 'Invalid JSON'); }
+    const f = body.fields || {};
+
+    if (body.productId) {
+      const sets = [], vals = [];
+      if (typeof f.title === 'string' && f.title.trim()) { sets.push('title=?'); vals.push(f.title.trim()); }
+      if (typeof f.description === 'string') { sets.push('description=?'); vals.push(f.description); sets.push('description_html=?'); vals.push('<p>' + f.description.replace(/&/g,'&amp;').replace(/</g,'&lt;').split(/\n{2,}/).join('</p><p>') + '</p>'); }
+      if (!sets.length) return jerr(400, 'No editable fields provided');
+      vals.push(body.productId);
+      const r = await env.DB.prepare('UPDATE products SET ' + sets.join(', ') + ' WHERE id=?').bind(...vals).run();
+      if (!r.meta.changes) return jerr(404, 'Unknown product');
+    } else if (body.variantId) {
+      const sets = [], vals = [];
+      if (typeof f.title === 'string' && f.title.trim()) { sets.push('title=?'); vals.push(f.title.trim()); }
+      if (f.price_cents != null) {
+        const p = Math.round(Number(f.price_cents));
+        if (!Number.isFinite(p) || p < 0 || p > 10000000) return jerr(400, 'bad price_cents');
+        sets.push('price_cents=?'); vals.push(p);
+      }
+      if (f.available != null) { sets.push('available=?'); vals.push(f.available ? 1 : 0); }
+      if (typeof f.tags_json === 'string') {
+        try { JSON.parse(f.tags_json); } catch { return jerr(400, 'tags_json must be valid JSON'); }
+        sets.push('tags_json=?'); vals.push(f.tags_json);
+      }
+      if (!sets.length) return jerr(400, 'No editable fields provided');
+      vals.push(body.variantId);
+      const r = await env.DB.prepare('UPDATE variants SET ' + sets.join(', ') + ' WHERE id=?').bind(...vals).run();
+      if (!r.meta.changes) return jerr(404, 'Unknown variant');
+      // keep product price range honest after price edits
+      const v = await env.DB.prepare('SELECT product_id FROM variants WHERE id=?').bind(body.variantId).first();
+      if (v) await env.DB.prepare(
+        'UPDATE products SET price_min_cents=(SELECT MIN(price_cents) FROM variants WHERE product_id=?), price_max_cents=(SELECT MAX(price_cents) FROM variants WHERE product_id=?) WHERE id=?'
+      ).bind(v.product_id, v.product_id, v.product_id).run();
+    } else {
+      return jerr(400, 'productId or variantId required');
+    }
+
+    // flush the KV catalog cache so the storefront reflects edits immediately
+    if (env.CACHE) {
+      for (const prefix of ['products:', 'product:', 'collection:']) {
+        const list = await env.CACHE.list({ prefix });
+        for (const k of list.keys) await env.CACHE.delete(k.name);
+      }
+    }
+    return json({ ok: true });
+  }
+
   return jerr(404, 'Not found');
 }
