@@ -68,7 +68,7 @@ for p in posts:
   </main>
   {foot}
   <script src="/js/main.js" defer></script>
-  <script src="/js/cart.js" defer></script>
+  <script src="/js/cart.js?v=20261027" defer></script>
   <script src="/assets/wicko-pill-nav/wicko-pill-nav.js" defer></script>
 </body>
 </html>

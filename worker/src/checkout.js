@@ -291,3 +291,40 @@ export async function handleTestOrder(request, env) {
   await sendOrderEmail(env, body.email, orderId, items, sim);
   return json({ ok: true, orderId, result });
 }
+
+// ── GET /api/admin/stripe/status (ADMIN-gated, READ-ONLY) ────────────────────
+// Which Stripe account is this worker charging into, is the webhook alive, and
+// did any "pending" order actually get paid (i.e. a missed webhook)? Added
+// 2026-10-27 ahead of moving Longbourn onto Ali's own Stripe account. Never writes.
+export async function handleStripeStatus(request, env) {
+  if (!env.STRIPE_SECRET_KEY) return jerr(503, 'STRIPE_SECRET_KEY not set');
+  const acct = await stripe(env, 'GET', 'account');
+  const a = acct.body || {};
+  const hooks = await stripe(env, 'GET', 'webhook_endpoints?limit=100');
+  const { results: pend } = await env.DB.prepare(
+    `SELECT id, subtotal_cents, created_at, stripe_session_id FROM orders
+     WHERE status='pending' AND stripe_session_id IS NOT NULL
+     ORDER BY created_at DESC LIMIT 40`).all();
+  const sessions = [];
+  for (const o of pend) {
+    const s = await stripe(env, 'GET', `checkout/sessions/${o.stripe_session_id}`);
+    sessions.push({
+      order: o.id, created: o.created_at, subtotal: o.subtotal_cents,
+      status: s.body?.status, payment_status: s.body?.payment_status,
+      amount_total: s.body?.amount_total, email: s.body?.customer_details?.email || null,
+      error: s.ok ? undefined : s.body?.error?.message,
+    });
+  }
+  return json({
+    key_mode: (env.STRIPE_SECRET_KEY || '').slice(0, 8),
+    account: acct.ok ? {
+      id: a.id, business_name: a.business_profile?.name || a.settings?.dashboard?.display_name || null,
+      email: a.email || null, country: a.country, charges_enabled: a.charges_enabled,
+      payouts_enabled: a.payouts_enabled, descriptor: a.settings?.payments?.statement_descriptor || null,
+      controller: a.controller?.type || null,
+    } : { error: a.error?.message },
+    webhooks: (hooks.body?.data || []).map(w => ({ id: w.id, url: w.url, status: w.status, events: w.enabled_events })),
+    pending_sessions: sessions,
+    paid_but_pending: sessions.filter(s => s.payment_status === 'paid').length,
+  });
+}

@@ -221,10 +221,15 @@ const Cart = {
     if (closeBtn) closeBtn.addEventListener('click', function() { self.closeDrawer(); });
 
     // Card physics: click outside the card closes it; opening the menu closes it.
+    // composedPath() is captured at dispatch, so it still includes the drawer even
+    // when a +/-/x tap has already re-rendered the line items (detaching e.target).
+    // Checking drawer.contains(e.target) alone closed the cart on every qty change.
     document.addEventListener('click', function(e) {
       var drawer = document.getElementById('cartDrawer');
       if (!drawer || !drawer.classList.contains('is-open')) return;
-      if (drawer.contains(e.target) || e.target.closest('.cart-toggle, #cartToggle')) return;
+      var path = e.composedPath ? e.composedPath() : [];
+      if (path.indexOf(drawer) !== -1 || drawer.contains(e.target) || !e.target.isConnected) return;
+      if (e.target.closest && e.target.closest('.cart-toggle, #cartToggle')) return;
       self.closeDrawer();
     });
     document.querySelectorAll('.wpn__toggle').forEach(function(t) {
