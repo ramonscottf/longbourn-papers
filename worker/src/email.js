@@ -24,6 +24,45 @@ export function senderFor(kind, env) {
   return env.EMAIL_FROM || 'Longbourn Papers <hello@longbournpapers.com>';
 }
 export function ownerInbox(env) { return env.CONTACT_EMAIL || 'alexandra@longbournpapers.com'; }
+// Who hears about new paid orders. ORDER_ALERT_TO (comma-separated) overrides; default = owner inbox.
+export function orderAlertInboxes(env) {
+  return String(env.ORDER_ALERT_TO || ownerInbox(env)).split(',').map(x => x.trim()).filter(Boolean);
+}
+
+// ── Owner alert: "you have a new order" — internal, never customer-facing ────
+function esc(v) { return String(v ?? '').replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+export function ownerOrderAlert({ orderId, items, customerName, customerEmail, shipTo, subtotal, shipping, tax, total, dashboardUrl }) {
+  const m = c => '$' + ((c || 0) / 100).toFixed(2);
+  const count = items.reduce((n, it) => n + (it.quantity || 0), 0);
+  const who = customerName || customerEmail || 'A customer';
+  const rows = items.map(it => {
+    const variant = it.variant_title && it.variant_title !== 'Default Title' ? ` &mdash; ${esc(it.variant_title)}` : '';
+    return `<tr><td style="padding:8px 0;border-bottom:1px solid ${BRAND.line};font-size:15px">${esc(it.product_title)}${variant}</td>`
+      + `<td style="padding:8px 0 8px 12px;border-bottom:1px solid ${BRAND.line};text-align:center;font-size:15px;white-space:nowrap">&times; ${it.quantity}</td>`
+      + `<td style="padding:8px 0 8px 12px;border-bottom:1px solid ${BRAND.line};text-align:right;font-size:15px;white-space:nowrap">${m(it.unit_price_cents * it.quantity)}</td></tr>`;
+  }).join('');
+  const a = shipTo?.address || {};
+  const addr = [shipTo?.name, a.line1, a.line2, [a.city, a.state].filter(Boolean).join(', ') + (a.postal_code ? ' ' + a.postal_code : '')]
+    .filter(x => x && String(x).trim()).map(esc).join('<br>');
+  const line = (label, val, strong) =>
+    `<tr><td style="padding:3px 0;font-size:14px;color:${strong ? BRAND.hunter : BRAND.soft}">${label}</td><td style="padding:3px 0;text-align:right;font-size:${strong ? 17 : 14}px;color:${BRAND.hunter}">${strong ? '<strong>' + val + '</strong>' : val}</td></tr>`;
+  const bodyHtml = `
+    <p style="margin:0 0 18px">${esc(who)} just bought ${count} item${count === 1 ? '' : 's'}. Paid in full &mdash; ready to press and pack.</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 16px">${rows}</table>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px">
+      ${line('Subtotal', m(subtotal))}${line('Shipping', m(shipping))}${tax ? line('Tax', m(tax)) : ''}${line('Total paid', m(total), true)}
+    </table>
+    <div style="font-family:'Libre Franklin',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:${BRAND.gold};padding-bottom:6px">Ship to</div>
+    <p style="margin:0 0 6px">${addr || 'See the order in the dashboard'}</p>
+    ${customerEmail ? `<p style="margin:0 0 4px;font-size:14px;color:${BRAND.soft}">${esc(customerEmail)} &middot; reply to this email to write them</p>` : ''}
+    <p style="margin:10px 0 0;font-size:13px;color:${BRAND.soft}">Order ${esc(orderId)}</p>`;
+  return {
+    subject: `New order: ${m(total)} from ${who}`,
+    html: shell({ eyebrow: 'New order', heading: 'Someone just ordered', bodyHtml,
+      cta: { label: 'Open orders', href: dashboardUrl || 'https://hq.wickowaypoint.com/' },
+      footNote: 'Sent to you because a payment just cleared on longbournpapers.com.' }),
+  };
+}
 
 // ── The branded shell — words-only masthead, hunter/cream/gold, no hero image,
 //    letterpress restraint. Table-based for mail-client compatibility. ─────────
@@ -69,7 +108,7 @@ export async function ensureEmailLog(env) {
   );
 }
 
-export async function sendEmail(env, { to, subject, html, kind, from, internal = false, ref = '', onResult }) {
+export async function sendEmail(env, { to, subject, html, kind, from, internal = false, ref = '', onResult, replyTo }) {
   await ensureEmailLog(env);
   const now = new Date().toISOString();
   const log = async (status, detail = '') => {
@@ -89,7 +128,7 @@ export async function sendEmail(env, { to, subject, html, kind, from, internal =
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: from || senderFor(kind, env), to: [to], subject, html }),
+      body: JSON.stringify({ from: from || senderFor(kind, env), to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
     });
     const resp = await r.json().catch(() => ({}));
     return log(r.ok ? (internal ? 'internal-sent' : 'sent') : 'failed',

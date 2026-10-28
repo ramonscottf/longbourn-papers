@@ -6,7 +6,7 @@ import { handleEmailPreview, handleEmailLog } from './email-admin.js';
 import { handleCORS, corsHeaders } from './cors.js';
 import { handleCourseSignup, handleCourseUnsubscribe, courseDrip } from './course.js';
 import { handleProducts, handleProduct, handleCollection } from './catalog.js'; // Phase 1: D1-backed (shopify.js retained for reference until Phase 2)
-import { handleCheckout, handleStripeWebhook, handleStripeSetup, handleTestOrder, handleStripeStatus } from './checkout.js'; // Phase 2: Stripe-hosted checkout (Shopify cart proxy removed)
+import { handleCheckout, handleStripeWebhook, handleStripeSetup, handleTestOrder, handleStripeStatus, handleOrderAlertPreview } from './checkout.js'; // Phase 2: Stripe-hosted checkout (Shopify cart proxy removed)
 import { handleMedia } from './media.js'; // Asset independence: R2-served site media with Range support
 import { handleAdmin } from './admin.js'; // Phase 3: order dashboard API (iOS contract)
 import { handleContact } from './contact.js';
@@ -98,6 +98,9 @@ export default {
       }
       else if (path === '/api/admin/stripe/status' && request.method === 'GET') {
         response = await handleStripeStatus(request, env);
+      }
+      else if (path === '/api/admin/order-alert/preview' && request.method === 'POST') {
+        response = await handleOrderAlertPreview(request, env);
       }
       else if (path === '/api/admin/test-order' && request.method === 'POST') {
         response = await handleTestOrder(request, env);

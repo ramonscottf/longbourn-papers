@@ -1,5 +1,5 @@
 // Longbourn checkout — Stripe-hosted (Phase 2).
-import { sendEmail, TEMPLATES } from './email.js';
+import { sendEmail, TEMPLATES, ownerOrderAlert, orderAlertInboxes } from './email.js';
 import { markCartsConverted } from './lifecycle.js';
 // Design principles:
 //  - STATELESS STRIPE: no Stripe Products/Prices ever created. Every session is built
@@ -168,7 +168,7 @@ export async function handleStripeWebhook(request, env) {
 }
 
 // Shared by the webhook and the admin plumbing test. Idempotent: only pending→new once.
-async function recordPaidOrder(env, orderId, s) {
+async function recordPaidOrder(env, orderId, s, opts = {}) {
   const order = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(orderId).first();
   if (!order || order.status !== 'pending') return { skipped: true };
 
@@ -206,7 +206,53 @@ async function recordPaidOrder(env, orderId, s) {
   const to = s.customer_details?.email;
   await markCartsConverted(env, to);
   await sendOrderEmail(env, to, orderId, items, s); // engine gates on EMAIL_MODE
+  // Owner alert — internal send (bypasses EMAIL_MODE by design, like contact/wholesale).
+  // Never allowed to break order recording: the webhook must still answer 200.
+  try { await sendOwnerOrderAlert(env, orderId, items, s, opts.alertTo); }
+  catch (e) { await logEvent(env, orderId, 'owner_alert_failed', String(e)); }
   return { recorded: true, items: items.length };
+}
+
+async function sendOwnerOrderAlert(env, orderId, items, s, alertTo) {
+  const ship = s.shipping_details || s.collected_information?.shipping_details || null;
+  const t = ownerOrderAlert({
+    orderId, items,
+    customerName: ship?.name || s.customer_details?.name || null,
+    customerEmail: s.customer_details?.email || null,
+    shipTo: ship || s.customer_details || null,
+    subtotal: s.amount_subtotal, shipping: s.total_details?.amount_shipping,
+    tax: s.total_details?.amount_tax, total: s.amount_total,
+    dashboardUrl: env.ORDERS_DASHBOARD_URL || 'https://hq.wickowaypoint.com/',
+  });
+  const inboxes = alertTo ? [alertTo] : orderAlertInboxes(env);
+  for (const inbox of inboxes) {
+    await sendEmail(env, {
+      to: inbox, subject: t.subject, html: t.html, kind: 'owner_new_order', internal: true,
+      ref: orderId, replyTo: s.customer_details?.email || undefined,
+      onResult: (status, detail) => logEvent(env, orderId, 'owner_alert_' + status, `${inbox} ${detail}`),
+    });
+  }
+}
+
+// ── POST /api/admin/order-alert/preview (ADMIN-gated) ────────────────────────
+// Sends a SAMPLE new-order alert to an explicit recipient (operator inbox) so the
+// alert can be eyeballed without a real order. Touches no order or inventory.
+export async function handleOrderAlertPreview(request, env) {
+  let body; try { body = await request.json(); } catch { body = {}; }
+  if (!body.to || typeof body.to !== 'string') return jerr(400, 'to (recipient) required');
+  const items = [
+    { product_title: 'Letterpress Note Card & Envelope Set', variant_title: 'Baby Blue', quantity: 2, unit_price_cents: 2400 },
+    { product_title: 'Letterpress Gift Tags with Satin Ribbon', variant_title: 'Bravo', quantity: 1, unit_price_cents: 2400 },
+  ];
+  const t = ownerOrderAlert({
+    orderId: 'LB-SAMPLE', items, customerName: 'Eleanor Dashwood', customerEmail: body.to,
+    shipTo: { name: 'Eleanor Dashwood', address: { line1: '12 Barton Cottage Ln', city: 'Farmington', state: 'UT', postal_code: '84025' } },
+    subtotal: 7200, shipping: 600, tax: 518, total: 8318,
+    dashboardUrl: env.ORDERS_DASHBOARD_URL || 'https://hq.wickowaypoint.com/',
+  });
+  const r = await sendEmail(env, { to: body.to, subject: '[Preview] ' + t.subject, html: t.html,
+    kind: 'owner_new_order_preview', internal: true, ref: 'preview', replyTo: body.to });
+  return json({ ok: r.status === 'internal-sent', ...r });
 }
 
 async function sendOrderEmail(env, to, orderId, items, s) {
@@ -284,7 +330,7 @@ export async function handleTestOrder(request, env) {
     total_details: { amount_shipping: 600, amount_tax: 0 },
     amount_total: v.price_cents + 600,
   };
-  const result = await recordPaidOrder(env, orderId, sim);
+  const result = await recordPaidOrder(env, orderId, sim, { alertTo: body.email }); // operator test: alert stays in the operator inbox
   // Force the email for the operator test regardless of EMAIL_MODE:
   const { results: items } = await env.DB
     .prepare('SELECT * FROM order_items WHERE order_id=?').bind(orderId).all();
